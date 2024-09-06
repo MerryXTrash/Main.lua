@@ -17,6 +17,15 @@ highlightTemplate.FillTransparency = 0.5
 highlightTemplate.OutlineTransparency = 0
 highlightTemplate.Parent = folder
 
+local function applyHighlight(instance)
+    local highlight = highlightTemplate:Clone()
+    highlight.Name = instance.Name .. "Highlight"
+    highlight.FillColor = Color3.fromRGB(255, 0, 0) -- Red color for highlighting
+    highlight.FillTransparency = 0.8
+    highlight.OutlineColor = Color3.fromRGB(255, 255, 255) -- White outline
+    highlight.Parent = instance
+end
+
 local function setupHighlightForMob(mob)
     local mobHighlight = highlightTemplate:Clone()
     mobHighlight.Name = "MobESP"
@@ -262,6 +271,37 @@ do
                                 end)
                             end)
                         end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("Player ESP not enabled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+    Tabs.ESP:AddButton({
+        Title = "Monster ESP",
+        Description = "Show Monster ESP",
+        Callback = function()
+            Window:Dialog({
+                Title = "Monster ESP",
+                Content = "Do you want to enable monster ESP?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            local gameAI = game.Workspace:FindFirstChild("GameAI")
+if gameAI then
+    for _, child in pairs(gameAI:GetDescendants()) do
+        applyHighlight(child)
+    end
+else
+    warn("GameAI not found in Workspace")
+end
                     },
                     {
                         Title = "No",

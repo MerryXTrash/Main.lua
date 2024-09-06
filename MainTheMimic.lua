@@ -247,42 +247,46 @@ do
         end
     })
 
-    Tabs.ESP:AddButton({
-        Title = "Player ESP",
-        Description = "Show Player ESP",
-        Callback = function()
-            Window:Dialog({
-                Title = "Player ESP",
-                Content = "Do you want to enable Player ESP?",
-                Buttons = {
-                    {
-                        Title = "Yes",
-                        Callback = function()
+Tabs.ESP:AddButton({
+    Title = "Player ESP",
+    Description = "Show Player ESP",
+    Callback = function()
+        Window:Dialog({
+            Title = "Player ESP",
+            Content = "Do you want to enable Player ESP?",
+            Buttons = {
+                {
+                    Title = "Yes",
+                    Callback = function()
+                        safeExecute(function()
                             safeExecute(function()
-                                local Players = game.Players
-                                for _, player in pairs(Players:GetPlayers()) do
-                                    setupHighlightForPlayer(player)
-                                end
+    local Players = game.Players
+    for _, player in pairs(Players:GetPlayers()) do
+        setupHighlightForPlayer(player)
+    end
 
-                                Players.PlayerAdded:Connect(function(player)
-                                    player.CharacterAdded:Connect(function(character)
-                                        setupHighlightForPlayer(player)
-                                    end)
-                                end)
-                            end)
-                        end
-                    },
-                    {
-                        Title = "No",
-                        Callback = function()
-                            print("Player ESP not enabled.")
-                        end
-                    }
+    Players.PlayerAdded:Connect(function(player)
+        player.CharacterAdded:Connect(function(character)
+            setupHighlightForPlayer(player)
+        end)
+    end)
+end)
+
+                        end)
+                    end
+                },
+                {
+                    Title = "No",
+                    Callback = function()
+                        print("Player ESP not enabled.")
+                    end
                 }
-            })
-        end
-    })
+            }
+        })
+    end
+})
 
+    
     Tabs.ESP:AddButton({
         Title = "Monster ESP",
         Description = "Show Monster ESP",

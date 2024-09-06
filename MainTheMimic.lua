@@ -258,7 +258,6 @@ Tabs.ESP:AddButton({
                 {
                     Title = "Yes",
                     Callback = function()
-                        safeExecute(function()
                             safeExecute(function()
     local Players = game.Players
     for _, player in pairs(Players:GetPlayers()) do

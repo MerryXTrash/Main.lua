@@ -504,6 +504,7 @@ if id == 7618863566 then
                             _G.autoOBS = true
                             while _G.autoOBS do wait()
                             wait(0)
+                            setHoldDurationForAllProximityPrompts()
                             setCameraToLookDown()
                             AutoOrbs()
                             handleProximityPrompts()

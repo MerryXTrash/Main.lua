@@ -550,7 +550,7 @@ if id == 7265396805 or id == 7251866503 then
                         Callback = function()
                                     TP.HumanoidRootPart.CFrame = CFrame.new(1099.39794921875, 3.135153293609619, 75.5241928100586)
                                     wait(1.5)
-                            _G.buttlerfly = true
+                            _G.buttlefly = true
                             while _G.buttlefly do
                                 wait(0.1) -- Adjusted wait to avoid potential performance issues
                                 handleProximityPrompts()

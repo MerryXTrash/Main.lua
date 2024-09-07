@@ -470,7 +470,7 @@ if id == 7618863566 then
         Callback = function()
             Window:Dialog({
                 Title = "Enter Zone",
-                Content = "Do you want to ENter Zone?",
+                Content = "Do you want to Enter Zone?",
                 Buttons = {
                     {
                         Title = "Yes",
@@ -494,28 +494,33 @@ if id == 7618863566 then
 end
 
 if id == 7618863566 then
-    -- Create a toggle button for enabling/disabling the AutoOrbs feature
-    local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Orbs", Default = false})
-
-    -- Define the behavior when the toggle state changes
-    Toggle:OnChanged(function(value)
-        if value then
-            -- Start automating tasks if toggle is on
-            _G.AutoOrbs = true
-            while _G.AutoOrbs do
-                wait(0.2)  -- Wait for 0.2 seconds between each action
-                setCameraToLookDown()
-                AutoOrbs()
-                handleProximityPrompts()
-            end
-        else
-            -- Stop automating tasks if toggle is off
-            _G.AutoOrbs = false
+    Tabs.General:AddButton({
+        Title = "Auto Orbs",
+        Description = "Auto Collect Orbs",
+        Callback = function()
+            Window:Dialog({
+                Title = "Auto Orbs",
+                Content = "Do you want to Enable Auto Orbs?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            local player = game.Players.LocalPlayer
+                            player.Character.HumanoidRootPart.CFrame = CFrame.new(609.1366, 17.5699, 1087.6727)
+                            wait(1)
+                            player.Character.HumanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("Off")
+                        end
+                    }
+                }
+            })
         end
-    end)
-
-    -- Initialize the toggle to the off state
-    Toggle:SetValue(false)
+    })
 end
 
 SaveManager:SetLibrary(Fluent)

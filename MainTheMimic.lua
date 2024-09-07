@@ -1,4 +1,3 @@
--- Load external libraries
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
@@ -7,6 +6,90 @@ local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTr
 local TP = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 local TweenService = game:GetService("TweenService")
 local id = game.PlaceId
+
+function InstancePrompt()
+    for _, v in ipairs(workspace:GetDescendants()) do
+        if v:IsA("ProximityPrompt") then
+        v.HoldDuration = 0
+    end
+end
+InstancePrompt()
+
+local function findProximityPrompt()
+    for _, obj in pairs(workspace:GetDescendants()) do
+        if obj:IsA("ProximityPrompt") then
+            return obj
+        end
+    end
+    return nil
+end
+
+-- ฟังก์ชันในการเรียกใช้ ProximityPrompt
+local function triggerProximityPrompt(proximityPrompt, amount, skip)
+    if proximityPrompt then
+        local holdDuration = proximityPrompt.HoldDuration
+        if skip then
+            proximityPrompt.HoldDuration = 0
+        end
+        
+        for i = 1, amount or 1 do
+            proximityPrompt:InputHoldBegin()
+            if skip then
+                wait(holdDuration)
+            end
+            proximityPrompt:InputHoldEnd()
+        end
+        
+        proximityPrompt.HoldDuration = holdDuration
+    else
+        warn("ไม่พบ ProximityPrompt ใน Workspace")
+    end
+end
+
+function AutoOrbs()
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
+    
+    if not humanoidRootPart then return end
+    
+    local orbsFound = false
+    
+    for _, v in pairs(workspace.GameAI.Souls:GetChildren()) do
+        if v.Name == "Orb" then
+            humanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 5, 0)
+            orbsFound = true
+            break  -- Exit the loop once an orb is found and the player is moved to it
+        end
+    end
+    
+    if not orbsFound then
+        humanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
+    end
+end
+
+-- ฟังก์ชันตรวจจับการเข้าใกล้
+local function checkProximity()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    
+    while true do
+        wait(1) -- ตรวจสอบทุกๆ 1 วินาที
+        
+        local part = workspace:FindFirstChild("PartWithProximityPrompt") -- หรือใช้วิธีการค้นหาอื่น ๆ
+        if part then
+            local distance = (humanoidRootPart.Position - part.Position).Magnitude -- ปรับระยะห่างตามที่ต้องการ
+            
+            if distance < 10 then -- ปรับระยะห่างตามที่ต้องการ
+                local proximityPrompt = findProximityPrompt()
+                triggerProximityPrompt(proximityPrompt, 1, false)
+            end
+        end
+    end
+end
+
+-- เริ่มตรวจจับการเข้าใกล้
 
 -- Create highlight folder and template
 local folder = Instance.new("Folder")
@@ -103,7 +186,7 @@ Tabs.Log:AddParagraph({
 
 Tabs.Log:AddParagraph({
     Title = "+ Add",
-    Content = "Visual (Work Only Book2)"
+    Content = "Visual"
 })
 
 -- General tab content
@@ -152,11 +235,6 @@ elseif id == 7265396387 or id == 7251865082 then
         Title = "Book 1",
         Content = "Chapter 4"
     })
-end
-
--- Teleport function
-local function teleport(position)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = position
 end
 
 -- Skip button
@@ -264,14 +342,11 @@ Tabs.ESP:AddButton({
                 {
                     Title = "Yes",
                     Callback = function()
-                        safeExecute(function()
-                            for _, mob in pairs(workspace.Mobs:GetChildren()) do
-                                setupHighlightForMob(mob)
-                            end
-                            workspace.Mobs.ChildAdded:Connect(function(mob)
-                                setupHighlightForMob(mob)
-                            end)
-                        end)
+                        local M = game.Workspace.GameAI
+                        local Hiachi = M.AI
+                        local Rokurokubi = M.AI
+                        local Kusonoki = M.Kusonoki
+
                     end
                 },
                 {
@@ -349,6 +424,84 @@ Tabs.Misc:AddButton({
         })
     end
 })
+
+if id == 6243699076 and 7068737459 then
+Tabs.General:AddButton({
+    Title = "Teleport to Jigoku",
+    Description = "Teleport to Jigoku Event",
+    Callback = function()
+        Window:Dialog({
+            Title = "Teleport to Jigoku",
+            Content = "Do you want to Teleport to Jigoku?",
+            Buttons = {
+                {
+                    Title = "Yes",
+                    Callback = function()
+                        local TeleportService = game:GetService("TeleportService")
+                        local Players = game:GetService("Players")
+                        local LocalPlayer = Players.LocalPlayer
+                        local newPlaceId = 7618863566
+                
+                        local function teleportToNewPlace()
+                            local success, errorMessage = pcall(function()
+                                TeleportService:Teleport(newPlaceId, LocalPlayer)
+                            end)
+                
+                            if not success then
+                                warn("Failed to teleport: " .. tostring(errorMessage))
+                            end
+                        end
+                        teleportToNewPlace()
+                    end
+                },
+                {
+                    Title = "No",
+                    Callback = function()
+                        print("Fullbright not enabled.")
+                    end
+                }
+            }
+        })
+    end
+})
+end
+
+if id == 7618863566 then
+    Tabs.General:AddButton({
+        Title = "Auto Orbs",
+        Description = "On Auto Orbs",
+        Callback = function()
+            Window:Dialog({
+                Title = "Auto Orbs",
+                Content = "Do you want to enable Aotu Orbs?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            local player = game.Players.LocalPlayer
+                            player.Character.HumanoidRootPart.CFrame = CFrame.new(609.1366, 17.5699, 1087.6727)
+                            wait(2)
+                            player.Character.HumanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
+                            wait(2)
+                            _G.AutoOrbs = true
+                            while _G.AutoOrbs do wait()
+                            wait(0.2)
+                            AutoOrbs()
+                            checkProximity()
+                            end
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("Fullbright not enabled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+end
 
 SaveManager:SetLibrary(Fluent)
     SaveManager:IgnoreThemeSettings()

@@ -494,23 +494,28 @@ if id == 7618863566 then
 end
 
 if id == 7618863566 then
-local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Orbs", Default = false})
+    -- Create a toggle button for enabling/disabling the AutoOrbs feature
+    local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Orbs", Default = false})
 
+    -- Define the behavior when the toggle state changes
     Toggle:OnChanged(function(value)
         if value then
-                _G.AutoOrbs = true
-                while _G.AutoOrbs do wait()
-                    wait(0.2)
-                    setCameraToLookDown()
-                    AutoOrbs()
-                    handleProximityPrompts()
-                end
+            -- Start automating tasks if toggle is on
+            _G.AutoOrbs = true
+            while _G.AutoOrbs do
+                wait(0.2)  -- Wait for 0.2 seconds between each action
+                setCameraToLookDown()
+                AutoOrbs()
+                handleProximityPrompts()
+            end
         else
+            -- Stop automating tasks if toggle is off
             _G.AutoOrbs = false
         end
     end)
 
-    Options.MyToggle:SetValue(false)
+    -- Initialize the toggle to the off state
+    Toggle:SetValue(false)
 end
 
 SaveManager:SetLibrary(Fluent)

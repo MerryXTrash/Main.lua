@@ -548,12 +548,12 @@ if id == 7265396805 and 7251866503 then
                     {
                         Title = "Yes",
                         Callback = function()
-                            _G.autoOBS = true
-                            while _G.autoOBS do wait()
+                            _G.autoBS = true
+                            while _G.autoBS do wait()
                             wait(0)
-                            fire()
-                            Autobtfs()
                             handleProximityPrompts()
+                            Autobtfs()
+                            fire()
                             end
                         end
                     },

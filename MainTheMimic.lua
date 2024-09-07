@@ -134,36 +134,6 @@ wait(5)
 setHoldDurationForAllProximityPrompts()
 end
 
-local function findProximityPrompt()
-    for _, obj in pairs(workspace:GetDescendants()) do
-        if obj:IsA("ProximityPrompt") then
-            return obj
-        end
-    end
-    return nil
-end
-
-local function triggerProximityPrompt(proximityPrompt, amount, skip)
-    if proximityPrompt then
-        local holdDuration = proximityPrompt.HoldDuration
-        if skip then
-            proximityPrompt.HoldDuration = 0
-        end
-        
-        for i = 1, amount or 1 do
-            proximityPrompt:InputHoldBegin()
-            if skip then
-                wait(holdDuration)
-            end
-            proximityPrompt:InputHoldEnd()
-        end
-        
-        proximityPrompt.HoldDuration = holdDuration
-    else
-        warn("ไม่พบ ProximityPrompt ใน Workspace")
-    end
-end
-
 function AutoOrbs()
     for _, v in pairs(workspace.GameAI.Souls:GetChildren()) do
         if v.Name == "Orb" then
@@ -531,6 +501,7 @@ local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Orbs", Default 
                 _G.AutoOrbs = true
                 while _G.AutoOrbs do wait()
                     wait(0.2)
+                    setCameraToLookDown()
                     AutoOrbs()
                     handleProximityPrompts()
                 end
@@ -557,4 +528,3 @@ SaveManager:SetLibrary(Fluent)
     })
 
     SaveManager:LoadAutoloadConfig()
-end

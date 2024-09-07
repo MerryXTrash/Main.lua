@@ -536,6 +536,39 @@ if id == 7618863566 then
     })
 end
 
+if id == 7265396805 and 7251866503 then
+    Tabs.General:AddButton({
+        Title = "Auto Buttlefly",
+        Description = "Auto Collect Butterfly",
+        Callback = function()
+            Window:Dialog({
+                Title = "Auto Butterfly",
+                Content = "Do you want to Enable Auto Butterfly?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            _G.autoOBS = true
+                            while _G.autoOBS do wait()
+                            wait(0)
+                            fire()
+                            Autobtfs()
+                            handleProximityPrompts()
+                            end
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("Off")
+                        end
+                    }
+                }
+            })
+        end
+    })
+end
+
 SaveManager:SetLibrary(Fluent)
     SaveManager:IgnoreThemeSettings()
     SaveManager:SetIgnoreIndexes({})

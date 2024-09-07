@@ -51,7 +51,7 @@ local function Tween(Position, Duration)
     end
 end
 
---Call function
+
 --local targetPosition = Vector3.new(10, 5, -10)
 --local duration = 3
 
@@ -68,7 +68,7 @@ local TeleportService = game:GetService("TeleportService")
         end)
                         
         if not success then
-        print("Kuy")
+        warn("Failed to teleport: " .. tostring(errorMessage))
     end
 end
 
@@ -128,17 +128,15 @@ local function setHoldDurationForAllProximityPrompts()
 end
 end
 
-_G.Prompt = true
-while _G.Prompt do wait()
-wait(5)
 setHoldDurationForAllProximityPrompts()
-end
 
 function AutoOrbs()
     for _, v in pairs(workspace.GameAI.Souls:GetChildren()) do
         if v.Name == "Orb" then
+            -- Move the player's character to the position of the orb, with an offset
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 7, 0)
         else
+            -- Reset the player's position to a specified location if the item is not an orb
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
         end
     end
@@ -192,9 +190,19 @@ local function setupHighlightForPlayer(player)
     playerHighlight.Parent = character
 end
 
+-- Function to execute code safely
+local function safeExecute(callback)
+    local success, errorMsg = pcall(callback)
+    if not success then
+        warn("Error occurred: " .. errorMsg)
+    end
+end
+
+-- Load external libraries
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local UITOGGLE = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
+local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
+-- Initialize variables
 
 local Window = Fluent:CreateWindow({
     Title = (id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221) and "The Mimic | Book 1 Chapter 1" or
@@ -207,7 +215,7 @@ local Window = Fluent:CreateWindow({
             (id == 15996414738 or id == 15996416081 or id == 15996417416) and "The Mimic Classic | Chapter 3" or
             (id == 7265396387 or id == 7251865082) and "The Mimic | Book 1 Chapter 4" or
             "The Mimic",
-    SubTitle = "by BigbroSkibidi",
+    SubTitle = "by JajaEngkubb",
     TabWidth = 160,
     Size = UDim2.fromOffset(460, 300),
     Acrylic = true,
@@ -228,10 +236,10 @@ local Options = Fluent.Options
 
 -- Notifications and Log tab
 Fluent:Notify({
-    Title = "BigbroSkibidi",
-    Content = "Thank for use My Script",
-    SubContent = "",
-    Duration = 1
+    Title = "JajaCutecute",
+    Content = "Thank you for using my script <3",
+    SubContent = "ขอบคุณที่ใช้สคริปต์น่ะค่ะ จุ๊บๆ <3",
+    Duration = 5
 })
 
 Tabs.Log:AddParagraph({
@@ -520,9 +528,9 @@ SaveManager:SetLibrary(Fluent)
     Window:SelectTab(2)
 
     Fluent:Notify({
-        Title = "BigSkibidi",
-        Content = "Script has been loaded",
-        Duration = 0
+        Title = "จ๊ะจ๊าเองจ้า",
+        Content = "ใช้สคริปต์ระวังโดนแบนกันด้วยน้าา",
+        Duration = 5
     })
 
     SaveManager:LoadAutoloadConfig()

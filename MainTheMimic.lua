@@ -253,6 +253,52 @@ elseif id == 7265396387 or id == 7251865082 then
         Title = "Book 1",
         Content = "Chapter 4"
     })
+elseif id == 6243699076 and 7068737459 then
+    Tabs.General:AddParagraph({
+        Title = "The Mimic",
+        Content = "Main"
+    })
+end
+
+if id == 6243699076 and 7068737459 then
+    Tabs.General:AddButton({
+        Title = "Teleport to Jigoku",
+        Description = "Teleport to Jigoku Event",
+        Callback = function()
+            Window:Dialog({
+                Title = "Teleport to Jigoku",
+                Content = "Do you want to Teleport to Jigoku?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            local TeleportService = game:GetService("TeleportService")
+                            local Players = game:GetService("Players")
+                            local LocalPlayer = Players.LocalPlayer
+                            local newPlaceId = 7618863566
+                    
+                            local function teleportToNewPlace()
+                                local success, errorMessage = pcall(function()
+                                    TeleportService:Teleport(newPlaceId, LocalPlayer)
+                                end)
+                    
+                                if not success then
+                                    warn("Failed to teleport: " .. tostring(errorMessage))
+                                end
+                            end
+                            teleportToNewPlace()
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("Fullbright not enabled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
 end
 
 -- Skip button
@@ -263,7 +309,7 @@ id == 6682163754 or id == 6688734313 or id == 6682164423 or id == 6688734395 or
 id == 7068738088 or id == 7068951438 or id == 7068951914 or id == 7068740106 or 
 id == 7068952294 or id == 15996404472 or id == 15996411979 or id == 15996410294 or 
 id == 15996407335 or id == 15996417416 or id == 15996416081 or id == 15996414738 or 
-id == 15996413469 or id == 7265396387 or id == 7251865082 then
+id == 15996413469 or id == 7265396387 or id == 7251865082 or id == then
     Tabs.General:AddButton({
         Title = "Skip",
         Description = "Skip to a specific part of the game.",
@@ -415,47 +461,6 @@ Tabs.Misc:AddButton({
         })
     end
 })
-
-if id == 6243699076 and 7068737459 then
-Tabs.General:AddButton({
-    Title = "Teleport to Jigoku",
-    Description = "Teleport to Jigoku Event",
-    Callback = function()
-        Window:Dialog({
-            Title = "Teleport to Jigoku",
-            Content = "Do you want to Teleport to Jigoku?",
-            Buttons = {
-                {
-                    Title = "Yes",
-                    Callback = function()
-                        local TeleportService = game:GetService("TeleportService")
-                        local Players = game:GetService("Players")
-                        local LocalPlayer = Players.LocalPlayer
-                        local newPlaceId = 7618863566
-                
-                        local function teleportToNewPlace()
-                            local success, errorMessage = pcall(function()
-                                TeleportService:Teleport(newPlaceId, LocalPlayer)
-                            end)
-                
-                            if not success then
-                                warn("Failed to teleport: " .. tostring(errorMessage))
-                            end
-                        end
-                        teleportToNewPlace()
-                    end
-                },
-                {
-                    Title = "No",
-                    Callback = function()
-                        print("Fullbright not enabled.")
-                    end
-                }
-            }
-        })
-    end
-})
-end
 
 if id == 7618863566 then
     Tabs.General:AddButton({

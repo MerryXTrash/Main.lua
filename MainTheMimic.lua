@@ -227,7 +227,7 @@ local Window = Fluent:CreateWindow({
             (id == 15996404472 or id == 15996407335) and "The Mimic Classic | Chapter 1" or
             (id == 15996410294 or id == 15996411979 or id == 15996413469) and "The Mimic Classic | Chapter 2" or
             (id == 15996414738 or id == 15996416081 or id == 15996417416) and "The Mimic Classic | Chapter 3" or
-            (id == 7265396387 or id == 7251865082) and "The Mimic | Book 1 Chapter 4" or
+            (id == 7265396387 or id == 7251865082 or id == 7265396805 or id == 7251866503) and "The Mimic | Book 1 Chapter 4" or
             "The Mimic",
     SubTitle = "by JajaEngkubb",
     TabWidth = 160,
@@ -253,7 +253,7 @@ Fluent:Notify({
     Title = "JajaCutecute",
     Content = "Thank you for using my script <3",
     SubContent = "ขอบคุณที่ใช้สคริปต์น่ะค่ะ จุ๊บๆ <3",
-    Duration = 5
+    Duration = 3
 })
 
 Tabs.Log:AddParagraph({
@@ -306,7 +306,7 @@ elseif id == 15996414738 or id == 15996416081 or id == 15996417416 then
         Title = "Event",
         Content = "The Mimic Classic Chapter 3"
     })
-elseif id == 7265396387 or id == 7251865082 then
+elseif id == 7265396387 or id == 7251865082 or id == 7265396805 or id == 7251866503 then
     Tabs.General:AddParagraph({
         Title = "Book 1",
         Content = "Chapter 4"
@@ -548,8 +548,8 @@ if id == 7265396805 or id == 7251866503 then
                     {
                         Title = "Yes",
                         Callback = function()
-                            _G.autoBS = true
-                            while _G.autoBS do
+                            _G.butterfly = true
+                            while _G.buttlefly do
                                 wait(0.1) -- Adjusted wait to avoid potential performance issues
                                 handleProximityPrompts()
                                 Autobtfs()
@@ -580,7 +580,7 @@ SaveManager:SetLibrary(Fluent)
     Fluent:Notify({
         Title = "จ๊ะจ๊าเองจ้า",
         Content = "ใช้สคริปต์ระวังโดนแบนกันด้วยน้าา",
-        Duration = 5
+        Duration = 3
     })
 
     SaveManager:LoadAutoloadConfig()

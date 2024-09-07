@@ -165,43 +165,22 @@ local function triggerProximityPrompt(proximityPrompt, amount, skip)
 end
 
 function AutoOrbs()
-    local player = game.Players.LocalPlayer
-    local character = player.Character
-    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
-    
-    if not humanoidRootPart then return end
-    
-    local orbsFound = false
-    
     for _, v in pairs(workspace.GameAI.Souls:GetChildren()) do
         if v.Name == "Orb" then
-            humanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 5, 0)
-            orbsFound = true
-            break
+            -- Move the player's character to the position of the orb, with an offset
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 7, 0)
+        else
+            -- Reset the player's position to a specified location if the item is not an orb
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
         end
-    end
-    
-    if not orbsFound then
-        humanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
     end
 end
 
-local function checkProximity()
-    local player = game.Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    
-    while true do
-        wait(0)
-        
-        local part = workspace:FindFirstChild("PartWithProximityPrompt")
-        if part then
-            local distance = (humanoidRootPart.Position - part.Position).Magnitude
-            
-            if distance < 10 then
-                local proximityPrompt = findProximityPrompt()
-                triggerProximityPrompt(proximityPrompt, 1, false)
-            end
+local function handleProximityPrompts()
+    for _, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+        if v:IsA("ProximityPrompt") then
+            v:InputHoldBegin()
+            v:InputHoldEnd()
         end
     end
 end
@@ -551,11 +530,12 @@ local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Orbs", Default 
         if value then
                 _G.AutoOrbs = true
                 while _G.AutoOrbs do wait()
-                    wait(0.1)
-                    
+                    wait(0.2)
+                    AutoOrbs()
+                    handleProximityPrompts()
                 end
         else
-            _G.FB = false
+            _G.AutoOrbs = false
         end
     end)
 

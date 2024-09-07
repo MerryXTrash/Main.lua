@@ -309,7 +309,6 @@ Tabs.Log:AddParagraph({
     Content = "Visual"
 })
 
--- General tab content
 if id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221 then
     Tabs.General:AddParagraph({
         Title = "Book 1",

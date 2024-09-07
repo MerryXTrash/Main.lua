@@ -152,6 +152,18 @@ function AutoOrbs()
     end
 end
 
+function Autobtfs()
+    for _, v in pairs(workspace.Butterflies:GetChildren()) do
+        if v.Name == "Butterfly" then
+            -- Move the player's character to the position of the orb, with an offset
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 2, 0)
+        else
+            -- Reset the player's position to a specified location if the item is not an orb
+            print("kuy")
+        end
+    end
+end
+
 local folder = Instance.new("Folder")
 folder.Name = "HighlightsFolder"
 folder.Parent = game.Workspace

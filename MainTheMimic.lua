@@ -1,31 +1,3 @@
--- Load external libraries
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
--- Initialize variables
-local TP = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-local TweenService = game:GetService("TweenService")
-local id = game.PlaceId
-
-local Window = Fluent:CreateWindow({
-    Title = (id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221) and "The Mimic | Book 1 Chapter 1" or
-            (id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or id == 6425178683 or id == 6485056556) and "The Mimic | Book 1 Chapter 2" or
-            (id == 6472459099 or id == 6688734180 or id == 6682163754 or id == 6688734313 or id == 6682164423 or id == 6688734395) and "The Mimic | Book 1 Chapter 3" or
-            (id == 7068738088 or id == 7068951438 or id == 7068951914 or id == 7068740106 or id == 7068952294) and "The Mimic | The Witch Trial" or
-            (id == 7618863566) and "The Mimic | Jigoku" or
-            (id == 15996404472 or id == 15996407335) and "The Mimic Classic | Chapter 1" or
-            (id == 15996410294 or id == 15996411979 or id == 15996413469) and "The Mimic Classic | Chapter 2" or
-            (id == 15996414738 or id == 15996416081 or id == 15996417416) and "The Mimic Classic | Chapter 3" or
-            (id == 7265396387 or id == 7251865082) and "The Mimic | Book 1 Chapter 4" or
-            "The Mimic",
-    SubTitle = "by JajaEngkubb",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(460, 300),
-    Acrylic = true,
-    Theme = "Amethyst",
-    MinimizeKey = Enum.KeyCode.One
-})
-
 _G.auto = false
 while _G.auto do wait()
 wait(0)
@@ -47,9 +19,11 @@ end
 function InstancePrompt()
     for _, v in ipairs(workspace:GetDescendants()) do
         if v:IsA("ProximityPrompt") then
-        v.HoldDuration = 0
+            v.HoldDuration = 0
+        end
     end
 end
+
 InstancePrompt()
 
 local function findProximityPrompt()
@@ -168,6 +142,42 @@ local function setupHighlightForPlayer(player)
     playerHighlight.Parent = character
 end
 
+-- Function to execute code safely
+local function safeExecute(callback)
+    local success, errorMsg = pcall(callback)
+    if not success then
+        warn("Error occurred: " .. errorMsg)
+    end
+end
+
+-- Load external libraries
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
+-- Initialize variables
+local TP = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+local TweenService = game:GetService("TweenService")
+local id = game.PlaceId
+
+local Window = Fluent:CreateWindow({
+    Title = (id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221) and "The Mimic | Book 1 Chapter 1" or
+            (id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or id == 6425178683 or id == 6485056556) and "The Mimic | Book 1 Chapter 2" or
+            (id == 6472459099 or id == 6688734180 or id == 6682163754 or id == 6688734313 or id == 6682164423 or id == 6688734395) and "The Mimic | Book 1 Chapter 3" or
+            (id == 7068738088 or id == 7068951438 or id == 7068951914 or id == 7068740106 or id == 7068952294) and "The Mimic | The Witch Trial" or
+            (id == 7618863566) and "The Mimic | Jigoku" or
+            (id == 15996404472 or id == 15996407335) and "The Mimic Classic | Chapter 1" or
+            (id == 15996410294 or id == 15996411979 or id == 15996413469) and "The Mimic Classic | Chapter 2" or
+            (id == 15996414738 or id == 15996416081 or id == 15996417416) and "The Mimic Classic | Chapter 3" or
+            (id == 7265396387 or id == 7251865082) and "The Mimic | Book 1 Chapter 4" or
+            "The Mimic",
+    SubTitle = "by JajaEngkubb",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(460, 300),
+    Acrylic = true,
+    Theme = "Amethyst",
+    MinimizeKey = Enum.KeyCode.One
+})
+
 -- Create tabs
 local Tabs = {
     Log = Window:AddTab({ Title = "Update Log", Icon = "hash" }),
@@ -178,14 +188,6 @@ local Tabs = {
 }
 
 local Options = Fluent.Options
-
--- Function to execute code safely
-local function safeExecute(callback)
-    local success, errorMsg = pcall(callback)
-    if not success then
-        warn("Error occurred: " .. errorMsg)
-    end
-end
 
 -- Notifications and Log tab
 Fluent:Notify({
@@ -336,7 +338,6 @@ Tabs.ESP:AddButton({
                         local Hiachi = M.AI
                         local Rokurokubi = M.AI
                         local Kusonoki = M.Kusonoki
-
                     end
                 },
                 {

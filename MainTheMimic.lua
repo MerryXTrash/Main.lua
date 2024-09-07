@@ -501,10 +501,13 @@ if id == 7618863566 then
                     {
                         Title = "Yes",
                         Callback = function()
-                            local player = game.Players.LocalPlayer
-                            player.Character.HumanoidRootPart.CFrame = CFrame.new(609.1366, 17.5699, 1087.6727)
-                            wait(1)
-                            player.Character.HumanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
+                            _G.autoOBS = true
+                            while _G.autoOBS do wait()
+                            wait(0)
+                            setCameraToLookDown()
+                            AutoOrbs()
+                            handleProximityPrompts()
+                            end
                         end
                     },
                     {

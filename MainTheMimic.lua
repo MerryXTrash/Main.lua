@@ -536,31 +536,31 @@ if id == 7618863566 then
     })
 end
 
-if id == 7265396805 and 7251866503 then
+if id == 7265396805 or id == 7251866503 then
     Tabs.General:AddButton({
-        Title = "Auto Buttlefly",
+        Title = "Auto Butterfly",
         Description = "Auto Collect Butterfly",
         Callback = function()
             Window:Dialog({
                 Title = "Auto Butterfly",
-                Content = "Do you want to Enable Auto Butterfly?",
+                Content = "Do you want to enable Auto Butterfly?",
                 Buttons = {
                     {
                         Title = "Yes",
                         Callback = function()
                             _G.autoBS = true
-                            while _G.autoBS do wait()
-                            wait(0)
-                            handleProximityPrompts()
-                            Autobtfs()
-                            fire()
+                            while _G.autoBS do
+                                wait(0.1) -- Adjusted wait to avoid potential performance issues
+                                handleProximityPrompts()
+                                Autobtfs()
+                                fire()
                             end
                         end
                     },
                     {
                         Title = "No",
                         Callback = function()
-                            print("Off")
+                            print("Auto Butterfly is off")
                         end
                     }
                 }

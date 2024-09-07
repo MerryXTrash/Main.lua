@@ -110,9 +110,7 @@ elseif id == 7265396387 or id == 7251865082 then
 end
 end
 
-_G.auto = false
-while _G.auto do wait()
-wait(0)
+
 local player = game.Players.LocalPlayer
 local camera = workspace.CurrentCamera
 
@@ -122,18 +120,19 @@ local function setCameraToLookDown()
     camera.CFrame = CFrame.new(cameraCFrame.Position, cameraCFrame.Position + newLookVector)
 end
 
-setCameraToLookDown()
-end
-
-function InstancePrompt()
-    for _, v in ipairs(workspace:GetDescendants()) do
-        if v:IsA("ProximityPrompt") then
-            v.HoldDuration = 0
+local function setHoldDurationForAllProximityPrompts()
+    for _, instance in pairs(workspace:GetDescendants()) do
+        if instance:IsA("ProximityPrompt") then
+            instance.HoldDuration = 0
         end
     end
 end
 
-InstancePrompt()
+_G.Prompt = true
+while _G.Prompt do wait()
+wait(5)
+setHoldDurationForAllProximityPrompts()
+end
 
 local function findProximityPrompt()
     for _, obj in pairs(workspace:GetDescendants()) do
@@ -184,7 +183,6 @@ function AutoOrbs()
     
     if not orbsFound then
         humanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
-        _G.auto = false
     end
 end
 
@@ -518,40 +516,50 @@ Tabs.Misc:AddButton({
 
 if id == 7618863566 then
     Tabs.General:AddButton({
-        Title = "Auto Orbs",
-        Description = "On Auto Orbs",
+        Title = "Enter Zone",
+        Description = "Enter to Zone",
         Callback = function()
             Window:Dialog({
-                Title = "Auto Orbs",
-                Content = "Do you want to enable Aotu Orbs?",
+                Title = "Enter Zone",
+                Content = "Do you want to ENter Zone?",
                 Buttons = {
                     {
                         Title = "Yes",
                         Callback = function()
                             local player = game.Players.LocalPlayer
                             player.Character.HumanoidRootPart.CFrame = CFrame.new(609.1366, 17.5699, 1087.6727)
-                            wait(2)
+                            wait(1)
                             player.Character.HumanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
-                            wait(2)
-                            _G.auto = true
-                            _G.AutoOrbs = true
-                            while _G.AutoOrbs do wait()
-                            wait(0.2)
-                            AutoOrbs()
-                            checkProximity()
-                            end
                         end
                     },
                     {
                         Title = "No",
                         Callback = function()
-                            print("Fullbright not enabled.")
+                            print("Off")
                         end
                     }
                 }
             })
         end
     })
+end
+
+if id == 7618863566 then
+local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Orbs", Default = false})
+
+    Toggle:OnChanged(function(value)
+        if value then
+                _G.AutoOrbs = true
+                while _G.AutoOrbs do wait()
+                    wait(0.1)
+                    
+                end
+        else
+            _G.FB = false
+        end
+    end)
+
+    Options.MyToggle:SetValue(false)
 end
 
 SaveManager:SetLibrary(Fluent)

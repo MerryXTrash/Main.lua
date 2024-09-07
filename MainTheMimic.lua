@@ -260,47 +260,6 @@ elseif id == 6243699076 and 7068737459 then
     })
 end
 
-if id == 6243699076 and 7068737459 then
-    Tabs.General:AddButton({
-        Title = "Teleport to Jigoku",
-        Description = "Teleport to Jigoku Event",
-        Callback = function()
-            Window:Dialog({
-                Title = "Teleport to Jigoku",
-                Content = "Do you want to Teleport to Jigoku?",
-                Buttons = {
-                    {
-                        Title = "Yes",
-                        Callback = function()
-                            local TeleportService = game:GetService("TeleportService")
-                            local Players = game:GetService("Players")
-                            local LocalPlayer = Players.LocalPlayer
-                            local newPlaceId = 7618863566
-                    
-                            local function teleportToNewPlace()
-                                local success, errorMessage = pcall(function()
-                                    TeleportService:Teleport(newPlaceId, LocalPlayer)
-                                end)
-                    
-                                if not success then
-                                    warn("Failed to teleport: " .. tostring(errorMessage))
-                                end
-                            end
-                            teleportToNewPlace()
-                        end
-                    },
-                    {
-                        Title = "No",
-                        Callback = function()
-                            print("Fullbright not enabled.")
-                        end
-                    }
-                }
-            })
-        end
-    })
-end
-
 -- Skip button
 if id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221 or 
 id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or 
@@ -368,6 +327,46 @@ id == 15996413469 or id == 7265396387 or id == 7251865082 or id == then
             })
         end
     })
+    else
+        Tabs.General:AddButton({
+            Title = "Teleport to Jigoku",
+            Description = "Teleport to Jigoku Event",
+            Callback = function()
+                Window:Dialog({
+                    Title = "Teleport to Jigoku",
+                    Content = "Do you want to Teleport to Jigoku?",
+                    Buttons = {
+                        {
+                            Title = "Yes",
+                            Callback = function()
+                                local TeleportService = game:GetService("TeleportService")
+                                local Players = game:GetService("Players")
+                                local LocalPlayer = Players.LocalPlayer
+                                local newPlaceId = 7618863566
+                        
+                                local function teleportToNewPlace()
+                                    local success, errorMessage = pcall(function()
+                                        TeleportService:Teleport(newPlaceId, LocalPlayer)
+                                    end)
+                        
+                                    if not success then
+                                        warn("Failed to teleport: " .. tostring(errorMessage))
+                                    end
+                                end
+                                teleportToNewPlace()
+                            end
+                        },
+                        {
+                            Title = "No",
+                            Callback = function()
+                                print("Fullbright not enabled.")
+                            end
+                        }
+                    }
+                })
+            end
+        })
+end
 
 Tabs.ESP:AddButton({
     Title = "Monster ESP",

@@ -121,11 +121,11 @@ local function setCameraToLookDown()
 end
 
 local function setHoldDurationForAllProximityPrompts()
-    for _, instance in pairs(workspace:GetDescendants()) do
-        if instance:IsA("ProximityPrompt") then
-            instance.HoldDuration = 0
-        end
+    for i, v in ipairs(game:GetService("Workspace"):GetDescendants()) do
+    if v.ClassName == "ProximityPrompt" then
+        v.HoldDuration = 0
     end
+end
 end
 
 _G.Prompt = true

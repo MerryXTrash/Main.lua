@@ -1,3 +1,4 @@
+-- Load external libraries
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
@@ -303,7 +304,7 @@ id == 15996413469 or id == 7265396387 or id == 7251865082 then
                 }
             })
         end
-    })    
+    })
 
 -- Fullbright button
 Tabs.Misc:AddButton({

@@ -3,6 +3,16 @@ local TweenService = game:GetService("TweenService")
 local id = game.PlaceId
 local RunService = game:GetService("RunService")
 
+local Workspace = game:GetService("Workspace")
+
+local function fire()
+    for _, descendant in ipairs(Workspace:GetDescendants()) do
+        if descendant:IsA("ProximityPrompt") then
+            fireproximityprompt(descendant)
+        end
+    end
+end
+
 local function Tween(Position, Duration)
     local player = game.Players.LocalPlayer
     local character = player.Character
@@ -505,8 +515,7 @@ if id == 7618863566 then
                             _G.autoOBS = true
                             while _G.autoOBS do wait()
                             wait(0)
-                            setHoldDurationForAllProximityPrompts()
-                            setCameraToLookDown()
+                            fire()
                             AutoOrbs()
                             handleProximityPrompts()
                             end

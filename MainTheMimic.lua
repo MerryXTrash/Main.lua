@@ -362,7 +362,7 @@ elseif id == 6243699076 and 7068737459 then
     })
 end
 
--- Skip button
+
 if id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221 or 
 id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or 
 id == 6425178683 or id == 6485056556 or id == 6472459099 or id == 6688734180 or 
@@ -370,10 +370,10 @@ id == 6682163754 or id == 6688734313 or id == 6682164423 or id == 6688734395 or
 id == 7068738088 or id == 7068951438 or id == 7068951914 or id == 7068740106 or 
 id == 7068952294 or id == 15996404472 or id == 15996411979 or id == 15996410294 or 
 id == 15996407335 or id == 15996417416 or id == 15996416081 or id == 15996414738 or 
-id == 15996413469 or id == 7265396387 or id == 7251865082 or id == then
+id == 15996413469 or id == 7265396387 or id == 7251865082 then
     Tabs.General:AddButton({
         Title = "Skip",
-        Description = "Skip to a specific part of the game.",
+        Description = "Continue",
         Callback = function()
             Window:Dialog({
                 Title = "Skip",
@@ -395,7 +395,9 @@ id == 15996413469 or id == 7265396387 or id == 7251865082 or id == then
             })
         end
     })
-    else
+end
+
+if id == 6243699076 and 7068737459 then
         Tabs.General:AddButton({
             Title = "Teleport to Jigoku",
             Description = "Teleport to Jigoku Event",

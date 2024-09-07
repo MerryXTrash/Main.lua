@@ -152,15 +152,6 @@ function AutoOrbs()
     end
 end
 
-local function handleProximityPrompts()
-    for _, v in pairs(game:GetService("Workspace"):GetDescendants()) do
-        if v:IsA("ProximityPrompt") then
-            v:InputHoldBegin()
-            v:InputHoldEnd()
-        end
-    end
-end
-
 local folder = Instance.new("Folder")
 folder.Name = "HighlightsFolder"
 folder.Parent = game.Workspace

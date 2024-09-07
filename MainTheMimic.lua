@@ -2,11 +2,47 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
-
 -- Initialize variables
 local TP = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 local TweenService = game:GetService("TweenService")
 local id = game.PlaceId
+
+local Window = Fluent:CreateWindow({
+    Title = (id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221) and "The Mimic | Book 1 Chapter 1" or
+            (id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or id == 6425178683 or id == 6485056556) and "The Mimic | Book 1 Chapter 2" or
+            (id == 6472459099 or id == 6688734180 or id == 6682163754 or id == 6688734313 or id == 6682164423 or id == 6688734395) and "The Mimic | Book 1 Chapter 3" or
+            (id == 7068738088 or id == 7068951438 or id == 7068951914 or id == 7068740106 or id == 7068952294) and "The Mimic | The Witch Trial" or
+            (id == 7618863566) and "The Mimic | Jigoku" or
+            (id == 15996404472 or id == 15996407335) and "The Mimic Classic | Chapter 1" or
+            (id == 15996410294 or id == 15996411979 or id == 15996413469) and "The Mimic Classic | Chapter 2" or
+            (id == 15996414738 or id == 15996416081 or id == 15996417416) and "The Mimic Classic | Chapter 3" or
+            (id == 7265396387 or id == 7251865082) and "The Mimic | Book 1 Chapter 4" or
+            "The Mimic",
+    SubTitle = "by JajaEngkubb",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(460, 300),
+    Acrylic = true,
+    Theme = "Amethyst",
+    MinimizeKey = Enum.KeyCode.One
+})
+
+_G.auto = false
+while _G.auto do wait()
+wait(0)
+-- LocalScript ที่วางใน StarterPlayerScripts
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+-- ตั้งค่ามุมมองกล้องให้มองไปที่ด้านล่าง
+local function setCameraToLookDown()
+    local cameraCFrame = camera.CFrame
+    local newLookVector = Vector3.new(0, -1, 0) -- มองไปที่ด้านล่าง
+    camera.CFrame = CFrame.new(cameraCFrame.Position, cameraCFrame.Position + newLookVector)
+end
+
+-- เรียกใช้ฟังก์ชันเมื่อเริ่มเกม
+setCameraToLookDown()
+end
 
 function InstancePrompt()
     for _, v in ipairs(workspace:GetDescendants()) do
@@ -66,6 +102,7 @@ function AutoOrbs()
     
     if not orbsFound then
         humanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
+        _G.auto = false
     end
 end
 
@@ -76,7 +113,7 @@ local function checkProximity()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
     
     while true do
-        wait(1) -- ตรวจสอบทุกๆ 1 วินาที
+        wait(0) -- ตรวจสอบทุกๆ 1 วินาที
         
         local part = workspace:FindFirstChild("PartWithProximityPrompt") -- หรือใช้วิธีการค้นหาอื่น ๆ
         if part then
@@ -89,8 +126,6 @@ local function checkProximity()
         end
     end
 end
-
--- เริ่มตรวจจับการเข้าใกล้
 
 -- Create highlight folder and template
 local folder = Instance.new("Folder")
@@ -132,26 +167,6 @@ local function setupHighlightForPlayer(player)
     playerHighlight.OutlineColor = Color3.fromRGB(255, 255, 255)
     playerHighlight.Parent = character
 end
-
--- Create GUI window
-local Window = Fluent:CreateWindow({
-    Title = (id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221) and "The Mimic | Book 1 Chapter 1" or
-            (id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or id == 6425178683 or id == 6485056556) and "The Mimic | Book 1 Chapter 2" or
-            (id == 6472459099 or id == 6688734180 or id == 6682163754 or id == 6688734313 or id == 6682164423 or id == 6688734395) and "The Mimic | Book 1 Chapter 3" or
-            (id == 7068738088 or id == 7068951438 or id == 7068951914 or id == 7068740106 or id == 7068952294) and "The Mimic | The Witch Trial" or
-            (id == 7618863566) and "The Mimic | Jigoku" or
-            (id == 15996404472 or id == 15996407335) and "The Mimic Classic | Chapter 1" or
-            (id == 15996410294 or id == 15996411979 or id == 15996413469) and "The Mimic Classic | Chapter 2" or
-            (id == 15996414738 or id == 15996416081 or id == 15996417416) and "The Mimic Classic | Chapter 3" or
-            (id == 7265396387 or id == 7251865082) and "The Mimic | Book 1 Chapter 4" or
-            "The Mimic",
-    SubTitle = "by JajaEngkubb",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(460, 300),
-    Acrylic = true,
-    Theme = "Amethyst",
-    MinimizeKey = Enum.KeyCode.One
-})
 
 -- Create tabs
 local Tabs = {
@@ -306,32 +321,6 @@ id == 15996413469 or id == 7265396387 or id == 7251865082 then
         end
     })
 
--- Fullbright button
-Tabs.Misc:AddButton({
-    Title = "Fullbright",
-    Description = "If you're scared of the dark",
-    Callback = function()
-        Window:Dialog({
-            Title = "Fullbright",
-            Content = "Do you want to enable Fullbright?",
-            Buttons = {
-                {
-                    Title = "Yes",
-                    Callback = function()
-                        -- Fullbright implementation here
-                    end
-                },
-                {
-                    Title = "No",
-                    Callback = function()
-                        print("Fullbright disabled.")
-                    end
-                }
-            }
-        })
-    end
-})
-
 Tabs.ESP:AddButton({
     Title = "Monster ESP",
     Description = "Show Monster ESP",
@@ -484,6 +473,7 @@ if id == 7618863566 then
                             wait(2)
                             player.Character.HumanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
                             wait(2)
+                            _G.auto = true
                             _G.AutoOrbs = true
                             while _G.AutoOrbs do wait()
                             wait(0.2)

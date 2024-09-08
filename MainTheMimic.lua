@@ -162,7 +162,7 @@ function AutoOrbs()
     for _, v in pairs(workspace.GameAI.Souls:GetChildren()) do
         if v.Name == "Orb" then
             -- Move the player's character to the position of the orb, with an offset
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 2, 0)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, 0)
         else
             -- Reset the player's position to a specified location if the item is not an orb
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(601.8018, 111.0565, 836.9151)
@@ -174,7 +174,7 @@ function Autobtfs()
     for _, v in pairs(workspace.Butterflies:GetChildren()) do
         if v:IsA("BasePart") then
             -- Move the player's character to the position of the BasePart, with an offset
-            TP.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 2, 0)
+            TP.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, 0)
         else
             -- Handle the case where the item is not a BasePart
             print("Item is not a BasePart")
@@ -225,7 +225,7 @@ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Flo
    fire()
    fire()
    wait(0.5)
-   TP.HumanoidRootPart.CFrame = CFrame.new(857.3948974609375, 16.21709442138672, 2395.27490234375)
+   TP.HumanoidRootPart.CFrame = CFrame.new(860.1697998046875, 15.059876441955566, 2388.63427734375)
    fire()
    fire()
    fire()

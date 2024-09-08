@@ -209,6 +209,43 @@ end
 
 setHoldDurationForAllProximityPrompts()
 
+-- Function to teleport to the heart
+function teleportToHeart(targetHeart)
+    local player = game.Players.LocalPlayer
+    if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        if targetHeart:IsA("Model") and targetHeart.PrimaryPart then
+            -- Use the PrimaryPart for Models
+            player.Character.HumanoidRootPart.CFrame = targetHeart.PrimaryPart.CFrame * CFrame.new(-1, 15, 0)
+        elseif targetHeart:IsA("BasePart") then
+            -- Directly use the CFrame for BaseParts
+            player.Character.HumanoidRootPart.CFrame = targetHeart.CFrame * CFrame.new(0, -10, 10)
+        end
+    end
+end
+
+-- Function to check heart health and handle them appropriately
+function checkHearts()
+    local heartFolder = game:GetService("Workspace").GameHearts
+
+    for _, heart in pairs(heartFolder:GetChildren()) do
+        if heart.Name == "Heart" then
+            local health = heart:FindFirstChild("Health")
+            if health then
+                if health.Value >= 1 and health.Value <= 125 then
+                    -- Teleport to this heart
+                    teleportToHeart(heart)
+                elseif health.Value == 0 then
+                    -- Destroy the heart
+                    heart:Destroy()
+                end
+            end
+        end
+    end
+end
+
+-- Execute the checkHearts function
+checkHearts()
+
 function AutoOrbs()
     for _, v in pairs(workspace.GameAI.Souls:GetChildren()) do
         if v.Name == "Orb" then

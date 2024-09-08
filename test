@@ -1,3 +1,4 @@
+id == 7265397848 or id == 7251867574
 local TweenService = game:GetService("TweenService")
 local Workspace = game:GetService("Workspace")
 local BossBattle = Workspace:FindFirstChild("BossBattle")

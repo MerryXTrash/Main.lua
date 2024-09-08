@@ -100,6 +100,35 @@ local TeleportService = game:GetService("TeleportService")
     end
 end
 
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentFloatPart -- ตัวแปรที่ใช้เก็บ Part ปัจจุบัน
+
+local function createFloatingPart()
+    if currentFloatPart then
+        currentFloatPart:Destroy() -- ลบ Part เก่าถ้ามี
+    end
+
+    local partSize = Vector3.new(10, 1, 10) -- ขนาดของ Part ใต้เท้า
+
+    -- สร้าง Part ใหม่
+    local floatPart = Instance.new("Part")
+    floatPart.Size = partSize
+    floatPart.Anchored = true
+    floatPart.CanCollide = true
+    floatPart.Transparency = 1 -- ตั้งค่าให้โปร่งใสทั้งหมด
+    floatPart.BrickColor = BrickColor.new("Bright yellow")
+    floatPart.Parent = workspace
+
+    -- ตั้งค่า Position ของ Part ให้อยู่ใต้เท้าผู้เล่นเล็กน้อย
+    floatPart.Position = humanoidRootPart.Position + Vector3.new(0, -humanoidRootPart.Size.Y / 2 - floatPart.Size.Y / 2, 0)
+
+    -- บันทึก Part ที่สร้างขึ้นล่าสุด
+    currentFloatPart = floatPart
+end
+
 local function Skip()
 if id == 6296321810 or id == 6479231833 then
     TP.HumanoidRootPart.CFrame = CFrame.new(3507.028564453125, 43.13663864135742, -1541.9735107421875) -- b1c1p1

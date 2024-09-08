@@ -190,7 +190,7 @@ function AutoArmors()
         v:Destroy()
     end
     end
-   wait(1.5)
+   wait(1)
 local Part = game.Workspace.Well:WaitForChild("Burner")
 
 -- Create a new Part
@@ -199,7 +199,7 @@ Float.Parent = game.Workspace
 Float.Anchored = true
 Float.Size = Vector3.new(30, 2, 30)
 Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Float
-   wait(2)
+   wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(839.8504028320312, 18.34674072265625, 2241.216552734375)
    fire()
    fire()
@@ -229,7 +229,7 @@ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Flo
    fire()
    fire()
    fire()
-   wait(0.5)
+   wait(1.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(687.65673828125, 13.798624038696289, 2253.633544921875)
    wait(0.5)
    fire()

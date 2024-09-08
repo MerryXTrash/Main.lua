@@ -200,6 +200,11 @@ Float.Anchored = true
 Float.Size = Vector3.new(30, 2, 30)
 Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Float
    wait(0.5)
+   TP.HumanoidRootPart.CFrame = CFrame.new(860.1697998046875, 15.059876441955566, 2388.63427734375)
+   fire()
+   fire()
+   fire()
+   wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(839.8504028320312, 18.34674072265625, 2241.216552734375)
    fire()
    fire()

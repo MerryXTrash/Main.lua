@@ -1,16 +1,21 @@
 local TweenService = game:GetService("TweenService")
 local Workspace = game:GetService("Workspace")
 local BossBattle = Workspace:FindFirstChild("BossBattle")
-local Saigomo = BossBattle and BossBattle:FindFirstChild("Saigomo")
+local Saigomo = BossBattle:FindFirstChild("Saigomo")
 
 if Saigomo then
-    for i, v in pairs(Saigomo:GetChildren()) do
-        if v.Name == "Cube.014" then
-            local targetPosition = v.Position + Vector3.new(0, 10, 0)
-            local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut) -- Adjust as needed
-            local goal = {Position = targetPosition}
-            local tween = TweenService:Create(v, tweenInfo, goal)
-            tween:Play()
-        end
-    end
+    -- Target CFrame, moved up by 10 units on the Y axis
+    local targetCFrame = Saigomo.CFrame * CFrame.new(0, 10, 0)
+    
+    -- TweenInfo: duration of 1 second, Linear easing style, InOut easing direction
+    local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+    
+    -- Goal: the target CFrame
+    local goal = {CFrame = targetCFrame}
+    
+    -- Create the tween
+    local tween = TweenService:Create(Saigomo, tweenInfo, goal)
+    
+    -- Play the tween
+    tween:Play()
 end

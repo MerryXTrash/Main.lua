@@ -164,38 +164,45 @@ function Autobtfs()
     end
 end
 
-function AutoArm()
-   TP.HumanoidRootPart.CFrame = CFrame.new(756.150391, 14.2540808, 2538.60938, 0.312501848, -3.33636999e-05, -0.949917197, 0.148872763, 0.987644494, 0.0489411801, 0.938178897, -0.156710997, 0.308645725)
+function AutoArmors()
+   TP.HumanoidRootPart.CFrame = CFrame.new(706.4743041992188, 14.950273513793945, 1929.3958740234375)
+   for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
+    if v.Name == "Texture" then
+        v.CanCollide = false
+    end
+end
+   wait(2)
+   TP.HumanoidRootPart.CFrame = CFrame.new(839.8504028320312, 18.34674072265625, 2241.216552734375)
    fire()
    fire()
    fire()
    wait(0.5)
-   TP.HumanoidRootPart.CFrame = CFrame.new(858.985352, 23.0629272, 2547.28394, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+   TP.HumanoidRootPart.CFrame = CFrame.new(668.060791015625, 18.767614364624023, 2099.3955078125)
    fire()
    fire()
    fire()
    wait(0.5)
-   TP.HumanoidRootPart.CFrame = CFrame.new(620.30603, 15.4280462, 2340.31738, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+   TP.HumanoidRootPart.CFrame = CFrame.new(625.1378173828125, 17.63252830505371, 2345.30078125)
    fire()
    fire()
    fire()
    wait(0.5)
-   TP.HumanoidRootPart.CFrame = CFrame.new(835.747, 16.5523, 2247.95)
+   TP.HumanoidRootPart.CFrame = CFrame.new(759.3781127929688, 15.417532920837402, 2531.548583984375)
    fire()
    fire()
    fire()
    wait(0.5)
-   TP.HumanoidRootPart.CFrame = CFrame.new(665.039795, 15.840889, 2108.92163, 0, -1, 0, 0, 0, 1, -1, 0, 0)
+   TP.HumanoidRootPart.CFrame = CFrame.new(864.6249389648438, 23.993000030517578, 2550.099853515625)
    fire()
    fire()
    fire()
    wait(0.5)
-   TP.HumanoidRootPart.CFrame = CFrame.new(855.386963, 13.4717484, 2387.59888, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+   TP.HumanoidRootPart.CFrame = CFrame.new(857.3948974609375, 16.21709442138672, 2395.27490234375)
    fire()
    fire()
    fire()
    TP.HumanoidRootPart.CFrame = CFrame.new(687.65673828125, 13.798624038696289, 2253.633544921875)
-   wait(0.2)
+   wait(0.5)
    fire()
    fire()
    fire()
@@ -632,7 +639,7 @@ if id == 7265397072 or id == 7251867155 then
                     {
                         Title = "Yes",
                         Callback = function()
-                            AutoArm()
+                            AutoArmors()
                         end
                     },
                     {

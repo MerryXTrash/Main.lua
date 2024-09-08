@@ -1,7 +1,14 @@
--- Function to teleport to a specific heart
-function teleportToHeart(heart)
-    if heart:IsA("BasePart") then
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = heart.CFrame * CFrame.new(0, -10, 0)
+-- Function to teleport to the heart
+function teleportToHeart(targetHeart)
+    local player = game.Players.LocalPlayer
+    if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        if targetHeart:IsA("Model") and targetHeart.PrimaryPart then
+            -- Use the PrimaryPart for Models
+            player.Character.HumanoidRootPart.CFrame = targetHeart.PrimaryPart.CFrame * CFrame.new(0, -10, 0)
+        elseif targetHeart:IsA("BasePart") then
+            -- Directly use the CFrame for BaseParts
+            player.Character.HumanoidRootPart.CFrame = targetHeart.CFrame * CFrame.new(0, -10, 0)
+        end
     end
 end
 
@@ -25,4 +32,5 @@ function checkHearts()
     end
 end
 
+-- Execute the checkHearts function
 checkHearts()

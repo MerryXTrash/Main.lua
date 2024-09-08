@@ -1,8 +1,7 @@
--- Function to teleport the player to a specific heart's position
+-- Function to teleport to a specific heart
 function teleportToHeart(heart)
-    local player = game.Players.LocalPlayer
-    if player and player.Character then
-        player.Character.HumanoidRootPart.CFrame = heart.CFrame * CFrame.new(0, -15, 0)
+    if heart:IsA("BasePart") then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = heart.CFrame * CFrame.new(0, -10, 0)
     end
 end
 
@@ -25,3 +24,5 @@ function checkHearts()
         end
     end
 end
+
+checkHearts()

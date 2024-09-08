@@ -187,9 +187,18 @@ function AutoArmors()
    TP.HumanoidRootPart.CFrame = CFrame.new(706.4743041992188, 14.950273513793945, 1929.3958740234375)
    for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
     if v.Name == "Texture" then
-        v.CanCollide = false
+        v:Destroy()
     end
 end
+   wait(5)
+local Part = game.Workspace.Well:WaitForChild("Burner")
+
+-- Create a new Part
+local Float = Instance.new("Part")
+Float.Parent = game.Workspace
+Float.Anchored = true
+Float.Size = Vector3.new(30, 2, 30)
+Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Float
    wait(2)
    TP.HumanoidRootPart.CFrame = CFrame.new(839.8504028320312, 18.34674072265625, 2241.216552734375)
    fire()

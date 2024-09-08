@@ -129,6 +129,42 @@ local function createFloatingPart()
     currentFloatPart = floatPart
 end
 
+-- Function to teleport to the heart
+function teleportToHeart(targetHeart)
+    local player = game.Players.LocalPlayer
+    if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        if targetHeart:IsA("Model") and targetHeart.PrimaryPart then
+            -- Use the PrimaryPart for Models
+            player.Character.HumanoidRootPart.CFrame = targetHeart.PrimaryPart.CFrame * CFrame.new(-1, 15, 0)
+        elseif targetHeart:IsA("BasePart") then
+            -- Directly use the CFrame for BaseParts
+            player.Character.HumanoidRootPart.CFrame = targetHeart.CFrame * CFrame.new(0, -10, 0)
+        end
+    end
+end
+
+-- Function to check heart health and handle them appropriately
+function checkHearts()
+    local heartFolder = game:GetService("Workspace").GameHearts
+
+    for _, heart in pairs(heartFolder:GetChildren()) do
+        if heart.Name == "Heart" then
+            local health = heart:FindFirstChild("Health")
+            if health then
+                if health.Value >= 1 and health.Value <= 125 then
+                    -- Teleport to this heart
+                    teleportToHeart(heart)
+                elseif health.Value == 0 then
+                    -- Destroy the heart
+                    heart:Destroy()
+                end
+            end
+        end
+    end
+end
+
+-- Execute the checkHearts function
+
 local function Skip()
 if id == 6296321810 or id == 6479231833 then
     TP.HumanoidRootPart.CFrame = CFrame.new(3507.028564453125, 43.13663864135742, -1541.9735107421875) -- b1c1p1
@@ -167,29 +203,6 @@ elseif id == 7265396387 or id == 7251865082 then
 end
 end
 
-local function FloatB1CH4()
-local Float1 = Instance.new("Part")
-Float1.Parent = game.Workspace
-Float1.Anchored = true
-Float1.Size = Vector3.new(50, 3, 50)
-Float1.Transparency = 0.7
-Float1.CFrame = CFrame.new(2809.68701171875, 126.0118408203125, 2421.530029296875) * CFrame.new(0, 10, 0)
-wait(1)
-local Float2 = Instance.new("Part")
-Float2.Parent = game.Workspace
-Float2.Anchored = true
-Float2.Size = Vector3.new(50, 3, 50)
-Float2.Transparency = 0.7
-Float2.CFrame = CFrame.new(3211.80615234375, 139.28955078125, 2184.109619140625) * CFrame.new(0, 11, 0)
-wait(1)
-local Float3 = Instance.new("Part")
-Float3.Parent = game.Workspace
-Float3.Anchored = true
-Float3.Size = Vector3.new(50, 3, 50)
-Float3.Transparency = 0.7
-Float3.CFrame = CFrame.new(3211.80615234375, 139.28955078125, 2184.109619140625) * CFrame.new(0, 11, 0)
-end
-
 local player = game.Players.LocalPlayer
 local camera = workspace.CurrentCamera
 
@@ -208,43 +221,6 @@ end
 end
 
 setHoldDurationForAllProximityPrompts()
-
--- Function to teleport to the heart
-function teleportToHeart(targetHeart)
-    local player = game.Players.LocalPlayer
-    if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-        if targetHeart:IsA("Model") and targetHeart.PrimaryPart then
-            -- Use the PrimaryPart for Models
-            player.Character.HumanoidRootPart.CFrame = targetHeart.PrimaryPart.CFrame * CFrame.new(-1, 15, 0)
-        elseif targetHeart:IsA("BasePart") then
-            -- Directly use the CFrame for BaseParts
-            player.Character.HumanoidRootPart.CFrame = targetHeart.CFrame * CFrame.new(0, -10, 10)
-        end
-    end
-end
-
--- Function to check heart health and handle them appropriately
-function checkHearts()
-    local heartFolder = game:GetService("Workspace").GameHearts
-
-    for _, heart in pairs(heartFolder:GetChildren()) do
-        if heart.Name == "Heart" then
-            local health = heart:FindFirstChild("Health")
-            if health then
-                if health.Value >= 1 and health.Value <= 125 then
-                    -- Teleport to this heart
-                    teleportToHeart(heart)
-                elseif health.Value == 0 then
-                    -- Destroy the heart
-                    heart:Destroy()
-                end
-            end
-        end
-    end
-end
-
--- Execute the checkHearts function
-checkHearts()
 
 function AutoOrbs()
     for _, v in pairs(workspace.GameAI.Souls:GetChildren()) do
@@ -775,6 +751,37 @@ if id == 7265397072 or id == 7251867155 then
             })
         end
     })
+end
+
+if id == 7265397848 or id == 7251867574 then
+    Tabs.General:AddButton({
+    Title = "Auto Destroy Heart",
+    Description = "Auto Destroy Hearts",
+    Callback = function()
+        Window:Dialog({
+            Title = "Auto Destroy Heart",
+            Content = "Do you want to Enable Auto Destroy Heart?",
+            Buttons = {
+                {
+                    Title = "Yes",
+                    Callback = function()
+                        _G.Check = true
+                        while _G.Check do wait()
+                        wait(0)
+                        checkHearts()
+                        end
+                    end
+                },
+                {
+                    Title = "No",
+                    Callback = function()
+                        print("off")
+                    end
+                }
+            }
+        })
+    end
+})
 end
 
 SaveManager:SetLibrary(Fluent)

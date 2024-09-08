@@ -1,32 +1,31 @@
-local workspace = game:GetService("Workspace")
-local heartsFolder = workspace.GameHearts.Heart
+-- Function to teleport the player to the heart's position
+function Heart()
+    local player = game.Players.LocalPlayer
+    local heartFolder = game:GetService("Workspace").GameHearts
 
--- Function to check if a heart has a child named "Destroy"
-local function hasDestroyChild(heart)
-    for _, child in pairs(heart:GetChildren()) do
-        if child.Name == "Destroy" then
-            return true
+    for _, heart in pairs(heartFolder:GetChildren()) do
+        if heart.Name == "Heart" then
+            player.Character.HumanoidRootPart.CFrame = heart.CFrame * CFrame.new(0, -15, 0)
         end
     end
-    return false
 end
 
--- Function to teleport player to the heart if it contains a child named "Root"
-local function teleportPlayerToHeart(heart)
-    for _, child in pairs(heart:GetChildren()) do
-        if child.Name == "Root" then
-            local player = game.Players.LocalPlayer
-            if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                player.Character.HumanoidRootPart.CFrame = heart.CFrame * CFrame.new(0, 12, 0)
+-- Function to check heart health and handle them appropriately
+function checkHearts()
+    local heartFolder = game:GetService("Workspace").GameHearts
+
+    for _, heart in pairs(heartFolder:GetChildren()) do
+        if heart.Name == "Heart" then
+            local health = heart:FindFirstChild("Health")
+            if health and health.Value == 0 then
+                -- Destroy the heart
+                heart:Destroy()
+                
+                -- Optionally, teleport to another heart
+                Heart()
+                
+                break -- Exit loop once a heart is destroyed
             end
-            return
         end
-    end
-end
-
--- Main script logic
-for _, heart in pairs(heartsFolder:GetChildren()) do
-    if not hasDestroyChild(heart) then
-        teleportPlayerToHeart(heart)
     end
 end

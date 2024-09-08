@@ -1,36 +1,16 @@
--- Function to teleport to the heart
-function teleportToHeart(targetHeart)
-    local player = game.Players.LocalPlayer
-    if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-        if targetHeart:IsA("Model") and targetHeart.PrimaryPart then
-            -- Use the PrimaryPart for Models
-            player.Character.HumanoidRootPart.CFrame = targetHeart.PrimaryPart.CFrame * CFrame.new(0, -10, 0)
-        elseif targetHeart:IsA("BasePart") then
-            -- Directly use the CFrame for BaseParts
-            player.Character.HumanoidRootPart.CFrame = targetHeart.CFrame * CFrame.new(0, -10, 0)
+local TweenService = game:GetService("TweenService")
+local Workspace = game:GetService("Workspace")
+local BossBattle = Workspace:FindFirstChild("BossBattle")
+local Saigomo = BossBattle and BossBattle:FindFirstChild("Saigomo")
+
+if Saigomo then
+    for i, v in pairs(Saigomo:GetChildren()) do
+        if v.Name == "Cube.014" then
+            local targetPosition = v.Position + Vector3.new(0, 10, 0)
+            local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut) -- Adjust as needed
+            local goal = {Position = targetPosition}
+            local tween = TweenService:Create(v, tweenInfo, goal)
+            tween:Play()
         end
     end
 end
-
--- Function to check heart health and handle them appropriately
-function checkHearts()
-    local heartFolder = game:GetService("Workspace").GameHearts
-
-    for _, heart in pairs(heartFolder:GetChildren()) do
-        if heart.Name == "Heart" then
-            local health = heart:FindFirstChild("Health")
-            if health then
-                if health.Value >= 1 and health.Value <= 125 then
-                    -- Teleport to this heart
-                    teleportToHeart(heart)
-                elseif health.Value == 0 then
-                    -- Destroy the heart
-                    heart:Destroy()
-                end
-            end
-        end
-    end
-end
-
--- Execute the checkHearts function
-checkHearts()

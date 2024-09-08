@@ -620,6 +620,33 @@ if id == 7265396805 or id == 7251866503 then
     })
 end
 
+if id == 7265397072 or 7251867155 then
+        Tabs.General:AddButton({
+        Title = "Auto Armors",
+        Description = "Auto Collect and Burn Armors",
+        Callback = function()
+            Window:Dialog({
+                Title = "Auto Armors",
+                Content = "Do you want to Enable Auto Armors?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            AutoArm()
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("Auto Butterfly is off")
+                        end
+                    }
+                }
+            })
+        end
+    })
+end
+
 SaveManager:SetLibrary(Fluent)
     SaveManager:IgnoreThemeSettings()
     SaveManager:SetIgnoreIndexes({})

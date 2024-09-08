@@ -138,6 +138,28 @@ elseif id == 7265396387 or id == 7251865082 then
 end
 end
 
+local function FloatB1CH4()
+local Float1 = Instance.new("Part")
+Float1.Parent = game.Workspace
+Float1.Anchored = true
+Float1.Size = Vector3.new(50, 3, 50)
+Float1.Transparency = 0.7
+Float1.CFrame = CFrame.new(2809.68701171875, 126.0118408203125, 2421.530029296875) * CFrame.new(0, 10, 0)
+wait(1)
+local Float2 = Instance.new("Part")
+Float2.Parent = game.Workspace
+Float2.Anchored = true
+Float2.Size = Vector3.new(50, 3, 50)
+Float2.Transparency = 0.7
+Float2.CFrame = CFrame.new(3211.80615234375, 139.28955078125, 2184.109619140625) * CFrame.new(0, 11, 0)
+wait(1)
+local Float3 = Instance.new("Part")
+Float3.Parent = game.Workspace
+Float3.Anchored = true
+Float3.Size = Vector3.new(50, 3, 50)
+Float3.Transparency = 0.7
+Float3.CFrame = CFrame.new(3211.80615234375, 139.28955078125, 2184.109619140625) * CFrame.new(0, 11, 0)
+end
 
 local player = game.Players.LocalPlayer
 local camera = workspace.CurrentCamera

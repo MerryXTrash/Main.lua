@@ -1,12 +1,8 @@
--- Function to teleport the player to the heart's position
-function Heart()
+-- Function to teleport the player to a specific heart's position
+function teleportToHeart(heart)
     local player = game.Players.LocalPlayer
-    local heartFolder = game:GetService("Workspace").GameHearts
-
-    for _, heart in pairs(heartFolder:GetChildren()) do
-        if heart.Name == "Heart" then
-            player.Character.HumanoidRootPart.CFrame = heart.CFrame * CFrame.new(0, -15, 0)
-        end
+    if player and player.Character then
+        player.Character.HumanoidRootPart.CFrame = heart.CFrame * CFrame.new(0, -15, 0)
     end
 end
 
@@ -17,14 +13,14 @@ function checkHearts()
     for _, heart in pairs(heartFolder:GetChildren()) do
         if heart.Name == "Heart" then
             local health = heart:FindFirstChild("Health")
-            if health and health.Value == 0 then
-                -- Destroy the heart
-                heart:Destroy()
-                
-                -- Optionally, teleport to another heart
-                Heart()
-                
-                break -- Exit loop once a heart is destroyed
+            if health then
+                if health.Value >= 1 and health.Value <= 125 then
+                    -- Teleport to this heart
+                    teleportToHeart(heart)
+                elseif health.Value == 0 then
+                    -- Destroy the heart
+                    heart:Destroy()
+                end
             end
         end
     end

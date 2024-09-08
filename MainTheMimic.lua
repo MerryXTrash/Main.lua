@@ -186,11 +186,11 @@ function AutoArmors()
    Freeze(true)
    TP.HumanoidRootPart.CFrame = CFrame.new(706.4743041992188, 14.950273513793945, 1929.3958740234375)
    for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
-    if v.Name == "Texture" then
+    if v.Name == "Texture" or v.Name == "MeshPart" or v.Name == "TreeMeshTop" then
         v:Destroy()
     end
-end
-   wait(5)
+    end
+   wait(1.5)
 local Part = game.Workspace.Well:WaitForChild("Burner")
 
 -- Create a new Part

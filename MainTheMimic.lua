@@ -61,6 +61,24 @@ local function Tween(Position, Duration)
     end
 end
 
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:FindFirstChildOfClass("Humanoid")
+
+-- Function to enable or disable player movement
+local function Freeze(enable)
+    if humanoid then
+        if enable then
+            humanoid.WalkSpeed = 0 -- Default WalkSpeed
+        else
+            humanoid.WalkSpeed = 16 -- Disable movement
+        end
+    end
+end
+
+-- Example usage:
+--Freeze(true)  -- Enable movement
+--Freeze(false) -- Disable movement
 
 --local targetPosition = Vector3.new(10, 5, -10)
 --local duration = 3
@@ -165,6 +183,7 @@ function Autobtfs()
 end
 
 function AutoArmors()
+   Freeze(true)
    TP.HumanoidRootPart.CFrame = CFrame.new(706.4743041992188, 14.950273513793945, 1929.3958740234375)
    for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
     if v.Name == "Texture" then
@@ -212,6 +231,7 @@ end
    fire()
    fire()
    fire()
+   Freeze(false)
 end
 
 local folder = Instance.new("Folder")

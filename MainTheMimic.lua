@@ -782,7 +782,7 @@ if id == 7265397072 or id == 7251867155 then
 end
 
 if id == 7265397848 or id == 7251867574 then
-local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = true })
+local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
 Toggle:OnChanged(function()
     print("Toggle changed:", Options.MyToggle.Value)

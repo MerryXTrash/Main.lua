@@ -111,8 +111,9 @@ function toHeart()
    local gameHearts = game:GetService("Workspace").GameHearts
     for _, v in pairs(gameHearts.Heart:GetChildren()) do
         if v:IsA("UnionOperation") then
-            v.Size = Vector3.new(140, 90, 0)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, -20)
+            v.Rotation = Vector3.new(140, 90, 0)
+            v.Size = Vector3.new(100, 100, 100)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, -17)
         end
     end
 end

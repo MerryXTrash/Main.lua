@@ -787,9 +787,7 @@ if id == 7265397072 or id == 7251867155 then
     })
 end
 
-if _G.Ezclick == nil then
-    _G.Ezclick = false
-end
+_G.Ezclick = false
 
 function EquipOrClick()
     while _G.Ezclick do
@@ -820,7 +818,7 @@ Toggle:SetValue(true)
 end
 
 if id == 7265397848 or id == 7251867574 then
-local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Destroy Heart", Default = false})
+local Toggle1 = Tabs.General:AddToggle("MyToggle", {Title = "Auto Destroy Heart", Default = false})
 
 _G.AutoDestroyHearts = false
 
@@ -836,10 +834,10 @@ function UnDestroyHearts()
     _G.AutoDestroyHearts = false
 end
 
-Toggle:OnChanged(function()
-    print("Toggle changed:", Toggle.Value)
-    _G.AutoDestroyHearts = Toggle.Value
-    if Toggle.Value then
+Toggle1:OnChanged(function()
+    print("Toggle changed:", Toggle1.Value)
+    _G.AutoDestroyHearts = Toggle1.Value
+    if Toggle1.Value then
         spawn(function()
             while _G.AutoDestroyHearts do
                 DestroyHearts()
@@ -851,7 +849,7 @@ Toggle:OnChanged(function()
     end
 end)
 
-Toggle:SetValue(false)
+Toggle1:SetValue(false)
 end
 
 _G.AutokillSaigomo = false
@@ -870,12 +868,12 @@ function Unkillsaigomo()
 end
 
 if id == 7265397848 or id == 7251867574 then
-local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Kill Saigomo", Default = false})
+local Toggle2 = Tabs.General:AddToggle("MyToggle", {Title = "Auto Kill Saigomo", Default = false})
 
-Toggle:OnChanged(function()
-    print("Toggle changed:", Toggle.Value)
-    _G.AutokillSaigomo = Toggle.Value
-    if Toggle.Value then
+Toggle2:OnChanged(function()
+    print("Toggle changed:", Toggle2.Value)
+    _G.AutokillSaigomo = Toggle2.Value
+    if Toggle2.Value then
         spawn(function()
             while _G.AutokillSaigomo do
                 killsaigomo()
@@ -887,7 +885,7 @@ Toggle:OnChanged(function()
     end
 end)
 
-Toggle:SetValue(false)
+Toggle2:SetValue(false)
 end
 
 SaveManager:SetLibrary(Fluent)

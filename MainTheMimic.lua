@@ -275,56 +275,6 @@ function Autobtfs()
     end
 end
 
-local virtualInputManager = game:GetService("VirtualInputManager")
-
-_G.auto = false  -- เริ่มต้นด้วยการปิดใช้งานอัตโนมัติ
-
--- ฟังก์ชันสำหรับเปิดการคลิกอัตโนมัติ
-function startAutoClick()
-    if not _G.auto then
-        _G.auto = true
-        print("Auto-clicking enabled")
-        
-        while _G.auto do
-            wait(0.3)
-            -- จำลองการคลิกเมาส์ (ปุ่มซ้าย)
-            virtualInputManager:SendMouseButtonEvent(
-                0,       -- X coordinate
-                0,       -- Y coordinate
-                0,       -- Button (0 สำหรับปุ่มซ้าย, 1 สำหรับปุ่มขวา)
-                true,    -- Mouse button down (true สำหรับกด, false สำหรับปล่อย)
-                game,    -- Context (โดยปกติจะใช้ game)
-                false    -- Mouse moved (false ถ้าไม่เคลื่อนที่)
-            )
-            
-            virtualInputManager:SendMouseButtonEvent(
-                0,       -- X coordinate
-                0,       -- Y coordinate
-                0,       -- Button
-                false,   -- Mouse button up (false สำหรับปล่อย)
-                game,    -- Context
-                false    -- Mouse moved
-            )
-        end
-    else
-        print("Auto-clicking is already enabled")
-    end
-end
-
--- ฟังก์ชันสำหรับปิดการคลิกอัตโนมัติ
-function stopAutoClick()
-    if _G.auto then
-        _G.auto = false
-        print("Auto-clicking disabled")
-    else
-        print("Auto-clicking is already disabled")
-    end
-end
-
--- การเรียกใช้ตัวอย่าง
--- startAutoClick()  -- ใช้เพื่อเปิดการคลิกอัตโนมัติ
--- stopAutoClick()   -- ใช้เพื่อปิดการคลิกอัตโนมัติ
-
 function AutoArmors()
    Freeze(true)
    TP.HumanoidRootPart.CFrame = CFrame.new(706.4743041992188, 14.950273513793945, 1929.3958740234375)
@@ -443,7 +393,6 @@ end
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
-local HideBody = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Hidebody"))()
 -- Initialize variables
 
 local Window = Fluent:CreateWindow({

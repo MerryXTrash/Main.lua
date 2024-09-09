@@ -786,7 +786,7 @@ if id == 7265397072 or id == 7251867155 then
     })
 end
 
-
+funtion Book1ch4()
 if _G.Ezclick == nil then
     _G.Ezclick = false
 end
@@ -803,7 +803,7 @@ function UnEquipOrClick()
     _G.Ezclick = false
 end
 
-if id == 7265397848 or id == 7251867574 then
+id == 7265397848 or id == 7251867574 then
 local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
 Toggle:OnChanged(function()
@@ -817,9 +817,8 @@ Toggle:OnChanged(function()
 end)
 
 Toggle:SetValue(true)
-end
 
-if id == 7265397848 or id == 7251867574 then
+id == 7265397848 or id == 7251867574 then
 local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Destroy Heart", Default = false})
 
 _G.AutoDestroyHearts = false
@@ -852,8 +851,6 @@ Toggle:OnChanged(function()
 end)
 
 Toggle:SetValue(false)
-end
-
 
 _G.AutokillSaigomo = false
 
@@ -870,7 +867,7 @@ function Unkillsaigomo()
     _G.AutokillSaigomo = false
 end
 
-if id == 7265397848 or id == 7251867574 then
+id == 7265397848 or id == 7251867574 then
 local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Kill Saigomo", Default = false})
 
 Toggle:OnChanged(function()
@@ -890,6 +887,8 @@ end)
 
 Toggle:SetValue(false)
 end
+
+Book1ch4()
 
 SaveManager:SetLibrary(Fluent)
     SaveManager:IgnoreThemeSettings()

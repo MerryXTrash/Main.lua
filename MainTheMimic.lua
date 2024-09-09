@@ -6,7 +6,7 @@ local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 
 function nofall()
-   game.Workspace.Gravity = 0.1
+   game.Workspace.Gravity = 1
 end
 
 function Unnofall()

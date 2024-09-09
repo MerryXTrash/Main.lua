@@ -162,6 +162,36 @@ function checkHearts()
     end
 end
 
+-- Function to click mouse button multiple times with delay
+function clickMouse(which, times, delay)
+    local clicks = {
+        ["1"] = mouse1click,
+        ["2"] = mouse2click
+    }
+    local clickfunc = clicks[which]
+    for i = 1, times do
+        clickfunc()
+        wait(delay)
+    end
+end
+
+-- Global variable to control the clicking process
+_G.clickActive = false
+
+-- Function to start clicking
+function startClicking()
+    _G.clickActive = true
+    while _G.clickActive do
+        wait(0.5)
+        clickMouse("1", 5, 0.1)
+    end
+end
+
+-- Function to stop clicking
+function stopClicking()
+    _G.clickActive = false
+end
+
 -- Execute the checkHearts function
 
 local function Skip()
@@ -808,14 +838,15 @@ local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default
 Toggle:OnChanged(function()
     print("Toggle changed:", Options.MyToggle.Value)
     if Options.MyToggle.Value then
-        startAutoClick()
+        startClicking()
     else
-        stopAutoClick()
+        stopClicking()
     end
 end)
 end
 
 Options.MyToggle:SetValue(true) -- ตั้งค่าเปิด Toggle เมื่อเริ่มต้น
+
 
 if id == 7265397848 or id == 7251867574 then
     Tabs.General:AddButton({

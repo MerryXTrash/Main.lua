@@ -166,7 +166,7 @@ if character then
                 -- Find the SpiderHitbox inside the Model
                 local spiderHitbox = v:FindFirstChild("SpiderHitbox")
                 if spiderHitbox then
-                  .Size = Vector3.new(100, 30, 30)
+                  spiderHitbox.Size = Vector3.new(100, 30, 30)
                     humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(-28, 0, 0)
                 end
             end

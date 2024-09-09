@@ -170,7 +170,7 @@ if character then
                   spiderHitbox.Rotation = Vector3.new(0, 0, 0)
                   spiderHitbox.Size = Vector3.new(30, 100, 30)
                   spiderHitbox.Transparency = 0.3
-                    humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(0, -30, 0)
+                    humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(0, 40, 0)
                 end
             end
         end

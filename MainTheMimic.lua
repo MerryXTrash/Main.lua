@@ -803,6 +803,21 @@ if id == 7265397072 or id == 7251867155 then
 end
 
 if id == 7265397848 or id == 7251867574 then
+local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = true })
+
+Toggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+    if Options.MyToggle.Value then
+        -- เริ่มต้นการทำงานของ Auto Click
+    else
+        -- หยุดการทำงานของ Auto Click
+    end
+end)
+end
+
+Options.MyToggle:SetValue(true) -- ตั้งค่าเปิด Toggle เมื่อเริ่มต้น
+
+if id == 7265397848 or id == 7251867574 then
     Tabs.General:AddButton({
     Title = "Auto Destroy Heart",
     Description = "Auto Destroy Hearts",

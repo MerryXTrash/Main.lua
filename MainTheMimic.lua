@@ -112,7 +112,7 @@ function toHeart()
     for _, v in pairs(gameHearts.Heart:GetChildren()) do
         if v:IsA("UnionOperation") then
             v.Size = Vector3.new(140, 90, 0)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, -13)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, -20)
         end
     end
 end
@@ -386,8 +386,10 @@ if gameAI2 then
     end
 end
 
-local Sama1 = game.Workspace: WaitForChild("omukadeMAIN")
+local Sama1 = game.Workspace:WaitForChild("omukadeMAIN")
 setupHighlightForMob(Sama1)
+local Sama2 = game.Workspace.BossBattle:WaitForChild("Saigomo")
+setupHighlightForMob(Sama2)
 end
 
 -- Function to execute code safely

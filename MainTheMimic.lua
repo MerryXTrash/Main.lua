@@ -842,7 +842,7 @@ Toggle:OnChanged(function()
     end
 end)
 
-Toggle:SetValue(false)
+Toggle:SetValue(true)
 end
 
 if id == 7265397848 or id == 7251867574 then

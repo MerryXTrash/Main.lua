@@ -184,6 +184,27 @@ for i, v in pairs(backpack:GetChildren()) do
 end
 end
 
+function Saigomo()
+local player = game.Players.LocalPlayer
+local character = player and player.Character
+if character then
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    if humanoidRootPart then
+        -- Loop through all children of BossBattle in Workspace
+        for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+            -- Check if the child is a Model
+            if v:IsA("Model") then
+                -- Find the SpiderHitbox inside the Model
+                local spiderHitbox = v:FindFirstChild("SpiderHitbox")
+                if spiderHitbox then
+                    humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(-30, 0, 0)
+                end
+            end
+        end
+    end
+end
+end
+
 local function Skip()
 if id == 6296321810 or id == 6479231833 then
     TP.HumanoidRootPart.CFrame = CFrame.new(3507.028564453125, 43.13663864135742, -1541.9735107421875) -- b1c1p1

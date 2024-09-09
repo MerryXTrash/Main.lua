@@ -166,7 +166,8 @@ if character then
                 -- Find the SpiderHitbox inside the Model
                 local spiderHitbox = v:FindFirstChild("SpiderHitbox")
                 if spiderHitbox then
-                    humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(-30, 0, 0)
+                  .Size = Vector3.new(100, 30, 30)
+                    humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(-28, 0, 0)
                 end
             end
         end
@@ -786,14 +787,13 @@ if id == 7265397072 or id == 7251867155 then
     })
 end
 
-funtion Book1ch4()
 if _G.Ezclick == nil then
     _G.Ezclick = false
 end
 
 function EquipOrClick()
     while _G.Ezclick do
-        wait(0.4)
+        wait(0.1)
         CheckKatana()
         clickMiddleOfScreen()
     end
@@ -803,7 +803,7 @@ function UnEquipOrClick()
     _G.Ezclick = false
 end
 
-id == 7265397848 or id == 7251867574 then
+if id == 7265397848 or id == 7251867574 then
 local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
 Toggle:OnChanged(function()
@@ -817,8 +817,9 @@ Toggle:OnChanged(function()
 end)
 
 Toggle:SetValue(true)
+end
 
-id == 7265397848 or id == 7251867574 then
+if id == 7265397848 or id == 7251867574 then
 local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Destroy Heart", Default = false})
 
 _G.AutoDestroyHearts = false
@@ -842,7 +843,7 @@ Toggle:OnChanged(function()
         spawn(function()
             while _G.AutoDestroyHearts do
                 DestroyHearts()
-                wait(0.5)
+                wait(0)
             end
         end)
     else
@@ -851,13 +852,14 @@ Toggle:OnChanged(function()
 end)
 
 Toggle:SetValue(false)
+end
 
 _G.AutokillSaigomo = false
 
 function killsaigomo()
     nofall()
     Freeze(true)
-    wait(0.3)
+    wait(0)
     Saigomo()
 end
 
@@ -867,7 +869,7 @@ function Unkillsaigomo()
     _G.AutokillSaigomo = false
 end
 
-id == 7265397848 or id == 7251867574 then
+if id == 7265397848 or id == 7251867574 then
 local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Kill Saigomo", Default = false})
 
 Toggle:OnChanged(function()
@@ -877,7 +879,7 @@ Toggle:OnChanged(function()
         spawn(function()
             while _G.AutokillSaigomo do
                 killsaigomo()
-                wait(0.3)
+                wait(0)
             end
         end)
     else
@@ -887,8 +889,6 @@ end)
 
 Toggle:SetValue(false)
 end
-
-Book1ch4()
 
 SaveManager:SetLibrary(Fluent)
     SaveManager:IgnoreThemeSettings()

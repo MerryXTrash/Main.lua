@@ -167,6 +167,7 @@ local player = game:GetService("Players").LocalPlayer
 local backpack = player.Backpack
 local character = player.Character
 
+function CheckKatana()
 -- ตรวจสอบว่า Katana อยู่ใน Character แล้วหรือไม่
 for i, v in pairs(character:GetChildren()) do
     if v.Name == "Katana" then
@@ -180,6 +181,7 @@ for i, v in pairs(backpack:GetChildren()) do
         v.Parent = character -- ย้าย Katana ไปที่ Character
         break -- หลังจากย้ายแล้ว หยุดการทำงานของ loop
     end
+end
 end
 
 local function Skip()
@@ -773,15 +775,29 @@ if id == 7265397072 or id == 7251867155 then
     })
 end
 
+_G.Ezclick = false
+
+function EquipOrClick()
+    while _G.Ezclick do wait()
+    wait(0.4)
+    CheckKatana()
+    clickMiddleOfScreen()
+    end
+end
+
+function UnEquipOrClick()
+    _G.Ezclick = false
+end
+
 if id == 7265397848 or id == 7251867574 then
 local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
 Toggle:OnChanged(function()
     print("Toggle changed:", Options.MyToggle.Value)
     if Options.MyToggle.Value then
-        startClicking()
+        EquipOrClick()
     else
-        stopClicking()
+        UnEquipOrClick()
     end
 end)
 end

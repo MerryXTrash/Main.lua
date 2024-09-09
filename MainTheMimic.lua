@@ -161,37 +161,6 @@ function checkHearts()
         end
     end
 end
-
--- Function to click mouse button multiple times with delay
-function clickMouse(which, times, delay)
-    local clicks = {
-        ["1"] = mouse1click,
-        ["2"] = mouse2click
-    }
-    local clickfunc = clicks[which]
-    for i = 1, times do
-        clickfunc()
-        wait(delay)
-    end
-end
-
--- Global variable to control the clicking process
-_G.clickActive = false
-
--- Function to start clicking
-function startClicking()
-    _G.clickActive = true
-    while _G.clickActive do wait()
-        wait(0.5)
-        clickMouse("1", 3, 0.1)
-    end
-end
-
--- Function to stop clicking
-function stopClicking()
-    _G.clickActive = false
-end
-
 -- Execute the checkHearts function
 
 local function Skip()
@@ -273,6 +242,24 @@ function Autobtfs()
             print("Item is not a BasePart")
         end
     end
+end
+
+-- เรียกใช้บริการ UserInputService และ VirtualUser
+local UserInputService = game:GetService("UserInputService")
+local VirtualUser = game:GetService("VirtualUser")
+
+-- ฟังก์ชันที่คลิกตรงกลางจอภาพ
+function clickMiddleOfScreen()
+    -- ดึงขนาดของหน้าจอ
+    local screenSize = workspace.CurrentCamera.ViewportSize
+    
+    -- คำนวณตำแหน่งตรงกลางของหน้าจอ
+    local centerX = screenSize.X / 2
+    local centerY = screenSize.Y / 2
+
+    -- จำลองการคลิกที่ตำแหน่งตรงกลางจอ
+    VirtualUser:CaptureController()
+    VirtualUser:ClickButton1(Vector2.new(centerX, centerY))
 end
 
 function AutoArmors()

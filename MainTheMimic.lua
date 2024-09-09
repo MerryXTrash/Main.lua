@@ -163,6 +163,25 @@ function checkHearts()
 end
 -- Execute the checkHearts function
 
+local player = game:GetService("Players").LocalPlayer
+local backpack = player.Backpack
+local character = player.Character
+
+-- ตรวจสอบว่า Katana อยู่ใน Character แล้วหรือไม่
+for i, v in pairs(character:GetChildren()) do
+    if v.Name == "Katana" then
+        return -- ถ้ามี Katana อยู่ในตัวละครแล้ว ให้หยุดการทำงานของสคริปต์
+    end
+end
+
+-- ถ้า Katana ไม่อยู่ใน Character ให้ตรวจสอบใน Backpack และ equip
+for i, v in pairs(backpack:GetChildren()) do
+    if v.Name == "Katana" then
+        v.Parent = character -- ย้าย Katana ไปที่ Character
+        break -- หลังจากย้ายแล้ว หยุดการทำงานของ loop
+    end
+end
+
 local function Skip()
 if id == 6296321810 or id == 6479231833 then
     TP.HumanoidRootPart.CFrame = CFrame.new(3507.028564453125, 43.13663864135742, -1541.9735107421875) -- b1c1p1

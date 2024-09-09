@@ -842,7 +842,7 @@ Toggle:OnChanged(function()
     end
 end)
 
-Toggle:SetValue(true)
+Toggle:SetValue(false)
 end
 
 if id == 7265397848 or id == 7251867574 then
@@ -871,7 +871,6 @@ Toggle1:OnChanged(function()
         spawn(function()
             while _G.AutoDestroyHearts do
                 DestroyHearts()
-                wait(0)
             end
         end)
     else
@@ -888,7 +887,6 @@ function killsaigomo()
     noclip()
     nofall()
     Freeze(true)
-    wait(0)
     Saigomo()
 end
 

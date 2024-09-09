@@ -808,9 +808,9 @@ local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default
 Toggle:OnChanged(function()
     print("Toggle changed:", Options.MyToggle.Value)
     if Options.MyToggle.Value then
-        -- เริ่มต้นการทำงานของ Auto Click
+        startAutoClick()
     else
-        -- หยุดการทำงานของ Auto Click
+        stopAutoClick()
     end
 end)
 end

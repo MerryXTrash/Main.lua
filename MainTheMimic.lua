@@ -113,7 +113,7 @@ function toHeart()
         if v:IsA("UnionOperation") then
             v.Rotation = Vector3.new(0, 0, 0)
             v.Size = Vector3.new(100, 100, 100)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, -20, 0)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 25, 0)
         end
     end
 end

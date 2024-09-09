@@ -113,7 +113,7 @@ function toHeart()
         if v:IsA("UnionOperation") then
             v.Rotation = Vector3.new(0, 0, 0)
             v.Size = Vector3.new(100, 100, 100)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, -20, 0)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, -35, 0)
         end
     end
 end
@@ -170,7 +170,7 @@ if character then
                   spiderHitbox.Rotation = Vector3.new(0, 0, 0)
                   spiderHitbox.Size = Vector3.new(30, 100, 30)
                   spiderHitbox.Transparency = 0.3
-                    humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(0, 40, 0)
+                    humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(0, 30, 0)
                 end
             end
         end

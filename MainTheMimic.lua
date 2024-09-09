@@ -775,13 +775,16 @@ if id == 7265397072 or id == 7251867155 then
     })
 end
 
-_G.Ezclick = false
+
+if _G.Ezclick == nil then
+    _G.Ezclick = false
+end
 
 function EquipOrClick()
-    while _G.Ezclick do wait()
-    wait(0.4)
-    CheckKatana()
-    clickMiddleOfScreen()
+    while _G.Ezclick do
+        wait(0.4)
+        CheckKatana()
+        clickMiddleOfScreen()
     end
 end
 
@@ -793,17 +796,17 @@ if id == 7265397848 or id == 7251867574 then
 local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
 Toggle:OnChanged(function()
-    print("Toggle changed:", Options.MyToggle.Value)
-    if Options.MyToggle.Value then
+    print("Toggle changed:", Toggle.Value)
+    if Toggle.Value then
+        _G.Ezclick = true
         EquipOrClick()
     else
         UnEquipOrClick()
     end
 end)
+
+Toggle:SetValue(false)
 end
-
-Options.MyToggle:SetValue(true) -- ตั้งค่าเปิด Toggle เมื่อเริ่มต้น
-
 
 if id == 7265397848 or id == 7251867574 then
     Tabs.General:AddButton({

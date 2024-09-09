@@ -99,69 +99,30 @@ local TeleportService = game:GetService("TeleportService")
     end
 end
 
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local gameHearts = game:GetService("Workspace").GameHearts
 
-local currentFloatPart -- ตัวแปรที่ใช้เก็บ Part ปัจจุบัน
-
-local function createFloatingPart()
-    if currentFloatPart then
-        currentFloatPart:Destroy() -- ลบ Part เก่าถ้ามี
-    end
-
-    local partSize = Vector3.new(10, 1, 10) -- ขนาดของ Part ใต้เท้า
-
-    -- สร้าง Part ใหม่
-    local floatPart = Instance.new("Part")
-    floatPart.Size = partSize
-    floatPart.Anchored = true
-    floatPart.CanCollide = true
-    floatPart.Transparency = 1 -- ตั้งค่าให้โปร่งใสทั้งหมด
-    floatPart.BrickColor = BrickColor.new("Bright yellow")
-    floatPart.Parent = workspace
-
-    -- ตั้งค่า Position ของ Part ให้อยู่ใต้เท้าผู้เล่นเล็กน้อย
-    floatPart.Position = humanoidRootPart.Position + Vector3.new(0, -humanoidRootPart.Size.Y / 2 - floatPart.Size.Y / 2, 0)
-
-    -- บันทึก Part ที่สร้างขึ้นล่าสุด
-    currentFloatPart = floatPart
-end
-
--- Function to teleport to the heart
-function teleportToHeart(targetHeart)
-    local player = game.Players.LocalPlayer
-    if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-        if targetHeart:IsA("Model") and targetHeart.PrimaryPart then
-            -- Use the PrimaryPart for Models
-            player.Character.HumanoidRootPart.CFrame = targetHeart.PrimaryPart.CFrame * CFrame.new(-1, 15, 0)
-        elseif targetHeart:IsA("BasePart") then
-            -- Directly use the CFrame for BaseParts
-            player.Character.HumanoidRootPart.CFrame = targetHeart.CFrame * CFrame.new(0, -10, 0)
+function toHeart()
+    for _, v in pairs(gameHearts.Heart:GetChildren()) do
+        if v:IsA("UnionOperation") then
+            v.Size = Vector3.new(140, 90, 0)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, -13)
         end
     end
 end
 
--- Function to check heart health and handle them appropriately
-function checkHearts()
-    local heartFolder = game:GetService("Workspace").GameHearts
-
-    for _, heart in pairs(heartFolder:GetChildren()) do
-        if heart.Name == "Heart" then
-            local health = heart:FindFirstChild("Health")
-            if health then
-                if health.Value >= 1 and health.Value <= 125 then
-                    -- Teleport to this heart
-                    teleportToHeart(heart)
-                elseif health.Value == 0 then
-                    -- Destroy the heart
-                    heart:Destroy()
-                end
-            end
+function check()
+    local found = false
+    for _, v in pairs(gameHearts:GetChildren()) do
+        if v:IsA("Model") and v:FindFirstChildOfClass("BoolValue") then
+            found = true
+            v:Destroy()
+            break
         end
     end
+    if not found then
+        toHeart()
+    end
 end
--- Execute the checkHearts function
 
 local player = game:GetService("Players").LocalPlayer
 local backpack = player.Backpack
@@ -396,6 +357,30 @@ local function setupHighlightForPlayer(player)
     playerHighlight.Parent = character
 end
 
+local function ESP()
+local gameAI1 = game:GetService("Workspace"):FindFirstChild("GameAI")
+local gameAI2 = game:GetService("Workspace"):FindFirstChild("GameAI2")
+
+if gameAI1 then
+    for i, v in pairs(gameAI1:GetChildren()) do
+        if v:IsA("BasePart") or v:IsA("Model") or v:IsA("Part") then
+            setupHighlightForMob(v)
+        end
+    end
+end
+
+if gameAI2 then
+    for i, v in pairs(gameAI2:GetChildren()) do
+        if v:IsA("BasePart") or v:IsA("Model") or v:IsA("Part") then
+            setupHighlightForMob(v)
+        end
+    end
+end
+
+local Sama1 = game.Workspace: WaitForChild("omukadeMAIN")
+setupHighlightForMob(Sama1)
+end
+
 -- Function to execute code safely
 local function safeExecute(callback)
     local success, errorMsg = pcall(callback)
@@ -583,10 +568,7 @@ Tabs.ESP:AddButton({
                 {
                     Title = "Yes",
                     Callback = function()
-                        local M = game.Workspace.GameAI
-                        local Hiachi = M.AI
-                        local Rokurokubi = M.AI
-                        local Kusonoki = M.Kusonoki
+                        ESP()
                     end
                 },
                 {

@@ -107,9 +107,8 @@ local TeleportService = game:GetService("TeleportService")
     end
 end
 
-local gameHearts = game:GetService("Workspace").GameHearts
-
 function toHeart()
+   local gameHearts = game:GetService("Workspace").GameHearts
     for _, v in pairs(gameHearts.Heart:GetChildren()) do
         if v:IsA("UnionOperation") then
             v.Size = Vector3.new(140, 90, 0)
@@ -119,6 +118,7 @@ function toHeart()
 end
 
 function check()
+   local gameHearts = game:GetService("Workspace").GameHearts
     local found = false
     for _, v in pairs(gameHearts:GetChildren()) do
         if v:IsA("Model") and v:FindFirstChildOfClass("BoolValue") then

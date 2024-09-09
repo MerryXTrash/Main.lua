@@ -111,9 +111,9 @@ function toHeart()
    local gameHearts = game:GetService("Workspace").GameHearts
     for _, v in pairs(gameHearts.Heart:GetChildren()) do
         if v:IsA("UnionOperation") then
-            v.Rotation = Vector3.new(140, 90, 0)
+            v.Rotation = Vector3.new(0, 0, 0)
             v.Size = Vector3.new(100, 100, 100)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, -17)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, -20, 0)
         end
     end
 end
@@ -167,13 +167,38 @@ if character then
                 -- Find the SpiderHitbox inside the Model
                 local spiderHitbox = v:FindFirstChild("SpiderHitbox")
                 if spiderHitbox then
-                  spiderHitbox.Size = Vector3.new(100, 30, 30)
+                  spiderHitbox.Rotation = Vector3.new(0, 0, 0)
+                  spiderHitbox.Size = Vector3.new(30, 100, 30)
+                  spiderHitbox.Transparency = 0.3
                     humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(-28, 0, 0)
                 end
             end
         end
     end
 end
+end
+
+local Noclip = nil
+local Clip = nil
+
+function noclip()
+    Clip = false
+    local function Nocl()
+        if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+            for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+                    v.CanCollide = false
+                end
+            end
+        end
+        wait(0.21) -- basic optimization
+    end
+    Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+end
+
+function clip()
+    if Noclip then Noclip:Disconnect() end
+    Clip = true
 end
 
 local function Skip()
@@ -827,12 +852,14 @@ _G.AutoDestroyHearts = false
 
 function DestroyHearts()
     nofall()
+    noclip()
     Freeze(true)
     check()
 end
 
 function UnDestroyHearts()
     Unnofall()
+    clip()
     Freeze(false)
     _G.AutoDestroyHearts = false
 end
@@ -858,6 +885,7 @@ end
 _G.AutokillSaigomo = false
 
 function killsaigomo()
+    noclip()
     nofall()
     Freeze(true)
     wait(0)
@@ -868,6 +896,7 @@ function Unkillsaigomo()
     Unnofall()
     Freeze(false)
     _G.AutokillSaigomo = false
+   clip()
 end
 
 if id == 7265397848 or id == 7251867574 then
@@ -880,7 +909,6 @@ Toggle2:OnChanged(function()
         spawn(function()
             while _G.AutokillSaigomo do
                 killsaigomo()
-                wait(0)
             end
         end)
     else

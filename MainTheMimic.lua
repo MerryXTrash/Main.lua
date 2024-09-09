@@ -76,7 +76,6 @@ local function Freeze(enable)
     end
 end
 
--- Example usage:
 --Freeze(true)  -- Enable movement
 --Freeze(false) -- Disable movement
 
@@ -257,7 +256,7 @@ function startAutoClick()
         print("Auto-clicking enabled")
         
         while _G.auto do
-            wait(1)
+            wait(0.3)
             -- จำลองการคลิกเมาส์ (ปุ่มซ้าย)
             virtualInputManager:SendMouseButtonEvent(
                 0,       -- X coordinate

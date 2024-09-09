@@ -16,6 +16,32 @@ if Saigomo then
     
     -- Create the tween
     local tween = TweenService:Create(Saigomo, tweenInfo, goal)
+
+local gameHearts = game:GetService("Workspace").GameHearts
+
+function toHeart()
+    for _, v in pairs(gameHearts.Heart:GetChildren()) do
+        if v.ClassName == "UnionOperation" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, -13)
+        end
+    end
+end
+
+function check()
+    local found = false
+    for _, v in pairs(gameHearts:GetChildren()) do
+        if v:IsA("Model") and v:FindFirstChildOfClass("BoolValue") then
+            found = true
+            v:Destroy()
+            break
+        end
+    end
+    if not found then
+        toHeart()
+    end
+end
+
+check()
     
     -- Play the tween
     tween:Play()

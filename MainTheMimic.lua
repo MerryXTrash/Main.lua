@@ -5,6 +5,14 @@ local RunService = game:GetService("RunService")
 
 local Workspace = game:GetService("Workspace")
 
+function nofall()
+   game.Workspace.Gravity = 0
+end
+
+function Unnofall()
+   game.Workspace.Gravity = 150
+end
+
 local function fire()
     for _, descendant in ipairs(Workspace:GetDescendants()) do
         if descendant:IsA("ProximityPrompt") then
@@ -808,38 +816,79 @@ Toggle:OnChanged(function()
     end
 end)
 
-Toggle:SetValue(false)
+Toggle:SetValue(true)
 end
 
 if id == 7265397848 or id == 7251867574 then
-    Tabs.General:AddButton({
-    Title = "Auto Destroy Heart",
-    Description = "Auto Destroy Hearts",
-    Callback = function()
-        Window:Dialog({
-            Title = "Auto Destroy Heart",
-            Content = "Do you want to Enable Auto Destroy Heart?",
-            Buttons = {
-                {
-                    Title = "Yes",
-                    Callback = function()
-                        _G.Check = true
-                        while _G.Check do wait()
-                        wait(0)
-                        checkHearts()
-                        end
-                    end
-                },
-                {
-                    Title = "No",
-                    Callback = function()
-                        print("off")
-                    end
-                }
-            }
-        })
+local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Destroy Heart", Default = false})
+
+_G.AutoDestroyHearts = false
+
+function DestroyHearts()
+    nofall()
+    Freeze(true)
+    check()
+end
+
+function UnDestroyHearts()
+    Unnofall()
+    Freeze(false)
+    _G.AutoDestroyHearts = false
+end
+
+Toggle:OnChanged(function()
+    print("Toggle changed:", Toggle.Value)
+    _G.AutoDestroyHearts = Toggle.Value
+    if Toggle.Value then
+        spawn(function()
+            while _G.AutoDestroyHearts do
+                DestroyHearts()
+                wait(0.5)
+            end
+        end)
+    else
+        UnDestroyHearts()
     end
-})
+end)
+
+Toggle:SetValue(false)
+end
+
+
+_G.AutokillSaigomo = false
+
+function killsaigomo()
+    nofall()
+    Freeze(true)
+    wait(0.3)
+    Saigomo()
+end
+
+function Unkillsaigomo()
+    Unnofall()
+    Freeze(false)
+    _G.AutokillSaigomo = false
+end
+
+if id == 7265397848 or id == 7251867574 then
+local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Kill Saigomo", Default = false})
+
+Toggle:OnChanged(function()
+    print("Toggle changed:", Toggle.Value)
+    _G.AutokillSaigomo = Toggle.Value
+    if Toggle.Value then
+        spawn(function()
+            while _G.AutokillSaigomo do
+                killsaigomo()
+                wait(0.3)
+            end
+        end)
+    else
+        Unkillsaigomo()
+    end
+end)
+
+Toggle:SetValue(false)
 end
 
 SaveManager:SetLibrary(Fluent)

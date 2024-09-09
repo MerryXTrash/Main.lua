@@ -1,21 +1,44 @@
-id == 7265397848 or id == 7251867574
-local TweenService = game:GetService("TweenService")
-local Workspace = game:GetService("Workspace")
-local BossBattle = Workspace:FindFirstChild("BossBattle")
-local Saigomo = BossBattle:FindFirstChild("Saigomo")
+function nofall()
+   game.Workspace.Gravity = 0
+end
 
-if Saigomo then
-    -- Target CFrame, moved up by 10 units on the Y axis
-    local targetCFrame = Saigomo.CFrame * CFrame.new(0, 10, 0)
-    
-    -- TweenInfo: duration of 1 second, Linear easing style, InOut easing direction
-    local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
-    
-    -- Goal: the target CFrame
-    local goal = {CFrame = targetCFrame}
-    
-    -- Create the tween
-    local tween = TweenService:Create(Saigomo, tweenInfo, goal)
+function Unnofall()
+   game.Workspace.Gravity = 150
+end
+-- Ensure this script is a LocalScript, running on the client
+
+-- Get the player's character
+local player = game.Players.LocalPlayer
+local character = player and player.Character
+if character then
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    if humanoidRootPart then
+        -- Loop through all children of BossBattle in Workspace
+        for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+            -- Check if the child is a Model
+            if v:IsA("Model") then
+                -- Find the SpiderHitbox inside the Model
+                local spiderHitbox = v:FindFirstChild("SpiderHitbox")
+                if spiderHitbox then
+                    spiderHitbox.Size = Vector3.new(100, 30, 30) -- Set the size of SpiderHitbox
+                    
+                    -- Create a new part
+                    local part = Instance.new("Part")
+                    part.Size = Vector3.new(2, 30, 30) -- Set the size to (2, 30, 30)
+                    part.Anchored = true
+                    part.CanCollide = true -- Enable collision for the part
+                    part.Transparency = 1 -- Fully transparent (invisible)
+                    part.CFrame = spiderHitbox.CFrame * CFrame.new(-25, 0, 0) -- Offset the part's position
+                    part.Parent = spiderHitbox -- Parent the part to SpiderHitbox
+                    
+                    -- Wait to ensure the part is fully instantiated
+                    wait(1.5) -- Consider using a more reliable method if necessary
+                    humanoidRootPart.CFrame = part.CFrame
+                end
+            end
+        end
+    end
+end
 
 local gameHearts = game:GetService("Workspace").GameHearts
 
@@ -42,7 +65,3 @@ function check()
 end
 
 check()
-    
-    -- Play the tween
-    tween:Play()
-end

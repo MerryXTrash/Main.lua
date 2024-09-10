@@ -6,7 +6,7 @@ local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 
 function nofall()
-   game.Workspace.Gravity = 1
+   game.Workspace.Gravity = 0
 end
 
 function Unnofall()
@@ -21,53 +21,32 @@ local function fire()
     end
 end
 
-local function Tween(Position, Duration)
-    local player = game.Players.LocalPlayer
-    local character = player.Character
-    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
-    local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-    
-    if humanoidRootPart then
-        if not syn then
-            if not humanoidRootPart:FindFirstChild("BodyVelocity1") then
-                if humanoid and humanoid.Sit then
-                    humanoid.Sit = false
-                end
-                
-                local bodyVelocity = Instance.new("BodyVelocity")
-                bodyVelocity.Name = "BodyVelocity1"
-                bodyVelocity.Parent = humanoidRootPart
-                bodyVelocity.Velocity = Vector3.new(0, 0, 0)
-                bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)
-            end
-        end
-        
-        for _, part in pairs(character:GetDescendants()) do
-            if part:IsA("BasePart") then
-                part.CanCollide = false
-            end
-        end
-        
-        local tweenInfo = TweenInfo.new(
-            Duration,
-            Enum.EasingStyle.Linear,
-            Enum.EasingDirection.Out
-        )
+local currentTween
 
-        local goal = {
-            CFrame = CFrame.new(Position)
-        }
-
-        local tween = TweenService:Create(humanoidRootPart, tweenInfo, goal)
-        tween:Play()
-
-        tween.Completed:Connect(function()
-            if humanoidRootPart:FindFirstChild("BodyVelocity1") then
-                humanoidRootPart.BodyVelocity1:Destroy()
-            end
-        end)
+function StopTweenAll()
+    if currentTween then
+        currentTween:Cancel()
+        NoClip = false
+        currentTween = nil
     end
 end
+
+function Teleport(P)
+    local distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    local speed = distance >= 1 and 300 or 1
+    pcall(function()
+        currentTween = game:GetService("TweenService"):Create(
+            game.Players.LocalPlayer.Character.HumanoidRootPart,
+            TweenInfo.new(distance / speed, Enum.EasingStyle.Linear),
+            {CFrame = P}
+        )
+        currentTween:Play()
+        NoClip = true
+        wait(distance / speed)
+        NoClip = false
+    end)
+end
+
 
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -107,19 +86,30 @@ local TeleportService = game:GetService("TeleportService")
     end
 end
 
-function toHeart()
-   local gameHearts = game:GetService("Workspace").GameHearts
-    for _, v in pairs(gameHearts.Heart:GetChildren()) do
-        if v:IsA("UnionOperation") then
-            v.Rotation = Vector3.new(0, 0, 0)
-            v.Size = Vector3.new(100, 100, 100)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 40, 0)
-        end
-    end
-end
+function PARTZ()
+    local gameHearts = game:GetService("Workspace").GameHearts
+     for _, v in pairs(gameHearts.Heart:GetChildren()) do
+         if v:IsA("Part") then
+             v.Rotation = Vector3.new(0, 0, 0)
+             v.CanCollide = true
+         end
+     end
+ end
 
-function check()
-   local gameHearts = game:GetService("Workspace").GameHearts
+function toHeart()
+    local gameHearts = game:GetService("Workspace").GameHearts
+     for _, v in pairs(gameHearts.Heart:GetChildren()) do
+         if v:IsA("UnionOperation") then
+             v.Rotation = Vector3.new(0, 0, 0)
+             v.Size = Vector3.new(57, 57, 57)
+             local targetPositionTeleport = v.CFrame * CFrame.new(0, 25, 0)
+             Teleport(targetPositionTeleport)
+         end
+     end
+ end
+
+ function check()
+    local gameHearts = game:GetService("Workspace").GameHearts
     local found = false
     for _, v in pairs(gameHearts:GetChildren()) do
         if v:IsA("Model") and v:FindFirstChildOfClass("BoolValue") then
@@ -129,6 +119,7 @@ function check()
         end
     end
     if not found then
+        PARTZ()
         toHeart()
     end
 end
@@ -154,28 +145,29 @@ for i, v in pairs(backpack:GetChildren()) do
 end
 end
 
-function Saigomo()
-local player = game.Players.LocalPlayer
-local character = player and player.Character
-if character then
-    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-    if humanoidRootPart then
-        -- Loop through all children of BossBattle in Workspace
-        for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
-            -- Check if the child is a Model
-            if v:IsA("Model") then
-                -- Find the SpiderHitbox inside the Model
-                local spiderHitbox = v:FindFirstChild("SpiderHitbox")
-                if spiderHitbox then
-                  spiderHitbox.Rotation = Vector3.new(0, 0, 0)
-                  spiderHitbox.Size = Vector3.new(100, 30, 30)
-                  spiderHitbox.Transparency = 0.3
-                    humanoidRootPart.CFrame = spiderHitbox.CFrame * CFrame.new(30, 0, 0)
-                end
+function Hitboxz()
+    for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+        if v:IsA("Model") then
+            local spiderHitbox = v:FindFirstChild("SpiderHitbox")
+            if spiderHitbox then
+              spiderHitbox.Rotation = Vector3.new(0, 0, 0)
+              spiderHitbox.Size = Vector3.new(100, 30, 30)
+              spiderHitbox.Transparency = 0.1
             end
         end
     end
 end
+
+function Saigomo()
+    for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+        if v:IsA("Model") then
+            local spiderHitbox = v:FindFirstChild("HumanoidRootPart")
+            if spiderHitbox then
+              local targetPositionTeleport = spiderHitbox.CFrame * CFrame.new(0, 33, 0)
+              Teleport(targetPositionTeleport)
+            end
+        end
+    end
 end
 
 local Noclip = nil
@@ -435,10 +427,7 @@ function killsaigomo()
 end
 
 function Unkillsaigomo()
-    Unnofall()
-    Freeze(false)
     _G.AutokillSaigomo = false
-   clip()
 end
 
 
@@ -452,24 +441,25 @@ function DestroyHearts()
 end
 
 function UnDestroyHearts()
-    Unnofall()
-    clip()
-    Freeze(false)
     _G.AutoDestroyHearts = false
 end
 
 
 function StopTween()
-   Unkillsaigomo()
-   UnDestroyHearts()
+    StopTweenAll()
+    Unkillsaigomo()
+    UnDestroyHearts()
+    Unnofall()
+    clip()
+    Freeze(false)
 end
 
 
 _G.Ezclick = false
 
 function EquipOrClick()
-        CheckKatana()
-        clickMiddleOfScreen()
+    CheckKatana()
+    clickMiddleOfScreen()
 end
 
 function UnEquipOrClick()
@@ -704,6 +694,30 @@ Tabs.ESP:AddButton({
     end
 })
 
+Tabs.General:AddButton({
+    Title = "Stop Tween",
+    Description = "Stop All Tween",
+    Callback = function()
+        Window:Dialog({
+            Title = "Stop Tween",
+            Content = "Do you want to Stop Tween?",
+            Buttons = {
+                {
+                    Title = "Yes",
+                    Callback = function()
+                        StopTween()
+                    end
+                },
+                {
+                    Title = "No",
+                    Callback = function()
+                    end
+                }
+            }
+        })
+    end
+})
+
 Tabs.Misc:AddButton({
     Title = "Fullbright",
     Description = "If you're scared of the dark",
@@ -870,13 +884,11 @@ if id == 7265397848 or id == 7251867574 then
 
     Toggle:OnChanged(function()
         if Toggle.Value then
-            _G.EzClick = true
-            while _G.EzClick do
+            while _G.EzClick do wait()
                 wait(0)
                 EquipOrClick()
             end
         else
-            _G.EzClick = false
             UnEquipOrClick()
         end
     end)
@@ -941,30 +953,6 @@ if id == 7265397848 or id == 7251867574 then
         end
     })
 end
-
-Tabs.Misc:AddButton({
-    Title = "Stop Tween",
-    Description = "Stop All Tween",
-    Callback = function()
-        Window:Dialog({
-            Title = "Stop Tween",
-            Content = "Do you want to Stop Tween?",
-            Buttons = {
-                {
-                    Title = "Yes",
-                    Callback = function()
-                        StopTween()
-                    end
-                },
-                {
-                    Title = "No",
-                    Callback = function()
-                    end
-                }
-            }
-        })
-    end
-})
 
 SaveManager:SetLibrary(Fluent)
     SaveManager:IgnoreThemeSettings()

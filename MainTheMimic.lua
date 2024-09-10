@@ -845,9 +845,6 @@ end)
 Toggle:SetValue(true)
 end
 
-if id == 7265397848 or id == 7251867574 then
-local Toggle1 = Tabs.General:AddToggle("MyToggle", {Title = "Auto Destroy Heart", Default = false})
-
 _G.AutoDestroyHearts = false
 
 function DestroyHearts()
@@ -863,6 +860,9 @@ function UnDestroyHearts()
     Freeze(false)
     _G.AutoDestroyHearts = false
 end
+
+if id == 7265397848 or id == 7251867574 then
+local Toggle1 = Tabs.General:AddToggle("MyToggle", {Title = "Auto Destroy Heart", Default = false})
 
 Toggle1:OnChanged(function()
     print("Toggle changed:", Toggle1.Value)

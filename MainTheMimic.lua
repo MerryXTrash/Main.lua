@@ -471,7 +471,7 @@ local Window = Fluent:CreateWindow({
             (id == 15996404472 or id == 15996407335) and "The Mimic Classic | Chapter 1" or
             (id == 15996410294 or id == 15996411979 or id == 15996413469) and "The Mimic Classic | Chapter 2" or
             (id == 15996414738 or id == 15996416081 or id == 15996417416) and "The Mimic Classic | Chapter 3" or
-            (id == 7265396387 or id == 7251865082 or id == 7265396805 or id == 7251866503 or id == 7265397072 or id == 7251867155) and "The Mimic | Book 1 Chapter 4" or
+            (id == 7265396387 or id == 7251865082 or id == 7265396805 or id == 7251866503 or id == 7265397072 or id == 7251867155) and "The Mimic | Book 1 Chapter 4 Beta" or
             "The Mimic",
     SubTitle = "by JajaEngkubb",
     TabWidth = 160,

@@ -866,25 +866,24 @@ if id == 7265397072 or id == 7251867155 then
 end
 
 if id == 7265397848 or id == 7251867574 then
-local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
+    local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
-Toggle:OnChanged(function()
-    print("Toggle changed:", Toggle.Value)
-    if Toggle.Value then
-        while _G.EzClick do wait()
-        wait(0)
-        EquipOrClick()
+    Toggle:OnChanged(function()
+        if Toggle.Value then
+            _G.EzClick = true
+            while _G.EzClick do
+                wait(0)
+                EquipOrClick()
             end
-    else
-        UnEquipOrClick()
-    end
-end)
+        else
+            _G.EzClick = false
+            UnEquipOrClick()
+        end
+    end)
 
-Toggle:SetValue(true)
-end
+    Toggle:SetValue(true)
 
-if id == 7265397848 or id == 7251867574 then
-Tabs.General:AddButton({
+    Tabs.General:AddButton({
         Title = "Auto Destroy Hearts",
         Description = "Auto Destroy All Hearts",
         Callback = function()
@@ -895,46 +894,46 @@ Tabs.General:AddButton({
                     {
                         Title = "Yes",
                         Callback = function()
-                            while _G.AutoDestroyHearts do wait()
-                            wait(0)
-                            DestroyHearts()
-                           end
+                            _G.AutoDestroyHearts = true
+                            while _G.AutoDestroyHearts do
+                                wait(0)
+                                DestroyHearts()
+                            end
                         end
                     },
                     {
                         Title = "No",
                         Callback = function()
-                            print("Auto Butterfly is off")
+                            _G.AutoDestroyHearts = false
                         end
                     }
                 }
             })
         end
     })
-end
 
-if id == 7265397848 or id == 7251867574 then
-Tabs.General:AddButton({
+    Tabs.General:AddButton({
         Title = "Auto Kill Saigomo",
         Description = "Kill Saigomo",
         Callback = function()
             Window:Dialog({
-                Title = "Auto AKill Saigomo",
+                Title = "Auto Kill Saigomo",
                 Content = "Do you want to Enable Auto Kill Saigomo?",
                 Buttons = {
                     {
                         Title = "Yes",
                         Callback = function()
-                            while _G.AutokillSaigomo do wait()
-                              wait(0)
-                              killsaigomo()
-                           end
+                            _G.AutokillSaigomo = true
+                            while _G.AutokillSaigomo do
+                                wait(0)
+                                killsaigomo()
+                            end
                         end
                     },
                     {
                         Title = "No",
                         Callback = function()
-                            print("Auto Butterfly is off")
+                            _G.AutokillSaigomo = false
                         end
                     }
                 }
@@ -944,29 +943,28 @@ Tabs.General:AddButton({
 end
 
 Tabs.Mics:AddButton({
-        Title = "Stop Tween",
-        Description = "Stop All Tween",
-        Callback = function()
-            Window:Dialog({
-                Title = "Stop Tween",
-                Content = "Do you want to Stop Tween?",
-                Buttons = {
-                    {
-                        Title = "Yes",
-                        Callback = function()
-                            StopTween()
-                        end
-                    },
-                    {
-                        Title = "No",
-                        Callback = function()
-                            print("Auto Butterfly is off")
-                        end
-                    }
+    Title = "Stop Tween",
+    Description = "Stop All Tween",
+    Callback = function()
+        Window:Dialog({
+            Title = "Stop Tween",
+            Content = "Do you want to Stop Tween?",
+            Buttons = {
+                {
+                    Title = "Yes",
+                    Callback = function()
+                        StopTween()
+                    end
+                },
+                {
+                    Title = "No",
+                    Callback = function()
+                    end
                 }
-            })
-        end
-    })
+            }
+        })
+    end
+})
 
 SaveManager:SetLibrary(Fluent)
     SaveManager:IgnoreThemeSettings()

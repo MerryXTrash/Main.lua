@@ -863,24 +863,33 @@ function UnDestroyHearts()
 end
 
 if id == 7265397848 or id == 7251867574 then
-local Toggle1 = Tabs.General:AddToggle("MyToggle", {Title = "Auto Destroy Heart", Default = false})
-
-Toggle1:OnChanged(function()
-    print("Toggle changed:", Toggle1.Value)
-    _G.AutoDestroyHearts = Toggle1.Value
-    if Toggle1.Value then
-        spawn(function()
-            while _G.AutoDestroyHearts do
-                wait(0.2)
-                DestroyHearts()
-            end
-        end)
-    else
-        UnDestroyHearts()
-    end
-end)
-
-Toggle1:SetValue(false)
+Tabs.General:AddButton({
+        Title = "Auto Destroy Hearts",
+        Description = "Auto Destroy All Hearts",
+        Callback = function()
+            Window:Dialog({
+                Title = "Auto Destroy Hearts",
+                Content = "Do you want to Enable Auto Destroy Hearts?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            while _G.AutoDestroyHearts do wait()
+                            wait(0)
+                            DestroyHearts()
+                           end
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("Auto Butterfly is off")
+                        end
+                    }
+                }
+            })
+        end
+    })
 end
 
 _G.AutokillSaigomo = false
@@ -900,24 +909,64 @@ function Unkillsaigomo()
 end
 
 if id == 7265397848 or id == 7251867574 then
-local Toggle2 = Tabs.General:AddToggle("MyToggle", {Title = "Auto Kill Saigomo", Default = false})
-
-Toggle2:OnChanged(function()
-    print("Toggle changed:", Toggle2.Value)
-    _G.AutokillSaigomo = Toggle2.Value
-    if Toggle2.Value then
-        spawn(function()
-            while _G.AutokillSaigomo do
-                killsaigomo()
-            end
-        end)
-    else
-        Unkillsaigomo()
-    end
-end)
-
-Toggle2:SetValue(false)
+Tabs.General:AddButton({
+        Title = "Auto Kill Saigomo",
+        Description = "Kill Saigomo",
+        Callback = function()
+            Window:Dialog({
+                Title = "Auto AKill Saigomo",
+                Content = "Do you want to Enable Auto Kill Saigomo?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            while _G.AutokillSaigomo do wait()
+                              wait(0)
+                              killsaigomo()
+                           end
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("Auto Butterfly is off")
+                        end
+                    }
+                }
+            })
+        end
+    })
 end
+
+function StopTween()
+   Unkillsaigomo()
+   UnDestroyHearts()
+end
+
+Tabs.Mics:AddButton({
+        Title = "Stop Tween",
+        Description = "Stop All Tween",
+        Callback = function()
+            Window:Dialog({
+                Title = "Stop Tween",
+                Content = "Do you want to Stop Tween?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            StopTween()
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("Auto Butterfly is off")
+                        end
+                    }
+                }
+            })
+        end
+    })
 
 SaveManager:SetLibrary(Fluent)
     SaveManager:IgnoreThemeSettings()

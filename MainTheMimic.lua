@@ -163,7 +163,7 @@ function Saigomo()
         if v:IsA("Model") then
             local spiderHitbox = v:FindFirstChild("HumanoidRootPart")
             if spiderHitbox then
-              local targetPositionTeleport = spiderHitbox.CFrame * CFrame.new(0, 26, -10)
+              local targetPositionTeleport = spiderHitbox.CFrame * CFrame.new(0, 20, -10)
               Teleport(targetPositionTeleport)
             end
         end

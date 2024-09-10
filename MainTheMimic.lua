@@ -880,24 +880,28 @@ if id == 7265397072 or id == 7251867155 then
 end
 
 if id == 7265397848 or id == 7251867574 then
-    local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
+local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
-    Toggle:OnChanged(function()
-        if Toggle.Value then
-            _G.EzClick = true
-            while _G.EzClick do wait()
-                wait(0)
+local autoClickActive = false
+
+Toggle:OnChanged(function()
+    if Toggle.Value then
+        _G.EzClick = true
+        autoClickActive = true
+        coroutine.wrap(function()
+            while autoClickActive and _G.EzClick do
                 EquipOrClick()
+                wait(0.1)
             end
-            end
-        else
-            _G.EzClick = false
-            UnEquipOrClick()
-        end
-    end)
+        end)()
+    else
+        autoClickActive = false
+        UnEquipOrClick()
+    end
+end)
 
-    Toggle:SetValue(true)
-
+Toggle:SetValue(true)
+   
     Tabs.General:AddButton({
         Title = "Auto Destroy Hearts",
         Description = "Auto Destroy All Hearts",

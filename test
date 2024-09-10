@@ -1,68 +1,69 @@
-function nofall()
-   game.Workspace.Gravity = 0
+function Teleport(P)
+    local Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    local Speed = Distance >= 1 and 300 or 1
+    pcall(function()
+        local teleport = game:GetService("TweenService"):Create(
+            game.Players.LocalPlayer.Character.HumanoidRootPart,
+            TweenInfo.new(Distance / Speed, Enum.EasingStyle.Linear),
+            {CFrame = P}
+        )
+        teleport:Play()
+        if _G.StopTween then
+            teleport:Cancel()
+            NoClip = false
+        end
+        NoClip = true
+        wait(Distance / Speed)
+        NoClip = false
+    end)
 end
 
-function Unnofall()
-   game.Workspace.Gravity = 150
-end
--- Ensure this script is a LocalScript, running on the client
-
--- Get the player's character
-local player = game.Players.LocalPlayer
-local character = player and player.Character
-if character then
-    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-    if humanoidRootPart then
-        -- Loop through all children of BossBattle in Workspace
-        for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
-            -- Check if the child is a Model
-            if v:IsA("Model") then
-                -- Find the SpiderHitbox inside the Model
-                local spiderHitbox = v:FindFirstChild("SpiderHitbox")
-                if spiderHitbox then
-                    spiderHitbox.Size = Vector3.new(100, 30, 30) -- Set the size of SpiderHitbox
-                    
-                    -- Create a new part
-                    local part = Instance.new("Part")
-                    part.Size = Vector3.new(2, 30, 30) -- Set the size to (2, 30, 30)
-                    part.Anchored = true
-                    part.CanCollide = true -- Enable collision for the part
-                    part.Transparency = 1 -- Fully transparent (invisible)
-                    part.CFrame = spiderHitbox.CFrame * CFrame.new(-25, 0, 0) -- Offset the part's position
-                    part.Parent = spiderHitbox -- Parent the part to SpiderHitbox
-                    
-                    -- Wait to ensure the part is fully instantiated
-                    wait(1.5) -- Consider using a more reliable method if necessary
-                    humanoidRootPart.CFrame = part.CFrame
-                end
+function Hitboxz()
+    for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+        if v:IsA("Model") then
+            local spiderHitbox = v:FindFirstChild("SpiderHitbox")
+            if spiderHitbox then
+              spiderHitbox.Rotation = Vector3.new(0, 0, 0)
+              spiderHitbox.Size = Vector3.new(100, 30, 30)
+              spiderHitbox.Transparency = 0.1
             end
         end
     end
 end
 
-local gameHearts = game:GetService("Workspace").GameHearts
-
-function toHeart()
-    for _, v in pairs(gameHearts.Heart:GetChildren()) do
-        if v:IsA("UnionOperation") then
-            v.Size = Vector3.new(140, 90, 0)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 0, -13)
+function Saigomo()
+    for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+        if v:IsA("Model") then
+            local spiderHitbox = v:FindFirstChild("HumanoidRootPart")
+            if spiderHitbox then
+            local Part = Instance.new("Part")
+            Part.Parent = game.Workspace
+            Part.Anchored = true
+            Part.Transparency = 0.2
+            Part.Size = Vector3.new(500, 500, 500)
+            Part.CFrame = spiderHitbox.CFrame * CFrame.new(0, 200, 0)
+            end
         end
     end
 end
 
-function check()
-    local found = false
-    for _, v in pairs(gameHearts:GetChildren()) do
-        if v:IsA("Model") and v:FindFirstChildOfClass("BoolValue") then
-            found = true
-            v:Destroy()
-            break
+function toSaigomo()
+    for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+        if v:IsA("Model") then
+            local spiderHitbox = v:FindFirstChild("HumanoidRootPart")
+            if spiderHitbox then
+                local targetPositionTeleport = spiderHitbox.CFrame * CFrame.new(0, 25, 0)
+                Teleport(targetPositionTeleport)
+            end
         end
-    end
-    if not found then
-        toHeart()
     end
 end
 
-check()
+Saigomo()
+
+_G.auto = true
+while _G.auto do wait()
+wait(0)
+Hitboxz()
+toSaigomo()
+end

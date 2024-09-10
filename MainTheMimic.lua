@@ -66,11 +66,6 @@ end
 --Freeze(true)  -- Enable movement
 --Freeze(false) -- Disable movement
 
---local targetPosition = Vector3.new(10, 5, -10)
---local duration = 3
-
---Tween(targetPosition, duration)
-
 local TeleportService = game:GetService("TeleportService")
         local Players = game:GetService("Players")
         local LocalPlayer = Players.LocalPlayer
@@ -163,8 +158,15 @@ function Saigomo()
         if v:IsA("Model") then
             local spiderHitbox = v:FindFirstChild("HumanoidRootPart")
             if spiderHitbox then
-              local targetPositionTeleport = spiderHitbox.CFrame * CFrame.new(0, 20, -10)
-              Teleport(targetPositionTeleport)
+            local Part = Instance.new("Part")
+            Part.Parent = game.Workspace
+            Part.Anchored = true
+            Part.Transparency = 1
+            Part.CanCollide = true
+            Part.Size = Vector3.new(30, 2, 30)
+            Part.CFrame = spiderHitbox.CFrame * CFrame.new(0, 20, 0)
+            local targetPositionTeleport = Part.CFrame * CFrame.new(0, 6, 0)
+            Teleport(targetPositionTeleport)
             end
         end
     end
@@ -416,18 +418,6 @@ local function safeExecute(callback)
     if not success then
         warn("Error occurred: " .. errorMsg)
     end
-end
-
-_G.AutokillSaigomo = false
-function killsaigomo()
-    noclip()
-    nofall()
-    Freeze(true)
-    Saigomo()
-end
-
-function Unkillsaigomo()
-    _G.AutokillSaigomo = false
 end
 
 
@@ -942,18 +932,15 @@ Toggle:SetValue(true)
                     {
                         Title = "Yes",
                         Callback = function()
-                            _G.AutokillSaigomo = true
-                            while _G.AutokillSaigomo do
-                                wait(0)
-                                killsaigomo()
-                                Hitboxz()
-                            end
+                           Unnofall()
+                           Freeze(true)
+                           Saigomo()
+                           Hitboxz()
                         end
                     },
                     {
                         Title = "No",
                         Callback = function()
-                            _G.AutokillSaigomo = false
                         end
                     }
                 }

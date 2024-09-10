@@ -932,6 +932,7 @@ Toggle:SetValue(true)
                     {
                         Title = "Yes",
                         Callback = function()
+                           clip()
                            Unnofall()
                            Freeze(true)
                            Saigomo()

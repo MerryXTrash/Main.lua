@@ -101,8 +101,8 @@ function toHeart()
      for _, v in pairs(gameHearts.Heart:GetChildren()) do
          if v:IsA("UnionOperation") then
              v.Rotation = Vector3.new(0, 0, 0)
-             v.Size = Vector3.new(57, 57, 57)
-             local targetPositionTeleport = v.CFrame * CFrame.new(0, 25, 0)
+             v.Size = Vector3.new(60, 60, 60)
+             local targetPositionTeleport = v.CFrame * CFrame.new(0, 20, -3)
              Teleport(targetPositionTeleport)
          end
      end
@@ -163,7 +163,7 @@ function Saigomo()
         if v:IsA("Model") then
             local spiderHitbox = v:FindFirstChild("HumanoidRootPart")
             if spiderHitbox then
-              local targetPositionTeleport = spiderHitbox.CFrame * CFrame.new(0, 33, 0)
+              local targetPositionTeleport = spiderHitbox.CFrame * CFrame.new(0, 29, 0)
               Teleport(targetPositionTeleport)
             end
         end
@@ -884,11 +884,14 @@ if id == 7265397848 or id == 7251867574 then
 
     Toggle:OnChanged(function()
         if Toggle.Value then
+            _G.EzClick = true
             while _G.EzClick do wait()
                 wait(0)
                 EquipOrClick()
             end
+            end
         else
+            _G.EzClick = false
             UnEquipOrClick()
         end
     end)
@@ -939,6 +942,7 @@ if id == 7265397848 or id == 7251867574 then
                             while _G.AutokillSaigomo do
                                 wait(0)
                                 killsaigomo()
+                                Hitboxz()
                             end
                         end
                     },

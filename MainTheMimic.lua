@@ -426,6 +426,56 @@ local function safeExecute(callback)
     end
 end
 
+_G.AutokillSaigomo = false
+function killsaigomo()
+    noclip()
+    nofall()
+    Freeze(true)
+    Saigomo()
+end
+
+function Unkillsaigomo()
+    Unnofall()
+    Freeze(false)
+    _G.AutokillSaigomo = false
+   clip()
+end
+
+
+_G.AutoDestroyHearts = false
+function DestroyHearts()
+    nofall()
+    noclip()
+    Freeze(true)
+    wait(0)
+    check()
+end
+
+function UnDestroyHearts()
+    Unnofall()
+    clip()
+    Freeze(false)
+    _G.AutoDestroyHearts = false
+end
+
+
+function StopTween()
+   Unkillsaigomo()
+   UnDestroyHearts()
+end
+
+
+_G.Ezclick = false
+
+function EquipOrClick()
+        CheckKatana()
+        clickMiddleOfScreen()
+end
+
+function UnEquipOrClick()
+    _G.Ezclick = false
+end
+
 -- Load external libraries
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
@@ -815,51 +865,22 @@ if id == 7265397072 or id == 7251867155 then
     })
 end
 
-_G.Ezclick = false
-
-function EquipOrClick()
-    while _G.Ezclick do
-        wait(0.1)
-        CheckKatana()
-        clickMiddleOfScreen()
-    end
-end
-
-function UnEquipOrClick()
-    _G.Ezclick = false
-end
-
 if id == 7265397848 or id == 7251867574 then
 local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
 Toggle:OnChanged(function()
     print("Toggle changed:", Toggle.Value)
     if Toggle.Value then
-        _G.Ezclick = true
+        while _G.EzClick do wait()
+        wait(0)
         EquipOrClick()
+            end
     else
         UnEquipOrClick()
     end
 end)
 
 Toggle:SetValue(true)
-end
-
-_G.AutoDestroyHearts = false
-
-function DestroyHearts()
-    nofall()
-    noclip()
-    Freeze(true)
-    wait(0)
-    check()
-end
-
-function UnDestroyHearts()
-    Unnofall()
-    clip()
-    Freeze(false)
-    _G.AutoDestroyHearts = false
 end
 
 if id == 7265397848 or id == 7251867574 then
@@ -892,22 +913,6 @@ Tabs.General:AddButton({
     })
 end
 
-_G.AutokillSaigomo = false
-
-function killsaigomo()
-    noclip()
-    nofall()
-    Freeze(true)
-    Saigomo()
-end
-
-function Unkillsaigomo()
-    Unnofall()
-    Freeze(false)
-    _G.AutokillSaigomo = false
-   clip()
-end
-
 if id == 7265397848 or id == 7251867574 then
 Tabs.General:AddButton({
         Title = "Auto Kill Saigomo",
@@ -936,11 +941,6 @@ Tabs.General:AddButton({
             })
         end
     })
-end
-
-function StopTween()
-   Unkillsaigomo()
-   UnDestroyHearts()
 end
 
 Tabs.Mics:AddButton({

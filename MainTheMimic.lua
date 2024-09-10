@@ -851,6 +851,7 @@ function DestroyHearts()
     nofall()
     noclip()
     Freeze(true)
+    wait(0)
     check()
 end
 
@@ -870,6 +871,7 @@ Toggle1:OnChanged(function()
     if Toggle1.Value then
         spawn(function()
             while _G.AutoDestroyHearts do
+                wait(0.2)
                 DestroyHearts()
             end
         end)

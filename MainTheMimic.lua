@@ -997,7 +997,7 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
-                            freeze(true)
+                            Freeze(true)
                             CollectToys()
                         end
                     },

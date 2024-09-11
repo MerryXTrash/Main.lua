@@ -355,7 +355,7 @@ function Xmas1()
    TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822) --item1
    fire()
    wait(0.3)
-   Tp.HumanoidRootPart.CFrame = CFrame.new(-77.35053253173828, 10.582359313964844, -138.64732360839844) --item2
+   TP.HumanoidRootPart.CFrame = CFrame.new(-77.35053253173828, 10.582359313964844, -138.64732360839844) --item2
    fire()
    wait(0.3)
    TP.HumanoidRootParT.CFrame = CFrame.new(-146.3704376220703, 3.1187705993652344, -212.27491760253906) --item3

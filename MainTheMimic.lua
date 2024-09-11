@@ -511,7 +511,6 @@ function StopTween()
     Unnofall()
     clip()
     Freeze(false)
-    _G.AutoToys = false
 end
 
 -- Load external libraries
@@ -566,7 +565,7 @@ Tabs.Log:AddParagraph({
 
 Tabs.Log:AddParagraph({
     Title = "+ Add",
-    Content = "[BETA] Book 1 Chapter 4"
+    Content = "[ BETA ] Book 1 Chapter 4"
 })
 
 if id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221 or 

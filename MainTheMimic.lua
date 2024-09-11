@@ -372,25 +372,28 @@ function Xmas1()
 end
 
 function Toy()
-for i, v in pairs(game:GetService("Workspace").Quests["2"].Collectoys:GetChildren()) do
-    if v.Name == "toy" then
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-        fire()
-        wait(0.1)
-   else
-      _G.AutoToys = false
-         freeze(false)
+    local workspace = game:GetService("Workspace")
+    local toys = workspace.Quests["2"].Collectoys:GetChildren()
+
+    for _, v in pairs(toys) do
+        if v.Name == "toy" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+            fire()
+            wait(0.1)
+        else
+            _G.AutoToys = false
+            freeze(false)
+        end
     end
-end
 end
 
 _G.AutoToys = false
 
 function CollectToys()
-   while _G.AutoToys do wait()
-   wait(0)
-   Toy()
-   end
+    while _G.AutoToys do
+        wait()
+        Toy()
+    end
 end
 
 local folder = Instance.new("Folder")

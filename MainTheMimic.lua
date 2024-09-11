@@ -352,20 +352,26 @@ function Xmas1()
    Freeze(true)
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --start elf
    fire()
+   fire()
    wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822) --item1
+   fire()
    fire()
    wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-77.35053253173828, 10.582359313964844, -138.64732360839844) --item2
    fire()
+   fire()
    wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-139.31321716308594, 13.773194313049316, -211.2278594970703) --item3
+   fire()
    fire()
    wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(44.89724349975586, 30.69533920288086, -92.5009765625) --End Quest
    fire()
+   fire()
    wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --final elf
+   fire()
    fire()
    wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --gotosafe

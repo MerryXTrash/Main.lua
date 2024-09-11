@@ -63,6 +63,18 @@ local function Freeze(enable)
     end
 end
 
+_G.loopfire = false
+function loopfire()
+   _G.loopfire = true
+   while _G.loopfire do wait()
+      wait(0)
+      fire()
+end
+
+function Unloopfire()
+      _G.loopfire = false
+   end
+
 --Freeze(true)  -- Enable movement
 --Freeze(false) -- Disable movement
 
@@ -349,38 +361,26 @@ end
 
 function Xmas1()
    setHoldDurationForAllProximityPrompts()
+   loopfire()
    Freeze(true)
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --start elf
-   fire()
-   fire()
    wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822) --item1
-   fire()
-   fire()
    wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(-77.35053253173828, 10.582359313964844, -138.64732360839844) --item2
-   fire()
-   fire()
    wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(-139.31321716308594, 13.773194313049316, -211.2278594970703) --item3
-   fire()
-   fire()
    wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(44.89724349975586, 30.69533920288086, -92.5009765625) --End Quest
-   fire()
-   fire()
    wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --final elf
-   fire()
-   fire()
    wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --gotosafe
    wait(2.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
-   fire()
-   fire()
    wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
+   Unloopfirr()
    Freeze(false)
 end
 
@@ -398,6 +398,7 @@ function Toy()
             wait(0.1)
         else
             _G.AutoToys = false
+            Unloopfire()
             Freeze(false)
         end
     end
@@ -406,12 +407,12 @@ end
 function CollectToys()
     _G.AutoToys = true
     while _G.AutoToys do
+        loopfire()
         wait(0)
         Toy()
-        fire()
     end
 end
-
+   
 local folder = Instance.new("Folder")
 folder.Name = "HighlightsFolder"
 folder.Parent = game.Workspace
@@ -1003,7 +1004,9 @@ if id == 8311302084 or id == 8311299084 then
                     },
                     {
                         Title = "No",
-                        Callback = function() end
+                        Callback = function()
+                              print("not found")
+                        end
                     }
                 }
             })

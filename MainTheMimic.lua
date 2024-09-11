@@ -384,6 +384,8 @@ function Xmas1()
    Freeze(false)
 end
 
+_G.AutoToys = false
+
 function Toy()
     setHoldDurationForAllProximityPrompts()
     local workspace = game:GetService("Workspace")
@@ -400,8 +402,6 @@ function Toy()
         end
     end
 end
-
-_G.AutoToys = false
 
 function CollectToys()
     while _G.AutoToys do

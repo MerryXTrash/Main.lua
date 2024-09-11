@@ -390,7 +390,7 @@ function Toy()
             wait(0.1)
         else
             _G.AutoToys = false
-            freeze(false)
+            Freeze(false)
         end
     end
 end

@@ -347,6 +347,7 @@ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Flo
    Freeze(false)
 end
 
+
 function startLoopfire()
     _G.loopfirez = true
     while _G.loopfirez do
@@ -362,9 +363,8 @@ function stopLoopfire()
     _G.loopfirez = false
 end
 
-_G.AutoToys = false
-
 function Xmas1()
+    local TP = game.Players.LocalPlayer.Character
     startLoopfire()
     Freeze(true)
     TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) -- start elf
@@ -388,7 +388,10 @@ function Xmas1()
     Freeze(false)
 end
 
+_G.AutoToys = false
+
 function Toy()
+    local TP = game.Players.LocalPlayer.Character
     local workspace = game:GetService("Workspace")
     local toys = workspace.Quests["2"].CollectToys:GetChildren()
 
@@ -980,7 +983,7 @@ if id == 8311302084 or id == 8311299084 then
                         Callback = function()
                            setHoldDurationForAllProximityPrompts()
                            startLoopfire()
-                            Xmas1()
+                           Xmas1()
                         end
                     },
                     {
@@ -1005,8 +1008,8 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
-                           setHoldDurationForAllProximityPrompts()
-                           startLoopfire()
+                            setHoldDurationForAllProximityPrompts()
+                            startLoopfire()
                             Freeze(true)
                             CollectToys()
                         end

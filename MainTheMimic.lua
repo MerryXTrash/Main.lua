@@ -69,6 +69,7 @@ function loopfire()
    while _G.loopfire do wait()
       wait(0)
       fire()
+   end
 end
 
 function Unloopfire()
@@ -537,6 +538,7 @@ local Window = Fluent:CreateWindow({
             (id == 15996410294 or id == 15996411979 or id == 15996413469) and "Xces | The Mimic Classic - Chapter 2" or
             (id == 15996414738 or id == 15996416081 or id == 15996417416) and "Xces | The Mimic Classic - Chapter 3" or
             (id == 7265396387 or id == 7251865082 or id == 7265396805 or id == 7251866503 or id == 7265397072 or id == 7251867155) and "[BETA] Xces | The Mimic - Book 1 Chapter 4" or
+            (id == 8311302084 or id == 8311299084) and "Xsec | The Mimic - Christmas Trial" or
             "Xces | The Mimic - Main",
     SubTitle = "",
     TabWidth = 160,

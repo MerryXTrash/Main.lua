@@ -364,56 +364,37 @@ function stopLoopfire()
 end
 
 function Xmas1()
-    local TP = game.Players.LocalPlayer.Character
-    startLoopfire()
     Freeze(true)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) -- start elf
-    wait(1)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822) -- item1
-    wait(1)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-77.35053253173828, 10.582359313964844, -138.64732360839844) -- item2
-    wait(1)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-139.31321716308594, 13.773194313049316, -211.2278594970703) -- item3
-    wait(1)
-    TP.HumanoidRootPart.CFrame = CFrame.new(44.89724349975586, 30.69533920288086, -92.5009765625) -- End Quest
-    wait(1)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) -- final elf
-    wait(1)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) -- go to safe
-    wait(2.5)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
-    wait(1)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
+    startLoopfire()
+    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --safe
+    wait(0.8)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-251.05911254882812, -11.551362991333008, -66.66143798828125) --elf
+    wait(0.8)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-134.54364013671875, 10.574685096740723, -209.96405029296875) --item1
+    wait(0.8)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-80.6532974243164, 10.087998390197754, -123.51919555664062) --item2
+    wait(0.8)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-106.8354263305664, -14.238286018371582, 0.9737195372581482) --item3
+    wait(0.8)
+    TP.HumanoidRootPart.CFrame = CFrame.new(57.96989059448242, 33.27872085571289, -96.68522644042969) -- end
+    wait(0.8)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --return to safe1
+    wait(1.2)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-251.05911254882812, -11.551362991333008, -66.66143798828125) --nextquest
+    wait(0.8)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --return to safe2
     stopLoopfire()
     Freeze(false)
 end
 
-_G.AutoToys = false
-
 function Toy()
-    local TP = game.Players.LocalPlayer.Character
     local workspace = game:GetService("Workspace")
     local toys = workspace.Quests["2"].CollectToys:GetChildren()
-
     for _, v in pairs(toys) do
-        if v:IsA("MestPart") and v.Name == "toy" then
+        if v.Name == "toy" then
             TP.HumanoidRootPart.CFrame = v.CFrame
-            fire()
             wait(0.1)
-        else
-            _G.AutoToys = false
-            stopLoopfire()
-            Freeze(false)
-            return
         end
-    end
-end
-
-function CollectToys()
-    _G.AutoToys = true
-    while _G.AutoToys do
-        loopfire()
-        Toy()
     end
 end
    
@@ -981,9 +962,7 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
-                           setHoldDurationForAllProximityPrompts()
-                           startLoopfire()
-                           Xmas1()
+                            Xmas1()
                         end
                     },
                     {
@@ -1008,10 +987,12 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
-                            setHoldDurationForAllProximityPrompts()
-                            startLoopfire()
-                            Freeze(true)
-                            CollectToys()
+                            _G.Xmas2 = true
+                            while _G.Xmas2 do
+                                wait()
+                                Toy()
+                                fire()
+                            end
                         end
                     },
                     {

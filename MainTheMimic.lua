@@ -996,7 +996,6 @@ if id == 8311302084 or id == 8311299084 then
             })
         end
     })
-end
 
     Tabs.General:AddButton({
         Title = "Auto Correct Toys",
@@ -1025,7 +1024,6 @@ end
             })
         end
     })
-end
 
     Tabs.General:AddButton({
         Title = "Grab Key",
@@ -1055,7 +1053,6 @@ end
         end
     })
 end
-end
 
 SaveManager:SetLibrary(Fluent)
     SaveManager:IgnoreThemeSettings()
@@ -1068,7 +1065,7 @@ SaveManager:SetLibrary(Fluent)
     Fluent:Notify({
         Title = "จ๊ะจ๊าเองจ้า",
         Content = "ใช้สคริปต์ระวังโดนแบนกันด้วยน้าา",
-        Duration = 3
+        Duration = 1
     })
 
     SaveManager:LoadAutoloadConfig()

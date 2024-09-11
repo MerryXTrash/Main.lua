@@ -382,7 +382,7 @@ function Xmas1()
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
    wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
-   Unloopfirr()
+   Unloopfire()
    Freeze(false)
 end
 

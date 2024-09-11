@@ -63,15 +63,6 @@ local function Freeze(enable)
     end
 end
 
-function StopTween()
-    StopTweenAll()
-    Unkillsaigomo()
-    UnDestroyHearts()
-    Unnofall()
-    clip()
-    Freeze(false)
-end
-
 --Freeze(true)  -- Enable movement
 --Freeze(false) -- Disable movement
 
@@ -498,6 +489,15 @@ end
 
 function UnEquipOrClick()
     _G.Ezclick = false
+end
+
+function StopTween()
+    StopTweenAll()
+    Unkillsaigomo()
+    UnDestroyHearts()
+    Unnofall()
+    clip()
+    Freeze(false)
 end
 
 -- Load external libraries

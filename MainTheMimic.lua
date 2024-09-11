@@ -359,7 +359,7 @@ function Xmas1()
    TP.HumanoidRootPart.CFrame = CFrame.new(-77.35053253173828, 10.582359313964844, -138.64732360839844) --item2
    fire()
    wait(0.5)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-146.3704376220703, 3.1187705993652344, -212.27491760253906) --item3
+   TP.HumanoidRootPart.CFrame = CFrame.new(-139.31321716308594, 13.773194313049316, -211.2278594970703) --item3
    fire()
    wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(44.89724349975586, 30.69533920288086, -92.5009765625) --End Quest
@@ -381,7 +381,7 @@ end
 function Toy()
     setHoldDurationForAllProximityPrompts()
     local workspace = game:GetService("Workspace")
-    local toys = workspace.Quests["2"].Collectoys:GetChildren()
+    local toys = workspace.Quests["2"].CollectToys:GetChildren()
 
     for _, v in pairs(toys) do
         if v.Name == "toy" then

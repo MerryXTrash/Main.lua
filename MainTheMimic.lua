@@ -347,15 +347,12 @@ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Flo
    Freeze(false)
 end
 
+_G.loopfirez = false
 
 function startLoopfire()
-    _G.loopfirez = true
     while _G.loopfirez do
-        if pcall(fire) then
-        else
-            print("Error calling fire() function")
-        end
-        wait(0.1)
+        wait()
+        fire()
     end
 end
 
@@ -364,25 +361,36 @@ function stopLoopfire()
 end
 
 function Xmas1()
+    if not Freeze then
+        error("The Freeze() function is not available.")
+    end
+
+    if not TP or not TP.HumanoidRootPart then
+        error("TP or TP.HumanoidRootPart is not available.")
+    end
+
     Freeze(true)
+    _G.loopfirez = true
     startLoopfire()
-    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --safe
+    
+    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) -- safe
     wait(0.8)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-251.05911254882812, -11.551362991333008, -66.66143798828125) --elf
+    TP.HumanoidRootPart.CFrame = CFrame.new(-251.05911254882812, -11.551362991333008, -66.66143798828125) -- elf
     wait(0.8)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-134.54364013671875, 10.574685096740723, -209.96405029296875) --item1
+    TP.HumanoidRootPart.CFrame = CFrame.new(-134.54364013671875, 10.574685096740723, -209.96405029296875) -- item1
     wait(0.8)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-80.6532974243164, 10.087998390197754, -123.51919555664062) --item2
+    TP.HumanoidRootPart.CFrame = CFrame.new(-80.6532974243164, 10.087998390197754, -123.51919555664062) -- item2
     wait(0.8)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-106.8354263305664, -14.238286018371582, 0.9737195372581482) --item3
+    TP.HumanoidRootPart.CFrame = CFrame.new(-106.8354263305664, -14.238286018371582, 0.9737195372581482) -- item3
     wait(0.8)
     TP.HumanoidRootPart.CFrame = CFrame.new(57.96989059448242, 33.27872085571289, -96.68522644042969) -- end
     wait(0.8)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --return to safe1
+    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) -- return to safe1
     wait(1.2)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-251.05911254882812, -11.551362991333008, -66.66143798828125) --nextquest
+    TP.HumanoidRootPart.CFrame = CFrame.new(-251.05911254882812, -11.551362991333008, -66.66143798828125) -- nextquest
     wait(0.8)
-    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --return to safe2
+    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) -- return to safe2
+    
     stopLoopfire()
     Freeze(false)
 end
@@ -1048,7 +1056,7 @@ SaveManager:SetLibrary(Fluent)
     Fluent:Notify({
         Title = "จ๊ะจ๊าเองจ้า",
         Content = "ใช้สคริปต์ระวังโดนแบนกันด้วยน้าา",
-        Duration = 1
+        Duration = 0
     })
 
     SaveManager:LoadAutoloadConfig()

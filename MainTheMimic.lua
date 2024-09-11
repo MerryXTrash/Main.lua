@@ -375,11 +375,11 @@ function Xmas1()
    fire()
    wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --gotosafe
-   wait(1.5)
+   wait(2.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
    fire()
    fire()
-   wait(0.7)
+   wait(1)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
    Freeze(false)
 end
@@ -404,9 +404,11 @@ function Toy()
 end
 
 function CollectToys()
+    _G.AutoToys = true
     while _G.AutoToys do
-        wait()
+        wait(0)
         Toy()
+        fire()
     end
 end
 
@@ -515,6 +517,7 @@ function StopTween()
     Unnofall()
     clip()
     Freeze(false)
+    _G.AutoToys = false
 end
 
 -- Load external libraries
@@ -524,16 +527,16 @@ local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTr
 -- Initialize variables
 
 local Window = Fluent:CreateWindow({
-    Title = (id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221) and "The Mimic | Book 1 Chapter 1" or
-            (id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or id == 6425178683 or id == 6485056556) and "The Mimic | Book 1 Chapter 2" or
-            (id == 6472459099 or id == 6688734180 or id == 6682163754 or id == 6688734313 or id == 6682164423 or id == 6688734395) and "The Mimic | Book 1 Chapter 3" or
-            (id == 7068738088 or id == 7068951438 or id == 7068951914 or id == 7068740106 or id == 7068952294) and "The Mimic | The Witch Trial" or
-            (id == 7618863566) and "The Mimic | Jigoku" or
-            (id == 15996404472 or id == 15996407335) and "The Mimic Classic | Chapter 1" or
-            (id == 15996410294 or id == 15996411979 or id == 15996413469) and "The Mimic Classic | Chapter 2" or
-            (id == 15996414738 or id == 15996416081 or id == 15996417416) and "The Mimic Classic | Chapter 3" or
-            (id == 7265396387 or id == 7251865082 or id == 7265396805 or id == 7251866503 or id == 7265397072 or id == 7251867155) and "The Mimic | Book 1 Chapter 4 Beta" or
-            "The Mimic",
+    Title = (id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221) and "Xces | The Mimic - Book 1 Chapter 1" or
+            (id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or id == 6425178683 or id == 6485056556) and "Xces | The Mimic - Book 1 Chapter 2" or
+            (id == 6472459099 or id == 6688734180 or id == 6682163754 or id == 6688734313 or id == 6682164423 or id == 6688734395) and "Xces | The Mimic - Book 1 Chapter 3" or
+            (id == 7068738088 or id == 7068951438 or id == 7068951914 or id == 7068740106 or id == 7068952294) and "Xsec | The Mimic - The Witch Trial" or
+            (id == 7618863566) and "Xces | The Mimic - Jigoku" or
+            (id == 15996404472 or id == 15996407335) and "Xces | The Mimic Classic - Chapter 1" or
+            (id == 15996410294 or id == 15996411979 or id == 15996413469) and "Xces | The Mimic Classic - Chapter 2" or
+            (id == 15996414738 or id == 15996416081 or id == 15996417416) and "Xces | The Mimic Classic - Chapter 3" or
+            (id == 7265396387 or id == 7251865082 or id == 7265396805 or id == 7251866503 or id == 7265397072 or id == 7251867155) and "[BETA] Xces | The Mimic - Book 1 Chapter 4" or
+            "Xces | The Mimic - Main",
     SubTitle = "",
     TabWidth = 160,
     Size = UDim2.fromOffset(460, 300),
@@ -568,7 +571,7 @@ Tabs.Log:AddParagraph({
 
 Tabs.Log:AddParagraph({
     Title = "+ Add",
-    Content = "Book 1 Chapter 4 Beta"
+    Content = "[BETA] Book 1 Chapter 4"
 })
 
 if id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221 or 
@@ -693,8 +696,8 @@ Tabs.ESP:AddButton({
 })
 
 Tabs.General:AddButton({
-    Title = "Stop Tween",
-    Description = "Stop All Tween",
+    Title = "Stop All",
+    Description = "Stop All Function",
     Callback = function()
         Window:Dialog({
             Title = "Stop Tween",
@@ -931,7 +934,7 @@ Toggle:SetValue(true)
 
     Tabs.General:AddButton({
         Title = "Auto Kill Saigomo",
-        Description = "Kill Saigomo",
+        Description = "[ Warning ] Use After Saigomo Cutsene",
         Callback = function()
             Window:Dialog({
                 Title = "Auto Kill Saigomo",

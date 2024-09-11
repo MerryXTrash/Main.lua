@@ -352,19 +352,20 @@ function Xmas1()
    fire()
    wait(0.3)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
-   wait(0.2)
+   fire()
+   wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-104.72533416748047, -14.238286018371582, -4.90534782409668)
    fire()
-   wait(0.3)
+   wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-140.6521453857422, 13.90528392791748, -212.32469177246094)
    fire()
-   wait(0.3)
+   wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
    fire()
-   wait(0.3)
+   wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
    fire()
-   wait(0.3)
+   wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
 end
 
@@ -983,7 +984,6 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
-                           Freeze(true)
                            Xmas1()
                         end
                     },

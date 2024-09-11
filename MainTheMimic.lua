@@ -347,27 +347,26 @@ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Flo
    Freeze(false)
 end
 
-_G.loopfirez = false
-_G.AutoToys = false
-
-function loopfire()
+function startLoopfire()
     _G.loopfirez = true
-    while _G.loopfirez do 
-        fire()
+    while _G.loopfirez do
+        if pcall(fire) then
+        else
+            print("Error calling fire() function")
+        end
         wait(0.1)
     end
 end
 
-function Unloopfire()
+function stopLoopfire()
     _G.loopfirez = false
 end
 
-function Xmas1()
-    setHoldDurationForAllProximityPrompts()
-    loopfire()
-    Freeze(true)
+_G.AutoToys = false
 
-    -- Teleport to predefined locations and execute actions
+function Xmas1()
+    startLoopfire()
+    Freeze(true)
     TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) -- start elf
     wait(1)
     TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822) -- item1
@@ -385,24 +384,22 @@ function Xmas1()
     TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
     wait(1)
     TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
-    
-    Unloopfire()
+    stopLoopfire()
     Freeze(false)
 end
 
 function Toy()
-    setHoldDurationForAllProximityPrompts()
     local workspace = game:GetService("Workspace")
     local toys = workspace.Quests["2"].CollectToys:GetChildren()
 
     for _, v in pairs(toys) do
-        if v:IsA("Model") and v.Name == "toy" then
+        if v:IsA("MestPart") and v.Name == "toy" then
             TP.HumanoidRootPart.CFrame = v.CFrame
             fire()
             wait(0.1)
         else
             _G.AutoToys = false
-            Unloopfire()
+            stopLoopfire()
             Freeze(false)
             return
         end
@@ -981,6 +978,8 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
+                           setHoldDurationForAllProximityPrompts()
+                           startLoopfire()
                             Xmas1()
                         end
                     },
@@ -1006,6 +1005,8 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
+                           setHoldDurationForAllProximityPrompts()
+                           startLoopfire()
                             Freeze(true)
                             CollectToys()
                         end

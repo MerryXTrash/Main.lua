@@ -987,7 +987,7 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "No",
                         Callback = function()
-                           print("cancle")
+                           print("Auto Repair Sleigh operation cancelled")
                         end
                     }
                 }
@@ -996,11 +996,11 @@ if id == 8311302084 or id == 8311299084 then
     })
 
     Tabs.General:AddButton({
-        Title = "Auto Correct Toys",
-        Description = "Auto Correct All Toys",
+        Title = "Auto Collect Toys",
+        Description = "Auto Collect All Toys",
         Callback = function()
             Window:Dialog({
-                Title = "Auto Correct Toys",
+                Title = "Auto Collect Toys",
                 Content = "Do you want to Enable Auto Collect Toys?",
                 Buttons = {
                     {
@@ -1013,7 +1013,7 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "No",
                         Callback = function()
-                              print("not found")
+                              print("Auto Collect Toys operation cancelled")
                         end
                     }
                 }
@@ -1042,7 +1042,7 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "No",
                         Callback = function()
-                           print("e")
+                           print("Grab Key operation cancelled")
                         end
                     }
                 }

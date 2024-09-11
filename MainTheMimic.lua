@@ -64,6 +64,7 @@ local function Freeze(enable)
 end
 
 _G.loopfire = false
+
 function loopfire()
    _G.loopfire = true
    while _G.loopfire do wait()
@@ -956,6 +957,7 @@ Toggle:SetValue(true)
                     {
                         Title = "No",
                         Callback = function()
+                           print("Cancle")
                         end
                     }
                 }
@@ -982,7 +984,9 @@ if id == 8311302084 or id == 8311299084 then
                     },
                     {
                         Title = "No",
-                        Callback = function() end
+                        Callback = function()
+                           print("cancle")
+                        end
                     }
                 }
             })
@@ -1035,7 +1039,9 @@ if id == 8311302084 or id == 8311299084 then
                     },
                     {
                         Title = "No",
-                        Callback = function() end
+                        Callback = function()
+                           print("e")
+                        end
                     }
                 }
             })

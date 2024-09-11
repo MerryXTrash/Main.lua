@@ -63,20 +63,6 @@ local function Freeze(enable)
     end
 end
 
-_G.loopfire = false
-
-function loopfire()
-   _G.loopfire = true
-   while _G.loopfire do wait()
-      wait(0)
-      fire()
-   end
-end
-
-function Unloopfire()
-      _G.loopfire = false
-   end
-
 --Freeze(true)  -- Enable movement
 --Freeze(false) -- Disable movement
 
@@ -361,32 +347,48 @@ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Flo
    Freeze(false)
 end
 
-function Xmas1()
-   setHoldDurationForAllProximityPrompts()
-   loopfire()
-   Freeze(true)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --start elf
-   wait(1)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822) --item1
-   wait(1)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-77.35053253173828, 10.582359313964844, -138.64732360839844) --item2
-   wait(1)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-139.31321716308594, 13.773194313049316, -211.2278594970703) --item3
-   wait(1)
-   TP.HumanoidRootPart.CFrame = CFrame.new(44.89724349975586, 30.69533920288086, -92.5009765625) --End Quest
-   wait(1)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --final elf
-   wait(1)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --gotosafe
-   wait(2.5)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
-   wait(1)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
-   Unloopfire()
-   Freeze(false)
+_G.loopfirez = false
+_G.AutoToys = false
+
+function loopfire()
+    _G.loopfirez = true
+    while _G.loopfirez do 
+        fire()
+        wait(0.1)
+    end
 end
 
-_G.AutoToys = false
+function Unloopfire()
+    _G.loopfirez = false
+end
+
+function Xmas1()
+    setHoldDurationForAllProximityPrompts()
+    loopfire()
+    Freeze(true)
+
+    -- Teleport to predefined locations and execute actions
+    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) -- start elf
+    wait(1)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822) -- item1
+    wait(1)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-77.35053253173828, 10.582359313964844, -138.64732360839844) -- item2
+    wait(1)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-139.31321716308594, 13.773194313049316, -211.2278594970703) -- item3
+    wait(1)
+    TP.HumanoidRootPart.CFrame = CFrame.new(44.89724349975586, 30.69533920288086, -92.5009765625) -- End Quest
+    wait(1)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) -- final elf
+    wait(1)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) -- go to safe
+    wait(2.5)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
+    wait(1)
+    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
+    
+    Unloopfire()
+    Freeze(false)
+end
 
 function Toy()
     setHoldDurationForAllProximityPrompts()
@@ -394,14 +396,15 @@ function Toy()
     local toys = workspace.Quests["2"].CollectToys:GetChildren()
 
     for _, v in pairs(toys) do
-        if v.Name == "toy" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+        if v:IsA("Model") and v.Name == "toy" then
+            TP.HumanoidRootPart.CFrame = v.CFrame
             fire()
             wait(0.1)
         else
             _G.AutoToys = false
             Unloopfire()
             Freeze(false)
+            return
         end
     end
 end
@@ -410,7 +413,6 @@ function CollectToys()
     _G.AutoToys = true
     while _G.AutoToys do
         loopfire()
-        wait(0)
         Toy()
     end
 end

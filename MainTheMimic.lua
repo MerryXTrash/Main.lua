@@ -63,6 +63,15 @@ local function Freeze(enable)
     end
 end
 
+function StopTween()
+    StopTweenAll()
+    Unkillsaigomo()
+    UnDestroyHearts()
+    Unnofall()
+    clip()
+    Freeze(false)
+end
+
 --Freeze(true)  -- Enable movement
 --Freeze(false) -- Disable movement
 
@@ -371,6 +380,28 @@ function Xmas1()
    Freeze(false)
 end
 
+_G.AutoToys = false
+
+function Toy()
+for i, v in pairs(game:GetService("Workspace").Quests["2"].Collectoys:GetChildren()) do
+    if v.Name == "toy" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+        fire()
+        wait(0.1)
+   else
+      _G.AutoToys = false
+         freeze(false)
+    end
+end
+end
+
+function CollectToys()
+   while _G.AutoToys do wait()
+   wait(0)
+   Toy()
+   end
+end
+
 local folder = Instance.new("Folder")
 folder.Name = "HighlightsFolder"
 folder.Parent = game.Workspace
@@ -457,17 +488,6 @@ end
 function UnDestroyHearts()
     _G.AutoDestroyHearts = false
 end
-
-
-function StopTween()
-    StopTweenAll()
-    Unkillsaigomo()
-    UnDestroyHearts()
-    Unnofall()
-    clip()
-    Freeze(false)
-end
-
 
 _G.Ezclick = false
 
@@ -957,11 +977,8 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
-                           clip()
-                           Unnofall()
-                           Freeze(true)
-                           Saigomo()
-                           Hitboxz()
+                           freeze(true)
+                           CollectToys()
                         end
                     },
                     {

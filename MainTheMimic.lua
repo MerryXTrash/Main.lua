@@ -380,8 +380,6 @@ function Xmas1()
    Freeze(false)
 end
 
-_G.AutoToys = false
-
 function Toy()
 for i, v in pairs(game:GetService("Workspace").Quests["2"].Collectoys:GetChildren()) do
     if v.Name == "toy" then
@@ -394,6 +392,8 @@ for i, v in pairs(game:GetService("Workspace").Quests["2"].Collectoys:GetChildre
     end
 end
 end
+
+_G.AutoToys = false
 
 function CollectToys()
    while _G.AutoToys do wait()

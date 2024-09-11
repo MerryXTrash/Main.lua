@@ -348,6 +348,7 @@ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Flo
 end
 
 function Xmas1()
+   Freeze(true)
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
    fire()
    wait(0.3)
@@ -367,6 +368,7 @@ function Xmas1()
    fire()
    wait(0.5)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
+   Freeze(false)
 end
 
 local folder = Instance.new("Folder")

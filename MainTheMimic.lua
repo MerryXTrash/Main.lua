@@ -947,7 +947,8 @@ Toggle:SetValue(true)
 end
 
 if id == 8311302084 or id == 8311299084 then
-       Tabs.General:AddButton({
+
+    Tabs.General:AddButton({
         Title = "Auto Repair Sleigh",
         Description = "Auto Repair Sleigh for Next Quest",
         Callback = function()
@@ -958,13 +959,12 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
-                           Xmas1()
+                            Xmas1()
                         end
                     },
                     {
                         Title = "No",
-                        Callback = function()
-                        end
+                        Callback = function() end
                     }
                 }
             })
@@ -982,14 +982,13 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
-                           freeze(true)
-                           CollectToys()
+                            freeze(true)
+                            CollectToys()
                         end
                     },
                     {
                         Title = "No",
-                        Callback = function()
-                        end
+                        Callback = function() end
                     }
                 }
             })
@@ -1007,22 +1006,22 @@ if id == 8311302084 or id == 8311299084 then
                     {
                         Title = "Yes",
                         Callback = function()
-                           clip()
-                           Unnofall()
-                           Freeze(true)
-                           Saigomo()
-                           Hitboxz()
+                            clip()
+                            Unnofall()
+                            Freeze(true)
+                            Saigomo()
+                            Hitboxz()
                         end
                     },
                     {
                         Title = "No",
-                        Callback = function()
-                        end
+                        Callback = function() end
                     }
                 }
             })
         end
     })
+
 end
 
 SaveManager:SetLibrary(Fluent)

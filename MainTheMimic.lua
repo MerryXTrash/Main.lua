@@ -352,10 +352,21 @@ function Xmas1()
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --start elf
    fire()
    wait(0.3)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822) --item1
+   fire()
+   wait(0.3)
+   Tp.HumanoidRootPart.CFrame = CFrame.new(-77.35053253173828, 10.582359313964844, -138.64732360839844) --item2
+   fire()
+   wait(0.3)
+   TP.HumanoidRootParT.CFrame = CFrame.new(-146.3704376220703, 3.1187705993652344, -212.27491760253906) --item3
+   fire()
+   wait(0.3)
+   TP.HumanoidRootPart.CFrame = CFrame.new(44.89724349975586, 30.69533920288086, -92.5009765625) --End Quest
+   fire
+   wait(0.3)
    TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --final elf
    fire()
-   wait(0.5)
+   wait(0.3)
    TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --gotosafe
    Freeze(false)
 end
@@ -515,66 +526,13 @@ Fluent:Notify({
 
 Tabs.Log:AddParagraph({
     Title = "+ Add",
-    Content = "Jigoku Event"
+    Content = "Christmas Trial"
 })
 
 Tabs.Log:AddParagraph({
     Title = "+ Add",
-    Content = "Visual"
+    Content = "Book 1 Chapter 4 Beta"
 })
-
-if id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221 then
-    Tabs.General:AddParagraph({
-        Title = "Book 1",
-        Content = "Chapter 1"
-    })
-elseif id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or id == 6425178683 or id == 6485056556 then
-    Tabs.General:AddParagraph({
-        Title = "Book 1",
-        Content = "Chapter 2"
-    })
-elseif id == 6472459099 or id == 6688734180 or id == 6682163754 or id == 6688734313 or id == 6682164423 or id == 6688734395 then
-    Tabs.General:AddParagraph({
-        Title = "Book 1",
-        Content = "Chapter 3"
-    })
-elseif id == 7068738088 or id == 7068951438 or id == 7068951914 or id == 7068740106 or id == 7068952294 then
-    Tabs.General:AddParagraph({
-        Title = "Gamemode",
-        Content = "The Witch Trial"
-    })
-elseif id == 7618863566 then
-    Tabs.General:AddParagraph({
-        Title = "Event",
-        Content = "Jigoku"
-    })
-elseif id == 15996404472 or id == 15996407335 then
-    Tabs.General:AddParagraph({
-        Title = "Event",
-        Content = "The Mimic Classic Chapter 1"
-    })
-elseif id == 15996410294 or id == 15996411979 or id == 15996413469 then
-    Tabs.General:AddParagraph({
-        Title = "Event",
-        Content = "The Mimic Classic Chapter 2"
-    })
-elseif id == 15996414738 or id == 15996416081 or id == 15996417416 then
-    Tabs.General:AddParagraph({
-        Title = "Event",
-        Content = "The Mimic Classic Chapter 3"
-    })
-elseif id == 7265396387 or id == 7251865082 or id == 7265396805 or id == 7251866503 then
-    Tabs.General:AddParagraph({
-        Title = "Book 1",
-        Content = "Chapter 4"
-    })
-elseif id == 6243699076 and 7068737459 then
-    Tabs.General:AddParagraph({
-        Title = "The Mimic",
-        Content = "Main"
-    })
-end
-
 
 if id == 6296321810 or id == 6479231833 or id == 6301638949 or id == 6480994221 or 
 id == 6373539583 or id == 6485055338 or id == 6406571212 or id == 6485055836 or 

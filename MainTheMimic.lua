@@ -347,6 +347,27 @@ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Flo
    Freeze(false)
 end
 
+function Xmas1()
+   TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
+   fire()
+   wait(0.3)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
+   wait(0.2)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-104.72533416748047, -14.238286018371582, -4.90534782409668)
+   fire()
+   wait(0.3)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-140.6521453857422, 13.90528392791748, -212.32469177246094)
+   fire()
+   wait(0.3)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
+   fire()
+   wait(0.3)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
+   fire()
+   wait(0.3)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
+end
+
 local folder = Instance.new("Folder")
 folder.Name = "HighlightsFolder"
 folder.Parent = game.Workspace
@@ -948,6 +969,92 @@ Toggle:SetValue(true)
             })
         end
     })
+end
+
+if id == 8311302084 or id == 8311299084 then
+       Tabs.General:AddButton({
+        Title = "Auto Repair Sleigh",
+        Description = "Auto Repair Sleigh for Next Quest",
+        Callback = function()
+            Window:Dialog({
+                Title = "Auto Repair Sleigh",
+                Content = "Do you want to Enable Auto Repair Sleigh?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                           Freeze(true)
+                           Xmas1()
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                        end
+                    }
+                }
+            })
+        end
+    })
+end
+
+    Tabs.General:AddButton({
+        Title = "Auto Correct Toys",
+        Description = "Auto Correct All Toys",
+        Callback = function()
+            Window:Dialog({
+                Title = "Auto Correct Toys",
+                Content = "Do you want to Enable Auto Collect Toys?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                           clip()
+                           Unnofall()
+                           Freeze(true)
+                           Saigomo()
+                           Hitboxz()
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                        end
+                    }
+                }
+            })
+        end
+    })
+end
+
+    Tabs.General:AddButton({
+        Title = "Grab Key",
+        Description = "Grab Key from Krampus",
+        Callback = function()
+            Window:Dialog({
+                Title = "Auto Grab Key",
+                Content = "Do you want to Enable Grab Key?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                           clip()
+                           Unnofall()
+                           Freeze(true)
+                           Saigomo()
+                           Hitboxz()
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                        end
+                    }
+                }
+            })
+        end
+    })
+end
 end
 
 SaveManager:SetLibrary(Fluent)

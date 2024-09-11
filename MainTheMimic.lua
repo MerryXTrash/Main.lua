@@ -349,14 +349,14 @@ end
 
 function Xmas1()
    Freeze(true)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --start elf
    fire()
    wait(0.3)
    TP.HumanoidRootPart.CFrame = CFrame.new(-105.26527404785156, -15.172152519226074, -5.569468021392822)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-245.58705139160156, -13.987590789794922, -64.81370544433594) --final elf
    fire()
    wait(0.5)
-   TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594)
+   TP.HumanoidRootPart.CFrame = CFrame.new(-84.6919174194336, 11.107906341552734, -111.78636169433594) --gotosafe
    Freeze(false)
 end
 

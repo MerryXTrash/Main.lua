@@ -2235,6 +2235,7 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 end
 
 local Window = Alc:NewWindow('Overflow','The Mimic','rbxassetid://134204200422920')
+Alc.Config.MainColor = Color3.new(56, 182, 255)
 local MenuChangeLog = Window:AddMenu('Update',"",'hash','change')
 local MenuFunctions = Window:AddMenu('Main',"Skip",'ticket','tab')
 

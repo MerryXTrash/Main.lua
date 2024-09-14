@@ -78,7 +78,7 @@ local HttpService = game:GetService('HttpService')
 
 local Alc = {
 	Config = {
-		['UI Size'] = UDim2.new(0.100000001, 320, 0.100000001, 290),
+		['UI Size'] = UDim2.new(0.100000001, 320, 0.100000001, 250),
 		['MainColor'] = Color3.fromRGB(56, 182, 255),
 		['DropColor'] = Color3.fromRGB(30, 100, 200)
 	},

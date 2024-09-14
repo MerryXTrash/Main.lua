@@ -1324,7 +1324,7 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 					Text.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					Text.BorderSizePixel = 0
 					Text.Position = UDim2.new(0.5, 0, 0.5, 0)
-					Text.Size = UDim2.new(1, 0, 0.7, 0)
+					Text.Size = UDim2.new(1, 0, 0.5, 0)
 					Text.ZIndex = 6
 					Text.Font = Enum.Font.GothamBold
 					Text.Text = ButtonName or "Sea Event"

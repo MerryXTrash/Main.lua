@@ -2296,7 +2296,7 @@ local twoSection = TabUpdate:AddSection('','+[Add]','Christmas Trial','plus')
 local DiscordSection = TabUpdate:AddSection('Support','Discord','Click Copy to copy Link Discord','plus')
 
 DiscordSection:AddButton('Copy',function(v)
-	setclipboard(tostring(https://discord.gg/AXvTNJdGCz))
+	setclipboard(tostring(gg/AXvTNJdGCz))
 end)
 
 MainSection:AddButton('Skip',function(v)

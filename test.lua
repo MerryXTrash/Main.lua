@@ -2170,6 +2170,115 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 	return WindowAlc
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local folder = Instance.new("Folder")
+folder.Name = "HighlightsFolder"
+folder.Parent = game.Workspace
+
+local highlightTemplate = Instance.new("Highlight")
+highlightTemplate.Name = "HighlightTemplate"
+highlightTemplate.Enabled = true
+highlightTemplate.FillTransparency = 0.5
+highlightTemplate.OutlineTransparency = 0
+highlightTemplate.Parent = folder
+
+local function applyHighlight(instance)
+    local highlight = highlightTemplate:Clone()
+    highlight.Name = instance.Name .. "Highlight"
+    highlight.FillColor = Color3.fromRGB(255, 0, 0)
+    highlight.FillTransparency = 0.8
+    highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+    highlight.Parent = instance
+end
+
+local function setupHighlightForMob(mob)
+    local mobHighlight = highlightTemplate:Clone()
+    mobHighlight.Name = "MobESP"
+    mobHighlight.FillColor = Color3.fromRGB(255, 0, 0)
+    mobHighlight.FillTransparency = 0.8
+    mobHighlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+    mobHighlight.Parent = mob
+end
+
+local function setupHighlightForPlayer(player)
+    local character = player.Character or player.CharacterAdded:Wait()
+    local playerHighlight = highlightTemplate:Clone()
+    playerHighlight.Name = "PlayerESP"
+    playerHighlight.FillColor = Color3.fromRGB(0, 0, 255)
+    playerHighlight.FillTransparency = 0.5
+    playerHighlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+    playerHighlight.Parent = character
+end
+
+local function ESP()
+local gameAI1 = game:GetService("Workspace"):FindFirstChild("GameAI")
+local gameAI2 = game:GetService("Workspace"):FindFirstChild("GameAI2")
+
+if gameAI1 then
+    for i, v in pairs(gameAI1:GetChildren()) do
+        if v:IsA("BasePart") or v:IsA("Model") or v:IsA("Part") then
+            setupHighlightForMob(v)
+        end
+    end
+end
+
+if gameAI2 then
+    for i, v in pairs(gameAI2:GetChildren()) do
+        if v:IsA("BasePart") or v:IsA("Model") or v:IsA("Part") then
+            setupHighlightForMob(v)
+        end
+    end
+end
+
+local Sama1 = game.Workspace:WaitForChild("omukadeMAIN")
+setupHighlightForMob(Sama1)
+local Sama2 = game.Workspace.BossBattle:WaitForChild("Saigomo")
+setupHighlightForMob(Sama2)
+end
+
+function ESPPlayers()
+local Players = game.Players
+for _, player in pairs(Players:GetPlayers()) do
+    setupHighlightForPlayer(player)
+end
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        setupHighlightForPlayer(player)
+    end)
+end)
+end
+
+local function UnEspMob()
+    for i, v in ipairs(game:GetService("Workspace").GameAI:GetDescendants()) do
+    if v.ClassName == "Highlight" then
+        v.Enable = false
+    end
+end
+end
+
+local function UnEspPlayers()
+    for i, v in ipairs(game:GetService("Workspace").Players:GetDescendants()) do
+    if v.ClassName == "Highlight" then
+        v.Enable = false
+    end
+end
+end
+
+
 local Window = Alc:NewWindow('Overflow','The Mimic - Book 1 Chapter 1','rbxassetid://134204200422920')
 local MenuFunctions = Window:AddMenu('Genaral',"Main",'list','tab')
 local UpdateFunctions = Window:AddMenu('Update',"Update Log",'hash','tab')
@@ -2184,20 +2293,28 @@ local VisualSection = TabVisual:AddSection('Visual','Visual Function','ESP','eye
 
 local oneSection = TabUpdate:AddSection('','+[Add]','Book 1 Chater 4[Beta]','plus')
 local twoSection = TabUpdate:AddSection('','+[Add]','Christmas Trial','plus')
-local DiscordSection = TabUpdate:AddSection('','Support','Discord','plus')
+local DiscordSection = TabUpdate:AddSection('Support','Discord','Click Copy to copy Link Discord','plus')
 
 DiscordSection:AddButton('Copy',function(v)
-	print(v)
+	setclipboard(tostring(https://discord.gg/AXvTNJdGCz))
 end)
 
 MainSection:AddButton('Skip',function(v)
 	print(v)
 end)
 
-VisualSection:AddToggle('ESP Monster',false,function(v)
-	print(v)
+VisualSection:AddToggle('ESP Monster', false, function(v)
+    if v then
+        ESP()
+    else
+        UnEspMob()
+    end
 end)
 
 VisualSection:AddToggle('ESP Player',false,function(v)
-	print(v)
+	if v then
+        ESPPlayers()
+    else
+        UnEspPlayers()
+    end
 end)

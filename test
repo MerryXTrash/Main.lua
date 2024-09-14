@@ -2178,8 +2178,8 @@ local TabFunctions = MenuFunctions:AddTab('Main','Function','home')
 local TabVisual = MenuFunctions:AddTab('Visual','ESP','eye')
 
 --UPDATE CHANGE
-local ChangeLogSection = MenuChangeLog:AddSection('+[Add]','Book 1 Chater 4','sword')
-local ChangeLogSection = MenuChangeLog:AddSection('+[Add]','Chrismas Trial','candy-cane')
+local ChangeLogSection = MenuChangeLog:AddSection('+[Add]','Book 1 Chater 4')
+local ChangeLogSection = MenuChangeLog:AddSection('+[Add]','Chrismas Trial')
 
 --SECTION
 local MainSection = TabFunctions:AddSection('Skip','Continue','Skip this Part for next Part','log-out')

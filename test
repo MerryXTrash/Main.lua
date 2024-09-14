@@ -2171,17 +2171,11 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 end
 
 local Window = Alc:NewWindow('Overflow','The Mimic - Book 1 Chapter 1','rbxassetid://134204200422920')
-local MenuChangeLog = Window:AddMenu('Update',"Update Log",'hash','tab')
 local MenuFunctions = Window:AddMenu('Genaral',"Main",'list','tab')
 
 local TabFunctions = MenuFunctions:AddTab('Main','Function','home')
 local TabVisual = MenuFunctions:AddTab('Visual','ESP','eye')
 
---UPDATE CHANGE
-local ChangeLogSection = MenuChangeLog:AddSection('+[Add]','Book 1 Chater 4')
-local ChangeLogSection = MenuChangeLog:AddSection('+[Add]','Chrismas Trial')
-
---SECTION
 local MainSection = TabFunctions:AddSection('Skip','Continue','Skip this Part for next Part','log-out')
 local VisualSection = TabVisual:AddSection('Visual','Visual Function','ESP','eye')
 

@@ -2171,7 +2171,7 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 end
 
 local Window = Alc:NewWindow('Overflow','The Mimic - Book 1 Chapter 1','rbxassetid://134204200422920')
-local MenuChangeLog = Window:AddMenu('Update',"Update Log",'hash','change')
+local MenuChangeLog = Window:AddMenu('Update',"Update Log",'hash','tab')
 local MenuFunctions = Window:AddMenu('Genaral',"Main",'list','tab')
 
 local TabFunctions = MenuFunctions:AddTab('Main','Function','home')

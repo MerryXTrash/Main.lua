@@ -2172,54 +2172,27 @@ end
 
 local Window = Alc:NewWindow('Overflow','The Mimic - Book 1 Chapter 1','rbxassetid://134204200422920')
 local MenuChangeLog = Window:AddMenu('Update',"Update Log",'hash','change')
-local MenuFunctions = Window:AddMenu('Genaral',"Main",'home','tab')
+local MenuFunctions = Window:AddMenu('Genaral',"Main",'list','tab')
 
-local TabFunctions = MenuFunctions:AddTab('Main','Function','list')
-local TabTeleport = MenuFunctions:AddTab('Visual','ESP','option')
+local TabFunctions = MenuFunctions:AddTab('Main','Function','home')
+local TabVisual = MenuFunctions:AddTab('Visual','ESP','eye')
 
-local ChangeLogSection = MenuChangeLog:AddTab():AddSection('Update Log')
-local ChangeLogSection = MenuChangeLog:AddTab():AddSection('+[Add] Book 1 Chapter 4')
-local ChangeLogSection = MenuChangeLog:AddTab():AddSection('+[Add] Christmas Trial')
-local MainSection = TabFunctions:AddSection('Skip','Continue','','log-out')
-local TeleportSection = TabTeleport:AddSection('Teleports','teleport to porn hub','teleport and steal your discord token','server')
+--UPDATE CHANGE
+local ChangeLogSection = MenuChangeLog:AddSection('+[Add]','Book 1 Chater 4','sword')
+local ChangeLogSection = MenuChangeLog:AddSection('+[Add]','Chrismas Trial','candy-cane')
 
-MainSection:AddToggle('Auto Farm',false,function(v)
+--SECTION
+local MainSection = TabFunctions:AddSection('Skip','Continue','Skip this Part for next Part','log-out')
+local VisualSection = TabVisual:AddSection('Visual','Visual Function','ESP','eye')
+
+MainSection:AddButton('Skip',function(v)
 	print(v)
 end)
 
-MainSection:AddDropdown('Skill',{'Z','X','C','V'},nil,4,function(list,item)
-	print(list,item)
-end)
-
-MainSection:AddSlider('Skill',{Min = 15, Max = 45, Default = 15, VALUE = '%'},function(v)
+VisualSection:AddToggle('ESP Monster',false,function(v)
 	print(v)
 end)
 
-
-MainSection:AddButton('Kill all',function(v)
+VisualSection:AddToggle('ESP Player',false,function(v)
 	print(v)
-end)
-
-TeleportSection:AddButton('Blox Fruit',function()
-	print('TP!')
-end)
-
-TeleportSection:AddButton('The Mimic',function()
-	print('TP!')
-end)
-
-TeleportSection:AddButton('DOORS',function()
-	print('TP!')
-end)
-
-TeleportSection:AddButton('Blade Ball',function()
-	print('TP!')
-end)
-
-TeleportSection:AddButton('Phantom Force',function()
-	print('TP!')
-end)
-
-TeleportSection:AddButton('Cry Of Fear',function()
-	print('TP!')
 end)

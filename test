@@ -79,8 +79,8 @@ local HttpService = game:GetService('HttpService')
 local Alc = {
 	Config = {
 		['UI Size'] = UDim2.new(0.100000001, 315, 0.100000001, 310),
-		['MainColor'] = Color3.fromRGB(61, 207, 117),
-		['DropColor'] = Color3.fromRGB(25, 102, 61)
+		['MainColor'] = Color3.fromRGB(56, 182, 255),
+		['DropColor'] = Color3.fromRGB(40, 130, 182)
 	},
 	CoreGui = game:FindFirstChild('CoreGui') or LocalPlayer.PlayerGui,
 	Windows = {},
@@ -2235,7 +2235,6 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 end
 
 local Window = Alc:NewWindow('Overflow','The Mimic','rbxassetid://134204200422920')
-Alc.Config.MainColor = Color3.new(56, 182, 255)
 local MenuChangeLog = Window:AddMenu('Update',"",'hash','change')
 local MenuFunctions = Window:AddMenu('Main',"Skip",'ticket','tab')
 

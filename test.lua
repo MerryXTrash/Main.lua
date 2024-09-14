@@ -2172,12 +2172,23 @@ end
 
 local Window = Alc:NewWindow('Overflow','The Mimic - Book 1 Chapter 1','rbxassetid://134204200422920')
 local MenuFunctions = Window:AddMenu('Genaral',"Main",'list','tab')
+local UpdateFunctions = Window:AddMenu('Update',"Update Log",'hash','tab')
 
 local TabFunctions = MenuFunctions:AddTab('Main','Function','home')
 local TabVisual = MenuFunctions:AddTab('Visual','ESP','eye')
 
+local TabUpdate = UpdateFunctions:AddTab('Update','Update Log','bookmark-plus')
+
 local MainSection = TabFunctions:AddSection('Skip','Continue','Skip this Part for next Part','log-out')
 local VisualSection = TabVisual:AddSection('Visual','Visual Function','ESP','eye')
+
+local oneSection = TabUpdate:AddSection('','+[Add]','Book 1 Chater 4[Beta]','plus')
+local twoSection = TabUpdate:AddSection('','+[Add]','Christmas Trial','plus')
+local DiscordSection = TabUpdate:AddSection('','Support','Discord','plus')
+
+DiscordSection:AddButton('Copy',function(v)
+	print(v)
+end)
 
 MainSection:AddButton('Skip',function(v)
 	print(v)

@@ -14,7 +14,7 @@ local HttpService = game:GetService('HttpService')
 
 local Alc = {
 	Config = {
-		['UI Size'] = UDim2.new(0.100000001, 320, 0.100000001, 250),
+		['UI Size'] = UDim2.new(0.100000001, 370, 0.100000001, 280),
 		['MainColor'] = Color3.fromRGB(56, 182, 255),
 		['DropColor'] = Color3.fromRGB(30, 100, 200)
 	},
@@ -2170,20 +2170,16 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 	return WindowAlc
 end
 
+local id = game.PlaceID
+local TP = game.Players.LocalPlayer.Character
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+local function Skip()
+    if id == 6296321810 or id == 6479231833 then
+        TP.HumanoidRootPart.CFrame = CFrame.new(3507.028564453125, 43.13663864135742, -1541.9735107421875) -- b1c1p1
+    elseif id == 6301638949 or id == 6480994221 then
+        TP.HumanoidRootPart.CFrame = CFrame.new(1272.7239990234375, 200.04153442382812, -2537.25) -- b1c1p2
+    end
+end
 
 local folder = Instance.new("Folder")
 folder.Name = "HighlightsFolder"
@@ -2265,19 +2261,18 @@ end
 local function UnEspMob()
     for i, v in ipairs(game:GetService("Workspace").GameAI:GetDescendants()) do
     if v.ClassName == "Highlight" then
-        v.Enable = false
+        v:Destroy()
     end
 end
 end
 
 local function UnEspPlayers()
-    for i, v in ipairs(game:GetService("Workspace").Players:GetDescendants()) do
+    for i, v in ipairs(game:GetService("Workspace"):GetDescendants()) do
     if v.ClassName == "Highlight" then
-        v.Enable = false
+        v:Destroy()
     end
 end
 end
-
 
 local Window = Alc:NewWindow('Overflow','The Mimic - Book 1 Chapter 1','rbxassetid://134204200422920')
 local MenuFunctions = Window:AddMenu('Genaral',"Main",'list','tab')
@@ -2293,14 +2288,15 @@ local VisualSection = TabVisual:AddSection('Visual','Visual Function','ESP','eye
 
 local oneSection = TabUpdate:AddSection('','+[Add]','Book 1 Chater 4[Beta]','plus')
 local twoSection = TabUpdate:AddSection('','+[Add]','Christmas Trial','plus')
-local DiscordSection = TabUpdate:AddSection('Support','Discord','Click Copy to copy Link Discord','plus')
+local DiscordSection = TabUpdate:AddSection('Support','Discord','Click Copy to copy Link Discord','link')
 
 DiscordSection:AddButton('Copy',function(v)
-	setclipboard(tostring(gg/AXvTNJdGCz))
+    local copy = "https://discord.gg/AXvTNJdGCz"
+	setclipboard(tostring(copy))
 end)
 
 MainSection:AddButton('Skip',function(v)
-	print(v)
+	Skip()
 end)
 
 VisualSection:AddToggle('ESP Monster', false, function(v)

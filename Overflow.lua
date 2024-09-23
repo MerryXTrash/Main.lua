@@ -5,6 +5,6 @@ LocalPlayer.Chatted:Connect(function(message)
     if message == ";dex" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/DEX-Explorer/main/Mobile.lua"))()
     elseif message == ";rspy" then
-        print("test2")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RS/main/SimpleSpyMobile"))()
     end
 end)

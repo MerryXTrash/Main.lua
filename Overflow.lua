@@ -1,5 +1,35 @@
-function CopyC()
+CFspeed = 85
 
+local function cframefly(speaker)
+	speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+	local Head = speaker.Character:WaitForChild("Head")
+	Head.Anchored = true
+	if CFloop then CFloop:Disconnect() end
+	CFloop = RunService.Heartbeat:Connect(function(deltaTime)
+		local moveDirection = speaker.Character:FindFirstChildOfClass('Humanoid').MoveDirection * (CFspeed * deltaTime)
+		local headCFrame = Head.CFrame
+		local cameraCFrame = workspace.CurrentCamera.CFrame
+		local cameraOffset = headCFrame:ToObjectSpace(cameraCFrame).Position
+		cameraCFrame = cameraCFrame * CFrame.new(-cameraOffset.X, -cameraOffset.Y, -cameraOffset.Z + 1)
+		local cameraPosition = cameraCFrame.Position
+		local headPosition = headCFrame.Position
+
+		local objectSpaceVelocity = CFrame.new(cameraPosition, Vector3.new(headPosition.X, cameraPosition.Y, headPosition.Z)):VectorToObjectSpace(moveDirection)
+		Head.CFrame = CFrame.new(headPosition) * (cameraCFrame - cameraPosition) * CFrame.new(objectSpaceVelocity)
+	end)
+end
+
+local function uncframefly(speaker)
+	if CFloop then
+		CFloop:Disconnect()
+		speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+		local Head = speaker.Character:WaitForChild("Head")
+		Head.Anchored = false
+	end
+end
+
+
+function CopyC()
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local title = Instance.new("TextLabel")
@@ -135,13 +165,17 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 LocalPlayer.Chatted:Connect(function(message)
-    if message == ";dex" then
+    if message == "/dex" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/DEX-Explorer/main/Mobile.lua"))()
-    elseif message == ";rspy" then
+    elseif message == "/rspy" then
         for k,v in pairs(getgc(true)) do if pcall(function() return rawget(v,"indexInstance") end) and type(rawget(v,"indexInstance")) == "table" and (rawget(v,"indexInstance"))[1] == "kick" then v.tvk = {"kick",function() return game.Workspace:WaitForChild("") end} end end
         wait(2)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RS/main/SimpleSpyMobile"))()
-        elseif message == ";cframe" then
+    elseif message == "/cframe" then
         CopyC()
+    elseif message == "/cfly" then
+	cframefly()
+    elseif message == "/uncfly" then
+	uncframefly()
     end
 end)

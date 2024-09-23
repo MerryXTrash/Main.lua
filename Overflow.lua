@@ -174,8 +174,8 @@ LocalPlayer.Chatted:Connect(function(message)
     elseif message == "/cframe" then
         CopyC()
     elseif message == "/cfly" then
-	cframefly(Player)
+	cframefly(LocalPlayer)
     elseif message == "/uncfly" then
-	uncframefly(Player)
+	uncframefly(LocalPlayer)
     end
 end)

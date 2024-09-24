@@ -1,3 +1,5 @@
+local currentPlaceId = game.PlaceId
+
 local games = {
 	[6296321810 or 6479231833 or 6301638949 or 6480994221] = 'https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/Normal/Book1ch1.lua', --b1c1
 	[6373539583 or 6485055338 or 6406571212 or 6485055836 or 6425178683 or 6485056556] = 'https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/Normal/Book1ch2.lua', --b1c2
@@ -15,9 +17,7 @@ local games = {
 }
 
 function Normal()
-local currentPlaceId = game.PlaceId
 local gameUrl = games[currentPlaceId]
-
 if gameUrl then
 	loadstring(game:HttpGet(gameUrl))()
 end
@@ -42,11 +42,9 @@ local gamesExtra = {
 }
 
 function Extra()
-local currentPlaceId = game.PlaceId
-local gameUrl = gamesExtra[currentPlaceId]
-
-if gameUrl then
-	loadstring(game:HttpGet(gameUrl))()
+local gameUrlx = gamesExtra[currentPlaceId]
+if gameUrlx then
+	loadstring(game:HttpGet(gameUrlx))()
 end
 end
 

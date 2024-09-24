@@ -161,3 +161,64 @@ end
 
 blurScreen(24, 1)
 tweenTransparency()
+
+local function op()
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MyImageGui" -- ตั้งชื่อ ScreenGui
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui") -- เพิ่ม GUI เข้าไปใน PlayerGui
+
+local screenEdgePadding = 150 -- ระยะห่างจากขอบหน้าจอ (150 pixels)
+
+-- สร้าง TextLabel
+local textLabel = Instance.new("TextLabel")
+textLabel.Name = "MyTextLabel"
+textLabel.Size = UDim2.new(1, 0, 0, 30) -- ขนาด TextLabel (เต็มความกว้าง 30 pixels สูง)
+textLabel.Position = UDim2.new(0, 0, 0.8, 0) -- ตั้งตำแหน่งที่ต้องการ (ต่ำสุด)
+textLabel.Text = "Tip : Blue is Normal - Purple is Extra(Solo Only)" -- ข้อความใน TextLabel
+textLabel.BackgroundTransparency = 1 -- ทำให้พื้นหลังโปร่งใส
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255) -- สีข้อความ
+textLabel.TextScaled = true -- ทำให้ข้อความปรับขนาดได้
+textLabel.Parent = screenGui -- เพิ่ม TextLabel เข้าไปใน ScreenGui
+
+-- ฟังก์ชันเพื่อสร้าง ImageButton ที่มี UIStroke
+local function createImageButton(name, position, imageId)
+    local imageButton = Instance.new("ImageButton")
+    imageButton.Name = name
+    imageButton.Size = UDim2.new(0, 100, 0, 100) -- ขนาดของ ImageButton (100x100 pixels)
+    imageButton.Position = position -- ตั้งค่าตำแหน่ง
+    imageButton.Image = imageId -- ใช้ ID ของภาพที่ถูกส่งเข้ามา
+    imageButton.BackgroundTransparency = 1 -- ทำให้พื้นหลังโปร่งใส
+
+    -- ตั้งค่ารูปร่างเป็นมน (ลดมุม)
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0.2, 0) -- ทำให้มุมมีรูปร่างมน (ปรับลดขนาด)
+    corner.Parent = imageButton -- เพิ่ม UICorner เข้ากับ ImageButton
+
+    -- สร้าง UIStroke
+    local uiStroke = Instance.new("UIStroke")
+    uiStroke.Color = Color3.fromRGB(128, 128, 128) -- สีเทาสำหรับขอบ
+    uiStroke.Thickness = 4 -- ขนาดความหนาของขอบ
+    uiStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border -- การใช้ขอบเป็นเส้นรอบนอก
+    uiStroke.Parent = imageButton -- เพิ่ม UIStroke เข้ากับ ImageButton
+
+    imageButton.Parent = screenGui -- เพิ่ม ImageButton เข้าไปใน ScreenGui
+
+    return imageButton -- คืนค่ากลับ ImageButton เพื่อใช้ในฟังก์ชันคลิก
+end
+
+-- สร้าง ImageButton ตัวแรก (อยู่ทางซ้าย)
+local button1 = createImageButton("MyImageButton1", UDim2.new(0, screenEdgePadding, 0.4, -50), "rbxassetid://134204200422920")
+
+-- สร้าง ImageButton ตัวที่สอง (อยู่ทางขวา)
+local button2 = createImageButton("MyImageButton2", UDim2.new(1, -100 - screenEdgePadding, 0.4, -50), "rbxassetid://134754092492795")
+
+-- ฟังก์ชันคลิกสำหรับ button 1
+button1.MouseButton1Click:Connect(function()
+    print("Button 1 clicked")
+end)
+
+-- ฟังก์ชันคลิกสำหรับ button 2
+button2.MouseButton1Click:Connect(function()
+    print("Button 2 clicked")
+end)
+end

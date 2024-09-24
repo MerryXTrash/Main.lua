@@ -43,7 +43,7 @@ local gamesExtra = {
 
 function Extra()
 local currentPlaceId = game.PlaceId
-local gameUrl = gameExtra[currentPlaceId]
+local gameUrl = gamesExtra[currentPlaceId]
 
 if gameUrl then
 	loadstring(game:HttpGet(gameUrl))()

@@ -73,7 +73,7 @@ end
 local function op()
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "MyImageGui" -- ตั้งชื่อ ScreenGui
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui") -- เพิ่ม GUI เข้าไปใน PlayerGui
+screenGui.Parent = game:GetService("CoreGui") -- เพิ่ม GUI เข้าไปใน PlayerGui
 
 local screenEdgePadding = 150 -- ระยะห่างจากขอบหน้าจอ (150 pixels)
 
@@ -120,16 +120,13 @@ local button1 = createImageButton("MyImageButton1", UDim2.new(0, screenEdgePaddi
 -- สร้าง ImageButton ตัวที่สอง (อยู่ทางขวา)
 local button2 = createImageButton("MyImageButton2", UDim2.new(1, -100 - screenEdgePadding, 0.4, -50), "rbxassetid://134754092492795")
 
-function destroy()
-   local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui)
-   if Uiz then
-	Uiz:Destroy()
-    end
-end
-
 -- ฟังก์ชันคลิกสำหรับ button 1
 button1.MouseButton1Click:Connect(function()
     wait(1)
+    local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
+    if Uiz then
+    Uiz:Destroy()
+    end
     destroy()
     Normal()
     clearBlur(1)
@@ -138,6 +135,10 @@ end)
 -- ฟังก์ชันคลิกสำหรับ button 2
 button2.MouseButton1Click:Connect(function()
     wait(1)
+    local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
+    if Uiz then
+    Uiz:Destroy()
+    end
     destroy()
     Extra()
     clearBlur(1)

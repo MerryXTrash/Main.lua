@@ -120,9 +120,17 @@ local button1 = createImageButton("MyImageButton1", UDim2.new(0, screenEdgePaddi
 -- สร้าง ImageButton ตัวที่สอง (อยู่ทางขวา)
 local button2 = createImageButton("MyImageButton2", UDim2.new(1, -100 - screenEdgePadding, 0.4, -50), "rbxassetid://134754092492795")
 
+function destroy()
+   local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui)
+   if Uiz then
+	Uiz:Destroy()
+    end
+end
+
 -- ฟังก์ชันคลิกสำหรับ button 1
 button1.MouseButton1Click:Connect(function()
     wait(1)
+    destroy()
     Normal()
     clearBlur(1)
 end)
@@ -130,6 +138,7 @@ end)
 -- ฟังก์ชันคลิกสำหรับ button 2
 button2.MouseButton1Click:Connect(function()
     wait(1)
+    destroy()
     Extra()
     clearBlur(1)
 end)

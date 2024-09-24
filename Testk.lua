@@ -156,7 +156,6 @@ local function tweenTransparency()
     fadeOutTweenFrame.Completed:Wait()
     
     screenGui:Destroy()
-    clearBlur(1)
 end
 
 blurScreen(24, 1)
@@ -214,11 +213,15 @@ local button2 = createImageButton("MyImageButton2", UDim2.new(1, -100 - screenEd
 
 -- ฟังก์ชันคลิกสำหรับ button 1
 button1.MouseButton1Click:Connect(function()
-    print("Button 1 clicked")
+    wait(1)
+    normal()
+    clearBlur(1)
 end)
 
 -- ฟังก์ชันคลิกสำหรับ button 2
 button2.MouseButton1Click:Connect(function()
-    print("Button 2 clicked")
+    wait(1)
+    Extra()
+    clearBlur(1)
 end)
 end

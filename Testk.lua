@@ -225,3 +225,5 @@ button2.MouseButton1Click:Connect(function()
     clearBlur(1)
 end)
 end
+
+op()

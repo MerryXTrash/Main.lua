@@ -126,10 +126,9 @@ button1.MouseButton1Click:Connect(function()
     local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
     if Uiz then
     Uiz:Destroy()
-    end
-    destroy()
     Normal()
     clearBlur(1)
+    end
 end)
 
 -- ฟังก์ชันคลิกสำหรับ button 2
@@ -138,10 +137,9 @@ button2.MouseButton1Click:Connect(function()
     local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
     if Uiz then
     Uiz:Destroy()
-    end
-    destroy()
     Extra()
     clearBlur(1)
+    end
 end)
 end
 

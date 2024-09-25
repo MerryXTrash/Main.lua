@@ -5,6 +5,7 @@ end
 local function createFPSCounter()
     local player = game.Players.LocalPlayer
     local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "FPSnum"
     screenGui.Parent = game:GetService("CoreGui")
 
     local fpsLabel = Instance.new("TextLabel")

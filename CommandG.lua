@@ -1,56 +1,98 @@
--- สร้าง ScreenGui ก่อน
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")  -- ใส่ ScreenGui ใน PlayerGui
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
 
--- สร้าง Local Guide เป็น ImageLabel ภายใต้ ScreenGui
+-- สร้าง ScreenGui
+local player = Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+
+-- สร้าง ImageLabel
 local guide = Instance.new("ImageLabel")
-guide.Parent = screenGui
-guide.Name = "LocalGuide"
-guide.Size = UDim2.new(0, 0, 0, 0)  -- เริ่มต้นด้วยขนาดเล็กสุด
-guide.Position = UDim2.new(0.5, -200, 0.5, -100)  -- ตำแหน่งกลางหน้าจอ  -- ตั้ง AnchorPoint ให้วัตถุอยู่ตรงกลาง
-guide.BackgroundTransparency = 1  -- ลบพื้นหลังออก
-guide.Image = "rbxassetid://123230083738383"  -- ใส่ไอดีของรูปภาพที่ต้องการ
-guide.ImageTransparency = 0  -- กำหนดความโปร่งใสของรูปภาพ
+guide.Parent = screenGui -- วาง ImageLabel ใน ScreenGui
+guide.Size = UDim2.new(0, 0, 0, 0) -- ขนาดเริ่มต้นเล็ก
+guide.Position = UDim2.new(0.5, 0, 0.5, 0) -- ตำแหน่งกลางหน้าจอ
+guide.Image = "rbxassetid://70726839693177" -- ตั้งค่า Image ID
+guide.AnchorPoint = Vector2.new(0.5, 0.5) -- ให้ตำแหน่งอยู่ที่กลาง
+guide.BackgroundTransparency = 1 -- ตั้งค่าความโปร่งใสของพื้นหลังเป็น 1
 
--- เพิ่ม Corner ใส่ image เพื่อให้มุมมน
+-- เพิ่ม UICorner เพื่อให้มุมโค้ง
 local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 15)  -- ปรับค่า CornerRadius ตามต้องการ
-corner.Parent = guide
+corner.CornerRadius = UDim.new(0, 20) -- ตั้งค่ารัศมีของมุม
+corner.Parent = guide -- เพิ่ม UICorner ลงใน ImageLabel
 
--- ฟังก์ชันในการแสดง Tween
+-- สร้างฟังก์ชันสำหรับการแสดงและทำลาย guide
 local function showGuide()
-    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
-    local goal = {Size = UDim2.new(0, 400, 0, 300), Position = UDim2.new(0.5, -200, 0.5, -100)}  -- ยืดขนาดขึ้นด้านบน
+    local expandTween = TweenService:Create(guide, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Size = UDim2.new(0, 400, 0, 200) -- ขนาดสุดท้าย
+    })
+    
+    expandTween:Play()
+    expandTween.Completed:Wait() -- รอให้การ tween เสร็จสิ้น
 
-    local tween = game:GetService("TweenService"):Create(guide, tweenInfo, goal)
-    tween:Play()
+    wait(2) -- รอ 2 วินาทีก่อนทำการย่อ
+
+    -- Tween ย่อลง
+    local shrinkTween = TweenService:Create(guide, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Size = UDim2.new(0, 0, 0, 0) -- ขนาดสุดท้ายที่ย่อ
+    })
+    
+    shrinkTween:Play()
+    shrinkTween.Completed:Wait()
+
+    guide:Destroy()
 end
 
--- ฟังก์ชันในการปิดและทำลาย Tween
-local function closeGuide()
-    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.In)
-    local goal = {Size = UDim2.new(0, 0, 0, 0), Position = UDim2.new(0.5, -200, 0.5, -100)}
+-- สร้าง ImageLabel
+local guide1 = Instance.new("ImageLabel")
+guide1.Parent = screenGui -- วาง ImageLabel ใน ScreenGui
+guide1.Size = UDim2.new(0, 0, 0, 0) -- ขนาดเริ่มต้นเล็ก
+guide1.Position = UDim2.new(0.5, 0, 0.5, 0) -- ตำแหน่งกลางหน้าจอ
+guide1.Image = "rbxassetid://123230083738383" -- ตั้งค่า Image ID
+guide1.AnchorPoint = Vector2.new(0.5, 0.5) -- ให้ตำแหน่งอยู่ที่กลาง
+guide1.BackgroundTransparency = 1 -- ตั้งค่าความโปร่งใสของพื้นหลังเป็น 1
 
-    local tween = game:GetService("TweenService"):Create(guide, tweenInfo, goal)
-    tween:Play()
+-- เพิ่ม UICorner เพื่อให้มุมโค้ง
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 20) -- ตั้งค่ารัศมีของมุม
+corner.Parent = guide1 -- เพิ่ม UICorner ลงใน ImageLabel
 
-    tween.Completed:Connect(function()
-        guide:Destroy()  -- ทำลายหลังจาก Tween เสร็จสิ้น
-    end)
+-- สร้างฟังก์ชันสำหรับการแสดงและทำลาย guide
+local function showGuide1()
+    -- Tween ขยายจากขนาดเล็กไปขนาดปกติ
+    local expandTween = TweenService:Create(guide1, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Size = UDim2.new(0, 400, 0, 200) -- ขนาดสุดท้าย
+    })
+    
+    expandTween:Play()
+    expandTween.Completed:Wait() -- รอให้การ tween เสร็จสิ้น
+
+    wait(7) -- รอ 2 วินาทีก่อนทำการย่อ
+
+    -- Tween ย่อลง
+    local shrinkTween = TweenService:Create(guide1, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Size = UDim2.new(0, 0, 0, 0) -- ขนาดสุดท้ายที่ย่อ
+    })
+    
+    shrinkTween:Play()
+    shrinkTween.Completed:Wait() -- รอให้การ tween เสร็จสิ้น
+
+    guide:Destroy() -- ทำลาย ImageLabel
 end
 
--- สร้างปุ่ม TextButton สำหรับปิด ที่ไม่ทับกับรูปภาพ และอยู่ด้านล่างของหน้าจอ
-local closeButton = Instance.new("TextButton")
-closeButton.Parent = screenGui
-closeButton.Size = UDim2.new(0, 50, 0, 50)
-closeButton.Position = UDim2.new(0.5, -25, 1, -120)  -- ยืดขนาดปุ่มขึ้นไปด้านบน
-closeButton.Text = "X"
-closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-closeButton.TextScaled = true
-closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
--- เชื่อมต่อฟังก์ชันปิดกับปุ่ม
-closeButton.MouseButton1Click:Connect(closeGuide)
+LocalPlayer.Chatted:Connect(function(message)
+    if message == "/Show" then
+        showGuide1()
+    elseif message == "/fps(true)" then
+        
+    elseif message == "/fps(false)" then
+        
+    elseif message == "/copy" then
 
--- เรียกฟังก์ชันแสดง
+    elseif message == "/antilag" then
+            
+    end
+end)
+
 showGuide()

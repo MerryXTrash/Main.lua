@@ -15,8 +15,6 @@ function loadLowGraphics()
         task.spawn(function()
             wait()
             if c:IsA("DataModelMesh") then
-                sethiddenproperty(c, "LODX", Enum.LevelOfDetailSetting.Low)
-                sethiddenproperty(c, "LODY", Enum.LevelOfDetailSetting.Low)
                 c.CollisionFidelity = "Hull"
             elseif c:IsA("UnionOperation") then
                 c.CollisionFidelity = "Hull"

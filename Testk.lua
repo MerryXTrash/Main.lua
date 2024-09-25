@@ -835,32 +835,6 @@ local button1 = createImageButton("MyImageButton1", UDim2.new(0, screenEdgePaddi
 local button2 = createImageButton("MyImageButton2", UDim2.new(1, -100 - screenEdgePadding, 0.4, -50), "rbxassetid://134754092492795")
 
 button1.MouseButton1Click:Connect(function()
-    wait(1)
-    local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
-    if Uiz then
-    Uiz:Destroy()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    notify("hookmethod", "Success", 1)
-    wait(0.5)
-    clearBlur(1)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/NormalVersion.lua"))()
-    end
-end)
-
--- ฟังก์ชันคลิกสำหรับ button 2
-button2.MouseButton1Click:Connect(function()
-    wait(1)
     local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
     if Uiz then
     Uiz:Destroy()
@@ -877,7 +851,28 @@ button2.MouseButton1Click:Connect(function()
     hok()
     hok()
     notify("hookmethod", "Success", 0.5)
-    wait(0.5)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/NormalVersion.lua"))()
+    end
+end)
+
+-- ฟังก์ชันคลิกสำหรับ button 2
+button2.MouseButton1Click:Connect(function()
+    local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
+    if Uiz then
+    Uiz:Destroy()
+    hok()
+    hok()
+    hok()
+    hok()
+    hok()
+    hok()
+    hok()
+    hok()
+    hok()
+    hok()
+    hok()
+    hok()
+    notify("hookmethod", "Success", 0.5)
     clearBlur(1)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/ExtraVersion.lua"))()
     end

@@ -111,7 +111,7 @@ LocalPlayer.Chatted:Connect(function(message)
     elseif message == "/Copy" or message == "/copy" then
         copy()
     elseif message == "/Antilag" or message == "/antilag" then
-            
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Antilag.lua"))()
     end
 end)
 

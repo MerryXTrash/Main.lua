@@ -7,9 +7,10 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = game.CoreGui
 screenGui.Name = "Guide"
 
-function g(id, Time)
+function g(name, id, Time)
 local guide = Instance.new("ImageLabel")
-guide.Parent = screenGui -- วาง ImageLabel ใน ScreenGui
+guide.Parent = screenGui
+guide.Name = Name -- วาง ImageLabel ใน ScreenGui
 guide.Size = UDim2.new(0, 0, 0, 0) -- ขนาดเริ่มต้นเล็ก
 guide.Position = UDim2.new(0.5, 0, 0.5, 0) -- ตำแหน่งกลางหน้าจอ
 guide.Image = id -- ตั้งค่า Image ID
@@ -67,7 +68,7 @@ local LocalPlayer = Players.LocalPlayer
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == "/Show" then
-        g("123230083738383", 7)
+        g("M2", "rbxassetid://123230083738383", 7)
     elseif message == "/fps(true)" then
         
     elseif message == "/fps(false)" then
@@ -79,4 +80,4 @@ LocalPlayer.Chatted:Connect(function(message)
     end
 end)
 
-g("70726839693177", 3)
+g("M1", "rbxassetid://70726839693177", 3)

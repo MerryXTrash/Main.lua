@@ -1,3 +1,47 @@
+
+function fps()
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game:GetService("CoreGui")
+
+local fpsLabel = Instance.new("TextLabel")
+fpsLabel.Size = UDim2.new(0, 150, 0, 30)
+fpsLabel.Position = UDim2.new(0, 0, 0, 0)  -- ย้ายไปที่สุดด้านซ้าย
+fpsLabel.Text = "FPS: 0"
+fpsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+fpsLabel.BackgroundTransparency = 1
+fpsLabel.TextScaled = false
+fpsLabel.Font = Enum.Font.SourceSansBold
+fpsLabel.TextSize = 24
+fpsLabel.TextStrokeTransparency = 0.5
+fpsLabel.Parent = screenGui
+
+local runService = game:GetService("RunService")
+local frameCount = 0
+local lastUpdate = tick()
+
+local function updateFPS()
+    frameCount = frameCount + 1
+    if tick() - lastUpdate >= 0.3 then
+        local fps = frameCount / 0.3
+        fpsLabel.Text = "" .. math.floor(fps)
+        if fps <= 15 then
+            fpsLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+        elseif fps <= 30 then
+            fpsLabel.TextColor3 = Color3.fromRGB(255, 165, 0)
+        elseif fps <= 49 then
+            fpsLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
+        else
+            fpsLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+        end
+        lastUpdate = tick()
+        frameCount = 0
+    end
+end
+
+runService.RenderStepped:Connect(updateFPS)
+end
+
 local des1 = game:GetService("CoreGui"):FindFirstChild("Main")
 local des2 = game:GetService("CoreGui"):FindFirstChild("Toggle")
 

@@ -46,6 +46,7 @@ corner.Parent = guide -- เพิ่ม UICorner ลงใน ImageLabel
         Size = UDim2.new(0, 400, 0, 200) -- ขนาดสุดท้าย
     })
     
+    blurScreen(24, 1)
     expandTween:Play()
     expandTween.Completed:Wait() -- รอให้การ tween เสร็จสิ้น
 
@@ -101,3 +102,4 @@ end)
 
 g("M3", "rbxassetid://91657751110478", 4)
 g("M1", "rbxassetid://70726839693177", 4)
+clearBlur(1)

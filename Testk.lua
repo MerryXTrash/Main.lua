@@ -7,7 +7,6 @@ function loadLowGraphics()
     sethiddenproperty(game.Lighting, "Technology", 2)
     sethiddenproperty(workspace:FindFirstChildOfClass("Terrain"), "Decoration", false)
     settings().Rendering.QualityLevel = 1
-    setsimulationradius(0, 0)
     game.Lighting.GlobalShadows = false
     game.Lighting.FogEnd = 9e9
     workspace:FindFirstChildOfClass("Terrain").Elasticity = 0

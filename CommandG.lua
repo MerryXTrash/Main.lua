@@ -83,17 +83,17 @@ for _, player in pairs(game.Players:GetPlayers()) do
 end
 end
 
-local FPSz = game:GetService("CoreGui"):FindFirstChild("FPSnum")
+local FPSz = game:GetService("CoreGui").FPSnum:FindFirstChild("TextLabel")
 
 function ffalse()
-if FPSz and FPSz.Enabled == true then
-    FPSz.Enabled = false
+if FPSz and FPSz.Visible == true then
+    FPSz.Visble = false
 end
 end
 
 function ftrue()
-if FPSz and FPSz.Enabled == false then
-    FPSz.Enabled = true
+if FPSz and FPSz.Visible == false then
+    FPSz.Visible = true
     end
 end
 
@@ -115,6 +115,6 @@ LocalPlayer.Chatted:Connect(function(message)
     end
 end)
 
-g("M3", "rbxassetid://91657751110478", 4)
-g("M1", "rbxassetid://70726839693177", 4)
+g("M3", "rbxassetid://91657751110478", 3)
+g("M1", "rbxassetid://70726839693177", 3)
 clearBlur(1)

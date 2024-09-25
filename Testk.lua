@@ -81,6 +81,22 @@ local function createFPSCounter()
     runService.RenderStepped:Connect(updateFPS)
 end
 
+function fb()
+    local Lighting = game.Lighting
+    Lighting.ClockTime = 12
+    Lighting.Brightness = 2
+    Lighting.FogEnd = 100000
+    Lighting.GlobalShadows = false
+    Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+    wait(0.1)
+    local Lightingz game:GetService("Lighting")
+
+    for i, v in pairs(Lightingz:GetChildren()) do
+        if v.ClassName == "Atmosphere" then
+            v.Destroy()
+        end
+    end
+end
 
 if getgenv().Antilag then
     loadLowGraphics()
@@ -88,6 +104,10 @@ end
 
 if getgenv().FPS then
     createFPSCounter()
+end
+
+if getgenv().Fullbright then
+    fb()
 end
 
 local des1 = game:GetService("CoreGui"):FindFirstChild("Main")

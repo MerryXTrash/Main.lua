@@ -1,4 +1,23 @@
 local TweenService = game:GetService("TweenService")
+local Lighting = game:GetService("Lighting")
+local player = game.Players.LocalPlayer
+
+local Blur = Instance.new("BlurEffect")
+Blur.Size = 0
+Blur.Parent = Lighting
+
+local function blurScreen(targetSize, duration)
+    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    local tween = TweenService:Create(Blur, tweenInfo, {Size = targetSize})
+    tween:Play()
+    tween.Completed:Wait()
+end
+
+local function clearBlur(duration)
+    blurScreen(0, duration)
+end
+
+local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
 -- สร้าง ScreenGui

@@ -902,9 +902,8 @@ button2.MouseButton1Click:Connect(function()
 end)
 end
 
-
+createFPSCounter()
+fb()
 blurScreen(24, 1)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/CommandG.lua"))()
 op()
-createFPSCounter()
-fb()

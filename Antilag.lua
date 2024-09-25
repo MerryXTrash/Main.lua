@@ -1,5 +1,3 @@
-
-
         _G.Ignore = {}
 _G.Settings = {
     Players = {
@@ -49,4 +47,4 @@ _G.Settings = {
         ["Reset Materials"] = true,
     }
 }
-loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Sourceantilag"))()

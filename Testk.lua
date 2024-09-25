@@ -1,3 +1,12 @@
+local des1 = game:GerService("CoreGui"):FindFirstChild("Main")
+local des2 = game:GerService("CoreGui"):FindFirstChild("Toggle")
+
+if des1 then
+    des1:Destroy()
+elseif des2 then
+    des2:Destroy()
+end 
+
 print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000")
 print("bypass success")
 print("Hook succes")

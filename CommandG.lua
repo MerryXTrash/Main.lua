@@ -7,7 +7,7 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = game.CoreGui
 screenGui.Name = "Guide"
 
-function g(name, id, Time)
+function g(Name, id, Time)
 local guide = Instance.new("ImageLabel")
 guide.Parent = screenGui
 guide.Name = Name -- วาง ImageLabel ใน ScreenGui

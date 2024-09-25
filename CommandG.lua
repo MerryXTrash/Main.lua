@@ -86,13 +86,13 @@ end
 local FPSz = game:GetService("CoreGui").FPSnum:FindFirstChild("TextLabel")
 
 function ffalse()
-if FPSz and FPSz.Visible == true then
+if FPSz then
     FPSz.Visble = false
-end
+    end
 end
 
 function ftrue()
-if FPSz and FPSz.Visible == false then
+if FPSz then
     FPSz.Visible = true
     end
 end

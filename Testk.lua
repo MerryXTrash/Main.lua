@@ -1,19 +1,19 @@
-if getgenv().Antilag then
 local a = tick()
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-wait(.1)
-sethiddenproperty(game.Lighting, "Technology", 2)
-sethiddenproperty(workspace:FindFirstChildOfClass("Terrain"), "Decoration", false)
-settings().Rendering.QualityLevel = 1
-setsimulationradius(0,0)
-game.Lighting.GlobalShadows = false
-game.Lighting.FogEnd = 9e9
-workspace:FindFirstChildOfClass("Terrain").Elasticity = 0
-for b, c in pairs(game:GetDescendants()) do
-    task.spawn(
-        function()
+
+function loadLowGraphics()
+    sethiddenproperty(game.Lighting, "Technology", 2)
+    sethiddenproperty(workspace:FindFirstChildOfClass("Terrain"), "Decoration", false)
+    settings().Rendering.QualityLevel = 1
+    setsimulationradius(0, 0)
+    game.Lighting.GlobalShadows = false
+    game.Lighting.FogEnd = 9e9
+    workspace:FindFirstChildOfClass("Terrain").Elasticity = 0
+
+    for _, c in pairs(game:GetDescendants()) do
+        task.spawn(function()
             wait()
             if c:IsA("DataModelMesh") then
                 sethiddenproperty(c, "LODX", Enum.LevelOfDetailSetting.Low)
@@ -27,58 +27,66 @@ for b, c in pairs(game:GetDescendants()) do
                 c.Reflectance = 0
                 c.CastShadow = false
             end
-        end
-    )
-end
-for d, e in pairs(game.Lighting:GetChildren()) do
-    if e:IsA("PostEffect") then
-        e.Enabled = false
+        end)
     end
-end
-warn("Low graphics loaded! (" .. math.floor(tick() - a) .. "s)")
-end
 
-if getgenv().FPS then
-local player = game.Players.LocalPlayer
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game:GetService("CoreGui")
-
-local fpsLabel = Instance.new("TextLabel")
-fpsLabel.Size = UDim2.new(0, 150, 0, 30)
-fpsLabel.Position = UDim2.new(0, 0, 0, 0)  -- ย้ายไปที่สุดด้านซ้าย
-fpsLabel.Text = "FPS: 0"
-fpsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-fpsLabel.BackgroundTransparency = 1
-fpsLabel.TextScaled = false
-fpsLabel.Font = Enum.Font.SourceSansBold
-fpsLabel.TextSize = 24
-fpsLabel.TextStrokeTransparency = 0.5
-fpsLabel.Parent = screenGui
-
-local runService = game:GetService("RunService")
-local frameCount = 0
-local lastUpdate = tick()
-
-local function updateFPS()
-    frameCount = frameCount + 1
-    if tick() - lastUpdate >= 0.3 then
-        local fps = frameCount / 0.3
-        fpsLabel.Text = "" .. math.floor(fps)
-        if fps <= 15 then
-            fpsLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
-        elseif fps <= 30 then
-            fpsLabel.TextColor3 = Color3.fromRGB(255, 165, 0)
-        elseif fps <= 49 then
-            fpsLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
-        else
-            fpsLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+    for _, e in pairs(game.Lighting:GetChildren()) do
+        if e:IsA("PostEffect") then
+            e.Enabled = false
         end
-        lastUpdate = tick()
-        frameCount = 0
     end
+
+    warn("Low graphics loaded! (" .. math.floor(tick() - a) .. "s)")
 end
-    
-runService.RenderStepped:Connect(updateFPS)
+
+local function createFPSCounter()
+    local player = game.Players.LocalPlayer
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = game:GetService("CoreGui")
+
+    local fpsLabel = Instance.new("TextLabel")
+    fpsLabel.Size = UDim2.new(0, 150, 0, 30)
+    fpsLabel.Position = UDim2.new(0, 0, 0, 0)  -- Move to the top-left corner
+    fpsLabel.Text = "0"
+    fpsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    fpsLabel.BackgroundTransparency = 1
+    fpsLabel.TextScaled = false
+    fpsLabel.Font = Enum.Font.SourceSansBold
+    fpsLabel.TextSize = 24
+    fpsLabel.TextStrokeTransparency = 0.5
+    fpsLabel.Parent = screenGui
+
+    local runService = game:GetService("RunService")
+    local frameCount = 0
+    local lastUpdate = tick()
+
+    local function updateFPS()
+        frameCount = frameCount + 1
+        if tick() - lastUpdate >= 0.3 then
+            local fps = frameCount / 0.3
+            fpsLabel.Text = "" .. math.floor(fps)
+            if fps <= 15 then
+                fpsLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+            elseif fps <= 30 then
+                fpsLabel.TextColor3 = Color3.fromRGB(255, 165, 0)
+            elseif fps <= 49 then
+                fpsLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
+            else
+                fpsLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+            end
+            lastUpdate = tick()
+            frameCount = 0
+        end
+    end
+
+    runService.RenderStepped:Connect(updateFPS)
+end
+
+
+if getgenv().Antilag then
+    loadLowGraphics()
+elseif getgenv().FPS then
+    createFPSCounter()
 end
 
 local des1 = game:GetService("CoreGui"):FindFirstChild("Main")

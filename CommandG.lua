@@ -83,16 +83,31 @@ for _, player in pairs(game.Players:GetPlayers()) do
 end
 end
 
+local FPSz = game:GetService("CoreGui"):FindFirstChild("FPScap")
+
+function ffalse()
+if FPSz and FPSz.Enable == true then
+    FPSz.Enable = false
+end
+end
+
+function ftrue()
+if FPSz and FPSz.Enable == false then
+    FPSz.Enable = true
+    end
+end
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == "/Show" or message == "/show" then
         g("M2", "rbxassetid://123230083738383", 7)
+        clearBlur(1)
     elseif message == "/fps(true)" then
-        
+        ftrue()
     elseif message == "/fps(false)" then
-        
+        ffalse()
     elseif message == "/Copy" or message == "/copy" then
         copy()
     elseif message == "/Antilag" or message == "/antilag" then

@@ -67,19 +67,18 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 LocalPlayer.Chatted:Connect(function(message)
-    if message == "/Show" then
+    if message == "/Show" or message == "/show" then
         g("M2", "rbxassetid://123230083738383", 7)
     elseif message == "/fps(true)" then
         
     elseif message == "/fps(false)" then
         
-    elseif message == "/copy" then
+    elseif message == "/Copy" or message == "/copy" then
         copy()
-    elseif message == "/antilag" then
+    elseif message == "/Antilag" or message == "/antilag" then
             
     end
 end)
 
-g("M3", "rbxassetid://91657751110478", 3)
-wait(3)
-g("M1", "rbxassetid://70726839693177", 3)
+g("M3", "rbxassetid://91657751110478", 4)
+g("M1", "rbxassetid://70726839693177", 4)

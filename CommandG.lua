@@ -4,6 +4,7 @@ local Players = game:GetService("Players")
 -- สร้าง ScreenGui
 local player = Players.LocalPlayer
 local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.CoreGui
 screenGui.Name = "Guide"
 
 function g(id, Time)

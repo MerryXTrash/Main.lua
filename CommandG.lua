@@ -86,14 +86,14 @@ end
 local FPSz = game:GetService("CoreGui"):FindFirstChild("FPSnum")
 
 function ffalse()
-if FPSz and FPSz.Enable == true then
-    FPSz.Enable = false
+if FPSz and FPSz.Enabled == true then
+    FPSz.Enabled = false
 end
 end
 
 function ftrue()
-if FPSz and FPSz.Enable == false then
-    FPSz.Enable = true
+if FPSz and FPSz.Enabled == false then
+    FPSz.Enabled = true
     end
 end
 

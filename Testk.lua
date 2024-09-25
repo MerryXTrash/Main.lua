@@ -84,7 +84,9 @@ end
 
 if getgenv().Antilag then
     loadLowGraphics()
-elseif getgenv().FPS then
+end
+
+if getgenv().FPS then
     createFPSCounter()
 end
 

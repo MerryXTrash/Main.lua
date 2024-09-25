@@ -3,7 +3,8 @@ local Players = game:GetService("Players")
 
 -- สร้าง ScreenGui
 local player = Players.LocalPlayer
-local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "Guide"
 
 -- สร้าง ImageLabel
 local guide = Instance.new("ImageLabel")
@@ -38,7 +39,7 @@ local function showGuide()
     shrinkTween:Play()
     shrinkTween.Completed:Wait()
 
-    guide:Destroy()
+    screenGui:Destroy()
 end
 
 -- สร้าง ImageLabel
@@ -75,7 +76,27 @@ local function showGuide1()
     shrinkTween:Play()
     shrinkTween.Completed:Wait() -- รอให้การ tween เสร็จสิ้น
 
-    guide:Destroy() -- ทำลาย ImageLabel
+    screenGui:Destroy() -- ทำลาย ImageLabel
+end
+
+local function copy()
+local playerBackpack = game.Players.LocalPlayer.Backpack
+for _, player in pairs(game.Players:GetPlayers()) do
+    local character = player.Character or player.CharacterAdded:Wait()
+    
+    for _, tool in pairs(character:GetDescendants()) do
+        if tool:IsA("Tool") then
+            -- ตรวจสอบว่ามี Tool นั้นอยู่ใน Backpack ของผู้เล่นแล้วหรือไม่
+            local existingTool = playerBackpack:FindFirstChild(tool.Name)
+            if existingTool then
+                existingTool:Destroy() -- ทำลาย Tool ที่มีอยู่แล้ว
+            end
+            
+            local toolClone = tool:Clone()
+            toolClone.Parent = playerBackpack
+        end
+    end
+end
 end
 
 local Players = game:GetService("Players")
@@ -89,7 +110,7 @@ LocalPlayer.Chatted:Connect(function(message)
     elseif message == "/fps(false)" then
         
     elseif message == "/copy" then
-
+        copy()
     elseif message == "/antilag" then
             
     end

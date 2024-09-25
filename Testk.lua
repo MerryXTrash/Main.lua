@@ -903,9 +903,8 @@ end)
 end
 
 
-
-
+blurScreen(24, 1)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/CommandG.lua"))()
 op()
 createFPSCounter()
 fb()
-blurScreen(24, 1)

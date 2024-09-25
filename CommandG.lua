@@ -83,7 +83,7 @@ for _, player in pairs(game.Players:GetPlayers()) do
 end
 end
 
-local FPSz = game:GetService("CoreGui"):FindFirstChild("FPScap")
+local FPSz = game:GetService("CoreGui"):FindFirstChild("FPSnum")
 
 function ffalse()
 if FPSz and FPSz.Enable == true then

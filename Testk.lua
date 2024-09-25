@@ -3,39 +3,6 @@ if not game:IsLoaded() then
     game.Loaded:Wait()
 end
 
-function loadLowGraphics()
-    sethiddenproperty(game.Lighting, "Technology", 2)
-    sethiddenproperty(workspace:FindFirstChildOfClass("Terrain"), "Decoration", false)
-    settings().Rendering.QualityLevel = 1
-    game.Lighting.GlobalShadows = false
-    game.Lighting.FogEnd = 9e9
-    workspace:FindFirstChildOfClass("Terrain").Elasticity = 0
-
-    for _, c in pairs(game:GetDescendants()) do
-        task.spawn(function()
-            wait()
-            if c:IsA("DataModelMesh") then
-                c.CollisionFidelity = "Hull"
-            elseif c:IsA("UnionOperation") then
-                c.CollisionFidelity = "Hull"
-            elseif c:IsA("Model") then
-                sethiddenproperty(c, "LevelOfDetail", 1)
-            elseif c:IsA("BasePart") then
-                c.Reflectance = 0
-                c.CastShadow = false
-            end
-        end)
-    end
-
-    for _, e in pairs(game.Lighting:GetChildren()) do
-        if e:IsA("PostEffect") then
-            e.Enabled = false
-        end
-    end
-
-    warn("Low graphics loaded! (" .. math.floor(tick() - a) .. "s)")
-end
-
 local function createFPSCounter()
     local player = game.Players.LocalPlayer
     local screenGui = Instance.new("ScreenGui")
@@ -96,7 +63,6 @@ function fb()
     end
 end
 
-loadLowGraphics()
 createFPSCounter()
 fb()
 
@@ -789,11 +755,32 @@ print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9e
 end
 
 hok()
-wait(1)
 hok()
-wait(0.7)
 hok()
-wait(0.5)
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
+hok()
 hok()
 
 function notify(Section, Description, num)

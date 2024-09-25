@@ -45,7 +45,7 @@ local function createFPSCounter()
     runService.RenderStepped:Connect(updateFPS)
 end
 
-function fb()
+local function fb()
     local Lighting = game.Lighting
     Lighting.ClockTime = 12
     Lighting.Brightness = 2
@@ -62,9 +62,6 @@ function fb()
         end
     end
 end
-
-createFPSCounter()
-fb()
 
 local des1 = game:GetService("CoreGui"):FindFirstChild("Main")
 local des2 = game:GetService("CoreGui"):FindFirstChild("Toggle")
@@ -992,6 +989,8 @@ local function tweenTransparency()
     
     screenGui:Destroy()
     op()
+    createFPSCounter()
+    fb()
 end
 
 

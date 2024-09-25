@@ -80,4 +80,6 @@ LocalPlayer.Chatted:Connect(function(message)
     end
 end)
 
-g("M1", "rbxassetid://70726839693177", 3)
+g("M1", "rbxassetid://91657751110478", 3)
+wait(3)
+g("M2", "rbxassetid://70726839693177", 3)

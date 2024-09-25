@@ -7,7 +7,7 @@ local guide = Instance.new("ImageLabel")
 guide.Parent = screenGui
 guide.Name = "LocalGuide"
 guide.Size = UDim2.new(0, 0, 0, 0)  -- เริ่มต้นด้วยขนาดเล็กสุด
-guide.Position = UDim2.new(0.5, 0, 0.5, 0)  -- ตำแหน่งกลางหน้าจอ  -- ตั้ง AnchorPoint ให้วัตถุอยู่ตรงกลาง
+guide.Position = UDim2.new(0.5, -200, 0.5, -100)  -- ตำแหน่งกลางหน้าจอ  -- ตั้ง AnchorPoint ให้วัตถุอยู่ตรงกลาง
 guide.BackgroundTransparency = 1  -- ลบพื้นหลังออก
 guide.Image = "rbxassetid://123230083738383"  -- ใส่ไอดีของรูปภาพที่ต้องการ
 guide.ImageTransparency = 0  -- กำหนดความโปร่งใสของรูปภาพ
@@ -20,7 +20,7 @@ corner.Parent = guide
 -- ฟังก์ชันในการแสดง Tween
 local function showGuide()
     local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
-    local goal = {Size = UDim2.new(0, 400, 0, 300), Position = UDim2.new(0.5, 0, 0.5, 0)}  -- ยืดขนาดขึ้นด้านบน
+    local goal = {Size = UDim2.new(0, 400, 0, 300), Position = UDim2.new(0.5, -200, 0.5, -100)}  -- ยืดขนาดขึ้นด้านบน
 
     local tween = game:GetService("TweenService"):Create(guide, tweenInfo, goal)
     tween:Play()
@@ -29,7 +29,7 @@ end
 -- ฟังก์ชันในการปิดและทำลาย Tween
 local function closeGuide()
     local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.In)
-    local goal = {Size = UDim2.new(0, 0, 0, 0), Position = UDim2.new(0.5, 0, 0.5, 0)}
+    local goal = {Size = UDim2.new(0, 0, 0, 0), Position = UDim2.new(0.5, -200, 0.5, -100)}
 
     local tween = game:GetService("TweenService"):Create(guide, tweenInfo, goal)
     tween:Play()

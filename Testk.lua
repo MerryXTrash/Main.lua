@@ -46,24 +46,6 @@ local function createFPSCounter()
     runService.RenderStepped:Connect(updateFPS)
 end
 
-local function fb()
-    local Lighting = game.Lighting
-    Lighting.ClockTime = 12
-    Lighting.Brightness = 2
-    Lighting.FogEnd = 100000
-    Lighting.GlobalShadows = false
-    Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
-    wait(0.1)
-    local Lightingz game:GetService("Lighting")
-    for i, v in pairs(Lightingz:GetChildren()) do
-        if v.ClassName == "Atmosphere" then
-            v.Destroy()
-        else
-            print("not")
-        end
-    end
-end
-
 local des1 = game:GetService("CoreGui"):FindFirstChild("Main")
 local des2 = game:GetService("CoreGui"):FindFirstChild("Toggle")
 
@@ -903,7 +885,6 @@ end)
 end
 
 createFPSCounter()
-fb()
 blurScreen(24, 1)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/CommandG.lua"))()
 op()

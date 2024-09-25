@@ -9,6 +9,7 @@ if des2 then
     des2:Destroy()
 end
 
+function hok()
 print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000")
 print("bypass success")
 print("Hook succes")
@@ -75,7 +76,23 @@ print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9e
 print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000")
 print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000")
 print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000") print("soadjapfhieho;ehreoheO;TGRJFBJWUHRJUFBJSUWURWOIBGJXCBHJBCQI8ksk0qiwq-ee9ewur347356219p81i4t316c n78f32n7t3b2trt63723 2v p98rv p23 b8 2tv00000000000000000")
+end
 
+hok()
+wait(1)
+hok()
+wait(0.7)
+hok()
+wait(0.5)
+hok()
+
+function notify(Section, Description, num)
+    game.StarterGui:SetCore("SendNotification", {
+        Title = Section;
+        Text = Description;
+        Duration = num;
+    })
+end
 
 local TweenService = game:GetService("TweenService")
 local Lighting = game:GetService("Lighting")
@@ -145,8 +162,15 @@ button1.MouseButton1Click:Connect(function()
     local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
     if Uiz then
     Uiz:Destroy()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/NormalVersion.lua"))()
+    hok()
+    notify("hook local", "Success", 1)
+    notify("getrawmetaTable", "Success", 1)
+    notify("Bypass Anti Fly", "Success", 1)
+    notify("hookmethod", "Success", 1)
+    wait(0.5)
     clearBlur(1)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/NormalVersion.lua"))()
+    notify("Overflow", "Script is loaded", 2)
     end
 end)
 

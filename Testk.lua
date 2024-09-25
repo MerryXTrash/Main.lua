@@ -818,7 +818,7 @@ local screenEdgePadding = 150
 
 local textLabel = Instance.new("TextLabel")
 textLabel.Name = "MyTextLabel"
-textLabel.Size = UDim2.new(1, 0, 0, 30)
+textLabel.Size = UDim2.new(1, 0, 0, 20)
 textLabel.Position = UDim2.new(0, 0, 0.8, 0)
 textLabel.Text = "Tip : Blue is Normal - Purple is Extra(Solo Only)"
 textLabel.BackgroundTransparency = 1

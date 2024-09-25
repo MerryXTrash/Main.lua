@@ -788,8 +788,14 @@ button2.MouseButton1Click:Connect(function()
     local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
     if Uiz then
     Uiz:Destroy()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/ExtraVersion.lua"))()
+    hok()
+    notify("hook local", "Success", 1)
+    notify("getrawmetaTable", "Success", 1)
+    notify("Bypass Anti Fly", "Success", 1)
+    notify("hookmethod", "Success", 1)
+    wait(0.5)
     clearBlur(1)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/ExtraVersion.lua"))()
     end
 end)
 end

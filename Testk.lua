@@ -1,4 +1,3 @@
-local a = tick()
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
@@ -55,10 +54,11 @@ function fb()
     Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
     wait(0.1)
     local Lightingz game:GetService("Lighting")
-
     for i, v in pairs(Lightingz:GetChildren()) do
         if v.ClassName == "Atmosphere" then
             v.Destroy()
+        else
+            print("not")
         end
     end
 end

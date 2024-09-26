@@ -791,92 +791,118 @@ local function clearBlur(duration)
 end
 
 
+local TweenService = game:GetService("TweenService")
+
 local function op()
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "MyImageGui"
-screenGui.Parent = game:GetService("CoreGui")
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "MyImageGui"
+    screenGui.Parent = game:GetService("CoreGui")
 
-local screenEdgePadding = 150
+    local screenEdgePadding = 150
 
-local textLabel = Instance.new("TextLabel")
-textLabel.Name = "MyTextLabel"
-textLabel.Size = UDim2.new(1, 0, 0, 20)
-textLabel.Position = UDim2.new(0, 0, 0.8, 0)
-textLabel.Text = "Tip : Blue is Normal - Purple is Extra(Solo Only)"
-textLabel.BackgroundTransparency = 1
-textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-textLabel.TextScaled = true
-textLabel.Parent = screenGui
+    -- Create a text label
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Name = "MyTextLabel"
+    textLabel.Size = UDim2.new(1, 0, 0, 20)
+    textLabel.Position = UDim2.new(0, 0, 0.8, 0)
+    textLabel.Text = "Tip : Blue is Normal - Purple is Extra(Solo Only)"
+    textLabel.BackgroundTransparency = 1
+    textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    textLabel.TextScaled = true
+    textLabel.Parent = screenGui
 
-local function createImageButton(name, position, imageId)
-    local imageButton = Instance.new("ImageButton")
-    imageButton.Name = name
-    imageButton.Size = UDim2.new(0, 100, 0, 100)
-    imageButton.Position = position
-    imageButton.Image = imageId
-    imageButton.BackgroundTransparency = 1
+    -- Create an image button function
+    local function createImageButton(name, position, imageId)
+        local imageButton = Instance.new("ImageButton")
+        imageButton.Name = name
+        imageButton.Size = UDim2.new(0, 100, 0, 100)
+        imageButton.Position = position
+        imageButton.Image = imageId
+        imageButton.BackgroundTransparency = 1
+        imageButton.AnchorPoint = Vector2.new(0.5, 0.5) -- Center anchor point
 
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0.2, 0)
-    corner.Parent = imageButton
+        -- Add corner and stroke
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0.2, 0)
+        corner.Parent = imageButton
 
-    local uiStroke = Instance.new("UIStroke")
-    uiStroke.Color = Color3.fromRGB(128, 128, 128)
-    uiStroke.Thickness = 4
-    uiStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    uiStroke.Parent = imageButton
+        local uiStroke = Instance.new("UIStroke")
+        uiStroke.Color = Color3.fromRGB(128, 128, 128)
+        uiStroke.Thickness = 4
+        uiStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+        uiStroke.Parent = imageButton
 
-    imageButton.Parent = screenGui
-
-    return imageButton
-end
-
-local button1 = createImageButton("MyImageButton1", UDim2.new(0, screenEdgePadding, 0.4, -50), "rbxassetid://134204200422920")
-local button2 = createImageButton("MyImageButton2", UDim2.new(1, -100 - screenEdgePadding, 0.4, -50), "rbxassetid://134754092492795")
-
-button1.MouseButton1Click:Connect(function()
-    local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
-    if Uiz then
-    Uiz:Destroy()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    notify("hookmethod", "Success", 0.5)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/NormalVersion.lua"))()
+        imageButton.Parent = screenGui
+        return imageButton
     end
-end)
 
--- ฟังก์ชันคลิกสำหรับ button 2
-button2.MouseButton1Click:Connect(function()
-    local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
-    if Uiz then
-    Uiz:Destroy()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    hok()
-    notify("hookmethod", "Success", 0.5)
-    clearBlur(1)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/ExtraVersion.lua"))()
+    -- Tweening function for buttons
+    local function tweenButton(imageButton)
+        local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+        local centerPosition = UDim2.new(0.5, 0, 0.5, 0)  -- Center position
+        local targetSize = UDim2.new(0, 370, 0, 280) -- Target size
+
+        -- Create tweens for positioning and sizing
+        local tweenPosition = TweenService:Create(imageButton, tweenInfo, {Position = centerPosition})
+        local tweenSize = TweenService:Create(imageButton, tweenInfo, {Size = targetSize})
+
+        tweenPosition:Play()
+        tweenSize:Play()
+
+        -- Chain back to a smaller size and then destroy
+        tweenSize.Completed:Wait()
+        local smallerSize = UDim2.new(0, 0, 0, 0)
+        local tweenSmaller = TweenService:Create(imageButton, tweenInfo, {Size = smallerSize})
+        tweenSmaller:Play()
+
+        tweenSmaller.Completed:Wait() -- Wait for completion
+        imageButton:Destroy() -- Destroy the button after shrinking
     end
-end)
+
+    -- Create buttons at centered positions
+    local button1 = createImageButton("MyImageButton1", UDim2.new(0.3, 0, 0.4, 0), "rbxassetid://134204200422920")
+    local button2 = createImageButton("MyImageButton2", UDim2.new(0.7, 0, 0.4, 0), "rbxassetid://134754092492795")
+
+    -- Button 1 click event
+    button1.MouseButton1Click:Connect(function()
+        -- Destroy button 2 and text label
+        button2:Destroy()
+        textLabel:Destroy()
+
+        -- Set the clicked button to be on top
+        button1.ZIndex = 2  -- Set a higher ZIndex
+        button2.ZIndex = 1  -- Reset the other button's ZIndex
+
+        tweenButton(button1)
+        local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
+        if Uiz then
+            Uiz:Destroy()
+            hok()
+            notify("hookmethod", "Success", 0.5)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/NormalVersion.lua"))()
+        end
+    end)
+
+    -- Button 2 click event
+    button2.MouseButton1Click:Connect(function()
+        -- Destroy button 1 and text label
+        button1:Destroy()
+        textLabel:Destroy()
+
+        -- Set the clicked button to be on top
+        button2.ZIndex = 2  -- Set a higher ZIndex
+        button1.ZIndex = 1  -- Reset the other button's ZIndex
+
+        tweenButton(button2)
+        local Uiz = game:GetService("CoreGui"):FindFirstChild("MyImageGui")
+        if Uiz then
+            Uiz:Destroy()
+            hok()
+            notify("hookmethod", "Success", 0.5)
+            clearBlur(1)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/ExtraVersion.lua"))()
+        end
+    end)
 end
 
 createFPSCounter()

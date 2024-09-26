@@ -7,7 +7,15 @@ if id == 7265397848 or id == 7251867574 then
 
     local BossBattle = Workspace:FindFirstChild("BossBattle")
     if BossBattle then
-        local Saigomo = BossBattle:FindFirstChild("Saigomo")
+        -- Loop through all children of BossBattle and find the one that is a Model
+        local Saigomo
+        for i, v in pairs(BossBattle:GetChildren()) do
+            if v.ClassName == "Model" then
+                Saigomo = v
+                break  -- Stop the loop once we find the first model (Saigomo)
+            end
+        end
+
         if Saigomo then
             local HumanoidRootPartz = Saigomo:FindFirstChild("HumanoidRootPart")
             if HumanoidRootPartz then

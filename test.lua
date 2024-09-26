@@ -68,10 +68,8 @@ if id == 7265397848 or id == 7251867574 then
 
                 -- Function to check the sound status and teleport accordingly
                 local function checkSoundAndTeleport()
-                    local MOB = HumanoidRootPartz
-                    local offset = Vector3.new(33, 0, 0)
-                    local targetPositionTeleport = MOB.CFrame * CFrame.new(offset)
-
+                    local offset = CFrame.new(33, 0, 0)
+                    local targetPositionTeleport = HumanoidRootPartz.CFrame * offset
                     if Sound.IsPlaying then
                         isTeleporting = true
                         StopTweenAll()

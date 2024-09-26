@@ -51,16 +51,6 @@ if id == 7265397848 or id == 7251867574 then
                     end
                 end
 
-                -- Function to teleport all players to the boss
-                local function teleportPlayersToBoss2()
-                    for _, player in pairs(Players:GetPlayers()) do
-                        if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                            player.Character.HumanoidRootPart.CFrame = HumanoidRootPartz.CFrame * CFrame.new(33, 0, 0)
-                        end
-                    end
-                end
-
-                -- New function to check health and teleport if necessary
                 local function checkAndTeleport()
                     local player = Players.LocalPlayer
                     local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
@@ -68,9 +58,9 @@ if id == 7265397848 or id == 7251867574 then
                     if humanoid and humanoid.Health <= 75 then  -- Check if health is low
                         for _, part in pairs(Workspace.Butterflies:GetDescendants()) do
                             if part:IsA("MeshPart") and part.Transparency == 0 then  -- Check for visible MeshPart
-                                -- Teleport the player to the found MeshPart
+                                StopTweenAll()
                                 player.Character.HumanoidRootPart.CFrame = part.CFrame
-                                break  -- Stop after the first valid teleport
+                                break
                             end
                         end
                     end
@@ -82,22 +72,23 @@ if id == 7265397848 or id == 7251867574 then
                     local offset = Vector3.new(33, 0, 0)
                     local targetPositionTeleport = MOB.CFrame * CFrame.new(offset)
 
-                    if Sound and Sound.IsPlaying and not isTeleporting then
+                    if Sound.IsPlaying then
                         isTeleporting = true
                         StopTweenAll()
                         Players.LocalPlayer.Character.HumanoidRootPart.CFrame = HumanoidRootPartz.CFrame
-                    elseif Sound and not Sound.IsPlaying and isTeleporting then
-                        teleportPlayersToBoss2()
+                    elseif not Sound.IsPlaying and isTeleporting then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = HumanoidRootPartz.CFrame * CFrame.new(33, 0, 0)
                         isTeleporting = false
                         Teleport(targetPositionTeleport)
                     end
                 end
 
                 -- Run the checkAndTeleport and checkSoundAndTeleport functions in a loop
-                while true do
-                    checkAndTeleport()       -- Check health and teleport if necessary
-                    checkSoundAndTeleport()  -- Check sound status and handle teleport
-                    wait(0.1) -- Adjust the wait time as necessary (0.1 seconds for responsiveness)
+                _G.Auto2 = true
+                while _G.Auto2 do
+                    checkSoundAndTeleport()
+                    checkAndTeleport()
+                    wait(0)
                 end
             end
         end

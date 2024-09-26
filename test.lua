@@ -13,11 +13,12 @@ if id == 7265397848 or id == 7251867574 then
             if HumanoidRootPartz then
                 local Sound = HumanoidRootPartz:FindFirstChild("roar")
 
-                -- Remove all WebTrap objects
+                local function web()
                 for _, v in pairs(Workspace:GetChildren()) do
                     if v.Name == "WebTrap" then
                         v:Destroy()  -- Correctly destroy the WebTrap
                     end
+                end
                 end
                 
                 local currentTween
@@ -53,8 +54,7 @@ if id == 7265397848 or id == 7251867574 then
 
                 local function checkAndTeleport()
                     local player = Players.LocalPlayer
-                    local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
-                    
+                    local humanoid = player.Character:FindFirstChild("Humanoid")
                     if humanoid and humanoid.Health <= 75 then  -- Check if health is low
                         for _, part in pairs(Workspace.Butterflies:GetDescendants()) do
                             if part:IsA("MeshPart") and part.Transparency == 0 then  -- Check for visible MeshPart
@@ -86,6 +86,7 @@ if id == 7265397848 or id == 7251867574 then
                 while _G.Auto2 do
                     checkSoundAndTeleport()
                     checkAndTeleport()
+                    web()
                     wait(0)
                 end
             end

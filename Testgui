@@ -1,0 +1,237 @@
+local Library = {}
+local TweenService = game:GetService("TweenService")
+
+-- General Color Scheme and Configurations
+local colors = {
+    Primary = Color3.fromRGB(44, 120, 224),
+    Background = Color3.fromRGB(30, 30, 30),
+    Button = Color3.fromRGB(55, 55, 55),
+    ToggleOn = Color3.fromRGB(20, 200, 20),
+    ToggleOff = Color3.fromRGB(200, 20, 20),
+    Text = Color3.fromRGB(255, 255, 255),
+}
+
+-- Helper Function to Create New GUI Object
+local function create(instanceType, properties)
+    local obj = Instance.new(instanceType)
+    for key, value in pairs(properties) do
+        obj[key] = value
+    end
+    return obj
+end
+
+-- UI Creation
+function Library:CreateWindow(title, icon)
+    local ScreenGui = create("ScreenGui", {Name = title, Parent = game.Players.LocalPlayer.PlayerGui})
+
+    -- Main frame
+    local MainFrame = create("Frame", {
+        Parent = ScreenGui,
+        BackgroundColor3 = colors.Background,
+        Size = UDim2.new(0, 400, 0, 300),
+        Position = UDim2.new(0.5, -200, 0.5, -150),
+    })
+
+    -- Header (Name Hub, Icon)
+    local Header = create("Frame", {
+        Parent = MainFrame,
+        BackgroundColor3 = colors.Button,
+        Size = UDim2.new(1, 0, 0, 50),
+    })
+
+    local Title = create("TextLabel", {
+        Parent = Header,
+        Text = title,
+        Font = Enum.Font.GothamBold,
+        TextColor3 = colors.Text,
+        Size = UDim2.new(0.8, 0, 1, 0),
+        BackgroundTransparency = 1,
+        Position = UDim2.new(0, 10, 0, 0),
+        TextSize = 18
+    })
+
+    local Icon = create("ImageLabel", {
+        Parent = Header,
+        Image = icon,
+        Size = UDim2.new(0, 40, 0, 40),
+        BackgroundTransparency = 1,
+        Position = UDim2.new(1, -50, 0.5, -20),
+    })
+
+    return MainFrame
+end
+
+-- Create a tab
+function Library:CreateTab(parent, tabName)
+    local Tab = create("Frame", {
+        Parent = parent,
+        BackgroundColor3 = colors.Background,
+        Size = UDim2.new(1, 0, 0, 30),
+        BorderSizePixel = 0
+    })
+
+    local TabText = create("TextLabel", {
+        Parent = Tab,
+        Text = tabName,
+        Font = Enum.Font.GothamBold,
+        TextColor3 = colors.Text,
+        Size = UDim2.new(1, 0, 1, 0),
+        BackgroundTransparency = 1,
+        TextSize = 16
+    })
+
+    return Tab
+end
+
+-- Button Creation
+function Library:CreateButton(parent, text, callback)
+    local Button = create("TextButton", {
+        Parent = parent,
+        BackgroundColor3 = colors.Button,
+        Text = text,
+        Font = Enum.Font.GothamBold,
+        TextColor3 = colors.Text,
+        Size = UDim2.new(1, 0, 0, 30),
+        BorderSizePixel = 0,
+        TextSize = 14,
+        AutoButtonColor = false,
+    })
+
+    Button.MouseButton1Click:Connect(callback)
+    return Button
+end
+
+-- Toggle Creation
+function Library:CreateToggle(parent, text, default, callback)
+    local Toggle = create("Frame", {
+        Parent = parent,
+        BackgroundTransparency = 1,
+        Size = UDim2.new(1, 0, 0, 30)
+    })
+
+    local ToggleLabel = create("TextLabel", {
+        Parent = Toggle,
+        Text = text,
+        Font = Enum.Font.Gotham,
+        TextColor3 = colors.Text,
+        Size = UDim2.new(0.7, 0, 1, 0),
+        BackgroundTransparency = 1,
+        TextSize = 14
+    })
+
+    local ToggleButton = create("TextButton", {
+        Parent = Toggle,
+        Text = "",
+        BackgroundColor3 = default and colors.ToggleOn or colors.ToggleOff,
+        Size = UDim2.new(0, 30, 0, 30),
+        Position = UDim2.new(0.9, 0, 0, 0),
+        BorderSizePixel = 0,
+    })
+
+    local isOn = default
+
+    ToggleButton.MouseButton1Click:Connect(function()
+        isOn = not isOn
+        ToggleButton.BackgroundColor3 = isOn and colors.ToggleOn or colors.ToggleOff
+        callback(isOn)
+    end)
+
+    return Toggle
+end
+
+-- Slider Creation
+function Library:CreateSlider(parent, text, min, max, default, callback)
+    local SliderFrame = create("Frame", {
+        Parent = parent,
+        Size = UDim2.new(1, 0, 0, 50),
+        BackgroundTransparency = 1
+    })
+
+    local SliderLabel = create("TextLabel", {
+        Parent = SliderFrame,
+        Text = text,
+        Font = Enum.Font.Gotham,
+        TextColor3 = colors.Text,
+        Size = UDim2.new(1, 0, 0, 20),
+        BackgroundTransparency = 1,
+        TextSize = 14
+    })
+
+    local Slider = create("TextButton", {
+        Parent = SliderFrame,
+        BackgroundColor3 = colors.Button,
+        Size = UDim2.new(1, -20, 0, 10),
+        Position = UDim2.new(0, 10, 0, 30),
+    })
+
+    local SliderIndicator = create("Frame", {
+        Parent = Slider,
+        BackgroundColor3 = colors.Primary,
+        Size = UDim2.new(default / max, 0, 1, 0),
+    })
+
+    Slider.MouseButton1Click:Connect(function()
+        local mousePos = game.Players.LocalPlayer:GetMouse().X
+        local sliderStart = Slider.AbsolutePosition.X
+        local sliderEnd = sliderStart + Slider.AbsoluteSize.X
+        local percentage = math.clamp((mousePos - sliderStart) / (sliderEnd - sliderStart), 0, 1)
+        local value = math.floor(min + (max - min) * percentage)
+
+        SliderIndicator.Size = UDim2.new(percentage, 0, 1, 0)
+        callback(value)
+    end)
+
+    return SliderFrame
+end
+
+-- Dropdown Creation
+function Library:CreateDropdown(parent, text, options, callback)
+    local DropdownFrame = create("Frame", {
+        Parent = parent,
+        Size = UDim2.new(1, 0, 0, 30),
+        BackgroundTransparency = 1
+    })
+
+    local DropdownButton = create("TextButton", {
+        Parent = DropdownFrame,
+        Text = text,
+        Font = Enum.Font.Gotham,
+        TextColor3 = colors.Text,
+        Size = UDim2.new(1, 0, 1, 0),
+        BackgroundTransparency = 1,
+        TextSize = 14
+    })
+
+    local DropdownOptions = create("Frame", {
+        Parent = DropdownFrame,
+        BackgroundColor3 = colors.Button,
+        Size = UDim2.new(1, 0, 0, #options * 30),
+        Position = UDim2.new(0, 0, 1, 0),
+        Visible = false
+    })
+
+    for i, option in pairs(options) do
+        local OptionButton = create("TextButton", {
+            Parent = DropdownOptions,
+            Text = option,
+            Font = Enum.Font.Gotham,
+            TextColor3 = colors.Text,
+            Size = UDim2.new(1, 0, 0, 30),
+            BackgroundTransparency = 1
+        })
+
+        OptionButton.MouseButton1Click:Connect(function()
+            DropdownButton.Text = option
+            DropdownOptions.Visible = false
+            callback(option)
+        end)
+    end
+
+    DropdownButton.MouseButton1Click:Connect(function()
+        DropdownOptions.Visible = not DropdownOptions.Visible
+    end)
+
+    return DropdownFrame
+end
+
+return Library

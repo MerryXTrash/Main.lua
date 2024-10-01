@@ -501,7 +501,7 @@ local newy = {
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
+    TitleColor = Color3.fromRGB(242, 255, 0),
     DescText = "I Hope This Year It Good Year for You ^^",
     DescColor = Color3.fromRGB(150, 150, 150)
 }
@@ -541,9 +541,9 @@ local inf = {
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
+    TitleColor = Color3.fromRGB(242, 255, 0),
     DescText = "If UI Bug then On and Off Again",
-    DescColor = Color3.fromRGB(150, 150, 150)
+    DescColor = Color3.fromRGB(230, 230, 230)
 }
 
 local warning = {
@@ -553,7 +553,7 @@ local warning = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 64, 64),
     DescText = "Place.Id Not Found",
-    DescColor = Color3.fromRGB(255, 204, 0)
+    DescColor = Color3.fromRGB(242, 255, 0)
 }
 
 local lantern = {
@@ -561,7 +561,7 @@ local lantern = {
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 204, 0),
+    TitleColor = Color3.fromRGB(242, 255, 0),
     DescText = "Obtained from it Chapter",
     DescColor = Color3.fromRGB(150, 150, 150)
 }

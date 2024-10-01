@@ -110,44 +110,14 @@ local function createNotification(config, duration)
     end
 end
 
-local Spring = {
-    Name = "I think Today the Sky is Clear and the Wind is Cool ^^",
+local Normal = {
+    Name = "Good Day for You ^^",
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
-    StrokeColor = Color3.fromRGB(100, 100, 100),
+    StrokeColor = Color3.fromRGB(79, 255, 117),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
-}
-
-local Summer = {
-    Name = "I Hope Today is a Good Day for You, but is so Hot ^^",
-    Image = "rbxassetid://134204200422920",
-    UiWidth = 300,
-    StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
-}
-
-local Autumn = {
-    Name = "I think The falling leaves are so Beautiful ^^",
-    Image = "rbxassetid://134204200422920",
-    UiWidth = 300,
-    StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
-}
-
-local Winter = {
-    Name = "I think it so Cold, Don't forget to bring a Blanket ^^",
-    Image = "rbxassetid://134204200422920",
-    UiWidth = 300,
-    StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(200, 200, 200)
 }
 
 local Xmas = {
@@ -155,30 +125,41 @@ local Xmas = {
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
+    TitleColor = Color3.fromRGB(255, 50, 50),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(200, 200, 200)
 }
 
-local Hw = {
+local Halloween = {
     Name = "Happy Halloween Day 🎃",
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
+    TitleColor = Color3.fromRGB(255, 145, 0),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(200, 200, 200)
 }
 
-local newy = {
+local Newyear = {
     Name = "Happy New Year 🎉",
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
+    TitleColor = Color3.fromRGB(255, 217, 0),
     DescText = "I Hope This Year It Good Year for You ^^",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(200, 200, 200)
 }
+
+local cyear = {
+    Name = "Countdown New Year ⏱",
+    Image = "rbxassetid://134204200422920",
+    UiWidth = 300,
+    StrokeColor = Color3.fromRGB(100, 100, 100),
+    TitleColor = Color3.fromRGB(255, 217, 0),
+    DescText = "I Hope Next Years is Good Year for You ^^",
+    DescColor = Color3.fromRGB(200, 200, 200)
+}
+
 
 local Easter = {
     Name = "Happy Easter Day 🐰",
@@ -187,27 +168,27 @@ local Easter = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(200, 200, 200)
 }
 
-local Vl = {
+local Valentine = {
     Name = "Happy Valentine's Day ❤️",
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "If You Love Someone Go Tell Him/Her, Don't be Shy ^^",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    TitleColor = Color3.fromRGB(255, 81, 232),
+    DescText = "Note by Owner of Overflow 4.0",
+    DescColor = Color3.fromRGB(200, 200, 200)
 }
 
-local songkran = {
+local Songkran = {
     Name = "Happy SongKran Festival 💦",
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "TH(สุขสันต์วันสงกรานต์น่ะ เล่นน้ำให้สนุกล่ะระวังอุบัติเหตุด้วยน้า)",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    TitleColor = Color3.fromRGB(0, 140, 255),
+    DescText = "สุขสันต์วันสงกรานต์น่ะ เล่นน้ำให้สนุกล่ะระวังอุบัติเหตุด้วยน้า",
+    DescColor = Color3.fromRGB(200, 200, 200)
 }
 
 local inf = {
@@ -215,9 +196,9 @@ local inf = {
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
+    TitleColor = Color3.fromRGB(0, 195, 255),
     DescText = "If UI Bug then On and Off Again",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(200, 200, 200)
 }
 
 local warning = {
@@ -225,19 +206,9 @@ local warning = {
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
+    TitleColor = Color3.fromRGB(255, 0, 0),
     DescText = "Place.Id Not Found",
-    DescColor = Color3.fromRGB(100, 100, 100)
-}
-
-local lantern = {
-    Name = "Obtained",
-    Image = "rbxassetid://134204200422920",
-    UiWidth = 300,
-    StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "Obtained from it Chapter",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(255, 230, 0)
 }
 
 local Blur = Instance.new("BlurEffect")
@@ -280,7 +251,7 @@ corner.CornerRadius = UDim.new(0, 15) -- ตั้งค่ารัศมีข
 corner.Parent = guide -- เพิ่ม UICorner ลงใน ImageLabel
 
 -- สร้างฟังก์ชันสำหรับการแสดงและทำลาย guide
-    local expandTween = TweenService:Create(guide, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+    local expandTween = TweenService:Create(guide, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
         Size = UDim2.new(0, 400, 0, 200) -- ขนาดสุดท้าย
     })
     
@@ -291,7 +262,7 @@ corner.Parent = guide -- เพิ่ม UICorner ลงใน ImageLabel
     wait(Time) -- รอ 2 วินาทีก่อนทำการย่อ
 
     -- Tween ย่อลง
-    local shrinkTween = TweenService:Create(guide, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+    local shrinkTween = TweenService:Create(guide, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
         Size = UDim2.new(0, 0, 0, 0) -- ขนาดสุดท้ายที่ย่อ
     })
     
@@ -321,17 +292,25 @@ for _, player in pairs(game.Players:GetPlayers()) do
 end
 end
 
-local FPSz = game:GetService("CoreGui").FPSnum:FindFirstChild("TextLabel")
+local currentDate = os.date("*t")
+local day = currentDate.day
+local month = currentDate.month
 
-function ffalse()
-if FPSz then
-    FPSz.Visble = false
-    end
-end
-
-function ftrue()
-if FPSz then
-    FPSz.Visible = true
+local function checkHolidays()
+    if month == 1 and day == 1 then
+        createNotification(Newyear, 2.5)
+    elseif month == 3 and (day >= 21 and day <= 25) then
+        createNotification(Easter, 2.5)
+    elseif month == 2 and day == 14 then
+        createNotification(Valentine, 2.5)
+    elseif month == 10 and day == 31 then
+        createNotification(Halloween, 2.5)
+    elseif month == 12 and day == 25 then
+        createNotification(Xmas, 2.5)
+    elseif month == 12 and day == 31 then
+        createNotification(cyear, 2.5)
+    else
+        createNotification(Normal, 2.5)
     end
 end
 
@@ -342,10 +321,6 @@ LocalPlayer.Chatted:Connect(function(message)
     if message == "/Show" or message == "/show" then
         g("M2", "rbxassetid://123230083738383", 7)
         clearBlur(1)
-    elseif message == "/fps(true)" then
-        ftrue()
-    elseif message == "/fps(false)" then
-        ffalse()
     elseif message == "/Copy" or message == "/copy" then
         copy()
     elseif message == "/Antilag" or message == "/antilag" then
@@ -353,7 +328,8 @@ LocalPlayer.Chatted:Connect(function(message)
     end
 end)
 
-g("M3", "rbxassetid://91657751110478", 3)
-g("M1", "rbxassetid://70726839693177", 3)
+g("M3", "rbxassetid://91657751110478", 1.5)
+g("M1", "rbxassetid://70726839693177", 1.5)
 clearBlur(1)
-createNotification(spring, 2.5)
+checkHolidays()
+createNotification(inf, 2.5)

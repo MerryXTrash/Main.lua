@@ -110,14 +110,43 @@ local function createNotification(config, duration)
     end
 end
 
-
-local Normal = {
-    Name = "How are you today ^^",
+local Spring = {
+    Name = "I think Today the Sky is Clear and the Wind is Cool ^^",
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "Question by Owner of Overflow 4.0",
+    DescText = "Note by Owner of Overflow 4.0",
+    DescColor = Color3.fromRGB(100, 100, 100)
+}
+
+local Summer = {
+    Name = "I Hope Today is a Good Day for You, but is so Hot ^^",
+    Image = "rbxassetid://134204200422920",
+    UiWidth = 300,
+    StrokeColor = Color3.fromRGB(100, 100, 100),
+    TitleColor = Color3.fromRGB(255, 255, 255),
+    DescText = "Note by Owner of Overflow 4.0",
+    DescColor = Color3.fromRGB(100, 100, 100)
+}
+
+local Autumn = {
+    Name = "I think The falling leaves are so Beautiful ^^",
+    Image = "rbxassetid://134204200422920",
+    UiWidth = 300,
+    StrokeColor = Color3.fromRGB(100, 100, 100),
+    TitleColor = Color3.fromRGB(255, 255, 255),
+    DescText = "Note by Owner of Overflow 4.0",
+    DescColor = Color3.fromRGB(100, 100, 100)
+}
+
+local Winter = {
+    Name = "I think it so Cold, Don't forget to bring a Blanket ^^",
+    Image = "rbxassetid://134204200422920",
+    UiWidth = 300,
+    StrokeColor = Color3.fromRGB(100, 100, 100),
+    TitleColor = Color3.fromRGB(255, 255, 255),
+    DescText = "Note by Owner of Overflow 4.0",
     DescColor = Color3.fromRGB(100, 100, 100)
 }
 
@@ -292,36 +321,18 @@ for _, player in pairs(game.Players:GetPlayers()) do
 end
 end
 
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local TweenService = game:GetService("TweenService")
-local Players = game:GetService("Players")
+local FPSz = game:GetService("CoreGui").FPSnum:FindFirstChild("TextLabel")
 
--- สร้าง ScreenGui
-local player = Players.LocalPlayer
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.CoreGui
-screenGui.Name = "Guide"
-
-
-local function copy()
-local playerBackpack = game.Players.LocalPlayer.Backpack
-for _, player in pairs(game.Players:GetPlayers()) do
-    local character = player.Character or player.CharacterAdded:Wait()
-    
-    for _, tool in pairs(character:GetDescendants()) do
-        if tool:IsA("Tool") then
-            -- ตรวจสอบว่ามี Tool นั้นอยู่ใน Backpack ของผู้เล่นแล้วหรือไม่
-            local existingTool = playerBackpack:FindFirstChild(tool.Name)
-            if existingTool then
-                existingTool:Destroy() -- ทำลาย Tool ที่มีอยู่แล้ว
-            end
-            
-            local toolClone = tool:Clone()
-            toolClone.Parent = playerBackpack
-        end
+function ffalse()
+if FPSz then
+    FPSz.Visble = false
     end
 end
+
+function ftrue()
+if FPSz then
+    FPSz.Visible = true
+    end
 end
 
 local Players = game:GetService("Players")
@@ -331,6 +342,10 @@ LocalPlayer.Chatted:Connect(function(message)
     if message == "/Show" or message == "/show" then
         g("M2", "rbxassetid://123230083738383", 7)
         clearBlur(1)
+    elseif message == "/fps(true)" then
+        ftrue()
+    elseif message == "/fps(false)" then
+        ffalse()
     elseif message == "/Copy" or message == "/copy" then
         copy()
     elseif message == "/Antilag" or message == "/antilag" then
@@ -338,33 +353,7 @@ LocalPlayer.Chatted:Connect(function(message)
     end
 end)
 
-local currentDate = os.date("*t")  -- Get the current date and time
-local day = currentDate.day
-local month = currentDate.month
-
--- Function to print holiday messages based on the date
-local function checkHolidays()
-    if month == 1 and day == 1 then
-        createNotification(newy, 3.5)
-    elseif month == 3 an (day >= 21 and day <= 25) then
-        createNotification(Easter, 3.5)  -- Easter
-    elseif month == 2 and day == 14 then
-        createNotification(Vl, 3.5)  -- Valentine's Day
-    elseif month == 10 and day == 31 then
-        createNotification(Hw, 3.5)  -- Halloween
-    elseif month == 12 and day == 25 then
-        createNotification(Xmas, 3.5)  -- Christmas
-    elseif month == 12 and day == 31 then
-        createNotification(newy, 3.5)
-    else
-        createNotification(Normal, 3.5)
-    end
-end
-
--- Run the checkHolidays function
-
-
-g("M3", "rbxassetid://91657751110478", 2)
-g("M1", "rbxassetid://70726839693177", 2)
+g("M3", "rbxassetid://91657751110478", 3)
+g("M1", "rbxassetid://70726839693177", 3)
 clearBlur(1)
-checkHolidays()
+createNotification(spring, 2.5)

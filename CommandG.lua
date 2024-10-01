@@ -80,7 +80,7 @@ local function createNotification(config, duration)
     Desc.Position = UDim2.new(0, 60, 0, 30)
     Desc.Size = UDim2.new(0, config.UiWidth - 60, 0, 20)
     Desc.Font = Enum.Font.GothamSemibold
-    Desc.TextTransparency = 0.3
+    Desc.TextTransparency = 0
     Desc.Text = config.DescText or ""
     Desc.TextColor3 = All["DescColor"]
     Desc.TextSize = 12.0

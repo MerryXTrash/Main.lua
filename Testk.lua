@@ -91,7 +91,7 @@ local function op()
     textLabel.Name = "MyTextLabel"
     textLabel.Size = UDim2.new(1, 0, 0, 20)
     textLabel.Position = UDim2.new(0, 0, 0.8, 0)
-    textLabel.Text = "Tip : Blue is Normal - Purple is Extra(Solo Only)"
+    textLabel.Text = "Tip : Blue is Normal - Purple is Extra"
     textLabel.BackgroundTransparency = 1
     textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     textLabel.TextScaled = true

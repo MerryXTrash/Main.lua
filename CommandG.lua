@@ -110,38 +110,8 @@ local function createNotification(config, duration)
     end
 end
 
-local Spring = {
-    Name = "I think Today the Sky is Clear and the Wind is Cool ^^",
-    Image = "rbxassetid://134204200422920",
-    UiWidth = 300,
-    StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
-}
-
-local Summer = {
-    Name = "I Hope Today is a Good Day for You, but is so Hot ^^",
-    Image = "rbxassetid://134204200422920",
-    UiWidth = 300,
-    StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
-}
-
-local Autumn = {
-    Name = "I think The falling leaves are so Beautiful ^^",
-    Image = "rbxassetid://134204200422920",
-    UiWidth = 300,
-    StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
-}
-
-local Winter = {
-    Name = "I think it so Cold, Don't forget to bring a Blanket ^^",
+local normal = {
+    Name = "I think Today is Good ^^",
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
@@ -664,4 +634,4 @@ end)
 g("M3", "rbxassetid://91657751110478", 3)
 g("M1", "rbxassetid://70726839693177", 3)
 clearBlur(1)
-createNotification(Spring, 2.5)
+createNotification(songkran, 2.5)

@@ -303,42 +303,6 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = game.CoreGui
 screenGui.Name = "Guide"
 
-function g(Name, id, Time)
-local guide = Instance.new("ImageLabel")
-guide.Parent = screenGui
-guide.Name = Name -- วาง ImageLabel ใน ScreenGui
-guide.Size = UDim2.new(0, 0, 0, 0) -- ขนาดเริ่มต้นเล็ก
-guide.Position = UDim2.new(0.5, 0, 0.5, 0) -- ตำแหน่งกลางหน้าจอ
-guide.Image = id -- ตั้งค่า Image ID
-guide.AnchorPoint = Vector2.new(0.5, 0.5) -- ให้ตำแหน่งอยู่ที่กลาง
-guide.BackgroundTransparency = 1 -- ตั้งค่าความโปร่งใสของพื้นหลังเป็น 1
-
--- เพิ่ม UICorner เพื่อให้มุมโค้ง
-local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 15) -- ตั้งค่ารัศมีของมุม
-corner.Parent = guide -- เพิ่ม UICorner ลงใน ImageLabel
-
--- สร้างฟังก์ชันสำหรับการแสดงและทำลาย guide
-    local expandTween = TweenService:Create(guide, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-        Size = UDim2.new(0, 400, 0, 200) -- ขนาดสุดท้าย
-    })
-    
-    blurScreen(24, 1)
-    expandTween:Play()
-    expandTween.Completed:Wait() -- รอให้การ tween เสร็จสิ้น
-
-    wait(Time) -- รอ 2 วินาทีก่อนทำการย่อ
-
-    -- Tween ย่อลง
-    local shrinkTween = TweenService:Create(guide, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-        Size = UDim2.new(0, 0, 0, 0) -- ขนาดสุดท้ายที่ย่อ
-    })
-    
-    shrinkTween:Play()
-    shrinkTween.Completed:Wait()
-
-    guide:Destroy()
-end
 
 local function copy()
 local playerBackpack = game.Players.LocalPlayer.Backpack

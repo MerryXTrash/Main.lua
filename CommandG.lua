@@ -316,15 +316,23 @@ end
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
+local char = LocalPlayer.Character:WaitForChild("Humanoid")
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == "/Show" or message == "/show" then
-        g("M2", "rbxassetid://123230083738383", 7)
+        g("M2", "rbxassetid://131997809147561", 6)
         clearBlur(1)
     elseif message == "/Copy" or message == "/copy" then
         copy()
     elseif message == "/Antilag" or message == "/antilag" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Antilag.lua"))()
+    elseif message == "/Tp" or message == "/tp" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/Normal/Lobby.lua"))()
+    elseif string.sub(message, 1, 6) == "/speed" or "/Speed" then
+        local speedvalue = tonumber(string.match(message, "%d+"))
+        if speedvalue then
+            char.WalkSpeed = speedvalue
+        end
     end
 end)
 

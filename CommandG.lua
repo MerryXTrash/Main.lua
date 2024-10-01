@@ -110,8 +110,38 @@ local function createNotification(config, duration)
     end
 end
 
-local normal = {
-    Name = "I think Today is Good ^^",
+local Spring = {
+    Name = "I think Today the Sky is Clear and the Wind is Cool ^^",
+    Image = "rbxassetid://134204200422920",
+    UiWidth = 300,
+    StrokeColor = Color3.fromRGB(100, 100, 100),
+    TitleColor = Color3.fromRGB(255, 255, 255),
+    DescText = "Note by Owner of Overflow 4.0",
+    DescColor = Color3.fromRGB(100, 100, 100)
+}
+
+local Summer = {
+    Name = "I Hope Today is a Good Day for You, but is so Hot ^^",
+    Image = "rbxassetid://134204200422920",
+    UiWidth = 300,
+    StrokeColor = Color3.fromRGB(100, 100, 100),
+    TitleColor = Color3.fromRGB(255, 255, 255),
+    DescText = "Note by Owner of Overflow 4.0",
+    DescColor = Color3.fromRGB(100, 100, 100)
+}
+
+local Autumn = {
+    Name = "I think The falling leaves are so Beautiful ^^",
+    Image = "rbxassetid://134204200422920",
+    UiWidth = 300,
+    StrokeColor = Color3.fromRGB(100, 100, 100),
+    TitleColor = Color3.fromRGB(255, 255, 255),
+    DescText = "Note by Owner of Overflow 4.0",
+    DescColor = Color3.fromRGB(100, 100, 100)
+}
+
+local Winter = {
+    Name = "I think it so Cold, Don't forget to bring a Blanket ^^",
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
@@ -413,7 +443,7 @@ local Spring = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local Summer = {
@@ -423,7 +453,7 @@ local Summer = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local Autumn = {
@@ -433,7 +463,7 @@ local Autumn = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local Winter = {
@@ -443,7 +473,7 @@ local Winter = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local Xmas = {
@@ -453,7 +483,7 @@ local Xmas = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local Hw = {
@@ -463,7 +493,7 @@ local Hw = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local newy = {
@@ -473,7 +503,7 @@ local newy = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "I Hope This Year It Good Year for You ^^",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local Easter = {
@@ -483,7 +513,7 @@ local Easter = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "Note by Owner of Overflow 4.0",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local Vl = {
@@ -493,7 +523,7 @@ local Vl = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "If You Love Someone Go Tell Him/Her, Don't be Shy ^^",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local songkran = {
@@ -502,8 +532,8 @@ local songkran = {
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
-    DescText = "TH(สุขสันต์วันสงกรานต์น่ะ เล่นน้ำให้สนุกล่ะระวังอุบัติเหตุด้วยน้า)",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescText = "สุขสันต์วันสงกรานต์น่ะ เล่นน้ำให้สนุกล่ะระวังอุบัติเหตุด้วยน้า",
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local inf = {
@@ -513,7 +543,7 @@ local inf = {
     StrokeColor = Color3.fromRGB(100, 100, 100),
     TitleColor = Color3.fromRGB(255, 255, 255),
     DescText = "If UI Bug then On and Off Again",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local warning = {
@@ -521,9 +551,9 @@ local warning = {
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
+    TitleColor = Color3.fromRGB(255, 64, 64),
     DescText = "Place.Id Not Found",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(255, 204, 0)
 }
 
 local lantern = {
@@ -531,9 +561,9 @@ local lantern = {
     Image = "rbxassetid://134204200422920",
     UiWidth = 300,
     StrokeColor = Color3.fromRGB(100, 100, 100),
-    TitleColor = Color3.fromRGB(255, 255, 255),
+    TitleColor = Color3.fromRGB(255, 204, 0),
     DescText = "Obtained from it Chapter",
-    DescColor = Color3.fromRGB(100, 100, 100)
+    DescColor = Color3.fromRGB(150, 150, 150)
 }
 
 local Blur = Instance.new("BlurEffect")
@@ -631,7 +661,7 @@ LocalPlayer.Chatted:Connect(function(message)
     end
 end)
 
-g("M3", "rbxassetid://91657751110478", 3)
-g("M1", "rbxassetid://70726839693177", 3)
+g("M3", "rbxassetid://91657751110478", 2)
+g("M1", "rbxassetid://70726839693177", 2)
 clearBlur(1)
-createNotification(songkran, 2.5)
+createNotification(warning, 2.5)

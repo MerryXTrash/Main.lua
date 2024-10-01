@@ -311,6 +311,7 @@ local function checkHolidays()
         createNotification(cyear, 2.5)
     else
         createNotification(Normal, 2.5)
+        createNotification(inf, 2.5)
     end
 end
 
@@ -340,4 +341,3 @@ g("M3", "rbxassetid://91657751110478", 1.5)
 g("M1", "rbxassetid://70726839693177", 1.5)
 clearBlur(1)
 checkHolidays()
-createNotification(inf, 2.5)

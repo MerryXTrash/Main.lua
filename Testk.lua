@@ -1,120 +1,7 @@
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-
-local XameitzFrame = Instance.new("ScreenGui")
-XameitzFrame.Name = "XameitzFrame"
-XameitzFrame.Parent = game.CoreGui
-XameitzFrame.ZIndexBehavior = Enum.ZIndexBehavior.Global
-
-local function createNotification(config, duration)
-    if XameitzFrame:FindFirstChild("Frame") then
-        XameitzFrame.Frame:Destroy()
-    end
-
-    local All = {
-        ["Stroke"] = config.StrokeColor or Color3.fromRGB(75, 0, 130),
-        ["TitleColor"] = config.TitleColor or Color3.fromRGB(255, 255, 255)  -- Default to white
-    }
-
-    local Frame = Instance.new("Frame")
-    Frame.Name = "Frame"
-    Frame.Active = true
-    Frame.Parent = XameitzFrame
-    Frame.Draggable = true
-    Frame.Size = UDim2.new(0, config.UiWidth, 0, 60)
-    Frame.Position = UDim2.new(0.5, -config.UiWidth / 2, 0, -60) -- Start position above the center
-
-    -- Tween the frame to slide down into view
-    Frame:TweenPosition(UDim2.new(0.5, -config.UiWidth / 2, 0, 10), "Out", "Quad", 0.4, true)
-
-    -- Create the UIGradient for the Frame
-    local gradient = Instance.new("UIGradient")
-    gradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 30, 30)),  -- Light gray
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(75, 75, 75))   -- Dark gray
-    })
-    gradient.Parent = Frame
-
-    local stroke = Instance.new("UIStroke")
-    stroke.Color = All["Stroke"]
-    stroke.Thickness = 2.5
-    stroke.Transparency = 0
-    stroke.Parent = Frame
-
-    local Image = Instance.new("ImageLabel")
-    Image.Name = "Icon"
-    Image.Parent = Frame
-    Image.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Image.BackgroundTransparency = 1.0
-    Image.Position = UDim2.new(0, 8, 0, 8)
-    Image.Size = UDim2.new(0, 45, 0, 45)
-    Image.Image = config.Image
-
-    -- Add UICorner to ImageLabel for rounded corners
-    local ImageCorner = Instance.new("UICorner")
-    ImageCorner.CornerRadius = UDim.new(0, 5) -- Rounded corners
-    ImageCorner.Parent = Image
-
-    -- Tween the ImageLabel when the notification appears
-    Image:TweenSize(UDim2.new(0, 50, 0, 50), "Out", "Quad", 0.4, true)
-    Image:TweenPosition(UDim2.new(0, 5, 0, 5), "Out", "Quad", 0.4, true)
-
-    -- Correcting the warning image setup
-    local warning = Instance.new("ImageLabel")
-    warning.Parent = Frame
-    warning.Image = "rbxassetid://96009740357973"  -- Corrected asset format
-    warning.BackgroundTransparency = 1.0  -- Adjust transparency properly
-    warning.Position = UDim2.new(1, -30, 0, 10)
-    warning.Size = UDim2.new(0, 20, 0, 20)  -- Ensure correct size
-
-    local Title = Instance.new("TextLabel")
-    Title.Parent = Frame
-    Title.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
-    Title.BackgroundTransparency = 1.0
-    Title.Position = UDim2.new(0, 60, 0, 20) -- Increase X position for more distance
-    Title.Size = UDim2.new(0, config.UiWidth - 60, 0, 20)
-    Title.Font = Enum.Font.GothamBold
-    Title.Text = config.Name
-    Title.TextColor3 = All["TitleColor"]  -- Use dynamic title color from config
-    Title.TextSize = 16.0
-    Title.TextXAlignment = Enum.TextXAlignment.Left
-
-    local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, 5)
-    UICorner.Parent = Frame
-
-    if duration then
-        delay(duration, function()
-            if Frame then
-                -- Tween transparency of all elements to fade out
-                for i = 0, 1, 0.1 do
-                    Image.BackgroundTransparency = i
-                    warning.ImageTransparency = i  -- Fading out the warning icon
-                    Image.ImageTransparency = i
-                    Frame.BackgroundTransparency = i
-                    Title.TextTransparency = i
-                    stroke.Transparency = i
-                    gradient.Transparency = NumberSequence.new(i) -- Tweening the gradient transparency
-                    wait(0.1) -- Adjust for speed of fade
-                end
-
-                -- Finally, destroy the frame
-                Frame:Destroy()
-            end
-        end)
-    end
-end
-
--- Sample config with TitleColor added and no description
-local _Start = {
-    Name = "Today is a good day for you",
-    Image = "rbxassetid://134204200422920",
-    UiWidth = 300,
-    StrokeColor = Color3.fromRGB(100, 100, 100),   -- Stroke color
-    TitleColor = Color3.fromRGB(255, 0, 0)  -- Red title color
-}
-
+    
 local function createFPSCounter()
     local player = game.Players.LocalPlayer
     local screenGui = Instance.new("ScreenGui")
@@ -278,8 +165,6 @@ local function op()
             Uiz:Destroy()
             clearBlur(1)
             loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/NormalVersion.lua"))()
-            createNotification(_Start, 2.5)
-
         end
     end)
 
@@ -299,7 +184,6 @@ local function op()
             Uiz:Destroy()
             clearBlur(1)
             loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/TheMimicNew/refs/heads/main/ExtraVersion.lua"))()
-            createNotification(_Start, 2.5)
         end
     end)
 end

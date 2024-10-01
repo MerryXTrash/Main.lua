@@ -321,28 +321,10 @@ for _, player in pairs(game.Players:GetPlayers()) do
 end
 end
 
-local FPSz = game:GetService("CoreGui").FPSnum:FindFirstChild("TextLabel")
-
-function ffalse()
-if FPSz then
-    FPSz.Visble = false
-    end
-end
-
-function ftrue()
-if FPSz then
-    FPSz.Visible = true
-    end
-end
-
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
-LocalPlayer.Chatted:Connect(function(message)
-    if message == "/Show" or message == "/show" then
-        g("M2", "rbxassetid://123230083738383", 7)
-        clearBlur(1)
-    elocal TweenService = game:GetService("TweenService")
+
 local Lighting = game:GetService("Lighting")
 local player = game.Players.LocalPlayer
 
@@ -665,20 +647,6 @@ for _, player in pairs(game.Players:GetPlayers()) do
 end
 end
 
-local FPSz = game:GetService("CoreGui").FPSnum:FindFirstChild("TextLabel")
-
-function ffalse()
-if FPSz then
-    FPSz.Visble = false
-    end
-end
-
-function ftrue()
-if FPSz then
-    FPSz.Visible = true
-    end
-end
-
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
@@ -686,25 +654,6 @@ LocalPlayer.Chatted:Connect(function(message)
     if message == "/Show" or message == "/show" then
         g("M2", "rbxassetid://123230083738383", 7)
         clearBlur(1)
-    elseif message == "/fps(true)" then
-        ftrue()
-    elseif message == "/fps(false)" then
-        ffalse()
-    elseif message == "/Copy" or message == "/copy" then
-        copy()
-    elseif message == "/Antilag" or message == "/antilag" then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Antilag.lua"))()
-    end
-end)
-
-g("M3", "rbxassetid://91657751110478", 3)
-g("M1", "rbxassetid://70726839693177", 3)
-clearBlur(1)
-createNotification(Spring, 2.5)
-lseif message == "/fps(true)" then
-        ftrue()
-    elseif message == "/fps(false)" then
-        ffalse()
     elseif message == "/Copy" or message == "/copy" then
         copy()
     elseif message == "/Antilag" or message == "/antilag" then

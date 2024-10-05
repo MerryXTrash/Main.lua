@@ -1,1 +1,38 @@
-loadstring(game:HttpGet('https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Checkgame.lua40'))()
+start game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-511.869232, 22.302742, -45.1528854, 0.997435391, 0, -0.0715723634, 0, 1, 0, 0.0715723634, 0, 0.997435391)
+door 1 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3573.71997, 602.739197, 888.569031, -0.0237644427, 0, 0.999717593, 0, 1, 0, -0.999717593, 0, -0.0237644427)
+door 2 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3602.33984, 602.764954, 765.950867, 0.0132561736, 0, 0.999912143, 0, 1, 0, -0.999912143, 0, 0.0132561736)
+final game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3953.24072, 594.218933, 321.80304, 0.999459922, 0, -0.032861691, 0, 1, 0, 0.032861691, 0, 0.999459922)
+bypasspoint game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4410.72949, 711.546692, 1177.95691, 0.0840891823, 0, 0.996458232, 0, 1, 0, -0.996458232, 0, 0.0840891823)
+talk point game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4442.72803, 711.371887, 1162.86707, -0.146179333, 0, 0.989258111, 0, 1, 0, -0.989258111, 0, -0.146179333)
+
+game.workspace.asina
+ถ้วย = RestaurantRoom.chair
+RestaurantRoom.Meat
+EndRoom.lanternceiling.Coral9_G1
+
+room skeleton star -4556.46826171875, 781.5670776367188, -36.42597198486328
+
+final sk game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-5364.40918, 682.05365, 30.630415, 0.317401469, 0, 0.948291242, 0, 1, 0, -0.948291242, 0, 0.317401469)
+
+laver game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10220.7217, -81.4012604, -60.0078125, -0.0583311878, 0, 0.998297274, 0, 1, 0, -0.998297274, 0, -0.0583311878)
+
+lever = Levers.Lever/mestpart tran0
+final game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10060.3164, 484.103455, -8.72736645, -0.0977359191, 0, -0.995212376, 0, 1, 0, 0.995212376, 0, -0.0977359191)
+
+cook start game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2582.31445, 968.246521, -4920.55469, -0.0169319678, 0, 0.999856651, 0, 1, 0, -0.999856651, 0, -0.0169319678)
+
+Chikcken.Handle
+Wrapped Meat.Handle
+Cheese.Handle
+
+Sausage.Handle
+Ham.Handle
+
+Eyeball.Handle
+Spaghetti.Handle
+
+skipto puzzle part -4186.85888671875, 624.788330078125, -967.7593383789062
+
+safe 2 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4051.2583, 666.314392, -951.458252, 0.0708887577, 0, 0.997484207, 0, 1, 0, -0.997484207, 0, 0.0708887577)
+
+upper safe game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4089.20483, 743.817444, -960.496887, -0.0886541307, 0, -0.996062458, 0, 1, 0, 0.996062458, 0, -0.0886541307)

@@ -226,101 +226,83 @@ local function clearBlur(duration)
     blurScreen(0, duration)
 end
 
-
--- Create ScreenGui
 local screenGui = Instance.new("ScreenGui")
-screenGui.IgnoreGuiInset = true  -- Ignore GUI Inset (Safe Area) and display as full screen
-screenGui.Parent = game.CoreGui  -- Parent it to the player's PlayerGui
+screenGui.IgnoreGuiInset = true
+screenGui.Parent = game.CoreGui
 
--- Create ImageLabel (Guide)
+local blackOverlay = Instance.new("Frame")
+blackOverlay.Size = UDim2.new(1, 0, 1, 0)
+blackOverlay.Position = UDim2.new(0, 0, 0, 0)
+blackOverlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+blackOverlay.BackgroundTransparency = 0.4
+blackOverlay.ZIndex = -1
+blackOverlay.Parent = screenGui
+
 local Guide = Instance.new("ImageLabel")
-Guide.Size = UDim2.new(0, 360, 0, 250)  -- Size of the guide
+Guide.Size = UDim2.new(0, 360, 0, 250)
 Guide.Position = UDim2.new(0.5, 0, 0.5, 0)
 Guide.BackgroundTransparency = 1
 Guide.AnchorPoint = Vector2.new(0.5, 0.5)
-Guide.Image = "rbxassetid://136864123005759"  -- Replace with your image ID
-Guide.Parent = screenGui  -- Parent the ImageLabel to the ScreenGui
+Guide.Image = "rbxassetid://136864123005759"
+Guide.Parent = screenGui
 
--- Create DropShadow for the Guide Image
 local DropShadow = Instance.new("ImageLabel")
 DropShadow.Name = "DropShadow"
-DropShadow.Parent = screenGui  -- Set the parent to the ScreenGui
+DropShadow.Parent = screenGui
 DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
 DropShadow.BackgroundTransparency = 1.000
 DropShadow.BorderSizePixel = 0
-DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0) -- Center the shadow
-DropShadow.Size = UDim2.new(0, 400, 0, 280) -- Make the shadow 20 pixels larger than the image
+DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+DropShadow.Size = UDim2.new(0, 400, 0, 280)
 DropShadow.ZIndex = 0
-DropShadow.Image = "rbxassetid://6015897843" -- Shadow image ID
-DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0) -- Shadow color
-DropShadow.ImageTransparency = 0.500 -- Transparency level of the shadow
+DropShadow.Image = "rbxassetid://6015897843"
+DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+DropShadow.ImageTransparency = 0.500
 DropShadow.ScaleType = Enum.ScaleType.Slice
 DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
 DropShadow.Rotation = 0.01
 
--- Create a loading bar frame (background for the loading bar)
 local loadingBarBackground = Instance.new("Frame")
-loadingBarBackground.Size = UDim2.new(0, 200, 0, 10)  -- Height of 10
-loadingBarBackground.Position = UDim2.new(0.5, 0, 0.75, 0)  -- Adjust Y position
+loadingBarBackground.Size = UDim2.new(0, 200, 0, 10)
+loadingBarBackground.Position = UDim2.new(0.5, 0, 0.75, 0)
 loadingBarBackground.AnchorPoint = Vector2.new(0.5, 0.5)
-loadingBarBackground.BackgroundColor3 = Color3.fromRGB(30, 30, 30)  -- Dark gray background color
-loadingBarBackground.Parent = Guide  -- Parent to the ImageLabel
+loadingBarBackground.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+loadingBarBackground.Parent = Guide
 
--- Create the loading bar (actual progress)
 local loadingBar = Instance.new("Frame")
-loadingBar.Size = UDim2.new(0, 0, 1, 0)  -- Start with 0 width, maintain full height
-loadingBar.Position = UDim2.new(0, 0, 0, 0)  -- Align to the left inside the background
-loadingBar.BackgroundColor3 = Color3.fromRGB(173, 216, 230)  -- Light blue bar color
-loadingBar.Parent = loadingBarBackground  -- Parent the loading bar to the background
+loadingBar.Size = UDim2.new(0, 0, 1, 0)
+loadingBar.Position = UDim2.new(0, 0, 0, 0)
+loadingBar.BackgroundColor3 = Color3.fromRGB(173, 216, 230)
+loadingBar.Parent = loadingBarBackground
 
--- Create UIGradient for the loading bar
 local uiGradient = Instance.new("UIGradient")
 uiGradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(56, 182, 255)),  -- Point1
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(85, 0, 255))    -- Point2
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(56, 182, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(85, 0, 255))
 }
-uiGradient.Parent = loadingBar  -- Parent the gradient to the loading bar
+uiGradient.Parent = loadingBar
 
--- Function to simulate loading
 local function simulateLoading()
-    for i = 1, 100 do  -- Loop 100 times to simulate loading progress
-        loadingBar.Size = UDim2.new(i / 100, 0, 1, 0)  -- Increment the width of the bar
-        wait(0.05)  -- Wait for 0.05 seconds to simulate loading time
+    for i = 1, 100 do
+        loadingBar.Size = UDim2.new(i / 100, 0, 1, 0)
+        wait(0.05)
     end
+end
+
+local function tweenFadeOut()
+    local tweenService = game:GetService("TweenService")
     
-    loadingBarBackground:Destroy()  -- Destroy the loading bar background immediately after loading is complete
+    local fadeOutTween = tweenService:Create(blackOverlay, TweenInfo.new(1), {BackgroundTransparency = 1})
+    local fadeInTween = tweenService:Create(Guide, TweenInfo.new(1), {BackgroundTransparency = 1})
+
+    fadeOutTween:Play()
+    fadeInTween:Play()
+    
+    fadeOutTween.Completed:Wait()
+    fadeInTween.Completed:Wait()
+
+    screenGui:Destroy()
 end
-
--- Tween the UIGradient rotation smoothly from 0 to 360 degrees
-local function tweenGradientRotation()
-    for angle = 120, 360 do  -- Rotate continuously while loading
-        uiGradient.Rotation = angle  -- Set the gradient rotation
-        wait(0.02)  -- Adjust the wait time for smoothness
-    end
-end
-
--- Tween the ImageLabel and DropShadow to shrink to the center of the screen and destroy them
-local function shrinkImageToCenter()
-    -- Tween the Guide image to shrink
-    Guide:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, 0.5, true)
-    Guide.Position = UDim2.new(0.5, 0, 0.5, 0)  -- Center position
-
-    -- Tween the DropShadow to shrink
-    DropShadow:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, 0.5, true)
-    DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)  -- Center position
-
-    wait(0.5)  -- Wait for the tween to complete before destroying
-    Guide:Destroy()  -- Destroy the image
-    DropShadow:Destroy()  -- Destroy the drop shadow
-end
-
--- Start the loading process and gradient rotation
-spawn(function() 
-    simulateLoading()  -- Start loading in a separate thread
-    shrinkImageToCenter()  -- Call the shrink function to shrink to the center after loading
-end)
-
-  -- Start the gradient rotation
 
 local function copy()
 local playerBackpack = game.Players.LocalPlayer.Backpack
@@ -387,6 +369,7 @@ LocalPlayer.Chatted:Connect(function(message)
     end
 end)
 
-tweenGradientRotation()
+simulateLoading()
+tweenFadeOut()
 clearBlur(1)
 checkHolidays()

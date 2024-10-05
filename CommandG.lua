@@ -234,7 +234,7 @@ local backgroundFrame = Instance.new("Frame")
 backgroundFrame.Size = UDim2.new(1, 0, 1, 0)
 backgroundFrame.Position = UDim2.new(0, 0, 0, 0)
 backgroundFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-backgroundFrame.BackgroundTransparency = 0.2
+backgroundFrame.BackgroundTransparency = 0.1
 backgroundFrame.Parent = screenGui
 
 local Guide = Instance.new("ImageLabel")
@@ -282,9 +282,9 @@ uiGradient.Color = ColorSequence.new{
 uiGradient.Parent = loadingBar
 
 local function simulateLoading()
-    for i = 1, 100 do
-        loadingBar.Size = UDim2.new(i / 100, 0, 1, 0)
-        wait(0.02)
+    for i = 1, 150 do
+        loadingBar.Size = UDim2.new(i / 150, 0, 1, 0)
+        wait(0.005)
     end
 
     loadingBarBackground:Destroy()

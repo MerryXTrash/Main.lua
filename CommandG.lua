@@ -226,51 +226,101 @@ local function clearBlur(duration)
     blurScreen(0, duration)
 end
 
-local TweenService = game:GetService("TweenService")
-local Players = game:GetService("Players")
 
--- สร้าง ScreenGui
-local player = Players.LocalPlayer
+-- Create ScreenGui
 local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.CoreGui
-screenGui.Name = "Guide"
+screenGui.IgnoreGuiInset = true  -- Ignore GUI Inset (Safe Area) and display as full screen
+screenGui.Parent = game.CorGui  -- Parent it to the player's PlayerGui
 
-function g(Name, id, Time)
-local guide = Instance.new("ImageLabel")
-guide.Parent = screenGui
-guide.Name = Name -- วาง ImageLabel ใน ScreenGui
-guide.Size = UDim2.new(0, 0, 0, 0) -- ขนาดเริ่มต้นเล็ก
-guide.Position = UDim2.new(0.5, 0, 0.5, 0) -- ตำแหน่งกลางหน้าจอ
-guide.Image = id -- ตั้งค่า Image ID
-guide.AnchorPoint = Vector2.new(0.5, 0.5) -- ให้ตำแหน่งอยู่ที่กลาง
-guide.BackgroundTransparency = 1 -- ตั้งค่าความโปร่งใสของพื้นหลังเป็น 1
+-- Create ImageLabel (Guide)
+local Guide = Instance.new("ImageLabel")
+Guide.Size = UDim2.new(0, 360, 0, 250)  -- Size of the guide
+Guide.Position = UDim2.new(0.5, 0, 0.5, 0)
+Guide.BackgroundTransparency = 1
+Guide.AnchorPoint = Vector2.new(0.5, 0.5)
+Guide.Image = "rbxassetid://136864123005759"  -- Replace with your image ID
+Guide.Parent = screenGui  -- Parent the ImageLabel to the ScreenGui
 
--- เพิ่ม UICorner เพื่อให้มุมโค้ง
-local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 15) -- ตั้งค่ารัศมีของมุม
-corner.Parent = guide -- เพิ่ม UICorner ลงใน ImageLabel
+-- Create DropShadow for the Guide Image
+local DropShadow = Instance.new("ImageLabel")
+DropShadow.Name = "DropShadow"
+DropShadow.Parent = screenGui  -- Set the parent to the ScreenGui
+DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+DropShadow.BackgroundTransparency = 1.000
+DropShadow.BorderSizePixel = 0
+DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0) -- Center the shadow
+DropShadow.Size = UDim2.new(0, 400, 0, 280) -- Make the shadow 20 pixels larger than the image
+DropShadow.ZIndex = 0
+DropShadow.Image = "rbxassetid://6015897843" -- Shadow image ID
+DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0) -- Shadow color
+DropShadow.ImageTransparency = 0.500 -- Transparency level of the shadow
+DropShadow.ScaleType = Enum.ScaleType.Slice
+DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+DropShadow.Rotation = 0.01
 
--- สร้างฟังก์ชันสำหรับการแสดงและทำลาย guide
-    local expandTween = TweenService:Create(guide, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-        Size = UDim2.new(0, 400, 0, 200) -- ขนาดสุดท้าย
-    })
+-- Create a loading bar frame (background for the loading bar)
+local loadingBarBackground = Instance.new("Frame")
+loadingBarBackground.Size = UDim2.new(0, 200, 0, 10)  -- Height of 10
+loadingBarBackground.Position = UDim2.new(0.5, 0, 0.75, 0)  -- Adjust Y position
+loadingBarBackground.AnchorPoint = Vector2.new(0.5, 0.5)
+loadingBarBackground.BackgroundColor3 = Color3.fromRGB(30, 30, 30)  -- Dark gray background color
+loadingBarBackground.Parent = Guide  -- Parent to the ImageLabel
+
+-- Create the loading bar (actual progress)
+local loadingBar = Instance.new("Frame")
+loadingBar.Size = UDim2.new(0, 0, 1, 0)  -- Start with 0 width, maintain full height
+loadingBar.Position = UDim2.new(0, 0, 0, 0)  -- Align to the left inside the background
+loadingBar.BackgroundColor3 = Color3.fromRGB(173, 216, 230)  -- Light blue bar color
+loadingBar.Parent = loadingBarBackground  -- Parent the loading bar to the background
+
+-- Create UIGradient for the loading bar
+local uiGradient = Instance.new("UIGradient")
+uiGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(56, 182, 255)),  -- Point1
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(85, 0, 255))    -- Point2
+}
+uiGradient.Parent = loadingBar  -- Parent the gradient to the loading bar
+
+-- Function to simulate loading
+local function simulateLoading()
+    for i = 1, 100 do  -- Loop 100 times to simulate loading progress
+        loadingBar.Size = UDim2.new(i / 100, 0, 1, 0)  -- Increment the width of the bar
+        wait(0.05)  -- Wait for 0.05 seconds to simulate loading time
+    end
     
-    blurScreen(24, 1)
-    expandTween:Play()
-    expandTween.Completed:Wait() -- รอให้การ tween เสร็จสิ้น
-
-    wait(Time) -- รอ 2 วินาทีก่อนทำการย่อ
-
-    -- Tween ย่อลง
-    local shrinkTween = TweenService:Create(guide, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-        Size = UDim2.new(0, 0, 0, 0) -- ขนาดสุดท้ายที่ย่อ
-    })
-    
-    shrinkTween:Play()
-    shrinkTween.Completed:Wait()
-
-    guide:Destroy()
+    loadingBarBackground:Destroy()  -- Destroy the loading bar background immediately after loading is complete
 end
+
+-- Tween the UIGradient rotation smoothly from 0 to 360 degrees
+local function tweenGradientRotation()
+    for angle = 120, 360 do  -- Rotate continuously while loading
+        uiGradient.Rotation = angle  -- Set the gradient rotation
+        wait(0.02)  -- Adjust the wait time for smoothness
+    end
+end
+
+-- Tween the ImageLabel and DropShadow to shrink to the center of the screen and destroy them
+local function shrinkImageToCenter()
+    -- Tween the Guide image to shrink
+    Guide:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, 0.5, true)
+    Guide.Position = UDim2.new(0.5, 0, 0.5, 0)  -- Center position
+
+    -- Tween the DropShadow to shrink
+    DropShadow:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Sine, 0.5, true)
+    DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)  -- Center position
+
+    wait(0.5)  -- Wait for the tween to complete before destroying
+    Guide:Destroy()  -- Destroy the image
+    DropShadow:Destroy()  -- Destroy the drop shadow
+end
+
+-- Start the loading process and gradient rotation
+spawn(function() 
+    simulateLoading()  -- Start loading in a separate thread
+    shrinkImageToCenter()  -- Call the shrink function to shrink to the center after loading
+end)
+
+  -- Start the gradient rotation
 
 local function copy()
 local playerBackpack = game.Players.LocalPlayer.Backpack
@@ -337,7 +387,6 @@ LocalPlayer.Chatted:Connect(function(message)
     end
 end)
 
-g("M3", "rbxassetid://91657751110478", 1.5)
-g("M1", "rbxassetid://70726839693177", 1.5)
+tweenGradientRotation()
 clearBlur(1)
 checkHolidays()

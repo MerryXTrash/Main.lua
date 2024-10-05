@@ -230,13 +230,12 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.IgnoreGuiInset = true
 screenGui.Parent = game.CoreGui
 
-local blackOverlay = Instance.new("Frame")
-blackOverlay.Size = UDim2.new(1, 0, 1, 0)
-blackOverlay.Position = UDim2.new(0, 0, 0, 0)
-blackOverlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-blackOverlay.BackgroundTransparency = 0.4
-blackOverlay.ZIndex = -1
-blackOverlay.Parent = screenGui
+local backgroundFrame = Instance.new("Frame")
+backgroundFrame.Size = UDim2.new(1, 0, 1, 0)
+backgroundFrame.Position = UDim2.new(0, 0, 0, 0)
+backgroundFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+backgroundFrame.BackgroundTransparency = 0.2
+backgroundFrame.Parent = screenGui
 
 local Guide = Instance.new("ImageLabel")
 Guide.Size = UDim2.new(0, 360, 0, 250)
@@ -285,23 +284,45 @@ uiGradient.Parent = loadingBar
 local function simulateLoading()
     for i = 1, 100 do
         loadingBar.Size = UDim2.new(i / 100, 0, 1, 0)
-        wait(0.05)
+        wait(0.02)
     end
+
+    loadingBarBackground:Destroy()
+
+    local tweenService = game:GetService("TweenService")
+    local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+
+    local guideTween = tweenService:Create(Guide, tweenInfo, {
+        Size = UDim2.new(0, 0, 0, 0),
+        Position = UDim2.new(0.5, 0, 0.5, 0)
+    })
+
+    local dropShadowTween = tweenService:Create(DropShadow, tweenInfo, {
+        Size = UDim2.new(0, 0, 0, 0),
+        Position = UDim2.new(0.5, 0, 0.5, 0)
+    })
+
+    local backgroundTween = tweenService:Create(backgroundFrame, tweenInfo, {
+        BackgroundTransparency = 1
+    })
+
+    guideTween:Play()
+    dropShadowTween:Play()
+    backgroundTween:Play()
+
+    guideTween.Completed:Wait()
+    Guide:Destroy()
+    DropShadow:Destroy()
+    backgroundFrame:Destroy()
 end
 
-local function tweenFadeOut()
-    local tweenService = game:GetService("TweenService")
-    
-    local fadeOutTween = tweenService:Create(blackOverlay, TweenInfo.new(1), {BackgroundTransparency = 1})
-    local fadeInTween = tweenService:Create(Guide, TweenInfo.new(1), {BackgroundTransparency = 1})
-
-    fadeOutTween:Play()
-    fadeInTween:Play()
-    
-    fadeOutTween.Completed:Wait()
-    fadeInTween.Completed:Wait()
-
-    screenGui:Destroy()
+local function tweenGradientRotation()
+    while true do
+        for angle = 0, 360 do
+            uiGradient.Rotation = angle
+            wait(0.02)
+        end
+    end
 end
 
 local function copy()
@@ -370,6 +391,6 @@ LocalPlayer.Chatted:Connect(function(message)
 end)
 
 simulateLoading()
-tweenFadeOut()
+tweenGradientRotation()
 clearBlur(1)
 checkHolidays()

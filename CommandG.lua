@@ -230,7 +230,7 @@ end
 -- Create ScreenGui
 local screenGui = Instance.new("ScreenGui")
 screenGui.IgnoreGuiInset = true  -- Ignore GUI Inset (Safe Area) and display as full screen
-screenGui.Parent = game.CorGui  -- Parent it to the player's PlayerGui
+screenGui.Parent = game.CoreGui  -- Parent it to the player's PlayerGui
 
 -- Create ImageLabel (Guide)
 local Guide = Instance.new("ImageLabel")

@@ -16,7 +16,7 @@ local function createFPSDisplay()
 
     while true do
         local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait())
-        fpsLabel.Text = "FPS: " .. tostring(fps)
+        fpsLabel.Text = "FPS : " .. tostring(fps)
 
         if fps <= 15 then
             fpsLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
@@ -28,7 +28,7 @@ local function createFPSDisplay()
             fpsLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
         end
 
-        wait(0.1)  -- Added a small wait to reduce the update frequency
+        wait(0.5)  -- Adjusted wait time for better performance
     end
 end
 
@@ -66,5 +66,5 @@ local success, err = pcall(function()
 end)
 
 if not success then
-    warn("An error occurred: " .. err)  -- Prints the error to the output console
+    warn("An error occurred while loading the script: " .. err)  -- Enhanced error message
 end

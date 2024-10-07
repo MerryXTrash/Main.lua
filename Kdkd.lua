@@ -59,4 +59,12 @@ else
     print("ShowFPS is disabled.")
 end
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Checkgame.lua40"))()
+local success, err = pcall(function()
+    local scriptToLoad = game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Checkgame.lua40")
+    local loadedScript = loadstring(scriptToLoad)
+    loadedScript()  -- Execute the loaded script
+end)
+
+if not success then
+    warn("An error occurred: " .. err)  -- Prints the error to the output console
+end

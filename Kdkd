@@ -16,40 +16,44 @@ local function createFPSDisplay()
 
     while true do
         local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait())
-        fpsLabel.Text = "FPS : " .. tostring(fps)
+        fpsLabel.Text = "FPS: " .. tostring(fps)
 
         if fps <= 15 then
             fpsLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
-        elseif fps >= 16 and fps <= 30 then
+        elseif fps <= 30 then
             fpsLabel.TextColor3 = Color3.fromRGB(255, 165, 0)
-        elseif fps >= 31 and fps <= 49 then
+        elseif fps <= 49 then
             fpsLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
-        elseif fps >= 50 then
+        else
             fpsLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
         end
-        
-        wait(0.05)
+
+        wait(0.1)  -- Added a small wait to reduce the update frequency
     end
 end
 
 if getgenv().ShowFPS then
-createFPSDisplay()
+    createFPSDisplay()
 end
 
-if getgenv().Fullbright then
+local function setFullbright()
     local Lighting = game.Lighting
     Lighting.ClockTime = 12
     Lighting.Brightness = 2
     Lighting.FogEnd = 100000
     Lighting.GlobalShadows = false
     Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
-    wait(0.1)
-    local Lightingz = game:GetService("Lighting") -- Corrected assignment here
-    for i, v in pairs(Lightingz:GetChildren()) do
-        if v.ClassName == "Atmosphere" then
-            v:Destroy() -- Added a colon for method call
+
+    for _, v in pairs(Lighting:GetChildren()) do
+        if v:IsA("Atmosphere") then
+            v:Destroy()
         end
     end
 end
 
+if getgenv().Fullbright then
+    setFullbright()
+end
+
+-- Ensure the URL is trusted before using loadstring
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Checkgame.lua40"))()

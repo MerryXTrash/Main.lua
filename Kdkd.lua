@@ -32,10 +32,6 @@ local function createFPSDisplay()
     end
 end
 
-if getgenv().ShowFPS then
-    createFPSDisplay()
-end
-
 local function setFullbright()
     local Lighting = game.Lighting
     Lighting.ClockTime = 12
@@ -51,9 +47,16 @@ local function setFullbright()
     end
 end
 
-if getgenv().Fullbright then
+if getgenv().Config.Fullbright then
     setFullbright()
+else
+    print("Fullbright is disabled.")
 end
 
--- Ensure the URL is trusted before using loadstring
+if getgenv().Config.ShowFPS then
+    createFPSDisplay()
+else
+    print("ShowFPS is disabled.")
+end
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Checkgame.lua40"))()

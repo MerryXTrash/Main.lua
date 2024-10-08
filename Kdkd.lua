@@ -1,3 +1,14 @@
+local success, err = pcall(function()
+    local scriptToLoad = game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Checkgame.lua40")
+    local loadedScript = loadstring(scriptToLoad)
+    loadedScript()  -- Execute the loaded script
+end)
+
+if not success then
+    warn("An error occurred while loading the script: " .. err)  -- Enhanced error message
+end
+
+
 local function createFPSDisplay()
     local screenGui = Instance.new("ScreenGui")
     screenGui.Parent = game.CoreGui
@@ -57,14 +68,4 @@ if getgenv().Config.ShowFPS then
     createFPSDisplay()
 else
     print("ShowFPS is disabled.")
-end
-
-local success, err = pcall(function()
-    local scriptToLoad = game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Checkgame.lua40")
-    local loadedScript = loadstring(scriptToLoad)
-    loadedScript()  -- Execute the loaded script
-end)
-
-if not success then
-    warn("An error occurred while loading the script: " .. err)  -- Enhanced error message
 end

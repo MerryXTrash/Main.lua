@@ -167,8 +167,8 @@ uiGradient.Parent = loadingBar
 
 local function simulateLoading()
     blurScreen(24, 1)
-    for i = 1, 150 do
-        loadingBar.Size = UDim2.new(i / 150, 0, 1, 0)
+    for i = 1, 50 do
+        loadingBar.Size = UDim2.new(i / 50, 0, 1, 0)
         wait(0.005)
     end
     loadingBarBackground:Destroy()

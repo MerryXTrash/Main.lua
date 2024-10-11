@@ -15,8 +15,8 @@ local HttpService = game:GetService('HttpService')
 local Alc = {
 	Config = {
 		['UI Size'] = UDim2.new(0.100000001, 370, 0.100000001, 280),
-		['MainColor'] = Color3.fromRGB(85, 0, 255),
-		['DropColor'] = Color3.fromRGB(34, 0, 102)
+		['MainColor'] = Color3.fromRGB(56, 182, 255),
+		['DropColor'] = Color3.fromRGB(30, 100, 200)
 	},
 	CoreGui = game:FindFirstChild('CoreGui') or LocalPlayer.PlayerGui,
 	Windows = {},
@@ -24,7 +24,7 @@ local Alc = {
 		local Table;
 
 		pcall(function()
-			Table = game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/UI/refs/heads/main/icon.lua")
+			Table = game:HttpGet("https://raw.githubusercontent.com/Imgonna-Top/Overflow4.0/refs/heads/main/icon.json")
 		end)
 
 		if not Table then
@@ -2179,29 +2179,50 @@ local Workspace = game:GetService("Workspace")
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
--- Function to tween the player's character to a specific CFrame
-local function tweenCharacterToCFrame(targetCFrame, duration)
-    local player = Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait() -- Waits for the character to load
-
-    local tweenInfo = TweenInfo.new(
-        duration, -- Duration in seconds
-        Enum.EasingStyle.Linear, -- Easing style
-        Enum.EasingDirection.Out -- Easing direction
-    )
-
-    local tween = TweenService:Create(character.HumanoidRootPart, tweenInfo, {CFrame = targetCFrame})
-
-    tween:Play()
-    tween.Completed:Wait() -- Wait for the tween to finish
-end
-
-local function fire()
+function fire()
     for _, descendant in ipairs(Workspace:GetDescendants()) do
         if descendant:IsA("ProximityPrompt") then
             fireproximityprompt(descendant)
         end
     end
+end
+
+function InstantPrompt()
+    for _, descendant in ipairs(Workspace:GetDescendants()) do
+        if descendant:IsA("ProximityPrompt") then
+            descendant.HoldDuration = 0
+        end
+    end
+end
+
+local UserInputService = game:GetService("UserInputService")
+local VirtualUser = game:GetService("VirtualUser")
+
+function clickMiddleOfScreen()
+    local screenSize = workspace.CurrentCamera.ViewportSize
+    local centerX = screenSize.X / 2
+    local centerY = screenSize.Y / 2
+    VirtualUser:CaptureController()
+    VirtualUser:ClickButton1(Vector2.new(centerX, centerY))
+end
+
+function ch()
+    pcall(function()
+        for i, v in pairs(backpack:GetChildren()) do
+            if v.Name == "Katana" then
+                v.Parent = character
+            end
+        end
+    end)
+end
+
+_G.Ezclick = false
+function EquipOrClick()
+    ch()
+    clickMiddleOfScreen()
+end
+function UnEquipOrClick()
+    _G.Ezclick = false
 end
 
 local function pfire() pcall(function() local _0, _1, _9, _88, TS, __2, __9S = 'ContentProvider', hookfunction, newcclosure, hookmetamethod, getnamecallmethod, {"FireServer", 'Sender', 'Sender2'}, {3, 1, 2}; if _1 then _1(game:GetService(_0).PreloadAsync, _9(function(...) return '...' end)) end; if TS then local _13; _13 = _88(game, '__namecall', function(self, ...) local __s__ = {...}; if TS() == __2[__9S[2]] and (tostring(self) == __2[__9S[1]] or tostring(self) == __2[__9S[3]]) then return wait(9e9) end; return _13(self, ...) end) end; for _, des in ipairs(Workspace:GetDescendants()) do if des:IsA("ProximityPrompt") then fireproximityprompt(des) end end end) end
@@ -2406,54 +2427,6 @@ local function countdown(time)
     textLabel:Destroy()
 end
 
-function Rat()
-    local player = game:GetService("Players").LocalPlayer
-    local backpack = player.Backpack
-	local character = player.Character
-
-    for i, item in pairs(backpack:GetChildren()) do
-        if item.Name == "Poisoned Rat" then
-            item.Parent = character
-            break
-        end
-    end
-end
-
-
-function Ratfind()
-    for _, rat in ipairs(game:GetService("Workspace"):GetDescendants()) do
-        if rat:IsA("MeshPart") then
-            if rat.TextureID == "rbxassetid://8569135832" then
-                local proximityPrompt = rat:FindFirstChildOfClass("ProximityPrompt")
-                if proximityPrompt then
-                    proximityPrompt.HoldDuration = 0
-                    TP.CFrame = rat.CFrame
-                    wait(0.2)
-                    fire()
-                    fire()
-                    fire()
-                    wait(0.2)
-                    TP.CFrame = CFrame.new(-1539.063, -30.171, -3543.718)
-                    wait(0.1)
-                    Rat()
-                    wait(0.1)
-                    fire()
-                    fire()
-                    wait(5)
-                    TP.CFrame = CFrame.new(-1563.528, -28.910, -3408.718)
-                    wait(0.2)
-                    fire()
-                    fire()
-                    wait(0.2)
-                    TP.CFrame = CFrame.new(-1674.827, -21.010, -3402.391)
-                    countdown(25)
-                    break
-                end
-            end
-        end
-    end
-end
-
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 
@@ -2483,167 +2456,392 @@ local function To(targetPosition)
     end)
 end
 
-function ESP()
-for _, model in ipairs(game:GetService("Workspace"):GetDescendants()) do
-    if model:IsA("Model") then
-        for _, model1 in ipairs(model:GetDescendants()) do
-            if model1:IsA("MeshPart") then
-                local textureID = model1.TextureID
-                if textureID == "rbxassetid://8210027978" or 
-                   textureID == "rbxassetid://8028359449" or 
-                   textureID == "rbxassetid://8985801399" or 
-                   textureID == "rbxassetid://9036476435" or 
-                   textureID == "rbxassetid://8208335769" or 
-                   textureID == "rbxassetid://9104396416" then
-                    setupHighlightForMob(model)
+function Unanchored()
+    pcall(function()
+        local character = Players.LocalPlayer.Character
+        if character then
+            for _, v in pairs(character:GetChildren()) do
+                if v:IsA("BasePart") and v.Anchored == true then
+                    v.Anchored = false
                 end
+            end
+            setPlayerSpeed(30)
+        end
+    end)
+end
+
+local function LAG()
+    pcall(function()
+        for _, v in ipairs(game:GetService("Workspace"):GetDescendants()) do
+            if v:IsA("BasePart") and v.Material ~= Enum.Material.Plastic and v.Reflection > 0 then
+                v.Material = Enum.Material.Plastic
+                v.Reflection = 0
+            end
+        end
+    end)
+end
+
+local function tweenCharacterToCFrame(targetCFrame, duration)
+    local player = Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait() -- Waits for the character to load
+
+    local tweenInfo = TweenInfo.new(
+        duration, -- Duration in seconds
+        Enum.EasingStyle.Linear, -- Easing style
+        Enum.EasingDirection.Out -- Easing direction
+    )
+
+    local tween = TweenService:Create(character.HumanoidRootPart, tweenInfo, {CFrame = targetCFrame})
+
+    tween:Play()
+    tween.Completed:Wait() -- Wait for the tween to finish
+end
+
+local function createFPSDisplay()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = game.CoreGui
+	screenGui.Name = "FPSDISPLAY"
+    screenGui.IgnoreGuiInset = true
+
+    local fpsLabel = Instance.new("TextLabel")
+    fpsLabel.Parent = screenGui
+    fpsLabel.Size = UDim2.new(0, 200, 0, 50)
+    fpsLabel.Position = UDim2.new(0.5, -100, 0, -10)
+    fpsLabel.BackgroundTransparency = 1
+    fpsLabel.TextSize = 18
+    fpsLabel.Font = Enum.Font.SourceSansBold
+    fpsLabel.Text = "FPS: 0"
+    fpsLabel.TextStrokeTransparency = 0
+    fpsLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+
+    while true do
+        local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait())
+        fpsLabel.Text = "FPS: " .. tostring(fps)
+
+        if fps <= 15 then
+            fpsLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+        elseif fps <= 30 then
+            fpsLabel.TextColor3 = Color3.fromRGB(255, 165, 0)
+        elseif fps <= 49 then
+            fpsLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
+        else
+            fpsLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+        end
+
+        wait(0.3)  -- Adjusted wait time for better performance
+    end
+end
+
+function UNFPS()
+    pcall(function()
+        for _, v in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+            if v.Name == "FPSDISPLAY" then
+                v:Destroy()
+				break
+            end
+        end
+    end)
+end
+
+local function SkipChapter()
+    if id == 6296321810 or id == 6479231833 then
+        to(CFrame.new(3507.028564453125, 43.13663864135742, -1541.9735107421875)) -- b1c1p1
+    elseif id == 6301638949 or id == 6480994221 then
+        to(CFrame.new(1272.7239990234375, 200.04153442382812, -2537.25)) -- b1c1p2
+    elseif id == 6373539583 or id == 6485055338 then
+        to(CFrame.new(64.74767303466797, 60.94379806518555, -1622.5250244140625)) -- b1c2p1
+    elseif id == 6406571212 or id == 6485055836 then
+        to(CFrame.new(232.6605987548828, 100.84130096435547, -595.3074951171875)) -- b1c2p2
+    elseif id == 6425178683 or id == 6485056556 then
+        to(CFrame.new(1055.5179443359375, 78.26939392089844, -351.45831298828125)) -- b1c2p3
+    elseif id == 6472459099 or id == 6688734180 then
+        to(CFrame.new(2416.63671875, -23.031118392944336, 2294.332275390625)) -- b1c3p1
+    elseif id == 6682163754 or id == 6688734313 then
+        to(CFrame.new(241.43087768554688, 33.24515914916992, 450.21502685546875)) -- b1c3p2
+    elseif id == 6682164423 or id == 6688734395 then
+        to(CFrame.new(-654.1986694335938, 648.9832153320312, -1012.5780029296875)) -- b1c3p3
+	elseif id == 7265396387 or id == 7251865082 then
+		to(CFrame.new(85.20524597167969, -51.00001525878906, -1415.0792236328125)) --b1c4
+    end
+end
+
+_G.Butterfly = false
+function Autobtfs()
+    for _, v in pairs(workspace.Butterflies:GetChildren()) do
+        if v:IsA("BasePart") then
+            TP(v.CFrame * CFrame.new(0, 0, 0))
+		else
+			_G.Butterfly = false
+			to(CFrame.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
+        end
+    end
+end
+
+function AutoArmors()
+    Freeze(true)
+    to(CFrame.new(706.4743041992188, 14.950273513793945, 1929.3958740234375))
+    for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
+     if v.Name == "Texture" or v.Name == "MeshPart" or v.Name == "TreeMeshTop" then
+         v:Destroy()
+     end
+     end
+    wait(1)
+ local Part = game.Workspace.Well:WaitForChild("Burner")
+ 
+ local Float = Instance.new("Part")
+ Float.Parent = game.Workspace
+ Float.Anchored = true
+ Float.Size = Vector3.new(30, 2, 30)
+ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Float
+    wait(0.5)
+    to(CFrame.new(860.1697998046875, 15.059876441955566, 2388.63427734375))
+    fire()
+    wait(0.5)
+    to(CFrame.new(839.8504028320312, 18.34674072265625, 2241.216552734375))
+    fire()
+    wait(0.5)
+    to(CFrame.new(668.060791015625, 18.767614364624023, 2099.3955078125))
+    fire()
+    wait(0.5)
+    to(CFrame.new(625.1378173828125, 17.63252830505371, 2345.30078125))
+    fire()
+    wait(0.5)
+    to(CFrame.new(759.3781127929688, 15.417532920837402, 2531.548583984375))
+    fire()
+    wait(0.5)
+    to(CFrame.new(864.6249389648438, 23.993000030517578, 2550.099853515625))
+    fire()
+    wait(0.5)
+    to(CFrame.new(860.1697998046875, 15.059876441955566, 2388.63427734375))
+    fire()
+    wait(1.5)
+    to(CFrame.new(687.65673828125, 13.798624038696289, 2253.633544921875))
+    wait(0.5)
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+    Freeze(false)
+end
+
+function PARTZ()
+    local gameHearts = game:GetService("Workspace").GameHearts
+     for _, v in pairs(gameHearts.Heart:GetChildren()) do
+         if v:IsA("Part") then
+             v.Rotation = Vector3.new(0, 0, 0)
+             v.CanCollide = true
+         end
+     end
+ end
+
+function toHeart()
+    local gameHearts = game:GetService("Workspace").GameHearts
+     for _, v in pairs(gameHearts.Heart:GetChildren()) do
+         if v:IsA("UnionOperation") then
+             v.Rotation = Vector3.new(0, 0, 0)
+             v.Size = Vector3.new(58, 58, 58)
+             local targetPosition = v.CFrame * CFrame.new(0, 20, -3)
+             tweenCharacterToCFrame(targetPosition, 0)
+         end
+     end
+ end
+
+ function check()
+    local gameHearts = game:GetService("Workspace").GameHearts
+    local found = false
+    for _, v in pairs(gameHearts:GetChildren()) do
+        if v:IsA("Model") and v:FindFirstChildOfClass("BoolValue") then
+            found = true
+            v:Destroy()
+            break
+        end
+    end
+    if not found then
+        PARTZ()
+        toHeart()
+    end
+end
+
+ function HitboxSaigomo()
+    for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+        if v:IsA("Model") then
+            local spiderHitbox = v:FindFirstChild("SpiderHitbox")
+            if spiderHitbox then
+              spiderHitbox.Rotation = Vector3.new(0, 0, 0)
+              spiderHitbox.Size = Vector3.new(30, 30, 30)
+              spiderHitbox.Transparency = 0.9
             end
         end
     end
 end
+
+local part = Instance.new("Part")
+part.CFrame = CFrame.new(2760.362548828125, 263.2343444824219, 2701.247314453125)
+part.Size = Vector3.new(500, 3, 500)
+part.Material = Enum.Material.Neon
+part.Color = Color3.new(80/255, 109/255, 84/255)
+part.Anchored = true
+part.Parent = game.Workspace
+
+
+game.Workspace.BossMap:Destroy()
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local backpack = player:WaitForChild("Backpack")
+local function ModifyHandle(item)
+    local handle = item:FindFirstChild("Handle")
+    if handle then
+        handle.Size = Vector3.new(50, 50, 10)
+        handle.Massless = true
+    end
 end
 
-local targetCFrame = Vector3.new(-323.47344970703125, 20.420881271362305, 3653.791748046875)
-local targetCFrame1 = Vector3.new(-395.08563232421875, 3069.57568359375, 3891.535400390625)
-local targetCFrame2 = Vector3.new(-4.784941673278809, 3067.82421875, 4712.5751953125)
-local targetCFrame3 = Vector3.new(-246.92311096191406, 3068.64306640625, 4219.79248046875)
-local targetCFrame4 = Vector3.new(595.481689453125, 3069.576416015625, 4422.1923828125)
-local targetCFrame5 = Vector3.new(-676.0106811523438, 3069.525146484375, 5002.66357421875)
-local KeyCFrame = Vector3.new(-401.7100, 3069.5759, 3867.8293)
-local Door = Vector3.new(-387.2115783691406, 19.296314239501953, 3780.984130859375)
-local Book = Vector3.new(-1674.8272705078125, -21.01018524169922, -3402.390869140625)
-local EspcapeRin = Vector3.new(-1507.8475341796875, -29.25138282775879, -3418.783447265625)
-local Office = Vector3.new(-1778.0726318359375, 9.717201232910156, -4295.62109375)
-local OX = Vector3.new(-6066.32763671875, 546.6655883789062, 7172.89501953125)
-
---lowerfloor
-local Candle11 = Vector3.new(-5453.7373046875, 461.4326171875, 6514.80859375)
-local Candle12 = Vector3.new(-5435.24755859375, 462.03277587890625, 6351.935546875)
-local Candle13 = Vector3.new(-5444.45654296875, 462.0570373535156, 6254.01611328125)
-local Candle14 = Vector3.new(-5467.76318359375, 462.39044189453125, 6260.67236328125)
-local Candle15 = Vector3.new(-5453.34912109375, 461.8515930175781, 6101.9853515625)
-
---middle floor
-local Candle21 = Vector3.new(-6065.1728515625, 547.58154296875, 7319.21923828125)
-
---upper floor
-local Candle31 = Vector3.new(-6808.1669921875, 758.5756225585938, 6414.2978515625)
-local Candle32 = Vector3.new(-6820.96728515625, 746.4933471679688, 6258.71044921875)
-local Candle33 = Vector3.new(-6822.0380859375, 746.42431640625, 6173.79296875)
-
---pic
-local blue = Vector3.new(209.63929748535156, 3084.15478515625, 3832.36279296875)
-local red = Vector3.new(152.81671142578125, 3060.99365234375, 3861.497802734375)
-local man = Vector3.new(208.97933959960938, 3061.8310546875, 3823.934326171875)
-local Chicken = Vector3.new(237.98187255859375, 3072.503662109375, 3878.86181640625)
-local Momson = Vector3.new(168.0010223388672, 3072.5048828125, 3830.942626953125)
-local UM = Vector3.new(190.3834991455078, 3084.15478515625, 3903.572998046875)
-local fox = Vector3.new(247.91357421875, 3061.43408203125, 3851.5556640625)
-local flute = Vector3.new(184.19967651367188, 3072.50390625, 3925.464111328125)
-local love = Vector3.new(182.9803009033203, 3060.994140625, 3923.0703125)
-local ORB = Vector3.new(191.37278747558594, 3061.04443359375, 3891.880126953125)
-
-function floor1()
-    to(Candle11)
-    wait(0.3)
-    pfire()
-    wait(0.3)
-    to(Candle12)
-    wait(0.3)
-    pfire()
-    wait(0.3)
-    to(Candle13)
-    wait(0.3)
-    pfire()
-    wait(0.3)
-    to(Candle14)
-    wait(0.3)
-    pfire()
-    wait(0.3)
-    to(Candle15)
-    wait(0.3)
-    pfire()
-    wait(0.3)
-    to(OX)
+function CheckKatana()
+    for _, item in pairs(character:GetChildren()) do
+        if item.Name == "Katana" then
+            ModifyHandle(item)
+            break
+        end
+    end
+    for _, item in pairs(backpack:GetChildren()) do
+        if item.Name == "Katana" then
+            ModifyHandle(item)
+            break
+        end
+    end
 end
 
-function floor2()
-    to(Candle21)
-    wait(0.3)
-    pfire()
-    wait(0.3)
-    to(OX)
+local RunService = game:GetService("RunService")
+local player = game.Players.LocalPlayer
+local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
+
+local moving = false
+local targetPart = nil
+local speed = 1.6
+local radius = 30
+local angle = 0
+local heartbeatConnection
+
+local function moveAroundTarget()
+    angle = angle + speed * RunService.Heartbeat:Wait()
+
+    local xOffset = math.cos(angle) * radius
+    local zOffset = math.sin(angle) * radius
+
+    local newPosition = Vector3.new(targetPart.Position.X + xOffset, humanoidRootPart.Position.Y, targetPart.Position.Z + zOffset)
+    
+    humanoidRootPart.CFrame = CFrame.new(newPosition, targetPart.Position)
 end
 
-function floor3()
-    to(Candle31)
-    wait(0.3)
-    pfire()
-    wait(0.3)
-    to(Candle32)
-    wait(0.3)
-    pfire()
-    wait(0.3)
-    to(Candle33)
-    wait(0.3)
-    pfire()
-    wait(0.3)
-    to(OX)
+local function TeleportOn()
+    moving = true
+    targetPart = nil
+
+    local gameHearts = game:GetService("Workspace").GameHearts
+    local foundHeart = false
+
+    for _, v in pairs(gameHearts:GetChildren()) do
+        if v.Name == "Heart" then
+            foundHeart = true
+            print("Heart found!")
+            return
+        end
+    end
+
+    if not foundHeart then
+        for _, v in ipairs(game:GetService("Workspace").BossBattle:GetDescendants()) do
+            if v.Name == "SpiderHitbox" and v:IsA("BasePart") then
+                targetPart = v
+                break
+            end
+        end
+
+        if targetPart then
+            heartbeatConnection = RunService.Heartbeat:Connect(function()
+                if moving then
+                    moveAroundTarget()
+                end
+            end)
+        else
+            print("SpiderHitbox not found, waiting for 5 seconds...")
+            wait(5)
+        end
+    end
 end
 
+local function TeleportOff()
+    moving = false
+    if heartbeatConnection then
+        heartbeatConnection:Disconnect()
+        heartbeatConnection = nil
+    end
+end
 
-local Window = Alc:NewWindow('Overflow 5.0','The Mimic','rbxassetid://134754092492795')
+local Window = Alc:NewWindow('Overflow - The Mimic','Ultimate 5.0','rbxassetid://134204200422920')
 
 --Main
-local _HOME = Window:AddMenu('General',"Function",'home','tab')
+local _HOME = Window:AddMenu('General',"Functions",'home','tab')
+local _LANTERN = Window:AddMenu('Quick',"Lanterns",'skip','tab')
 
-
-local _B1C1 = Window:AddMenu('Control 1',"Function",'list','tab')
-local _B1C2 = Window:AddMenu('Control 2',"Function",'list','tab')
-local _B1C3 = Window:AddMenu('Control 3',"Function",'list','tab')
-local _B1C4 = Window:AddMenu('Control 4',"Function",'list','tab')
+local _B1C1 = Window:AddMenu('Control 1',"Functions",'control','tab')
+local _B1C2 = Window:AddMenu('Control 2',"Functions",'control','tab')
+local _B1C3 = Window:AddMenu('Control 3',"Functions",'control','tab')
+local _B1C4 = Window:AddMenu('Control 4',"Functions",'control','tab')
 
 
 --Jelousy
-local _B2C1 = Window:AddMenu('Jelousy 1',"Function",'list','tab')
-local _B2C2 = Window:AddMenu('Jelousy 2',"Function",'list','tab')
-local _B2C3 = Window:AddMenu('Jelousy 3',"Function",'list','tab')
+local _B2C1 = Window:AddMenu('Jelousy 1',"Functions",'jelousy','tab')
+local _B2C2 = Window:AddMenu('Jelousy 2',"Functions",'jelousy','tab')
+local _B2C3 = Window:AddMenu('Jelousy 3',"Functions",'jelousy','tab')
 
 
 --GAMEMODE
-local _NC = Window:AddMenu('Circus',"Function",'list','tab')
-local _TWT = Window:AddMenu('The Witch',"Function",'list','tab')
-local _HW = Window:AddMenu('Halloween',"Function",'list','tab')
-local _XMAS = Window:AddMenu('Chirstmas',"Function",'list','tab')
+local _NC = Window:AddMenu('Circus',"Functions",'circus','tab')
+local _TWT = Window:AddMenu('The Witch',"Functions",'twt','tab')
+local _HW = Window:AddMenu('Halloween',"Functions",'halloween','tab')
+local _XMAS = Window:AddMenu('Chirstmas',"Functions",'xmas','tab')
 
 
 --Event
-local _DC = Window:AddMenu('Jigoku',"Function",'list','tab')
-local _CS = Window:AddMenu('Classic',"Function",'list','tab')
+local _DC = Window:AddMenu('Jigoku',"Functions",'jigoku','tab')
+local _CS = Window:AddMenu('Classic',"Functions",'classic','tab')
 
 
 --MainSection
-local _HOMETAB = _HOME:AddTab('About','Important','hash')
-local _HOMESEC = _HOMETAB:AddSection('About Script','Important','Made by imgonnatop_aizawa','list')
+local _HOMETAB = _HOME:AddTab('About','Important','home')
+local _HOMESEC = _HOMETAB:AddSection('About Script','Important','Made by imgonnatop_aizawa','discord')
 _HOMESEC:AddButton('Copy Discord Link',function(v)
 	setclipboard("https://discord.gg/e33VShsv6f")
 end)
 
 --Visual
-local _VISUAL = _HOME:AddTab('Visual','Function','eye')
-local _VISUALSEC = _VISUAL:AddSection('Function','Visual','ESP','eye')
-_VISUALSEC:AddToggle('ESP Monster', false, function(v)
+local _VISUAL = _HOME:AddTab('Visual','Functions','visual')
+local _VISUALSEC = _VISUAL:AddSection('Functions','Visual','ESP','visual')
+_VISUALSEC:AddToggle('Monster', false, function(v)
     if v then
         ESP()
     else
         UnEspMob()
     end
 end)
-_VISUALSEC:AddToggle('ESP Player',false,function(v)
+_VISUALSEC:AddToggle('Item',false,function(v)
 	if v then
         ESPPlayers()
     else
         UnEspPlayers()
+    end
+end)
+_VISUALSEC:AddToggle('Players',false,function(v)
+	if v then
+        coroutine.wrap(ESPPlayers)()
+    else
+        coroutine.wrap(UnEspPlayers)()
     end
 end)
 _VISUALSEC:AddToggle('Fullbright',false,function(v)
@@ -2655,44 +2853,219 @@ _VISUALSEC:AddToggle('Fullbright',false,function(v)
 end)
 
 --Setting
-local _SETTING = _HOME:AddTab('Setting','Function','eye')
-local _SETTINGSEC = _SETTING:AddSection('Function','Setting','Local Player','eye')
-_SETTINGSEC:AddToggle('FPS',false,function(v)
+autoClickActive = false
+local _SETTING = _HOME:AddTab('Setting','Function','setting')
+local _SETTINGSEC = _SETTING:AddSection('Function','Setting','Local Player','setting')
+_SETTINGSEC:AddToggle('Auto Click',false,function(v)
+	if v then
+		_G.EzClick = true
+        autoClickActive = true
+        coroutine.wrap(function()
+            while autoClickActive and _G.EzClick do
+                EquipOrClick()
+                wait(0.1)
+            end
+        end)()
+    else
+		_G.EzClick = false
+		autoClickActive = false
+    end
+end)
+_SETTINGSEC:AddToggle('Auto Collect Coins',false,function(v)
 	if v then
 
     else
 
     end
 end)
-_SETTINGSEC:AddButton('Stop Tween All',function(v)
-	
+_SETTINGSEC:AddToggle('Instant ProximityPrompt',false,function(v)
+	if v then
+		coroutine.wrap(InstantPrompt)()
+    else
+		coroutine.wrap(InstantPrompt)()
+    end
+end)
+_SETTINGSEC:AddToggle('Auto Fire ProximityPrompt Near',false,function(v)
+	if v then
+		_G.AutoPrompt = true
+		while _G.AutoPrompt do
+			coroutine.wrap(fire)()
+			coroutine.wrap(pfire)()
+		end
+    else
+		_G.AutoPrompt = false
+    end
+end)
+_SETTINGSEC:AddToggle('FPS',false,function(v)
+	if v then
+		coroutine.wrap(createFPSDisplay)()
+    else
+		coroutine.wrap(UNFPS)()
+    end
 end)
 _SETTINGSEC:AddButton('Stop Anchored',function(v)
-	
+	coroutine.wrap(Unanchored)()
 end)
 _SETTINGSEC:AddButton('Reduce CPU',function(v)
+	coroutine.wrap(LAG)()
+end)
+
+--quick function
+local _QTAB = _HOME:AddTab('Functions','Teleport','skip')
+local _QSEC = _QTAB:AddSection('Functions','Teleport','Quick Game','skip')
+_QSEC:AddButton('Teleport to Main',function(v)
 	
+end)
+_QSEC:AddButton('Teleport to Gamemode',function(v)
+	
+end)
+_QSEC:AddButton('Teleport to Classic',function(v)
+	
+end)
+_QSEC:AddButton('Teleport to Jigoku',function(v)
+	
+end)
+
+--control
+local _B1C1TAB = _B1C1:AddTab('Skip','Function','skip')
+local _B1C1SEC = _B1C1TAB:AddSection('Function','Auto Win','Skip this Part','skip')
+_B1C1SEC:AddButton('Skip',function(v)
+	coroutine.wrap(SkipChapter)()
+end)
+
+local _B1C2TAB = _B1C2:AddTab('Skip','Function','skip')
+local _B1C2SEC = _B1C2TAB:AddSection('Function','Auto Win','Skip this Part','skip')
+_B1C2SEC:AddButton('Skip',function(v)
+	coroutine.wrap(SkipChapter)()
+end)
+
+local _B1C3TAB = _B1C3:AddTab('Skip','Function','skip')
+local _B1C3SEC = _B1C3TAB:AddSection('Function','Auto Win','Skip this Part','skip')
+_B1C3SEC:AddButton('Skip',function(v)
+	coroutine.wrap(SkipChapter)()
 end)
 
 
 
 
---control
-local _B1C1TAB = _B1C1:AddTab('Control 1','Function','eye')
-local _B1C1SEC = _B1C1TAB:AddSection('Function','Visual','ESP','eye')
+local _B1C4TAB = _B1C4:AddTab('House','Section 1','skip')
+local _B1C4SEC = _B1C4TAB:AddSection('Section 1','Auto Win','Skip this Part','skip')
+_B1C4SEC:AddButton('Skip',function(v)
+	coroutine.wrap(SkipChapter)()
+end)
+local _B1C4TAB_butterfly = _B1C4:AddTab('Butterfly','Section 2','butterfly')
+local _B1C4SEC = _B1C4TAB_butterfly:AddSection('Section 2','Butterfly','Auto Win','butterfly')
+_B1C4SEC:AddToggle('Auto Collect Buttlefly',false,function(v)
+	if v then
+		_G.Butterfly = true
+		while _G.Butterfly do
+			coroutine.wrap(Autobtfs)()
+			wait(0.3)
+			coroutine.wrap(fire)()
+		end
+    else
+		_G.Butterfly = false
+		to(CFrame.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
+    end
+end)
+local _B1C4TAB_armor = _B1C4:AddTab('Armor','Section 3','armor')
+local _B1C4SEC_armor = _B1C4TAB_armor:AddSection('Section 3','Armor','Auto Win','armor')
+_B1C4SEC_armor:AddButton('Skip',function(v)
+	coroutine.wrap(AutoArmors)()
+end)
+local _B1C4TAB_heart = _B1C4:AddTab('Heart','Section 4','heart')
+local _B1C4SEC_heart = _B1C4TAB_heart:AddSection('Section 4','Heart','Auto Win','heart')
+_B1C4SEC_heart:AddToggle('Auto Destroy Heart',false,function(v)
+	if v then
+		_G.AutoHeart = true
+		while _G.AutoHeart do
+			coroutine.wrap(check)()
+			coroutine.wrap(Freeze)(true)
+			wait(0)
+		end
+    else
+		_G.AutoHeart = false
+		coroutine.wrap(Freeze)(false)
+    end
+end)
+local _B1C4TAB_boss = _B1C4:AddTab('Boss','Section 5','boss')
+local _B1C4SEC_boss = _B1C4TAB_boss:AddSection('Section 5','Boss','Auto Win','boss')
+_B1C4SEC_boss:AddToggle('Auto Kill Boss',false,function(v)
+	if v then
+		coroutine.wrap(HitboxSaigomo)()
+		coroutine.wrap(CheckKatana)()
+		coroutine.wrap(TeleportOn)()
+		coroutine.wrap(Freeze)(true)
+    else
+		coroutine.wrap(TeleportOff)()
+		coroutine.wrap(Freeze)(false)
+    end
+end)
 
-local _B1C2TAB = _B1C2:AddTab('Control 2','Function','eye')
-local _B1C2SEC = _B1C2TAB:AddSection('Function','Visual','ESP','eye')
-
-local _B1C3TAB = _B1C3:AddTab('Control 3','Function','eye')
-local _B1C3SEC = _B1C3TAB:AddSection('Function','Visual','ESP','eye')
-
-local _B1C4TAB = _B1C4:AddTab('Control 4','Function','eye')
-local _B1C4SEC_home = _B1C4TAB:AddSection('Function','Visual','ESP','eye')
-local _B1C4SEC_buttlefly = _B1C4TAB:AddSection('Function','Visual','ESP','eye')
-local _B1C4SEC_samarai = _B1C4TAB:AddSection('Function','Visual','ESP','eye')
-local _B1C4SEC_boss = _B1C4TAB:AddSection('Function','Visual','ESP','eye')
 
 --jelousy
-local _B2C1TAB = _B2C1:AddTab('Jelousy 1','Function','eye')
-local _B2C1SEC = _B2C1TAB:AddSection('Function','Visual','ESP','eye')
+local _B2C1TAB = _B2C1:AddTab('Office','Section 1','city')
+local _B2C1TAB_book = _B2C1:AddTab('Book','Section 2','book')
+local _B2C1TAB_Rat = _B2C1:AddTab('Rats','Section 2.1','rat')
+local _B2C1TAB_nagisa = _B2C1:AddTab('Snake','Section 3','nagisa')
+local _B2C1TAB_town = _B2C1:AddTab('Town','Section 4','town')
+local _B2C1TAB_picture = _B2C1:AddTab('Picture','Section 4.1','picture')
+local _B2C1TAB_piclight = _B2C1:AddTab('Picture - Candle','Section 4.2','candle')
+local _B2C1TAB_ship = _B2C1:AddTab('Ship','Section 5','ship')
+local _B2C1TAB_candle = _B2C1:AddTab('Candle','Section 5.1','candle12345')
+local _B2C1TAB_sea = _B2C1:AddTab('Sea','Section 6','sea')
+
+
+local _B2C2TAB = _B2C2:AddTab('Sea','Section 1','sea')
+local _B2C2TAB_cow = _B2C2:AddTab('Cow','Section 1.1','cow')
+local _B2C2TAB_meat = _B2C2:AddTab('Meat','Section 2','meat')
+local _B2C2TAB_skull = _B2C2:AddTab('Skeleton','Section 2.1','skull')
+local _B2C2TAB_lever = _B2C2:AddTab('Levers','Section 3','lever')
+local _B2C2TAB_cook = _B2C2:AddTab('Cooking','Section 4','cook')
+local _B2C2TAB_curse = _B2C2:AddTab('Curse','Section 5','curse')
+local _B2C2TAB_tower = _B2C2:AddTab('Tower','Section 5.1','tower')
+local _B2C2TAB_kid = _B2C2:AddTab('Kid','Section 6','kid')
+local _B2C2TAB_note = _B2C2:AddTab('Note','Section 6.1','note')
+local _B2C2TAB_boss = _B2C2:AddTab('Boss','Section 7','boss')
+
+
+local _B2C3TAB = _B2C3:AddTab('Gozu - Mezu','Section 1','mezu')
+local _B2C3TAB = _B2C3:AddTab('Heart','Section 1.1','heart')
+local _B2C3TAB = _B2C3:AddTab('Torch','Section 2','torch')
+local _B2C3TAB = _B2C3:AddTab('Puzzle','Section 3','puzzle')
+local _B2C3TAB = _B2C3:AddTab('Silk','Section 4','boat')
+local _B2C3TAB = _B2C3:AddTab('Father','Section 5','dad')
+local _B2C3TAB = _B2C3:AddTab('Train','Section 6','train')
+local _B2C3TAB = _B2C3:AddTab('Larves','Section 7','larve')
+local _B2C3TAB = _B2C3:AddTab('Mud','Section 7.1','mud')
+local _B2C3TAB = _B2C3:AddTab('Tree','Section 8','tree')
+local _B2C3TAB = _B2C3:AddTab('Boss','Section 8.1','boss')
+local _B2C3TAB = _B2C3:AddTab('Jigoku','Section 9','jigoku')
+
+
+
+--gamemode
+local _TWTTAB = _TWT:AddTab('Skip','Auto Win','skip')
+local _TWTTAB_help = _TWT:AddTab('End Quest','Help Friend','helpfriends')
+
+
+local _HWTAB = _HW:AddTab('Pumpkin','Section 1','pumpkin')
+local _HWTAB_candle = _HW:AddTab('Candle','Section 2','candle')
+local _HWTAB_punpkin = _HW:AddTab('Big Pumpkin','Section 3','pumpkin')
+
+
+local _XMASTAB = _XMAS:AddTab('Repair','Section 1','sleing')
+local _XMASTAB_toy = _XMAS:AddTab('Toys','Section 1.1','toy')
+local _XMASTAB_key = _XMAS:AddTab('Key','Section 1.2','key')
+
+
+local _NCTAB = _NC:AddTab('Boxs','Section 1','box')
+local _NCTAB_card = _NC:AddTab('Cards','Section 2','card')
+local _NCTAB_card = _NC:AddTab('Boss','Section 3','ringmasterhat')
+
+
+--event
+local _CSTAB = _CS:AddTab('Skip','Function','skip')
+
+
+local _DCTAB = _DC:AddTab('Orbs','Function','orb')

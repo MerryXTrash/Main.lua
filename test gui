@@ -2688,9 +2688,8 @@ part.Color = Color3.new(80/255, 109/255, 84/255)
 part.Anchored = true
 part.Parent = game.Workspace
 
-
+if id == id == 7265397848 or id == 7251867574 then
 game.Workspace.BossMap:Destroy()
-
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local backpack = player:WaitForChild("Backpack")
@@ -2781,6 +2780,7 @@ local function TeleportOff()
         heartbeatConnection:Disconnect()
         heartbeatConnection = nil
     end
+end
 end
 
 local Window = Alc:NewWindow('Overflow - The Mimic','Ultimate 5.0','rbxassetid://134204200422920')

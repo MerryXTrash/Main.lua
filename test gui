@@ -2344,7 +2344,25 @@ if not _G.FullBrightExecuted then
 	end)
 end
 
+function overay()
+local TweenService = game:GetService("TweenService")
+local bf = Instance.new("ScreenGui")
+bf.IgnoreGuiInset = true
+local UltimateBF = Instance.new("Frame")
+UltimateBF.Size = UDim2.new(1, 0, 1, 0)
+UltimateBF.BackgroundColor3 = Color3.new(0, 0, 0)
+UltimateBF.BackgroundTransparency = 1
+UltimateBF.Parent = bf
+bf.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+local goal = {BackgroundTransparency = 0}
+local tween = TweenService:Create(UltimateBF, tweenInfo, goal)
+tween:Play()
+tween.Completed:Wait()
+end
+
 local function t(id)
+	overay()
     local teleportService = game:GetService("TeleportService")
     local Tl = id
     teleportService:Teleport(Tl, game.Players.LocalPlayer)
@@ -2589,22 +2607,6 @@ local function LAG()
             end
         end
     end)
-end
-
-local function tweenCharacterToCFrame(targetCFrame, duration)
-    local player = Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait() -- Waits for the character to load
-
-    local tweenInfo = TweenInfo.new(
-        duration, -- Duration in seconds
-        Enum.EasingStyle.Linear, -- Easing style
-        Enum.EasingDirection.Out -- Easing direction
-    )
-
-    local tween = TweenService:Create(character.HumanoidRootPart, tweenInfo, {CFrame = targetCFrame})
-
-    tween:Play()
-    tween.Completed:Wait() -- Wait for the tween to finish
 end
 
 local function createFPSDisplay()
@@ -2912,6 +2914,67 @@ _SETTINGSEC:AddToggle('FPS',false,function(v)
 		coroutine.wrap(UNFPS)()
     end
 end)
+
+_SETTINGSEC:AddSlider('WalkSpeed', {
+    Min = 30,
+    Max = 200,
+    Default = 30,
+    VALUE = '%'
+}, function(v)
+    getgenv().Speed = v
+    getgenv().Enabled = true
+local players = game:GetService("Players")
+local function bypassWalkSpeed()
+    if getgenv().executed then
+        print("Walkspeed Already Bypassed - Applying Settings Changes")
+        if not getgenv().Enabled then
+            return
+        end
+    else
+        getgenv().executed = true
+        print("Walkspeed Bypassed")
+
+        local mt = getrawmetatable(game)
+        setreadonly(mt, false)
+
+        local oldindex = mt.__index
+        mt.__index = newcclosure(function(self, b)
+            if b == 'WalkSpeed' then
+                return 16
+            end
+            return oldindex(self, b)
+        end)
+    end
+end
+
+bypassWalkSpeed()
+
+players.LocalPlayer.CharacterAdded:Connect(function(char)
+    bypassWalkSpeed()
+    char:WaitForChild("Humanoid").WalkSpeed = getgenv().Speed
+end)
+
+while getgenv().Enabled and wait() do
+    players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = getgenv().Speed
+end
+
+local function tweenCharacterToCFrame(targetCFrame, duration)
+    local player = Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait() -- Waits for the character to load
+
+    local tweenInfo = TweenInfo.new(
+        duration, -- Duration in seconds
+        Enum.EasingStyle.Linear, -- Easing style
+        Enum.EasingDirection.Out -- Easing direction
+    )
+
+    local tween = TweenService:Create(character.HumanoidRootPart, tweenInfo, {CFrame = targetCFrame})
+
+    tween:Play()
+    tween.Completed:Wait() -- Wait for the tween to finish
+end
+end)
+
 _SETTINGSEC:AddButton('Stop Anchored',function(v)
 	coroutine.wrap(Unanchored)()
 end)
@@ -2923,16 +2986,16 @@ end)
 local _QTAB = _HOME:AddTab('Functions','Teleport','skip')
 local _QSEC = _QTAB:AddSection('Functions','Teleport','Quick Game','skip')
 _QSEC:AddButton('Teleport to Main',function(v)
-	
+	t(6243699076)
 end)
 _QSEC:AddButton('Teleport to Gamemode',function(v)
-	
+	t(7068737459)
 end)
 _QSEC:AddButton('Teleport to Classic',function(v)
-	
+	t(15989427413)
 end)
 _QSEC:AddButton('Teleport to Jigoku',function(v)
-	
+	t(7618863566)
 end)
 
 --control

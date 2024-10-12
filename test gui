@@ -2675,13 +2675,12 @@ local function SkipChapter()
     end
 end
 
-_G.Butterfly = false
 function Autobtfs()
     for _, v in pairs(workspace.Butterflies:GetChildren()) do
         if v:IsA("BasePart") then
-            TP(v.CFrame * CFrame.new(0, 0, 0))
+            to(v.CFrame)
+			fire()
 		else
-			_G.Butterfly = false
 			to(Vector3.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
         end
     end
@@ -2689,7 +2688,7 @@ end
 
 function AutoArmors()
     Freeze(true)
-    to(CFrame.new(706.4743041992188, 14.950273513793945, 1929.3958740234375))
+    to(Vector3.new(706.4743041992188, 14.950273513793945, 1929.3958740234375))
     for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
      if v.Name == "Texture" or v.Name == "MeshPart" or v.Name == "TreeMeshTop" then
          v:Destroy()

@@ -2240,6 +2240,116 @@ function to(position)
     end
 end
 
+if not _G.FullBrightExecuted then
+
+	_G.FullBrightEnabled = false
+
+	_G.NormalLightingSettings = {
+		Brightness = game:GetService("Lighting").Brightness,
+		ClockTime = game:GetService("Lighting").ClockTime,
+		FogEnd = game:GetService("Lighting").FogEnd,
+		GlobalShadows = game:GetService("Lighting").GlobalShadows,
+		Ambient = game:GetService("Lighting").Ambient
+	}
+
+	game:GetService("Lighting"):GetPropertyChangedSignal("Brightness"):Connect(function()
+		if game:GetService("Lighting").Brightness ~= 1 and game:GetService("Lighting").Brightness ~= _G.NormalLightingSettings.Brightness then
+			_G.NormalLightingSettings.Brightness = game:GetService("Lighting").Brightness
+			if not _G.FullBrightEnabled then
+				repeat
+					wait()
+				until _G.FullBrightEnabled
+			end
+			game:GetService("Lighting").Brightness = 1
+		end
+	end)
+
+	game:GetService("Lighting"):GetPropertyChangedSignal("ClockTime"):Connect(function()
+		if game:GetService("Lighting").ClockTime ~= 12 and game:GetService("Lighting").ClockTime ~= _G.NormalLightingSettings.ClockTime then
+			_G.NormalLightingSettings.ClockTime = game:GetService("Lighting").ClockTime
+			if not _G.FullBrightEnabled then
+				repeat
+					wait()
+				until _G.FullBrightEnabled
+			end
+			game:GetService("Lighting").ClockTime = 12
+		end
+	end)
+
+	game:GetService("Lighting"):GetPropertyChangedSignal("FogEnd"):Connect(function()
+		if game:GetService("Lighting").FogEnd ~= 786543 and game:GetService("Lighting").FogEnd ~= _G.NormalLightingSettings.FogEnd then
+			_G.NormalLightingSettings.FogEnd = game:GetService("Lighting").FogEnd
+			if not _G.FullBrightEnabled then
+				repeat
+					wait()
+				until _G.FullBrightEnabled
+			end
+			game:GetService("Lighting").FogEnd = 786543
+		end
+	end)
+
+	game:GetService("Lighting"):GetPropertyChangedSignal("GlobalShadows"):Connect(function()
+		if game:GetService("Lighting").GlobalShadows ~= false and game:GetService("Lighting").GlobalShadows ~= _G.NormalLightingSettings.GlobalShadows then
+			_G.NormalLightingSettings.GlobalShadows = game:GetService("Lighting").GlobalShadows
+			if not _G.FullBrightEnabled then
+				repeat
+					wait()
+				until _G.FullBrightEnabled
+			end
+			game:GetService("Lighting").GlobalShadows = false
+		end
+	end)
+
+	game:GetService("Lighting"):GetPropertyChangedSignal("Ambient"):Connect(function()
+		if game:GetService("Lighting").Ambient ~= Color3.fromRGB(178, 178, 178) and game:GetService("Lighting").Ambient ~= _G.NormalLightingSettings.Ambient then
+			_G.NormalLightingSettings.Ambient = game:GetService("Lighting").Ambient
+			if not _G.FullBrightEnabled then
+				repeat
+					wait()
+				until _G.FullBrightEnabled
+			end
+			game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+		end
+	end)
+
+	game:GetService("Lighting").Brightness = 1
+	game:GetService("Lighting").ClockTime = 12
+	game:GetService("Lighting").FogEnd = 786543
+	game:GetService("Lighting").GlobalShadows = false
+	game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+
+	local LatestValue = true
+	spawn(function()
+		repeat
+			wait()
+		until _G.FullBrightEnabled
+		while wait() do
+			if _G.FullBrightEnabled ~= LatestValue then
+				if not _G.FullBrightEnabled then
+					game:GetService("Lighting").Brightness = _G.NormalLightingSettings.Brightness
+					game:GetService("Lighting").ClockTime = _G.NormalLightingSettings.ClockTime
+					game:GetService("Lighting").FogEnd = _G.NormalLightingSettings.FogEnd
+					game:GetService("Lighting").GlobalShadows = _G.NormalLightingSettings.GlobalShadows
+					game:GetService("Lighting").Ambient = _G.NormalLightingSettings.Ambient
+				else
+					game:GetService("Lighting").Brightness = 1
+					game:GetService("Lighting").ClockTime = 12
+					game:GetService("Lighting").FogEnd = 786543
+					game:GetService("Lighting").GlobalShadows = false
+					game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+				end
+				LatestValue = not LatestValue
+			end
+		end
+	end)
+end
+
+local function t(id)
+    local teleportService = game:GetService("TeleportService")
+    local Tl = id
+    teleportService:Teleport(Tl, game.Players.LocalPlayer)
+end
+
 local folder = Instance.new("Folder")
 folder.Name = "HighlightsFolder"
 folder.Parent = game.Workspace
@@ -2366,7 +2476,7 @@ function InsertPart(Name, position)
     part.CFrame = cframe
 end
 
--- Inserting parts using Vector3 positions
+
 InsertPart("House1", Vector3.new(-395.0856, 3069.5757, 3891.5354))
 InsertPart("House2", Vector3.new(-4.7849, 3067.8242, 4712.5752))
 InsertPart("House3", Vector3.new(-246.9231, 3068.6431, 4219.7925))
@@ -2545,23 +2655,23 @@ end
 
 local function SkipChapter()
     if id == 6296321810 or id == 6479231833 then
-        to(CFrame.new(3507.028564453125, 43.13663864135742, -1541.9735107421875)) -- b1c1p1
+        to(Vector3.new(3507.028564453125, 43.13663864135742, -1541.9735107421875)) -- b1c1p1
     elseif id == 6301638949 or id == 6480994221 then
-        to(CFrame.new(1272.7239990234375, 200.04153442382812, -2537.25)) -- b1c1p2
+        to(Vector3.new(1272.7239990234375, 200.04153442382812, -2537.25)) -- b1c1p2
     elseif id == 6373539583 or id == 6485055338 then
-        to(CFrame.new(64.74767303466797, 60.94379806518555, -1622.5250244140625)) -- b1c2p1
+        to(Vector3.new(64.74767303466797, 60.94379806518555, -1622.5250244140625)) -- b1c2p1
     elseif id == 6406571212 or id == 6485055836 then
-        to(CFrame.new(232.6605987548828, 100.84130096435547, -595.3074951171875)) -- b1c2p2
+        to(Vector3.new(232.6605987548828, 100.84130096435547, -595.3074951171875)) -- b1c2p2
     elseif id == 6425178683 or id == 6485056556 then
-        to(CFrame.new(1055.5179443359375, 78.26939392089844, -351.45831298828125)) -- b1c2p3
+        to(Vector3.new(1055.5179443359375, 78.26939392089844, -351.45831298828125)) -- b1c2p3
     elseif id == 6472459099 or id == 6688734180 then
-        to(CFrame.new(2416.63671875, -23.031118392944336, 2294.332275390625)) -- b1c3p1
+        to(Vector3.new(2416.63671875, -23.031118392944336, 2294.332275390625)) -- b1c3p1
     elseif id == 6682163754 or id == 6688734313 then
-        to(CFrame.new(241.43087768554688, 33.24515914916992, 450.21502685546875)) -- b1c3p2
+        to(Vector3.new(241.43087768554688, 33.24515914916992, 450.21502685546875)) -- b1c3p2
     elseif id == 6682164423 or id == 6688734395 then
-        to(CFrame.new(-654.1986694335938, 648.9832153320312, -1012.5780029296875)) -- b1c3p3
+        to(Vector3.new(-654.1986694335938, 648.9832153320312, -1012.5780029296875)) -- b1c3p3
 	elseif id == 7265396387 or id == 7251865082 then
-		to(CFrame.new(85.20524597167969, -51.00001525878906, -1415.0792236328125)) --b1c4
+		to(Vector3.new(85.20524597167969, -51.00001525878906, -1415.0792236328125)) --b1c4
     end
 end
 
@@ -2572,7 +2682,7 @@ function Autobtfs()
             TP(v.CFrame * CFrame.new(0, 0, 0))
 		else
 			_G.Butterfly = false
-			to(CFrame.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
+			to(Vector3.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
         end
     end
 end
@@ -2594,28 +2704,28 @@ function AutoArmors()
  Float.Size = Vector3.new(30, 2, 30)
  Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Float
     wait(0.5)
-    to(CFrame.new(860.1697998046875, 15.059876441955566, 2388.63427734375))
+    to(Vector3.new(860.1697998046875, 15.059876441955566, 2388.63427734375))
     fire()
     wait(0.5)
-    to(CFrame.new(839.8504028320312, 18.34674072265625, 2241.216552734375))
+    to(Vector3.new(839.8504028320312, 18.34674072265625, 2241.216552734375))
     fire()
     wait(0.5)
-    to(CFrame.new(668.060791015625, 18.767614364624023, 2099.3955078125))
+    to(Vector3.new(668.060791015625, 18.767614364624023, 2099.3955078125))
     fire()
     wait(0.5)
-    to(CFrame.new(625.1378173828125, 17.63252830505371, 2345.30078125))
+    to(Vector3.new(625.1378173828125, 17.63252830505371, 2345.30078125))
     fire()
     wait(0.5)
-    to(CFrame.new(759.3781127929688, 15.417532920837402, 2531.548583984375))
+    to(Vector3.new(759.3781127929688, 15.417532920837402, 2531.548583984375))
     fire()
     wait(0.5)
-    to(CFrame.new(864.6249389648438, 23.993000030517578, 2550.099853515625))
+    to(Vector3.new(864.6249389648438, 23.993000030517578, 2550.099853515625))
     fire()
     wait(0.5)
-    to(CFrame.new(860.1697998046875, 15.059876441955566, 2388.63427734375))
+    to(Vector3.new(860.1697998046875, 15.059876441955566, 2388.63427734375))
     fire()
     wait(1.5)
-    to(CFrame.new(687.65673828125, 13.798624038696289, 2253.633544921875))
+    to(Vector3.new(687.65673828125, 13.798624038696289, 2253.633544921875))
     wait(0.5)
     fire()
     fire()
@@ -2688,101 +2798,6 @@ part.Color = Color3.new(80/255, 109/255, 84/255)
 part.Anchored = true
 part.Parent = game.Workspace
 
-if id == id == 7265397848 or id == 7251867574 then
-game.Workspace.BossMap:Destroy()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local backpack = player:WaitForChild("Backpack")
-local function ModifyHandle(item)
-    local handle = item:FindFirstChild("Handle")
-    if handle then
-        handle.Size = Vector3.new(50, 50, 10)
-        handle.Massless = true
-    end
-end
-
-function CheckKatana()
-    for _, item in pairs(character:GetChildren()) do
-        if item.Name == "Katana" then
-            ModifyHandle(item)
-            break
-        end
-    end
-    for _, item in pairs(backpack:GetChildren()) do
-        if item.Name == "Katana" then
-            ModifyHandle(item)
-            break
-        end
-    end
-end
-
-local RunService = game:GetService("RunService")
-local player = game.Players.LocalPlayer
-local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
-
-local moving = false
-local targetPart = nil
-local speed = 1.6
-local radius = 30
-local angle = 0
-local heartbeatConnection
-
-local function moveAroundTarget()
-    angle = angle + speed * RunService.Heartbeat:Wait()
-
-    local xOffset = math.cos(angle) * radius
-    local zOffset = math.sin(angle) * radius
-
-    local newPosition = Vector3.new(targetPart.Position.X + xOffset, humanoidRootPart.Position.Y, targetPart.Position.Z + zOffset)
-    
-    humanoidRootPart.CFrame = CFrame.new(newPosition, targetPart.Position)
-end
-
-local function TeleportOn()
-    moving = true
-    targetPart = nil
-
-    local gameHearts = game:GetService("Workspace").GameHearts
-    local foundHeart = false
-
-    for _, v in pairs(gameHearts:GetChildren()) do
-        if v.Name == "Heart" then
-            foundHeart = true
-            print("Heart found!")
-            return
-        end
-    end
-
-    if not foundHeart then
-        for _, v in ipairs(game:GetService("Workspace").BossBattle:GetDescendants()) do
-            if v.Name == "SpiderHitbox" and v:IsA("BasePart") then
-                targetPart = v
-                break
-            end
-        end
-
-        if targetPart then
-            heartbeatConnection = RunService.Heartbeat:Connect(function()
-                if moving then
-                    moveAroundTarget()
-                end
-            end)
-        else
-            print("SpiderHitbox not found, waiting for 5 seconds...")
-            wait(5)
-        end
-    end
-end
-
-local function TeleportOff()
-    moving = false
-    if heartbeatConnection then
-        heartbeatConnection:Disconnect()
-        heartbeatConnection = nil
-    end
-end
-end
-
 local Window = Alc:NewWindow('Overflow - The Mimic','Ultimate 5.0','rbxassetid://134204200422920')
 
 --Main
@@ -2830,13 +2845,6 @@ _VISUALSEC:AddToggle('Monster', false, function(v)
         UnEspMob()
     end
 end)
-_VISUALSEC:AddToggle('Item',false,function(v)
-	if v then
-        ESPPlayers()
-    else
-        UnEspPlayers()
-    end
-end)
 _VISUALSEC:AddToggle('Players',false,function(v)
 	if v then
         coroutine.wrap(ESPPlayers)()
@@ -2846,9 +2854,11 @@ _VISUALSEC:AddToggle('Players',false,function(v)
 end)
 _VISUALSEC:AddToggle('Fullbright',false,function(v)
 	if v then
-        Fullbright()
+        _G.FullBrightExecuted = true
+        _G.FullBrightEnabled = not _G.FullBrightEnabled
     else
-        UnFullbright()
+        _G.FullBrightExecuted = false
+		_G.FullBrightEnabled = not _G.FullBrightEnabled
     end
 end)
 
@@ -2965,7 +2975,7 @@ _B1C4SEC:AddToggle('Auto Collect Buttlefly',false,function(v)
 		end
     else
 		_G.Butterfly = false
-		to(CFrame.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
+		to(Vector3.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
     end
 end)
 local _B1C4TAB_armor = _B1C4:AddTab('Armor','Section 3','armor')
@@ -2990,15 +3000,106 @@ _B1C4SEC_heart:AddToggle('Auto Destroy Heart',false,function(v)
 end)
 local _B1C4TAB_boss = _B1C4:AddTab('Boss','Section 5','boss')
 local _B1C4SEC_boss = _B1C4TAB_boss:AddSection('Section 5','Boss','Auto Win','boss')
-_B1C4SEC_boss:AddToggle('Auto Kill Boss',false,function(v)
-	if v then
-		coroutine.wrap(HitboxSaigomo)()
-		coroutine.wrap(CheckKatana)()
-		coroutine.wrap(TeleportOn)()
-		coroutine.wrap(Freeze)(true)
-    else
-		coroutine.wrap(TeleportOff)()
-		coroutine.wrap(Freeze)(false)
+_B1C4SEC_boss:AddToggle('Auto Kill Boss', false, function(v)
+    if v then
+        if id == 7265397848 or id == 7251867574 then
+            game.Workspace.BossMap:Destroy()
+
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            local backpack = player:WaitForChild("Backpack")
+
+            local function ModifyHandle(item)
+                local handle = item:FindFirstChild("Handle")
+                if handle then
+                    handle.Size = Vector3.new(50, 50, 10)
+                    handle.Massless = true
+                end
+            end
+
+            local function CheckKatana()
+                for _, item in pairs(character:GetChildren()) do
+                    if item.Name == "Katana" then
+                        ModifyHandle(item)
+                        break
+                    end
+                end
+                for _, item in pairs(backpack:GetChildren()) do
+                    if item.Name == "Katana" then
+                        ModifyHandle(item)
+                        break
+                    end
+                end
+            end
+
+            local RunService = game:GetService("RunService")
+            local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
+            local moving = false
+            local targetPart = nil
+            local speed = 1.6
+            local radius = 30
+            local angle = 0
+            local heartbeatConnection
+            
+            local function moveAroundTarget()
+                angle = angle + speed * RunService.Heartbeat:Wait()
+                local xOffset = math.cos(angle) * radius
+                local zOffset = math.sin(angle) * radius
+                local newPosition = Vector3.new(targetPart.Position.X + xOffset, humanoidRootPart.Position.Y, targetPart.Position.Z + zOffset)
+                humanoidRootPart.CFrame = CFrame.new(newPosition, targetPart.Position)
+            end
+            
+            local function TeleportOn()
+                moving = true
+                targetPart = nil
+
+                local gameHearts = game:GetService("Workspace").GameHearts
+                local foundHeart = false
+                
+                for _, v in pairs(gameHearts:GetChildren()) do
+                    if v.Name == "Heart" then
+                        foundHeart = true
+                        print("Heart found!")
+                        return
+                    end
+                end
+                
+                if not foundHeart then
+                    for _, v in ipairs(game:GetService("Workspace").BossBattle:GetDescendants()) do
+                        if v.Name == "SpiderHitbox" and v:IsA("BasePart") then
+                            targetPart = v
+                            break
+                        end
+                    end
+                    
+                    if targetPart then
+                        heartbeatConnection = RunService.Heartbeat:Connect(function()
+                            if moving then
+                                moveAroundTarget()
+                            end
+                        end)
+                    else
+                        print("SpiderHitbox not found, waiting for 5 seconds...")
+                        wait(5)
+                    end
+                end
+            end
+            
+            local function TeleportOff()
+                moving = false
+                if heartbeatConnection then
+                    heartbeatConnection:Disconnect()
+                    heartbeatConnection = nil
+                end
+            end
+
+            coroutine.wrap(CheckKatana)()
+            coroutine.wrap(TeleportOn)()
+            coroutine.wrap(Freeze)(true)
+        else
+            coroutine.wrap(TeleportOff)()
+            coroutine.wrap(Freeze)(false)
+        end
     end
 end)
 

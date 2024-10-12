@@ -2225,8 +2225,6 @@ function UnEquipOrClick()
     _G.Ezclick = false
 end
 
-local function pfire() pcall(function() local _0, _1, _9, _88, TS, __2, __9S = 'ContentProvider', hookfunction, newcclosure, hookmetamethod, getnamecallmethod, {"FireServer", 'Sender', 'Sender2'}, {3, 1, 2}; if _1 then _1(game:GetService(_0).PreloadAsync, _9(function(...) return '...' end)) end; if TS then local _13; _13 = _88(game, '__namecall', function(self, ...) local __s__ = {...}; if TS() == __2[__9S[2]] and (tostring(self) == __2[__9S[1]] or tostring(self) == __2[__9S[3]]) then return wait(9e9) end; return _13(self, ...) end) end; for _, des in ipairs(Workspace:GetDescendants()) do if des:IsA("ProximityPrompt") then fireproximityprompt(des) end end end) end
-
 function to(position)
     local player = game.Players.LocalPlayer
     local success, err = pcall(function()
@@ -2831,10 +2829,44 @@ local _CS = Window:AddMenu('Classic',"Functions",'classic','tab')
 
 --MainSection
 local _HOMETAB = _HOME:AddTab('About','Important','home')
-local _HOMESEC = _HOMETAB:AddSection('About Script','Important','Made by imgonnatop_aizawa','discord')
-_HOMESEC:AddButton('Copy Discord Link',function(v)
-	setclipboard("https://discord.gg/e33VShsv6f")
-end)
+if id == 8056702588 or id == 13489800654 or id == 15962819441 then
+    local _HOMESEC = _HOMETAB:AddSection('About Script', 'Bypass : 🟢', 'Made by imgonnatop_aizawa', 'discord')
+    
+    local function Anticheat()
+        pcall(function()
+            local _0, _1, _9, _88, TS, __2, __9S = 
+                'ContentProvider', hookfunction, newcclosure, hookmetamethod, 
+                getnamecallmethod, {"FireServer", 'Sender', 'Sender2'}, {3, 1, 2}
+
+            if _1 then 
+                _1(game:GetService(_0).PreloadAsync, _9(function(...) return '...' end)) 
+            end
+
+            if TS then 
+                local _13
+                _13 = _88(game, '__namecall', function(self, ...) 
+                    local __s__ = {...}  
+                    if TS() == __2[__9S[2]] and (tostring(self) == __2[__9S[1]] or tostring(self) == __2[__9S[3]]) then 
+                        return wait(9e9)  
+                    end
+                    return _13(self, ...)  
+                end) 
+            end
+        end)
+    end
+
+    Anticheat()
+
+    _HOMESEC:AddButton('Copy Discord Link', function(v)
+        setclipboard("https://discord.gg/e33VShsv6f")
+    end)
+else
+    local _HOMESEC2 = _HOMETAB:AddSection('About Script', 'Bypass : 🔴', 'Made by imgonnatop_aizawa', 'discord')
+    
+    _HOMESEC2:AddButton('Copy Discord Link', function(v)
+        setclipboard("https://discord.gg/e33VShsv6f")
+    end)
+end
 
 --Visual
 local _VISUAL = _HOME:AddTab('Visual','Functions','visual')
@@ -2894,17 +2926,6 @@ _SETTINGSEC:AddToggle('Instant ProximityPrompt',false,function(v)
 		coroutine.wrap(InstantPrompt)()
     else
 		coroutine.wrap(InstantPrompt)()
-    end
-end)
-_SETTINGSEC:AddToggle('Auto Fire ProximityPrompt Near',false,function(v)
-	if v then
-		_G.AutoPrompt = true
-		while _G.AutoPrompt do
-			coroutine.wrap(fire)()
-			coroutine.wrap(pfire)()
-		end
-    else
-		_G.AutoPrompt = false
     end
 end)
 _SETTINGSEC:AddToggle('FPS',false,function(v)

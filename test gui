@@ -2678,12 +2678,11 @@ end
 function Autobtfs()
     for _, v in pairs(workspace.Butterflies:GetChildren()) do
         if v:IsA("BasePart") then
-            to(v.CFrame)
-			fire()
-		else
-			to(Vector3.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
+            to(v.Position)
+            fire()
         end
     end
+    to(Vector3.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
 end
 
 function AutoArmors()

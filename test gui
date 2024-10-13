@@ -3052,7 +3052,7 @@ _B1C4SEC:AddToggle('Auto Collect Buttlefly',false,function(v)
 		_G.Butterfly = true
 		while _G.Butterfly do
 			Autobtfs()
-			wait(0.3)
+			wait(0)
 			fire()
 		end
     else

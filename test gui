@@ -2678,8 +2678,8 @@ end
 function Autobtfs()
     for _, v in pairs(workspace.Butterflies:GetChildren()) do
         if v:IsA("BasePart") then
-            to(v.Position)
-            fire()
+            local pos = v.Position
+            to(Vector3.new(pos))
         end
     end
     to(Vector3.new(1099.39794921875, 3.135153293609619, 75.5241928100586))

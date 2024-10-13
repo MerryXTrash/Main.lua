@@ -2737,44 +2737,6 @@ function AutoArmors()
     Freeze(false)
 end
 
-function PARTZ()
-    local gameHearts = game:GetService("Workspace").GameHearts
-     for _, v in pairs(gameHearts.Heart:GetChildren()) do
-         if v:IsA("Part") then
-             v.Rotation = Vector3.new(0, 0, 0)
-             v.CanCollide = true
-         end
-     end
- end
-
-function toHeart()
-    local gameHearts = game:GetService("Workspace").GameHearts
-     for _, v in pairs(gameHearts.Heart:GetChildren()) do
-         if v:IsA("UnionOperation") then
-             v.Rotation = Vector3.new(0, 0, 0)
-             v.Size = Vector3.new(58, 58, 58)
-             local targetPosition = v.CFrame * CFrame.new(0, 20, -3)
-             tweenCharacterToCFrame(targetPosition, 0)
-         end
-     end
- end
-
- function check()
-    local gameHearts = game:GetService("Workspace").GameHearts
-    local found = false
-    for _, v in pairs(gameHearts:GetChildren()) do
-        if v:IsA("Model") and v:FindFirstChildOfClass("BoolValue") then
-            found = true
-            v:Destroy()
-            break
-        end
-    end
-    if not found then
-        PARTZ()
-        toHeart()
-    end
-end
-
 local part = Instance.new("Part")
 part.CFrame = CFrame.new(2760.362548828125, 263.2343444824219, 2701.247314453125)
 part.Size = Vector3.new(500, 3, 500)
@@ -3039,15 +3001,55 @@ local _B1C4TAB_heart = _B1C4:AddTab('Heart','Section 4','heart')
 local _B1C4SEC_heart = _B1C4TAB_heart:AddSection('Section 4','Heart','Auto Win','heart')
 _B1C4SEC_heart:AddToggle('Auto Destroy Heart',false,function(v)
 	if v then
-		_G.AutoHeart = true
-		while _G.AutoHeart do
-			coroutine.wrap(check)()
-			coroutine.wrap(Freeze)(true)
-			wait(0)
-		end
+	_G.AutoHeart = false
+if id == 7265397848 or id == 7251867574 then
+function PARTZ()
+    local gameHearts = game:GetService("Workspace").GameHearts
+     for _, v in pairs(gameHearts.Heart:GetChildren()) do
+         if v:IsA("Part") then
+             v.Rotation = Vector3.new(0, 0, 0)
+             v.CanCollide = true
+         end
+     end
+ end
+
+function toHeart()
+    local gameHearts = game:GetService("Workspace").GameHearts
+     for _, v in pairs(gameHearts.Heart:GetChildren()) do
+         if v:IsA("UnionOperation") then
+             v.Rotation = Vector3.new(0, 0, 0)
+             v.Size = Vector3.new(58, 58, 58)
+             local targetPosition = v.CFrame * CFrame.new(0, 20, -3)
+             tweenCharacterToCFrame(targetPosition, 0)
+         end
+     end
+ end
+
+ function check()
+    local gameHearts = game:GetService("Workspace").GameHearts
+    local found = false
+    for _, v in pairs(gameHearts:GetChildren()) do
+        if v:IsA("Model") and v:FindFirstChildOfClass("BoolValue") then
+            found = true
+            v:Destroy()
+            break
+        end
+    end
+    if not found then
+        PARTZ()
+        toHeart()
+    end
+end
+        _G.AutoHeart = true
+	while _G.AutoHeart do
+	check()
+	Freeze(true)
+	wait(0)
+	end
+end
     else
-		_G.AutoHeart = false
-		coroutine.wrap(Freeze)(false)
+	_G.AutoHeart = false
+	Freeze(false)
     end
 end)
 local _B1C4TAB_boss = _B1C4:AddTab('Boss','Section 5','boss')

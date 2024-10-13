@@ -2676,10 +2676,9 @@ local function SkipChapter()
 end
 
 function Autobtfs()
-    for _, v in pairs(workspace.Butterflies:GetChildren()) do
-        if v:IsA("BasePart") then
-            local pos = v.Position
-            to(Vector3.new(pos))
+    for _, v in pairs(game:GetService("Workspace").Butterflies:GetChildren()) do
+        if v.Name == "Butterfly" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
         else
             to(Vector3.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
         end

@@ -3333,15 +3333,18 @@ _B2C1SEC_picture:AddButton('Unlock Door',function(v)
 end)
 
 function checkpath()
-	if id == 8056702588 then
-		for _, v in ipairs(game:GetService("Workspace"):GetDescandants()) do
-			if v:IsA("UnionOperation") and v.Position == Vector3.new(197.00216674804688, 3057.08544921875, 3871.635009765625) then
-				v.Size = Vector3.new(200.0768051147461, 1.818110466003418, 200.93106079101562)
-			end
-		end
-	end
+    if id == 8056702588 then
+        for _, v in ipairs(game:GetService("Workspace"):GetDescendants()) do
+            if v:IsA("UnionOperation") and v.Position == Vector3.new(197.00216674804688, 3057.08544921875, 3871.635009765625) then
+                v.Size = Vector3.new(200.0768051147461, 1.818110466003418, 200.93106079101562)
+            end
+        end
+    end
 end
-coroutine.wrap(checkpath)()
+
+pcall(function()
+    coroutine.wrap(checkpath)()
+end)
 local blue = Vector3.new(209.63929748535156, 3084.15478515625, 3832.36279296875)
 local red = Vector3.new(152.81671142578125, 3060.99365234375, 3861.497802734375)
 local man = Vector3.new(214.0342559814453, 3060.994140625, 3818.04736328125)

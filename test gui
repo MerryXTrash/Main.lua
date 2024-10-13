@@ -2775,19 +2775,6 @@ function toHeart()
     end
 end
 
- function HitboxSaigomo()
-    for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
-        if v:IsA("Model") then
-            local spiderHitbox = v:FindFirstChild("SpiderHitbox")
-            if spiderHitbox then
-              spiderHitbox.Rotation = Vector3.new(0, 0, 0)
-              spiderHitbox.Size = Vector3.new(30, 30, 30)
-              spiderHitbox.Transparency = 0.9
-            end
-        end
-    end
-end
-
 local part = Instance.new("Part")
 part.CFrame = CFrame.new(2760.362548828125, 263.2343444824219, 2701.247314453125)
 part.Size = Vector3.new(500, 3, 500)
@@ -2802,9 +2789,7 @@ local Window = Alc:NewWindow('Overflow - The Mimic','Ultimate 5.0','rbxassetid:/
 local _HOME = Window:AddMenu('General',"Functions",'home','tab')
 local _LANTERN = Window:AddMenu('Quick',"Lanterns",'skip','tab')
 
-local _B1C1 = Window:AddMenu('Control 1',"Functions",'control','tab')
-local _B1C2 = Window:AddMenu('Control 2',"Functions",'control','tab')
-local _B1C3 = Window:AddMenu('Control 3',"Functions",'control','tab')
+local _B1C1 = Window:AddMenu('Control 1/2/3',"Functions",'control','tab')
 local _B1C4 = Window:AddMenu('Control 4',"Functions",'control','tab')
 
 
@@ -3025,21 +3010,6 @@ _B1C1SEC:AddButton('Skip',function(v)
 	coroutine.wrap(SkipChapter)()
 end)
 
-local _B1C2TAB = _B1C2:AddTab('Skip','Function','skip')
-local _B1C2SEC = _B1C2TAB:AddSection('Function','Auto Win','Skip this Part','skip')
-_B1C2SEC:AddButton('Skip',function(v)
-	coroutine.wrap(SkipChapter)()
-end)
-
-local _B1C3TAB = _B1C3:AddTab('Skip','Function','skip')
-local _B1C3SEC = _B1C3TAB:AddSection('Function','Auto Win','Skip this Part','skip')
-_B1C3SEC:AddButton('Skip',function(v)
-	coroutine.wrap(SkipChapter)()
-end)
-
-
-
-
 local _B1C4TAB = _B1C4:AddTab('House','Section 1','skip')
 local _B1C4SEC = _B1C4TAB:AddSection('Section 1','Auto Win','Skip this Part','skip')
 _B1C4SEC:AddButton('Skip',function(v)
@@ -3086,7 +3056,6 @@ _B1C4SEC_boss:AddToggle('Auto Kill Boss', false, function(v)
     if v then
         if id == 7265397848 or id == 7251867574 then
             game.Workspace.BossMap:Destroy()
-
             local player = game.Players.LocalPlayer
             local character = player.Character or player.CharacterAdded:Wait()
             local backpack = player:WaitForChild("Backpack")
@@ -3152,7 +3121,17 @@ _B1C4SEC_boss:AddToggle('Auto Kill Boss', false, function(v)
                             targetPart = v
                             break
                         end
+                for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+                    if v:IsA("Model") then
+                       local spiderHitbox = v:FindFirstChild("SpiderHitbox")
+                           if spiderHitbox then
+                           spiderHitbox.Rotation = Vector3.new(0, 0, 0)
+                           spiderHitbox.Size = Vector3.new(30, 30, 30)
+                           spiderHitbox.Transparency = 0.9
+                           end
+                        end
                     end
+                 end
                     
                     if targetPart then
                         heartbeatConnection = RunService.Heartbeat:Connect(function()

@@ -3051,9 +3051,9 @@ _B1C4SEC:AddToggle('Auto Collect Buttlefly',false,function(v)
 	if v then
 		_G.Butterfly = true
 		while _G.Butterfly do
-			coroutine.wrap(Autobtfs)()
+			Autobtfs()
 			wait(0.3)
-			coroutine.wrap(fire)()
+			fire()
 		end
     else
 		_G.Butterfly = false

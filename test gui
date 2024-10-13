@@ -2678,10 +2678,12 @@ end
 function Autobtfs()
     for _, v in pairs(workspace.Butterflies:GetChildren()) do
         if v:IsA("BasePart") then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.CFrame)
+            local pos = v.Position
+            to(Vector3.new(pos))
+        else
+            to(Vector3.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
         end
     end
-    to(Vector3.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
 end
 
 function AutoArmors()

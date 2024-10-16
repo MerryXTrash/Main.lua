@@ -2170,39 +2170,48 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 	return WindowAlc
 end
 
-local Window = Alc:NewWindow('Overflow - Build a boat','Ultimate 5.0','rbxassetid://134204200422920')
-local MenuFunctions = Window:AddMenu('Genaral',"Automatice",'home','tab')
-local VisualFunctions = Window:AddMenu('Visual',"Functions",'visual','tab')
+local rubyhub = {
+    autofarming = false,
+    stayatyvalue = 55,
+    aspeed = 1000,
+    antireport = false,
+    waituntil = 20
+}
 
-local TabDC = MenuFunctions:AddTab('Read me','Important','discord')
-local TabFunctions = MenuFunctions:AddTab('Main','Automatice','home')
-local TabVisual = VisualFunctions:AddTab('Visual','ESP','visual')
+local Window = Alc:NewWindow('Overflow - Build a boat', 'Ultimate 5.0', 'rbxassetid://134204200422920')
+local MenuFunctions = Window:AddMenu('General', "Automatice", 'home', 'tab')
+local VisualFunctions = Window:AddMenu('Visual', "Functions", 'visual', 'tab')
 
-local MainSection = TabDC:AddSection('About','Discord','Join Discord for News Update','discord')
-local FarmSection = TabFunctions:AddSection('General','Automatice','Automatice Functions','home')
-local PlayerSection = TabVisual:AddSection('Visual','Visual Function','ESP','visual')
+local TabDC = MenuFunctions:AddTab('Read me', 'Important', 'discord')
+local TabFunctions = MenuFunctions:AddTab('Main', 'Automatice', 'home')
+local TabVisual = VisualFunctions:AddTab('Visual', 'ESP', 'visual')
 
-MainSection:AddButton('Copy Link Discord',function(v)
-	setclipboard("")
+local MainSection = TabDC:AddSection('About', 'Discord', 'Join Discord for News Update', 'discord')
+local FarmSection = TabFunctions:AddSection('General', 'Automatice', 'Automatice Functions', 'home')
+local PlayerSection = TabVisual:AddSection('Visual', 'Visual Function', 'ESP', 'visual')
+
+MainSection:AddButton('Copy Link Discord', function(v)
+    setclipboard("https://discord.gg/yourdiscordlink")
 end)
 
 FarmSection:AddToggle('Automatic Farm', false, function(isActive)
+    rubyhub.autofarming = isActive
     if isActive then
+        print("Automatic Farming activated.")
         while task.wait() do
             if rubyhub.autofarming then
                 local player = game.Players.LocalPlayer
-                if player.Character:FindFirstChild("HumanoidRootPart") then
+                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
                     local water = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Water
                     local waterPosition = water.Position
                     local lastWater = game:GetService("Workspace").BoatStages.NormalStages.CaveStage10.Water
                     local lastWaterPosition = lastWater.Position
                     local chest = game:GetService("Workspace").BoatStages.NormalStages.TheEnd.GoldenChest.Trigger
 
-                    local success = pcall(function()
+                    local success, err = pcall(function()
                         player.Character.HumanoidRootPart.CFrame = CFrame.new(waterPosition.x, waterPosition.y + rubyhub.stayatyvalue, waterPosition.z)
                         tp(lastWaterPosition.x, waterPosition.y + rubyhub.stayatyvalue, lastWaterPosition.z, nil)
 
-                        -- Interact with the chest
                         for i = 1, 5 do
                             player.Character.HumanoidRootPart.CFrame = CFrame.new(chest.Position.x, chest.Position.y + 20, chest.Position.z)
                             task.wait(0.05)
@@ -2214,14 +2223,13 @@ FarmSection:AddToggle('Automatic Farm', false, function(isActive)
                     end)
 
                     if not success then
-                        print("Error encountered. Please report to Aizawa.")
+                        warn("Error encountered: " .. err)
                     end
-                end
-            end
+		end
+	    end
         end
     else
-        if isfirstrun then
-            isfirstrun = false
-        end
+        farming = false
+        print("Automatic Farming deactivated.")
     end
 end)

@@ -24,7 +24,7 @@ local Alc = {
 		local Table;
 
 		pcall(function()
-			Table = game:HttpGet("https://raw.githubusercontent.com/evoincorp/lucideblox/master/src/modules/util/icons.json")
+			Table = game:HttpGet("https://raw.githubusercontent.com/Imgonna-Top/Overflow4.0/refs/heads/main/icon.json")
 		end)
 
 		if not Table then
@@ -2171,21 +2171,25 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 end
 
 local Window = Alc:NewWindow('Overflow - Build a boat','Ultimate 5.0','rbxassetid://134204200422920')
-local MenuFunctions = Window:AddMenu('Genaral',"Automatice",'list','tab')
-local VisualFunctions = Window:AddMenu('Visual',"Functions",'list','tab')
+local MenuFunctions = Window:AddMenu('Genaral',"Automatice",'list','home')
+local VisualFunctions = Window:AddMenu('Visual',"Functions",'list','visual')
 
-local TabDC = MenuFunctions:AddTab('Read me','Important','home')
-local TabFunctions = MenuFunctions:AddTab('Main','','home')
-local TabVisual = VisualFunctions:AddTab('Visual','ESP','eye')
+local TabDC = MenuFunctions:AddTab('Read me','Important','discord')
+local TabFunctions = MenuFunctions:AddTab('Main','Automatice','home')
+local TabVisual = VisualFunctions:AddTab('Visual','ESP','visual')
 
-local MainSection = TabDC:AddSection('About','Discord','Join Discord for News Update','log-out')
-local FarmSection = TabFunctions:AddSection('General','Automatice','Automatice Functions','eye')
-local PlayerSection = TabVisual:AddSection('Visual','Visual Function','ESP','eye')
+local MainSection = TabDC:AddSection('About','Discord','Join Discord for News Update','discord')
+local FarmSection = TabFunctions:AddSection('General','Automatice','Automatice Functions','home')
+local PlayerSection = TabVisual:AddSection('Visual','Visual Function','ESP','visual')
 
 MainSection:AddButton('Copy Link Discord',function(v)
 	setclipboard("")
 end)
 
-MainSection:AddButton('Skip',function(v)
-	Skip()
+FarmSection:AddToggle('Automatice Farm',false,function(v)
+   if v then
+
+    else
+
+    end
 end)

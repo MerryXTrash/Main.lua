@@ -2193,7 +2193,44 @@ local PlayerSection = TabVisual:AddSection('Visual', 'Visual Function', 'ESP', '
 MainSection:AddButton('Copy Link Discord', function(v)
     setclipboard("https://discord.gg/yourdiscordlink")
 end)
-
+function tp(x, y, z, speed)
+	pcall(function()
+		local maxForce = Vector3.new(math.huge, math.huge, math.huge)
+		local velocity = Instance.new("BodyVelocity")
+		velocity.MaxForce = maxForce
+		velocity.Velocity = Vector3.new(0, 0, 0)
+		velocity.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local targetPosition = Vector3.new(x, y, z)
+		local dochange = false
+		if not speed then dochange = true end
+		while true do
+			if not rubyhub.autofarming then
+				velocity:Destroy()
+				break
+			end
+			local currentPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+			local direction = (targetPosition - currentPos).unit
+			local distance = (targetPosition - currentPos).magnitude
+			if dochange then
+				speed = rubyhub.aspeed
+			end
+			local distanceCheck = speed/30
+			if distance >= distanceCheck then
+				velocity.Velocity = direction * speed
+			else
+				velocity:Destroy()
+				for i = 1, 20 do
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+					task.wait()
+				end
+				break
+			end
+			wait()
+		end
+	end)
+end
+farming = true
 FarmSection:AddToggle('Automatic Farm', false, function(isActive)
     rubyhub.autofarming = isActive
     if isActive then
@@ -2229,6 +2266,7 @@ FarmSection:AddToggle('Automatic Farm', false, function(isActive)
 	    end
         end
     else
+        if farming then
         farming = false
         print("Automatic Farming deactivated.")
     end

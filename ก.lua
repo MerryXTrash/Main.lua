@@ -2186,10 +2186,42 @@ MainSection:AddButton('Copy Link Discord',function(v)
 	setclipboard("")
 end)
 
-FarmSection:AddToggle('Automatice Farm',false,function(v)
-   if v then
+FarmSection:AddToggle('Automatic Farm', false, function(isActive)
+    if isActive then
+        while task.wait() do
+            if rubyhub.autofarming then
+                local player = game.Players.LocalPlayer
+                if player.Character:FindFirstChild("HumanoidRootPart") then
+                    local water = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Water
+                    local waterPosition = water.Position
+                    local lastWater = game:GetService("Workspace").BoatStages.NormalStages.CaveStage10.Water
+                    local lastWaterPosition = lastWater.Position
+                    local chest = game:GetService("Workspace").BoatStages.NormalStages.TheEnd.GoldenChest.Trigger
 
+                    local success = pcall(function()
+                        player.Character.HumanoidRootPart.CFrame = CFrame.new(waterPosition.x, waterPosition.y + rubyhub.stayatyvalue, waterPosition.z)
+                        tp(lastWaterPosition.x, waterPosition.y + rubyhub.stayatyvalue, lastWaterPosition.z, nil)
+
+                        -- Interact with the chest
+                        for i = 1, 5 do
+                            player.Character.HumanoidRootPart.CFrame = CFrame.new(chest.Position.x, chest.Position.y + 20, chest.Position.z)
+                            task.wait(0.05)
+                            player.Character.HumanoidRootPart.CFrame = CFrame.new(chest.Position.x, chest.Position.y, chest.Position.z)
+                            task.wait(0.05)
+                        end
+                        player.Character.HumanoidRootPart.CFrame = CFrame.new(chest.Position.x, chest.Position.y + 30, chest.Position.z)
+                        task.wait(rubyhub.waituntil)
+                    end)
+
+                    if not success then
+                        print("Error encountered. Please report to Aizawa.")
+                    end
+                end
+            end
+        end
     else
-
+        if isfirstrun then
+            isfirstrun = false
+        end
     end
 end)

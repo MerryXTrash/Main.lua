@@ -2171,8 +2171,8 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 end
 
 local Window = Alc:NewWindow('Overflow - Build a boat','Ultimate 5.0','rbxassetid://134204200422920')
-local MenuFunctions = Window:AddMenu('Genaral',"Automatice",'list','home')
-local VisualFunctions = Window:AddMenu('Visual',"Functions",'list','visual')
+local MenuFunctions = Window:AddMenu('Genaral',"Automatice",'home','tab')
+local VisualFunctions = Window:AddMenu('Visual',"Functions",'visual','tab')
 
 local TabDC = MenuFunctions:AddTab('Read me','Important','discord')
 local TabFunctions = MenuFunctions:AddTab('Main','Automatice','home')

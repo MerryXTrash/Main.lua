@@ -2855,7 +2855,6 @@ local Frames = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
 local logo = Instance.new("ImageButton")
-local DropShadow = Instance.new("ImageLabel")
 
 Toggle2.Name = "Toggle2"
 Toggle2.Parent = game.CoreGui
@@ -2889,20 +2888,6 @@ logo.Position = UDim2.new(0.5, 0, 0.5, 0)
 logo.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
 logo.ZIndex = 68
 logo.Image = "rbxassetid://112288898491991"
-
-DropShadow.Name = "DropShadow"
-DropShadow.Parent = Frames
-DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
-DropShadow.BackgroundTransparency = 1.000
-DropShadow.BorderSizePixel = 0
-DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-DropShadow.Size = UDim2.new(1, 47, 1, 47)
-DropShadow.ZIndex = 66
-DropShadow.Image = "rbxassetid://6015897843"
-DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-DropShadow.ImageTransparency = 0.500
-DropShadow.ScaleType = Enum.ScaleType.Slice
-DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
 logo.MouseButton1Down:Connect(function()
 	local function Fuck()
         pcall(function()
@@ -2974,20 +2959,6 @@ logo1.Position = UDim2.new(0.5, 0, 0.5, 0)
 logo1.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
 logo1.ZIndex = 68
 logo1.Image = "rbxassetid://99240480523207"
-
-DropShadow1.Name = "DropShadow"
-DropShadow1.Parent = Frames1
-DropShadow1.AnchorPoint = Vector2.new(0.5, 0.5)
-DropShadow1.BackgroundTransparency = 1.000
-DropShadow1.BorderSizePixel = 0
-DropShadow1.Position = UDim2.new(0.5, 0, 0.5, 0)
-DropShadow1.Size = UDim2.new(1, 47, 1, 47)
-DropShadow1.ZIndex = 66
-DropShadow1.Image = "rbxassetid://6015897843"
-DropShadow1.ImageColor3 = Color3.fromRGB(0, 0, 0)
-DropShadow1.ImageTransparency = 0.500
-DropShadow1.ScaleType = Enum.ScaleType.Slice
-DropShadow1.SliceCenter = Rect.new(49, 49, 450, 450)
 logo1.MouseButton1Down:Connect(function()
 	for i, safe in pairs(game:GetService("Workspace"):GetChildren()) do
 		if safe.Name == "EmbedSafeOverflow.lolUCanStopmetrashdogfatniggaMucdicdcandteamDev?/Imgonna.top?/overfow.gg/notebySomeonecute" then
@@ -2999,50 +2970,21 @@ end
 csafe()
 
 local Toggle3 = Instance.new("ScreenGui")
-local Frames1 = Instance.new("Frame")
-local UICorner1 = Instance.new("UICorner")
-local UIStroke1 = Instance.new("UIStroke")
 local logo1 = Instance.new("ImageButton")
-local DropShadow1 = Instance.new("ImageLabel")
-
--- Setup ScreenGui
 Toggle3.Name = "Toggle5lllllll"
 Toggle3.Parent = game.CoreGui
 Toggle3.ZIndexBehavior = Enum.ZIndexBehavior.Global
-
--- Setup Frame
-Frames1.Name = "FLYsasasasas"
-Frames1.Visible = false
-Frames1.Parent = Toggle3
-Frames1.AnchorPoint = Vector2.new(0.5, 0.5)
-Frames1.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-Frames1.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frames1.BorderSizePixel = 0
-Frames1.Position = UDim2.new(0.886243403, 0, 0.3, 0)
-Frames1.Size = UDim2.new(0.1, 0, 0.1, 0)
-Frames1.SizeConstraint = Enum.SizeConstraint.RelativeYY
-Frames1.ZIndex = 67
-
--- Create UICorner
-UICorner1.Parent = Frames1
-
--- Create UIStroke
-UIStroke1.Color = Color3.fromRGB(121, 121, 121)
-UIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-UIStroke1.Parent = Frames1
-
--- Setup Logo
 logo1.Name = "logoafffff"
-logo1.Parent = Frames1
+logo1.Parent = Toggle3
 logo1.AnchorPoint = Vector2.new(0.5, 0.5)
 logo1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 logo1.BackgroundTransparency = 1.0
 logo1.BorderColor3 = Color3.fromRGB(0, 0, 0)
 logo1.BorderSizePixel = 0
 logo1.Position = UDim2.new(0.5, 0, 0.5, 0)
-logo1.Size = UDim2.new(1, 0, 1, 0)
+logo1.Size = UDim2.new(0.2, 0, 0.2, 0)
 logo1.ZIndex = 68
-logo1.Image = "rbxassetid://94336458582996" -- Start OFF
+logo1.Image = "rbxassetid://100308125493346" -- Start OFF
 logo1.Active = true
 logo1.Draggable = true
 

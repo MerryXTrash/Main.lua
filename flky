@@ -1,0 +1,271 @@
+local Toggle3 = Instance.new("ScreenGui")
+local Frames1 = Instance.new("Frame")
+local UICorner1 = Instance.new("UICorner")
+local UIStroke1 = Instance.new("UIStroke")
+local logo1 = Instance.new("ImageButton")
+local DropShadow1 = Instance.new("ImageLabel")
+
+-- Setup ScreenGui
+Toggle3.Name = "Toggle5lllllll"
+Toggle3.Parent = game.CoreGui
+Toggle3.ZIndexBehavior = Enum.ZIndexBehavior.Global
+
+-- Setup Frame
+Frames1.Name = "FLYsasasasas"
+Frames1.Visible = true
+Frames1.Parent = Toggle3
+Frames1.AnchorPoint = Vector2.new(0.5, 0.5)
+Frames1.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Frames1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frames1.BorderSizePixel = 0
+Frames1.Position = UDim2.new(0.886243403, 0, 0.3, 0)
+Frames1.Size = UDim2.new(0.1, 0, 0.1, 0)
+Frames1.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Frames1.ZIndex = 67
+Frames1.Active = true
+Frames1.Draggable = true
+
+-- Create UICorner
+UICorner1.Parent = Frames1
+
+-- Create UIStroke
+UIStroke1.Color = Color3.fromRGB(121, 121, 121)
+UIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+UIStroke1.Parent = Frames1
+
+-- Setup Logo
+logo1.Name = "logoafffff"
+logo1.Parent = Frames1
+logo1.AnchorPoint = Vector2.new(0.5, 0.5)
+logo1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+logo1.BackgroundTransparency = 1.0
+logo1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+logo1.BorderSizePixel = 0
+logo1.Position = UDim2.new(0.5, 0, 0.5, 0)
+logo1.Size = UDim2.new(0.9, 0, 0.9, 0)
+logo1.ZIndex = 68
+logo1.Image = "rbxassetid://94336458582996" -- Start OFF
+
+-- Setup DropShadow
+DropShadow1.Name = "DropShadow"
+DropShadow1.Parent = Frames1
+DropShadow1.AnchorPoint = Vector2.new(0.5, 0.5)
+DropShadow1.BackgroundTransparency = 1.0
+DropShadow1.BorderSizePixel = 0
+DropShadow1.Position = UDim2.new(0.5, 0, 0.5, 0)
+DropShadow1.Size = UDim2.new(1, 47, 1, 47)
+DropShadow1.ZIndex = 66
+DropShadow1.Image = "rbxassetid://6015897843"
+DropShadow1.ImageColor3 = Color3.fromRGB(0, 0, 0)
+DropShadow1.ImageTransparency = 0.5
+DropShadow1.ScaleType = Enum.ScaleType.Slice
+DropShadow1.SliceCenter = Rect.new(49, 49, 450, 450)
+
+-- Toggle logo function
+local function toggleLogo()
+    local logo = logo1 -- Directly reference the logo button
+    if logo.Image == "rbxassetid://94336458582996" then
+        logo.Image = "rbxassetid://100308125493346" -- Change to the "ON" image
+    else
+        logo.Image = "rbxassetid://94336458582996" -- Change back to the "OFF" image
+    end
+end
+logo1.MouseButton1Click:Connect(toggleLogo)
+speeds = 1
+
+local speaker = game:GetService("Players").LocalPlayer
+
+local chr = game.Players.LocalPlayer.Character
+local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+
+nowe = false
+
+
+logo1.MouseButton1Down:connect(function()
+	if nowe == true then
+		nowe = false
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
+		speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+	else 
+		nowe = true
+		for i = 1, speeds do
+			spawn(function()
+
+				local hb = game:GetService("RunService").Heartbeat	
+
+
+				tpwalking = true
+				local chr = game.Players.LocalPlayer.Character
+				local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+				while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+					if hum.MoveDirection.Magnitude > 0 then
+						chr:TranslateBy(hum.MoveDirection)
+					end
+				end
+
+			end)
+		end
+		game.Players.LocalPlayer.Character.Animate.Disabled = true
+		local Char = game.Players.LocalPlayer.Character
+		local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+
+		for i,v in next, Hum:GetPlayingAnimationTracks() do
+			v:AdjustSpeed(0)
+		end
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
+		speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+	end
+
+
+
+
+    if game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R6 then
+        local plr = game.Players.LocalPlayer
+        local torso = plr.Character.Torso
+        local flying = true
+        local deb = true
+        local ctrl = { f = 0, b = 0, l = 0, r = 0 }
+        local lastctrl = { f = 0, b = 0, l = 0, r = 0 }
+        local maxspeed = 50
+        local speed = 0
+
+
+        local bg = Instance.new("BodyGyro", torso)
+        bg.P = 9e4
+        bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+        bg.cframe = torso.CFrame
+        local bv = Instance.new("BodyVelocity", torso)
+        bv.velocity = Vector3.new(0, 0.1, 0)
+        bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        if nowe == true then
+            plr.Character.Humanoid.PlatformStand = true
+        end
+        while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+            game:GetService("RunService").RenderStepped:Wait()
+
+            if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+                speed = speed + .5 + (speed / maxspeed)
+                if speed > maxspeed then
+                    speed = maxspeed
+                end
+            elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+                speed = speed - 1
+                if speed < 0 then
+                    speed = 0
+                end
+            end
+            if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+                bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f + ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l + ctrl.r, (ctrl.f + ctrl.b) * .2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) *
+                    speed
+                lastctrl = { f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r }
+            elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+                bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f + lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l + lastctrl.r, (lastctrl.f + lastctrl.b) * .2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) *
+                    speed
+            else
+                bv.velocity = Vector3.new(0, 0, 0)
+            end
+            --    game.Players.LocalPlayer.Character.Animate.Disabled = true
+            bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame *
+                CFrame.Angles(-math.rad((ctrl.f + ctrl.b) * 50 * speed / maxspeed), 0, 0)
+        end
+        ctrl = { f = 0, b = 0, l = 0, r = 0 }
+        lastctrl = { f = 0, b = 0, l = 0, r = 0 }
+        speed = 0
+        bg:Destroy()
+        bv:Destroy()
+        plr.Character.Humanoid.PlatformStand = false
+        game.Players.LocalPlayer.Character.Animate.Disabled = false
+        tpwalking = false
+    else
+        local plr = game.Players.LocalPlayer
+        local UpperTorso = plr.Character.UpperTorso
+        local flying = true
+        local deb = true
+        local ctrl = { f = 0, b = 0, l = 0, r = 0 }
+        local lastctrl = { f = 0, b = 0, l = 0, r = 0 }
+        local maxspeed = 50
+        local speed = 0
+
+
+        local bg = Instance.new("BodyGyro", UpperTorso)
+        bg.P = 9e4
+        bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+        bg.cframe = UpperTorso.CFrame
+        local bv = Instance.new("BodyVelocity", UpperTorso)
+        bv.velocity = Vector3.new(0, 0.1, 0)
+        bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        if nowe == true then
+            plr.Character.Humanoid.PlatformStand = true
+        end
+        while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+            wait()
+
+            if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+                speed = speed + .5 + (speed / maxspeed)
+                if speed > maxspeed then
+                    speed = maxspeed
+                end
+            elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+                speed = speed - 1
+                if speed < 0 then
+                    speed = 0
+                end
+            end
+            if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+                bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f + ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l + ctrl.r, (ctrl.f + ctrl.b) * .2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) *
+                    speed
+                lastctrl = { f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r }
+            elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+                bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f + lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l + lastctrl.r, (lastctrl.f + lastctrl.b) * .2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) *
+                    speed
+            else
+                bv.velocity = Vector3.new(0, 0, 0)
+            end
+
+            bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame *
+                CFrame.Angles(-math.rad((ctrl.f + ctrl.b) * 50 * speed / maxspeed), 0, 0)
+        end
+        ctrl = { f = 0, b = 0, l = 0, r = 0 }
+        lastctrl = { f = 0, b = 0, l = 0, r = 0 }
+        speed = 0
+        bg:Destroy()
+        bv:Destroy()
+        plr.Character.Humanoid.PlatformStand = false
+        game.Players.LocalPlayer.Character.Animate.Disabled = false
+        tpwalking = false
+    end
+end)
+
+game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function(char)
+	wait(0.7)
+	game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+	game.Players.LocalPlayer.Character.Animate.Disabled = false
+end)

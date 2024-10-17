@@ -2486,6 +2486,65 @@ local function UnEspPlayers()
 end
 end
 
+function ESP()
+	pcall(function()
+	local gameAI1 = game:GetService("Workspace"):FindFirstChild("GameAI")
+	local gameAI2 = game:GetService("Workspace"):FindFirstChild("GameAI2")
+
+if gameAI1 then
+	for i, v in pairs(gameAI1:GetChildren()) do
+        if v:IsA("BasePart") or v:IsA("Model") or v:IsA("Part") then
+            setupHighlightForMob(v)
+        end
+    end
+end
+
+if gameAI2 then
+    for i, v in pairs(gameAI2:GetChildren()) do
+        if v:IsA("BasePart") or v:IsA("Model") or v:IsA("Part") then
+            setupHighlightForMob(v)
+        end
+    end
+end
+
+for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "AI" then
+			setupHighlightForMob(v)
+		end
+	end
+local Sama1 = game.Workspace.omukadeMAIN
+setupHighlightForMob(Sama1)
+local Sama2 = game.Workspace.BossBattle.Saigomo
+setupHighlightForMob(Sama2)
+
+for _, model in ipairs(game:GetService("Workspace"):GetDescendants()) do
+    if model:IsA("Model") then
+        for _, model1 in ipairs(model:GetDescendants()) do
+            if model1:IsA("MeshPart") then
+                local textureID = model1.TextureID
+                if textureID == "rbxassetid://8210027978" or 
+                   textureID == "rbxassetid://8028359449" or 
+                   textureID == "rbxassetid://8985801399" or 
+                   textureID == "rbxassetid://9036476435" or 
+                   textureID == "rbxassetid://8208335769" or 
+                   textureID == "rbxassetid://9104396416" then
+                    setupHighlightForMob(model)
+                end
+            end
+        end
+    end
+end
+local Clown = game.Workspace.Section1.Monster.Clown
+setupHighlightForMob(Clown)
+local ring = game.Workspace.Section2.Monsters.Yurei
+setupHighlightForMob(ring)
+local AI1 = game.Workspace.SamaAI
+local AI2 = game.Workspace.CrawlAI
+setupHighlightForMob(AI1)
+setupHighlightForMob(AI2)
+end)
+end
+
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:FindFirstChildOfClass("Humanoid")
@@ -2606,11 +2665,11 @@ local function To(targetPosition)
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
-    local originalGravity = workspace.Gravity
+    local originalGravity = Workspace.Gravity
     local speed = 350
     local isTweening = true
 
-    workspace.Gravity = 0
+    Workspace.Gravity = 0
 	noclip()
 
     RunService.RenderStepped:Connect(function(deltaTime)
@@ -2636,7 +2695,6 @@ function Unanchored()
                     v.Anchored = false
                 end
             end
-            setPlayerSpeed(30)
         end
     end)
 end
@@ -2940,6 +2998,263 @@ end)
 end
 csafe()
 
+local Toggle3 = Instance.new("ScreenGui")
+local Frames1 = Instance.new("Frame")
+local UICorner1 = Instance.new("UICorner")
+local UIStroke1 = Instance.new("UIStroke")
+local logo1 = Instance.new("ImageButton")
+local DropShadow1 = Instance.new("ImageLabel")
+
+-- Setup ScreenGui
+Toggle3.Name = "Toggle5lllllll"
+Toggle3.Parent = game.CoreGui
+Toggle3.ZIndexBehavior = Enum.ZIndexBehavior.Global
+
+-- Setup Frame
+Frames1.Name = "FLYsasasasas"
+Frames1.Visible = false
+Frames1.Parent = Toggle3
+Frames1.AnchorPoint = Vector2.new(0.5, 0.5)
+Frames1.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Frames1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frames1.BorderSizePixel = 0
+Frames1.Position = UDim2.new(0.886243403, 0, 0.3, 0)
+Frames1.Size = UDim2.new(0.1, 0, 0.1, 0)
+Frames1.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Frames1.ZIndex = 67
+
+-- Create UICorner
+UICorner1.Parent = Frames1
+
+-- Create UIStroke
+UIStroke1.Color = Color3.fromRGB(121, 121, 121)
+UIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+UIStroke1.Parent = Frames1
+
+-- Setup Logo
+logo1.Name = "logoafffff"
+logo1.Parent = Frames1
+logo1.AnchorPoint = Vector2.new(0.5, 0.5)
+logo1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+logo1.BackgroundTransparency = 1.0
+logo1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+logo1.BorderSizePixel = 0
+logo1.Position = UDim2.new(0.5, 0, 0.5, 0)
+logo1.Size = UDim2.new(1, 0, 1, 0)
+logo1.ZIndex = 68
+logo1.Image = "rbxassetid://94336458582996" -- Start OFF
+logo1.Active = true
+logo1.Draggable = true
+
+-- Toggle logo function
+local function toggleLogo()
+    local logo = logo1 -- Directly reference the logo button
+    if logo.Image == "rbxassetid://100308125493346" then
+        logo.Image = "rbxassetid://94336458582996" -- Change to the "ON" image
+    else
+        logo.Image = "rbxassetid://94336458582996" -- Change back to the "OFF" image
+    end
+end
+logo1.MouseButton1Click:Connect(toggleLogo)
+speeds = 2
+
+local speaker = game:GetService("Players").LocalPlayer
+
+local chr = game.Players.LocalPlayer.Character
+local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+
+nowe = false
+
+
+logo1.MouseButton1Down:connect(function()
+	if nowe == true then
+		nowe = false
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
+		speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+	else 
+		nowe = true
+		for i = 1, speeds do
+			spawn(function()
+
+				local hb = game:GetService("RunService").Heartbeat	
+
+
+				tpwalking = true
+				local chr = game.Players.LocalPlayer.Character
+				local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+				while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+					if hum.MoveDirection.Magnitude > 0 then
+						chr:TranslateBy(hum.MoveDirection)
+					end
+				end
+
+			end)
+		end
+		game.Players.LocalPlayer.Character.Animate.Disabled = true
+		local Char = game.Players.LocalPlayer.Character
+		local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+
+		for i,v in next, Hum:GetPlayingAnimationTracks() do
+			v:AdjustSpeed(0)
+		end
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
+		speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+	end
+
+
+
+
+    if game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R6 then
+        local plr = game.Players.LocalPlayer
+        local torso = plr.Character.Torso
+        local flying = true
+        local deb = true
+        local ctrl = { f = 0, b = 0, l = 0, r = 0 }
+        local lastctrl = { f = 0, b = 0, l = 0, r = 0 }
+        local maxspeed = 50
+        local speed = 0
+
+
+        local bg = Instance.new("BodyGyro", torso)
+        bg.P = 9e4
+        bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+        bg.cframe = torso.CFrame
+        local bv = Instance.new("BodyVelocity", torso)
+        bv.velocity = Vector3.new(0, 0.1, 0)
+        bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        if nowe == true then
+            plr.Character.Humanoid.PlatformStand = true
+        end
+        while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+            game:GetService("RunService").RenderStepped:Wait()
+
+            if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+                speed = speed + .5 + (speed / maxspeed)
+                if speed > maxspeed then
+                    speed = maxspeed
+                end
+            elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+                speed = speed - 1
+                if speed < 0 then
+                    speed = 0
+                end
+            end
+            if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+                bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f + ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l + ctrl.r, (ctrl.f + ctrl.b) * .2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) *
+                    speed
+                lastctrl = { f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r }
+            elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+                bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f + lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l + lastctrl.r, (lastctrl.f + lastctrl.b) * .2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) *
+                    speed
+            else
+                bv.velocity = Vector3.new(0, 0, 0)
+            end
+            --    game.Players.LocalPlayer.Character.Animate.Disabled = true
+            bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame *
+                CFrame.Angles(-math.rad((ctrl.f + ctrl.b) * 50 * speed / maxspeed), 0, 0)
+        end
+        ctrl = { f = 0, b = 0, l = 0, r = 0 }
+        lastctrl = { f = 0, b = 0, l = 0, r = 0 }
+        speed = 0
+        bg:Destroy()
+        bv:Destroy()
+        plr.Character.Humanoid.PlatformStand = false
+        game.Players.LocalPlayer.Character.Animate.Disabled = false
+        tpwalking = false
+    else
+        local plr = game.Players.LocalPlayer
+        local UpperTorso = plr.Character.UpperTorso
+        local flying = true
+        local deb = true
+        local ctrl = { f = 0, b = 0, l = 0, r = 0 }
+        local lastctrl = { f = 0, b = 0, l = 0, r = 0 }
+        local maxspeed = 50
+        local speed = 0
+
+
+        local bg = Instance.new("BodyGyro", UpperTorso)
+        bg.P = 9e4
+        bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+        bg.cframe = UpperTorso.CFrame
+        local bv = Instance.new("BodyVelocity", UpperTorso)
+        bv.velocity = Vector3.new(0, 0.1, 0)
+        bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        if nowe == true then
+            plr.Character.Humanoid.PlatformStand = true
+        end
+        while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+            wait()
+
+            if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+                speed = speed + .5 + (speed / maxspeed)
+                if speed > maxspeed then
+                    speed = maxspeed
+                end
+            elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+                speed = speed - 1
+                if speed < 0 then
+                    speed = 0
+                end
+            end
+            if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+                bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f + ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l + ctrl.r, (ctrl.f + ctrl.b) * .2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) *
+                    speed
+                lastctrl = { f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r }
+            elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+                bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f + lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l + lastctrl.r, (lastctrl.f + lastctrl.b) * .2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) *
+                    speed
+            else
+                bv.velocity = Vector3.new(0, 0, 0)
+            end
+
+            bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame *
+                CFrame.Angles(-math.rad((ctrl.f + ctrl.b) * 50 * speed / maxspeed), 0, 0)
+        end
+        ctrl = { f = 0, b = 0, l = 0, r = 0 }
+        lastctrl = { f = 0, b = 0, l = 0, r = 0 }
+        speed = 0
+        bg:Destroy()
+        bv:Destroy()
+        plr.Character.Humanoid.PlatformStand = false
+        game.Players.LocalPlayer.Character.Animate.Disabled = false
+        tpwalking = false
+    end
+end)
+
+game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function(char)
+	wait(0.7)
+	game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+	game.Players.LocalPlayer.Character.Animate.Disabled = false
+end)
+
 function buttonfirepromptON()
 	for i, v in pairs(game:GetService("CoreGui").Toggle2:GetChildren()) do
 		if v.Name == "c4" then
@@ -2970,6 +3285,22 @@ function DestroyButtonSafe()
 	end
 end
 
+function fly()
+	for i, v in pairs(game:GetService("CoreGui").Toggle5lllllll:GetChildren()) do
+		if v.Name == "FLYsasasasas" then
+			v.Visible = true
+		end
+	end
+end
+
+function UNfly()
+	for i, v in pairs(game:GetService("CoreGui").Toggle5lllllll:GetChildren()) do
+		if v.Name == "FLYsasasasas" then
+			v.Visible = false
+		end
+	end
+end
+
 local blue = Vector3.new(209.63929748535156, 3084.15478515625, 3832.36279296875)
 local red = Vector3.new(152.81671142578125, 3060.99365234375, 3861.497802734375)
 local man = Vector3.new(208.97933959960938, 3061.8310546875, 3823.934326171875)
@@ -2987,26 +3318,26 @@ local Window = Alc:NewWindow('Overflow - The Mimic','Ultimate 5.0','rbxassetid:/
 local _HOME = Window:AddMenu('General',"Functions",'home','tab')
 local _LANTERN = Window:AddMenu('Quick',"Lanterns",'skip','tab')
 
-local _B1C1 = Window:AddMenu('Control 1/2/3',"Functions",'control','tab')
-local _B1C4 = Window:AddMenu('Control 4',"Functions",'control','tab')
+local _B1C1 = Window:AddMenu('Control 1/2/3',"Automatice",'control','tab')
+local _B1C4 = Window:AddMenu('Control 4',"Automatice",'control','tab')
 
 
 --Jelousy
-local _B2C1 = Window:AddMenu('Jelousy 1',"Functions",'jelousy','tab')
-local _B2C2 = Window:AddMenu('Jelousy 2',"Functions",'jelousy','tab')
-local _B2C3 = Window:AddMenu('Jelousy 3',"Functions",'jelousy','tab')
+local _B2C1 = Window:AddMenu('Jelousy 1',"Automatice",'jelousy','tab')
+local _B2C2 = Window:AddMenu('Jelousy 2',"Automatice",'jelousy','tab')
+local _B2C3 = Window:AddMenu('Jelousy 3',"Automatice",'jelousy','tab')
 
 
 --GAMEMODE
-local _NC = Window:AddMenu('Circus',"Functions",'circus','tab')
-local _TWT = Window:AddMenu('The Witch',"Functions",'twt','tab')
-local _HW = Window:AddMenu('Halloween',"Functions",'halloween','tab')
-local _XMAS = Window:AddMenu('Chirstmas',"Functions",'xmas','tab')
+local _NC = Window:AddMenu('Circus',"Automatice",'circus','tab')
+local _TWT = Window:AddMenu('The Witch',"Automatice",'twt','tab')
+local _HW = Window:AddMenu('Halloween',"Automatice",'halloween','tab')
+local _XMAS = Window:AddMenu('Chirstmas',"Automatice",'xmas','tab')
 
 
 --Event
-local _DC = Window:AddMenu('Jigoku',"Functions",'jigoku','tab')
-local _CS = Window:AddMenu('Classic',"Functions",'classic','tab')
+local _DC = Window:AddMenu('Jigoku',"Functions",'Automatice','tab')
+local _CS = Window:AddMenu('Classic',"Functions",'Automatice','tab')
 
 
 --MainSection
@@ -3096,7 +3427,7 @@ _SETTINGSEC:AddToggle('Auto Click',false,function(v)
 		autoClickActive = false
     end
 end)
-_SETTINGSEC:AddToggle('Auto Collect Coins',false,function(v)
+_SETTINGSEC:AddToggle('Automatice Collect Coins',false,function(v)
 	if v then
 
     else
@@ -3122,6 +3453,27 @@ _SETTINGSEC:AddToggle('Button to Safe',false,function(v)
 		buttonSafe()
     else
 		DestroyButtonSafe()
+    end
+end)
+_SETTINGSEC:AddToggle('Button to Safe',false,function(v)
+	if v then
+		buttonSafe()
+    else
+		DestroyButtonSafe()
+    end
+end)
+_SETTINGSEC:AddToggle('Fly Toggle',false,function(v)
+	if v then
+		fly()
+    else
+		UNfly()
+    end
+end)
+_SETTINGSEC:AddToggle('Noclip',false,function(v)
+	if v then
+		noclip()
+    else
+		clip()
     end
 end)
 _SETTINGSEC:AddToggle('FPS',false,function(v)
@@ -3217,19 +3569,19 @@ end)
 
 --control
 local _B1C1TAB = _B1C1:AddTab('Skip','Function','skip')
-local _B1C1SEC = _B1C1TAB:AddSection('Function','Automatice','Skip this Part','skip')
+local _B1C1SEC = _B1C1TAB:AddSection('Function','Automatice','Skip to Next Part.','skip')
 _B1C1SEC:AddButton('Skip',function(v)
 	coroutine.wrap(SkipChapter)()
 end)
 
 local _B1C4TAB = _B1C4:AddTab('House','Section 1','skip')
-local _B1C4SEC = _B1C4TAB:AddSection('Section 1','Automatice','Skip this Part','skip')
+local _B1C4SEC = _B1C4TAB:AddSection('Section 1','Automatice','Skip to Next Part','skip')
 _B1C4SEC:AddButton('Skip',function(v)
 	coroutine.wrap(SkipChapter)()
 end)
 local _B1C4TAB_butterfly = _B1C4:AddTab('Butterfly','Section 2','butterfly')
 local _B1C4SEC = _B1C4TAB_butterfly:AddSection('Section 2','Butterfly','Automatice','butterfly')
-_B1C4SEC:AddToggle('Auto Collect Buttlefly',false,function(v)
+_B1C4SEC:AddToggle('Automatice Collect Buttlefly',false,function(v)
 	if v then
 		_G.Butterfly = true
 		while _G.Butterfly do
@@ -3244,12 +3596,12 @@ _B1C4SEC:AddToggle('Auto Collect Buttlefly',false,function(v)
 end)
 local _B1C4TAB_armor = _B1C4:AddTab('Armor','Section 3','armor')
 local _B1C4SEC_armor = _B1C4TAB_armor:AddSection('Section 3','Armor','Automatice','armor')
-_B1C4SEC_armor:AddButton('Skip',function(v)
+_B1C4SEC_armor:AddButton('Automatice Burn Armors',function(v)
 	coroutine.wrap(AutoArmors)()
 end)
 local _B1C4TAB_heart = _B1C4:AddTab('Heart','Section 4','heart')
 local _B1C4SEC_heart = _B1C4TAB_heart:AddSection('Section 4','Heart','Automatice','heart')
-_B1C4SEC_heart:AddToggle('Auto Destroy Heart', false, function(v)
+_B1C4SEC_heart:AddToggle('Automatice Destroy Heart', false, function(v)
     if v then
         _G.AutoHeart = true
         if id == 7265397848 or id == 7251867574 then
@@ -3309,7 +3661,7 @@ _B1C4SEC_heart:AddToggle('Auto Destroy Heart', false, function(v)
 end)
 local _B1C4TAB_boss = _B1C4:AddTab('Boss','Section 5','boss')
 local _B1C4SEC_boss = _B1C4TAB_boss:AddSection('Section 5','Boss','Automatice','boss')
-_B1C4SEC_boss:AddToggle('Auto Kill Boss', false, function(v)
+_B1C4SEC_boss:AddToggle('Automatice Kill Boss', false, function(v)
     if v then
 		local RunService = game:GetService("RunService")
 		local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
@@ -3424,13 +3776,13 @@ end)
 
 --jelousy
 local _B2C1TAB = _B2C1:AddTab('Office [Normal]','Section 1','city')
-local _B2C1SEC_office = _B2C1TAB:AddSection('Section 1','Office','Automatice','city')
+local _B2C1SEC_office = _B2C1TAB:AddSection('Section 1','Office','Skip to Next Part','city')
 _B2C1SEC_office:AddButton('Skip',function(v)
 	to(Vector3.new(-1778.0726318359375, 9.717201232910156, -4295.62109375))
 end)
 local _B2C1TAB_book = _B2C1:AddTab('Book','Section 2','book')
 local _B2C1SEC_book = _B2C1TAB_book:AddSection('Section 2','Book','Automatice','book')
-_B2C1SEC_book:AddButton('Read Book',function(v)
+_B2C1SEC_book:AddButton('Automatice Read Book',function(v)
 	to(Vector3.new(-1674.8272705078125, -21.01018524169922, -3402.390869140625))
 	task.wait(0.5)
 	fire()
@@ -3447,7 +3799,7 @@ end
 
 local _B2C1TAB_Rat = _B2C1:AddTab('Rats','Section 2.1','rat')
 local _B2C1SEC_Rat = _B2C1TAB_Rat:AddSection('Section 2.1','Rats','Automatice','rat')
-_B2C1SEC_Rat:AddButton('Auto Rats',function(v)
+_B2C1SEC_Rat:AddButton('Automatice Rats',function(v)
 	if id == 8056702588 then
 		function Rat()
 			local player = game:GetService("Players").LocalPlayer
@@ -3540,7 +3892,7 @@ _B2C1SEC_picture:AddDropdown('Select House', {'House 1','House 2','Drawing House
 		to(targetCFrame5)
     end
 end)
-_B2C1SEC_picture:AddButton('Unlock Door',function(v)
+_B2C1SEC_picture:AddButton('Automatice Unlock Door',function(v)
 	to(KeyCFrame)
 	task.wait(1)
 	fire()
@@ -3604,7 +3956,7 @@ _B2C1SEC_piclight:AddDropdown('Select Picture', {'Blue Samurai','Red Samarai','F
 		to(flute)
     end
 end)
-_B2C1SEC_piclight:AddButton('Collect Orb',function(v)
+_B2C1SEC_piclight:AddButton('Automatice Collect Orb',function(v)
 	to(ORB)
 	wait(0.3)
 	fire()
@@ -3709,8 +4061,8 @@ function floor3()
 	countdown(25)
     to(bypassf3)
 end
-local _B2C1TAB_candle1 = _B2C1:AddTab('Candle[S🟢]','Section 5.1','candle12345')
-local _B2C1SEC_candle1 = _B2C1TAB_candle1:AddSection('Section 5.1','Ship','Teleport','candle12345')
+local _B2C1TAB_candle1 = _B2C1:AddTab('Candle[TP🟢]','Section 5.1','candle12345')
+local _B2C1SEC_candle1 = _B2C1TAB_candle1:AddSection('Section 5.1','Candle','Teleport','candle12345')
 _B2C1SEC_candle1:AddButton('Teleport to Safe',function(v)
 	to(OX)
 end)
@@ -3746,18 +4098,18 @@ end)
 _B2C1SEC_candle1:AddButton('Run Away',function(v)
 	To(Vector3.new(-6318.65966796875, 419.03302001953125, 6330.75830078125))
 end)
-local _B2C1TAB_candle2 = _B2C1:AddTab('Candle[Ns🔴]','Section 5.1','candle12345')
-local _B2C1SEC_candle2 = _B2C1TAB_candle2:AddSection('Section 5.1','Ship','🔴 Warning High % Kick/Die','candle12345')
+local _B2C1TAB_candle2 = _B2C1:AddTab('Candle[Auto🔴]','Section 5.1','candle12345')
+local _B2C1SEC_candle2 = _B2C1TAB_candle2:AddSection('Section 5.1','Candle','🔴 Warning High % Kick/Die','candle12345')
 _B2C1SEC_candle2:AddButton('Teleport to Safe',function(v)
 	to(OX)
 end)
-_B2C1SEC_candle2:AddButton('Auto Candle [Middle]',function(v)
+_B2C1SEC_candle2:AddButton('Automatice Light Up [Middle]',function(v)
 	coroutine.wrap(floor2)()
 end)
-_B2C1SEC_candle2:AddButton('Auto Candle [Upper]',function(v)
+_B2C1SEC_candle2:AddButton('Automatice Light Up [Upper]',function(v)
 	coroutine.wrap(floor3)()
 end)
-_B2C1SEC_candle2:AddButton('Auto Candle [Lower]',function(v)
+_B2C1SEC_candle2:AddButton('Automatice Light Up [Lower]',function(v)
 	coroutine.wrap(floor1)()
 end)
 _B2C1SEC_candle2:AddButton('Run Away',function(v)
@@ -3785,9 +4137,53 @@ local _B2C2TAB_boss = _B2C2:AddTab('Boss','Section 7','boss')
 
 
 local _B2C3TAB = _B2C3:AddTab('Gozu - Mezu','Section 1','mezu')
-local _B2C3TAB = _B2C3:AddTab('Heart','Section 1.1','heart')
-local _B2C3TAB = _B2C3:AddTab('Torch','Section 2','torch')
-local _B2C3TAB = _B2C3:AddTab('Puzzle','Section 3','puzzle')
+local _B2C3SEC_mezu = _B2C3TAB:AddSection('Section 1','Hell','Skip to Next Part','mezu')
+_B2C3SEC_mezu:AddButton('Enter Zone',function(v)
+	
+end)
+local _B2C3TAB_heart = _B2C3:AddTab('Heart','Section 1.1','heart')
+local _B2C3SEC_heart = _B2C3TAB_heart:AddSection('Section 1.1','Heart','Automatice','heart')
+_B2C3SEC_mezu:AddButton('Talk',function(v)
+	
+end)
+_B2C3SEC_mezu:AddButton('Automatice Heart',function(v)
+	
+end)
+_B2C3SEC_mezu:AddButton('Run Away',function(v)
+	
+end)
+local _B2C3TAB_torch = _B2C3:AddTab('Torch','Section 2','torch')
+local _B2C3SEC_torch = _B2C3TAB_torch:AddSection('Section 2','Torce','Automatice','torch')
+_B2C3SEC_mezu:AddButton('Automatice Torch',function(v)
+	
+end)
+_B2C3SEC_mezu:AddButton('Get Purple Flame',function(v)
+	
+end)
+_B2C3SEC_mezu:AddButton('Escape',function(v)
+	
+end)
+local _B2C3TAB_puzzle = _B2C3:AddTab('Puzzle','Section 3','puzzle')
+local _B2C3SEC_puzzle = _B2C3TAB_puzzle:AddSection('Section 3','Puzzle','Teleport','puzzle')
+_B2C3SEC_puzzle:AddDropdown('Lower Floor', {'Candle 1', 'Candle 2', 'Candle 3', 'Candle 4', 'Candle 5'}, nil, 1, function(list, item)
+	if item == 'Candle 1' then
+		to(Candle11)
+	elseif item == 'Candle 2' then
+		to(Candle12)
+	elseif item == 'Candle 3' then
+		to(Candle13)
+	elseif item == 'Candle 4' then
+		to(Candle14)
+	elseif item == 'Candle 5' then
+		to(Candle15)
+    end
+end)
+_B2C3SEC_puzzle:AddButton('Teleport to Door',function(v)
+	
+end)
+_B2C3SEC_puzzle:AddButton('Run Away',function(v)
+	
+end)
 local _B2C3TAB = _B2C3:AddTab('Silk','Section 4','boat')
 local _B2C3TAB = _B2C3:AddTab('Father','Section 5','dad')
 local _B2C3TAB = _B2C3:AddTab('Train','Section 6','train')
@@ -3921,12 +4317,12 @@ local function grab()
     end
 end
 local _XMASTAB = _XMAS:AddTab('Repair','Section 1','sleing')
-local _XMASSEC_repair = _XMASTAB:AddSection('Skip','Skip','Automatice','quest')
+local _XMASSEC_repair = _XMASTAB:AddSection('Skip','Skip','Automatice','sleing')
 _XMASSEC_repair:AddButton('Auto Repair Sleigh',function(v)
     Xmas1()
 end)
 local _XMASTAB_toy = _XMAS:AddTab('Toys','Section 1.1','toy')
-local _XMASSEC_toy = _XMASTAB_toy:AddSection('Skip','Skip','Automatice','quest')
+local _XMASSEC_toy = _XMASTAB_toy:AddSection('Skip','Skip','Automatice','toy')
 _XMASSEC_toy:AddToggle('Auto Collect Toys', false, function(v)
     if v then
         Freeze(true)
@@ -3942,7 +4338,7 @@ _XMASSEC_toy:AddToggle('Auto Collect Toys', false, function(v)
     end
 end)
 local _XMASTAB_key = _XMAS:AddTab('Key','Section 1.2','key')
-local _XMASSEC_key = _XMASTAB_key:AddSection('Skip','Skip','Automatice','quest')
+local _XMASSEC_key = _XMASTAB_key:AddSection('Skip','Skip','Automatice','key')
 _XMASSEC_key:AddButton('Grab Key',function(v)
     to(Vector3.new(-251.05911254882812, -11.551362991333008, -66.66143798828125))
     wait(0.25)
@@ -3953,8 +4349,8 @@ _XMASSEC_key:AddButton('Grab Key',function(v)
 end)
 
 local function teleportToCutscene()
-    local trig = game.Workspace.Section1.Cutscene.Trigger
     pcall(function()
+		local trig = game.Workspace.Section1.Cutscene.Trigger
         TP(trig.CFrame)
         wait(1)
         to(Vector3.new(-2454.953369140625, -1.9218900203704834, 375.8285217285156))
@@ -4013,7 +4409,7 @@ local function toRingmaster()
     end)
 end
 local _NCTAB = _NC:AddTab('Boxs','Section 1','box')
-local _NCSEC_box = _NCTAB:AddSection('Skip','Skip','Automatice','quest')
+local _NCSEC_box = _NCTAB:AddSection('Box','Boxs','Automatice','box')
 _NCSEC_box:AddButton('Enter Zone',function(v)
 	teleportToCutscene()
 end)
@@ -4035,12 +4431,22 @@ _NCSEC_box:AddDropdown('Select Boxs', {'Box 1','Box 2','Box 3','Box 4','Box 5','
     end
 end)
 _NCSEC_box:AddButton('Skip [Required Solo]',function(v)
-	to(Vector3.new( -1100.885498046875, -85.93081665039062, 146.65823364257812))
+	to(Vector3.new(-1100.885498046875, -85.93081665039062, 146.65823364257812))
 end)
+
+_G.Card1 = false
+_G.Card2 = false
+_G.Card3 = false
+_G.Card4 = false
+_G.Card5 = false
+_G.Card6 = false
+
+
+
 local _NCTAB_card = _NC:AddTab('Cards','Section 2','card')
 
 local _NCTAB_boss = _NC:AddTab('Boss','Section 3','ringmasterhat')
-local _NCSEC_Boss = _NCTAB_boss:AddSection('Skip','Skip','Automatice','quest')
+local _NCSEC_Boss = _NCTAB_boss:AddSection('Skip','Skip','Automatice','ringmasterhat')
 _NCSEC_Boss:AddToggle('Automatice Boss',false,function(v)
 	if v then
 		_G.master = true
@@ -4080,14 +4486,10 @@ _CS_skip:AddButton('Skip',function(v)
 end)
 
 
-_G.autoOb = false
 function AutoOrbs()
     for _, v in pairs(workspace.GameAI.Souls:GetChildren()) do
         if v.Name == "Orb" then
             TP(v.CFrame)
-        else
-            to(Vector3.new(601.8018, 111.0565, 836.9151))
-			_G.autoOb = false
         end
     end
 end
@@ -4099,12 +4501,12 @@ function orb()
    end
 end
 local _DCTAB = _DC:AddTab('Orbs','Function','orb')
-local _DCSEC_orb = _DCTAB:AddSection('Orbs','Orbs','Automatice','quest')
-_DCSEC_orb:AddButton('Automatice',function(v)
+local _DCSEC_orb = _DCTAB:AddSection('Orbs','Orbs','Automatice','orb')
+_DCSEC_orb:AddButton('Automatice Collect Orbs',function(v)
     to(Vector3.new(610.8300170898438, 11.908462524414062, 1083.3406982421875))
     wait(1.5)
     to(Vector3.new(601.8018, 111.0565, 83))
     Freeze(true)
-    wait(11)
+    wait(10)
     orb()
 end)

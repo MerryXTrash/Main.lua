@@ -304,7 +304,7 @@ function Library.new(config)
 			local ImageButton = Instance.new("Frame")
 			local UICorner = Instance.new("UICorner")
 			local UIStroke = Instance.new("UIStroke")
-			local logo = Instance.new("ImageLabel")
+			local HomeIcon = Instance.new("ImageButton")
 			local DropShadow = Instance.new("ImageLabel")
 
 			Toggle.Name = "Toggle"
@@ -328,17 +328,17 @@ function Library.new(config)
 			UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 			UIStroke.Parent = ImageButton
 
-			logo.Name = "logo"
-			logo.Parent = ImageButton
-			logo.AnchorPoint = Vector2.new(0.5, 0.5)
-			logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			logo.BackgroundTransparency = 1.010
-			logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			logo.BorderSizePixel = 0
-			logo.Position = UDim2.new(0.5, 0, 0.5, 0)
-			logo.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
-			logo.ZIndex = 68
-			logo.Image = "rbxassetid://134204200422920"
+			HomeIcon.Name = "logo"
+			HomeIcon.Parent = ImageButton
+			HomeIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+			HomeIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			HomeIcon.BackgroundTransparency = 1.010
+			HomeIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			HomeIcon.BorderSizePixel = 0
+			HomeIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+			HomeIcon.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
+			HomeIcon.ZIndex = 68
+			HomeIcon.Image = "rbxassetid://134204200422920"
 
 			DropShadow.Name = "DropShadow"
 			DropShadow.Parent = ImageButton
@@ -377,7 +377,7 @@ function Library.new(config)
 			Twen:Create(ImageButton,TweenInfo.new(0.85,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
 				Position = UDim2.new(0.992500007, 0, 0.00999999978, 0),
 				Size = UDim2.new(0.0850000009, 0, 0.0850000009, 0),
-				ImageTransparency = 0.5,
+				BackgroundTransparency = 0.5,
 				AnchorPoint = Vector2.new(1, 0)
 			}):Play();
 			
@@ -440,7 +440,7 @@ function Library.new(config)
 		ImageTransparency = 0.5
 	}):Play()
 
-	ImageButton.MouseButton1Click:Connect(function()
+	HomeIcon.MouseButton1Click:Connect(function()
 		WindowTable.WindowToggle = not WindowTable.WindowToggle
 		Update()
 	end)

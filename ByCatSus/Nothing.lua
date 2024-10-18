@@ -1659,6 +1659,14 @@ function Library.new(config)
 					Size = UDim2.new(0.949999988, 0, 0.5, 0)
 				}):Play();
 
+                UIGradient.Rotation = 90
+                UIGradient.Transparency = NumberSequence.new{
+                NumberSequenceKeypoint.new(0.00, 0.00),  -- สีขาวที่จุดเริ่มต้น
+                NumberSequenceKeypoint.new(1.00, 0.50)   -- เกือบดำที่จุดสิ้นสุด
+                }
+                UIGradient.Parent = FunctionButton
+
+
 				UIAspectRatioConstraint.Parent = FunctionButton
 				UIAspectRatioConstraint.AspectRatio = 7.000
 				UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize

@@ -311,25 +311,25 @@ function Library.new(config)
 			Toggle.Parent = MainFrame
 			Toggle.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
-			Frames.Name = 'c4'
-			Frames.Parent = Toggle
-			Frames.AnchorPoint = Vector2.new(0.5, 0.5)
-			Frames.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-			Frames.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Frames.BorderSizePixel = 0
-			Frames.Position = UDim2.new(0.886243403, 0, 0.194968551, 0)
-			Frames.Size = UDim2.new(0.200000003, 0, 0.200000003, 0)
-			Frames.SizeConstraint = Enum.SizeConstraint.RelativeYY
-			Frames.ZIndex = 67
+			ImageButton.Name = 'c4'
+		    ImageButton.Parent = Toggle
+			ImageButton.AnchorPoint = Vector2.new(0.5, 0.5)
+			ImageButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+			ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ImageButton.BorderSizePixel = 0
+			ImageButton.Position = UDim2.new(0.886243403, 0, 0.194968551, 0)
+			ImageButton.Size = UDim2.new(0.200000003, 0, 0.200000003, 0)
+			ImageButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
+			ImageButton.ZIndex = 67
 
-			UICorner.Parent = Frames
+			UICorner.Parent = ImageButton
 
 			UIStroke.Color = Color3.fromRGB(121, 121, 121)
 			UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-			UIStroke.Parent = Frames
+			UIStroke.Parent = ImageButton
 
 			logo.Name = "logo"
-			logo.Parent = Frames
+			logo.Parent = ImageButton
 			logo.AnchorPoint = Vector2.new(0.5, 0.5)
 			logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			logo.BackgroundTransparency = 1.010
@@ -338,10 +338,10 @@ function Library.new(config)
 			logo.Position = UDim2.new(0.5, 0, 0.5, 0)
 			logo.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
 			logo.ZIndex = 68
-			logo.Image = rbxassetid://134204200422920
+			logo.Image = "rbxassetid://134204200422920"
 
 			DropShadow.Name = "DropShadow"
-			DropShadow.Parent = Frames
+			DropShadow.Parent = ImageButton
 			DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
 			DropShadow.BackgroundTransparency = 1.000
 			DropShadow.BorderSizePixel = 0

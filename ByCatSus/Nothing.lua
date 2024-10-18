@@ -1360,9 +1360,6 @@ function Library.new(config)
 			UICorner_3.CornerRadius = UDim.new(0, 3)
 			UICorner_3.Parent = Icon
 
-			UIGradient.Rotation = 90
-			UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.75, 0.27), NumberSequenceKeypoint.new(1.00, 1.00)}
-			UIGradient.Parent = Icon
 
 			BlockFrame.Name = "BlockFrame"
 			BlockFrame.Parent = Header
@@ -1619,11 +1616,7 @@ function Library.new(config)
 				TextInt.TextTransparency = 1
 				TextInt.TextWrapped = true
 				TextInt.TextXAlignment = Enum.TextXAlignment.Left
-				Twen:Create(TextInt,TweenInfo1,{TextTransparency = 0.25}):Play();
-
-				UIGradient.Rotation = 90
-				UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.84, 0.25), NumberSequenceKeypoint.new(1.00, 1.00)}
-				UIGradient.Parent = TextInt
+				Twen:Create(TextInt,TweenInfo1,{TextTransparency = 0}):Play();
 
 				UICorner.CornerRadius = UDim.new(0, 2)
 				UICorner.Parent = FunctionTitle
@@ -1661,10 +1654,6 @@ function Library.new(config)
 				FunctionButton.BorderSizePixel = 0
 				FunctionButton.Size = UDim2.new(0.949999988, 0, 0.5, 0)
 				FunctionButton.ZIndex = 17
-				Twen:Create(FunctionButton,TweenInfo1,{
-					BackgroundTransparency = 0.750,
-					Size = UDim2.new(0.949999988, 0, 0.5, 0)
-				}):Play();
 
 				UIAspectRatioConstraint.Parent = FunctionButton
 				UIAspectRatioConstraint.AspectRatio = 7.000
@@ -2040,7 +2029,7 @@ function Library.new(config)
 				TFrame.Name = "TFrame"
 				TFrame.Parent = MFrame
 				TFrame.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
-				TFrame.BackgroundTransparency = 0.500
+				TFrame.BackgroundTransparency = 0
 				TFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				TFrame.BorderSizePixel = 0
 				TFrame.Size = UDim2.new((slider.Default / slider.Max), 0, 1, 0)
@@ -2070,7 +2059,7 @@ function Library.new(config)
 						Holding = true
 						update(Input)
 						Twen:Create(TextInt,TweenInfo.new(0.1),{
-							TextColor3 = Color3.new(56, 182, 255)
+							TextColor = Color3.new(56, 182, 255)
 						}):Play()
 					end
 				end)
@@ -2079,7 +2068,7 @@ function Library.new(config)
 					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 						Holding = false
 						Twen:Create(TextInt,TweenInfo.new(0.1),{
-							TextColor3 = Color3.new(255, 255, 255)
+							TextColor = Color3.new(255, 255, 255)
 						}):Play()
 					end
 				end)

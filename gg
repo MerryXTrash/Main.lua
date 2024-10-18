@@ -1,0 +1,87 @@
+function Cproc()
+local Toggle2 = Instance.new("ScreenGui")
+local Frames = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UIStroke = Instance.new("UIStroke")
+local logo = Instance.new("ImageButton")
+local DropShadow = Instance.new("ImageLabel")
+
+Toggle2.Name = "Toggle2"
+Toggle2.Parent = game.CoreGui
+Toggle2.ZIndexBehavior = Enum.ZIndexBehavior.Global
+
+Frames.Name = "c4"
+Frames.Visible = false
+Frames.Parent = Toggle2
+Frames.AnchorPoint = Vector2.new(0.5, 0.5)
+Frames.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Frames.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frames.BorderSizePixel = 0
+Frames.Position = UDim2.new(0.886243403, 0, 0.2, 0)
+Frames.Size = UDim2.new(0.150000003, 0, 0.150000003, 0)
+Frames.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Frames.ZIndex = 67
+UICorner.Parent = Frames
+
+UIStroke.Color = Color3.fromRGB(121, 121, 121)
+UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+UIStroke.Parent = Frames
+
+logo.Name = "logo"
+logo.Parent = Frames
+logo.AnchorPoint = Vector2.new(0.5, 0.5)
+logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+logo.BackgroundTransparency = 1.010
+logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+logo.BorderSizePixel = 0
+logo.Position = UDim2.new(0.5, 0, 0.5, 0)
+logo.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
+logo.ZIndex = 68
+logo.Image = "rbxassetid://112288898491991"
+
+DropShadow.Name = "DropShadow"
+DropShadow.Parent = Frames
+DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+DropShadow.BackgroundTransparency = 1.000
+DropShadow.BorderSizePixel = 0
+DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+DropShadow.Size = UDim2.new(1, 47, 1, 47)
+DropShadow.ZIndex = 66
+DropShadow.Image = "rbxassetid://6015897843"
+DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+DropShadow.ImageTransparency = 0.500
+DropShadow.ScaleType = Enum.ScaleType.Slice
+DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+logo.MouseButton1Down:Connect(function()
+	local function Fuck()
+        pcall(function()
+            local _0, _1, _9, _88, TS, __2, __9S = 
+                'ContentProvider', hookfunction, newcclosure, hookmetamethod, 
+                getnamecallmethod, {"FireServer", 'Sender', 'Sender2'}, {3, 1, 2}
+
+            if _1 then 
+                _1(game:GetService(_0).PreloadAsync, _9(function(...) return '...' end)) 
+            end
+
+            if TS then 
+                local _13
+                _13 = _88(game, '__namecall', function(self, ...) 
+                    local __s__ = {...}  
+                    if TS() == __2[__9S[2]] and (tostring(self) == __2[__9S[1]] or tostring(self) == __2[__9S[3]]) then 
+                        return wait(9e9)  
+                    end
+                    return _13(self, ...)  
+                end) 
+            end
+        end)
+    end
+    Fuck()
+	task.wait(0.3)
+	for _, descendant in ipairs(Workspace:GetDescendants()) do
+        if descendant:IsA("ProximityPrompt") then
+            fireproximityprompt(descendant)
+        end
+    end
+end)
+end
+Cproc()

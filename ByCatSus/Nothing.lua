@@ -259,7 +259,7 @@ function Library.new(config)
 		Description = "discord.gg/BH6pE7jesa",
 		Keybind = Enum.KeyCode.LeftControl,
 		Logo = "http://www.roblox.com/asset/?id=18810965406",
-		Size = UDim2.new(0.100000001, 445, 0.100000001, 315)
+		Size = UDim2.new(0.100000001, 370, 0.100000001, 280)
 	});
 
 	local TweenInfo1 = TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut);

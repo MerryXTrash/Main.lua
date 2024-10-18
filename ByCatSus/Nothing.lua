@@ -516,7 +516,7 @@ function Library.new(config)
 	Title.Size = UDim2.new(0.671064615, 0, 0.0518743545, 0)
 	Title.Font = Enum.Font.GothamBold
 	Title.Text = config.Title
-	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.TextColor3 = Color3.fromRGB(56, 182, 255)
 	Title.TextScaled = true
 	Title.TextSize = 14.000
 	Title.TextWrapped = true
@@ -539,7 +539,7 @@ function Library.new(config)
 	Description.Size = UDim2.new(0.671064615, 0, 0.0290780049, 0)
 	Description.Font = Enum.Font.GothamBold
 	Description.Text = config.Description
-	Description.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Description.TextColor3 = Color3.fromRGB(56, 182, 255)
 	Description.TextScaled = true
 	Description.TextSize = 14.000
 	Description.TextTransparency = 1
@@ -1166,7 +1166,7 @@ function Library.new(config)
 
 		Button.Name = "Button"
 		Button.Parent = TabButton
-		Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Button.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
 		Button.BackgroundTransparency = 1.000
 		Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Button.BorderSizePixel = 0

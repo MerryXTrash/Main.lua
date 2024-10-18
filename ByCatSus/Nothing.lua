@@ -1539,7 +1539,7 @@ function Library.new(config)
 
 						Twen:Create(TextInt,TweenInfo.new(0.15,Enum.EasingStyle.Quint),{
 							TextTransparency = 0,
-                            TextColor = Color3.new(56, 182, 255)
+                            TextColor3 = Color3.new(56, 182, 255)
 						}):Play()
 
 						Twen:Create(Icon,TweenInfo.new(0.15,Enum.EasingStyle.Quint),{
@@ -1700,7 +1700,7 @@ function Library.new(config)
 
 				Button.Name = "Button"
 				Button.Parent = FunctionButton
-				Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				Button.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
 				Button.BackgroundTransparency = 1.000
 				Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Button.BorderSizePixel = 0
@@ -2059,7 +2059,7 @@ function Library.new(config)
 						Holding = true
 						update(Input)
 						Twen:Create(TextInt,TweenInfo.new(0.1),{
-							TextColor = Color3.new(56, 182, 255)
+							TextColor3 = Color3.new(56, 182, 255)
 						}):Play()
 					end
 				end)
@@ -2068,7 +2068,7 @@ function Library.new(config)
 					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 						Holding = false
 						Twen:Create(TextInt,TweenInfo.new(0.1),{
-							TextColor = Color3.new(255, 255, 255)
+							TextColor3 = Color3.new(255, 255, 255)
 						}):Play()
 					end
 				end)

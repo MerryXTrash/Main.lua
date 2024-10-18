@@ -1539,7 +1539,7 @@ function Library.new(config)
 
 						Twen:Create(TextInt,TweenInfo.new(0.15,Enum.EasingStyle.Quint),{
 							TextTransparency = 0,
-                            Color = Color3.new(56, 182, 255)
+                            TextColor = Color3.new(56, 182, 255)
 						}):Play()
 
 						Twen:Create(Icon,TweenInfo.new(0.15,Enum.EasingStyle.Quint),{

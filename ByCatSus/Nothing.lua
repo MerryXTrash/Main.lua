@@ -1649,7 +1649,7 @@ function Library.new(config)
 				FunctionButton.Name = "FunctionButton"
 				FunctionButton.Parent = Section
 				FunctionButton.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
-				FunctionButton.BackgroundTransparency = 1
+				FunctionButton.BackgroundTransparency = 0
 				FunctionButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				FunctionButton.BorderSizePixel = 0
 				FunctionButton.Size = UDim2.new(0.949999988, 0, 0.5, 0)
@@ -1701,7 +1701,7 @@ function Library.new(config)
 				Button.Name = "Button"
 				Button.Parent = FunctionButton
 				Button.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
-				Button.BackgroundTransparency = 1.000
+				Button.BackgroundTransparency = 0
 				Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Button.BorderSizePixel = 0
 				Button.Size = UDim2.new(1, 0, 1, 0)

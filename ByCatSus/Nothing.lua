@@ -300,59 +300,36 @@ function Library.new(config)
 	WindowTable.Keybind = config.Keybind;
 	WindowTable.ToggleButton = nil
 	
-	        local Toggle = Instance.new("ScreenGui")
-			local ImageButton = Instance.new("Frame")
-			local UICorner = Instance.new("UICorner")
-			local UIStroke = Instance.new("UIStroke")
-			local HomeIcon = Instance.new("ImageButton")
-			local DropShadow = Instance.new("ImageLabel")
+	local ImageButton = Instance.new("ImageButton")
+    ImageButton.Active = true
+    ImageButton.Draggable = true
 
-			Toggle.Name = "Toggle"
-			Toggle.Parent = MainFrame
-			Toggle.ZIndexBehavior = Enum.ZIndexBehavior.Global
-
-			ImageButton.Name = 'c4'
-		    ImageButton.Parent = Toggle
-			ImageButton.AnchorPoint = Vector2.new(0.5, 0.5)
-			ImageButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-			ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			ImageButton.BorderSizePixel = 0
-			ImageButton.Position = UDim2.new(0.886243403, 0, 0.194968551, 0)
-			ImageButton.Size = UDim2.new(0.200000003, 0, 0.200000003, 0)
-			ImageButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-			ImageButton.ZIndex = 67
-
-			UICorner.Parent = ImageButton
-
-			UIStroke.Color = Color3.fromRGB(121, 121, 121)
-			UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-			UIStroke.Parent = ImageButton
-
-			HomeIcon.Name = "logo"
-			HomeIcon.Parent = ImageButton
-			HomeIcon.AnchorPoint = Vector2.new(0.5, 0.5)
-			HomeIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			HomeIcon.BackgroundTransparency = 1.010
-			HomeIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			HomeIcon.BorderSizePixel = 0
-			HomeIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
-			HomeIcon.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
-			HomeIcon.ZIndex = 68
-			HomeIcon.Image = "rbxassetid://134204200422920"
-
-			DropShadow.Name = "DropShadow"
-			DropShadow.Parent = ImageButton
-			DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
-			DropShadow.BackgroundTransparency = 1.000
-			DropShadow.BorderSizePixel = 0
-			DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-			DropShadow.Size = UDim2.new(1, 47, 1, 47)
-			DropShadow.ZIndex = 66
-			DropShadow.Image = "rbxassetid://6015897843"
-			DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-			DropShadow.ImageTransparency = 0.500
-			DropShadow.ScaleType = Enum.ScaleType.Slice
-	        DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+	ImageButton.Parent = MainFrame
+	ImageButton.AnchorPoint = Vector2.new(1, 0)
+	ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ImageButton.BackgroundTransparency = 1.000
+	ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ImageButton.BorderSizePixel = 0
+	ImageButton.Position = UDim2.new(0.992500007, 0, 0.00999999978, 0)
+	ImageButton.Size = UDim2.new(0.0850000009, 0, 0.0850000009, 0)
+	ImageButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
+	ImageButton.ZIndex = 50
+	ImageButton.Image = "rbxassetid://10002398990"
+	ImageButton.ImageTransparency = 1
+	
+	local HomeIcon = Instance.new("ImageLabel")
+	HomeIcon.Parent = ImageButton
+	HomeIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+	HomeIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	HomeIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	HomeIcon.BorderSizePixel = 0
+	HomeIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+	HomeIcon.Size = UDim2.new(0.7,0,0.7,0)
+	HomeIcon.ZIndex = 49
+	HomeIcon.Image = "rbxassetid://134204200422920"
+	HomeIcon.ScaleType = Enum.ScaleType.Fit
+	HomeIcon.ImageTransparency = 1;
+	HomeIcon.BackgroundTransparency = 1;
 	
 	local function Update()
 		if WindowTable.WindowToggle then
@@ -377,7 +354,7 @@ function Library.new(config)
 			Twen:Create(ImageButton,TweenInfo.new(0.85,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
 				Position = UDim2.new(0.992500007, 0, 0.00999999978, 0),
 				Size = UDim2.new(0.0850000009, 0, 0.0850000009, 0),
-				BackgroundTransparency = 0.5,
+				ImageTransparency = 0.5,
 				AnchorPoint = Vector2.new(1, 0)
 			}):Play();
 			
@@ -385,7 +362,7 @@ function Library.new(config)
 				ImageTransparency = 1,
 			}):Play()
 
-			ImageButton.Image = "rbxassetid://134204200422920"
+			ImageButton.Image = "rbxassetid://10002398990"
 			
 			Twen:Create(UICorner,TweenInfo.new(1),{
 				CornerRadius = UDim.new(0, 7)
@@ -440,7 +417,7 @@ function Library.new(config)
 		ImageTransparency = 0.5
 	}):Play()
 
-	HomeIcon.MouseButton1Click:Connect(function()
+	ImageButton.MouseButton1Click:Connect(function()
 		WindowTable.WindowToggle = not WindowTable.WindowToggle
 		Update()
 	end)

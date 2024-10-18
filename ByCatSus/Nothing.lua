@@ -545,7 +545,7 @@ function Library.new(config)
 	Description.TextTransparency = 1
 	Description.TextWrapped = true
 	Description.TextXAlignment = Enum.TextXAlignment.Left
-	Twen:Create(Description,TweenInfo2,{TextTransparency = 0.5}):Play();
+	Twen:Create(Description,TweenInfo2,{TextTransparency = 0}):Play();
 
 	UIGradient_2.Rotation = 90
     UIGradient_2.Transparency = NumberSequence.new{
@@ -1659,15 +1659,15 @@ function Library.new(config)
 				local FunctionButton = Instance.new("Frame")
 				local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 				local UICorner = Instance.new("UICorner")
+                local UIGradient = Instance.new("UIGradient")
 				local DropShadow = Instance.new("ImageLabel")
 				local TextInt = Instance.new("TextLabel")
-				local UIGradient = Instance.new("UIGradient")
 				local Button = Instance.new("TextButton")
 				local UIStroke = Instance.new("UIStroke")
 
 				FunctionButton.Name = "FunctionButton"
 				FunctionButton.Parent = Section
-				FunctionButton.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+				FunctionButton.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
 				FunctionButton.BackgroundTransparency = 1
 				FunctionButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				FunctionButton.BorderSizePixel = 0
@@ -1677,6 +1677,13 @@ function Library.new(config)
 					BackgroundTransparency = 0.750,
 					Size = UDim2.new(0.949999988, 0, 0.5, 0)
 				}):Play();
+
+                UIGradient.Rotation = 90
+                UIGradient.Transparency = NumberSequence.new{
+                NumberSequenceKeypoint.new(0.00, 0.00),  -- สีขาวที่จุดเริ่มต้น
+                NumberSequenceKeypoint.new(1.00, 0.80)   -- เกือบดำที่จุดสิ้นสุด
+                }
+                UIGradient.Parent = FunctionButton
 
 				UIAspectRatioConstraint.Parent = FunctionButton
 				UIAspectRatioConstraint.AspectRatio = 7.000
@@ -1720,10 +1727,6 @@ function Library.new(config)
 				TextInt.TextSize = 14.000
 				TextInt.TextWrapped = true
 				TextInt.TextTransparency = 0.25;
-
-				UIGradient.Rotation = 90
-				UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.84, 0.25), NumberSequenceKeypoint.new(1.00, 1.00)}
-				UIGradient.Parent = TextInt
 
 				Button.Name = "Button"
 				Button.Parent = FunctionButton

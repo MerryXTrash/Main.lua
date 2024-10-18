@@ -1654,6 +1654,10 @@ function Library.new(config)
 				FunctionButton.BorderSizePixel = 0
 				FunctionButton.Size = UDim2.new(0.949999988, 0, 0.5, 0)
 				FunctionButton.ZIndex = 17
+                Twen:Create(FunctionButton,TweenInfo1,{
+					BackgroundTransparency = 0,
+					Size = UDim2.new(0.949999988, 0, 0.5, 0)
+				}):Play();
 
 				UIAspectRatioConstraint.Parent = FunctionButton
 				UIAspectRatioConstraint.AspectRatio = 7.000
@@ -1700,8 +1704,8 @@ function Library.new(config)
 
 				Button.Name = "Button"
 				Button.Parent = FunctionButton
-				Button.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
-				Button.BackgroundTransparency = 0
+				Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+				Button.BackgroundTransparency = 1
 				Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Button.BorderSizePixel = 0
 				Button.Size = UDim2.new(1, 0, 1, 0)

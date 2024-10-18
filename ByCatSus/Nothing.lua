@@ -1103,10 +1103,6 @@ function Library.new(config)
 		UICorner_2.CornerRadius = UDim.new(0, 3)
 		UICorner_2.Parent = Icon
 
-		UIGradient.Rotation = 90
-		UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.75, 0.27), NumberSequenceKeypoint.new(1.00, 1.00)}
-		UIGradient.Parent = Icon
-
 		Title.Name = "Title"
 		Title.Parent = TabButton
 		Title.AnchorPoint = Vector2.new(0, 0.5)
@@ -1125,10 +1121,6 @@ function Library.new(config)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.TextTransparency = 1;
 
-		UIGradient_2.Rotation = 90
-		UIGradient_2.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.84, 0.25), NumberSequenceKeypoint.new(1.00, 1.00)}
-		UIGradient_2.Parent = Title
-
 		Description.Name = "Description"
 		Description.Parent = TabButton
 		Description.AnchorPoint = Vector2.new(0, 0.5)
@@ -1146,10 +1138,6 @@ function Library.new(config)
 		Description.TextTransparency = 1
 		Description.TextWrapped = true
 		Description.TextXAlignment = Enum.TextXAlignment.Left
-
-		UIGradient_3.Rotation = 90
-		UIGradient_3.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.84, 0.25), NumberSequenceKeypoint.new(1.00, 1.00)}
-		UIGradient_3.Parent = Description
 
 		Frame.Parent = TabButton
 		Frame.AnchorPoint = Vector2.new(1, 0.5)
@@ -1487,7 +1475,7 @@ function Library.new(config)
 				TextInt.TextColor3 = Color3.fromRGB(255, 255, 255)
 				TextInt.TextScaled = true
 				TextInt.TextSize = 14.000
-				TextInt.TextTransparency = 0.250
+				TextInt.TextTransparency = 0
 				TextInt.TextWrapped = true
 				TextInt.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1535,7 +1523,7 @@ function Library.new(config)
 				Icon.Parent = System
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
 				Icon.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
-				Icon.BackgroundTransparency = 0.500
+				Icon.BackgroundTransparency = 0
 				Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Icon.BorderSizePixel = 0
 				Icon.Position = UDim2.new(0.25, 0, 0.5, 0)
@@ -1553,12 +1541,12 @@ function Library.new(config)
 					if value then
 
 						Twen:Create(TextInt,TweenInfo.new(0.15,Enum.EasingStyle.Quint),{
-							TextTransparency = 0.02
+							TextTransparency = 0,
+                            Color = Color3.new(56, 182, 255)
 						}):Play()
 
 						Twen:Create(Icon,TweenInfo.new(0.15,Enum.EasingStyle.Quint),{
 							Position = UDim2.new(0.75, 0, 0.5, 0),
-							BackgroundTransparency = 0.4
 						}):Play()
 					else
 						Twen:Create(Icon,TweenInfo.new(0.15,Enum.EasingStyle.Quint),{
@@ -1677,13 +1665,6 @@ function Library.new(config)
 					BackgroundTransparency = 0.750,
 					Size = UDim2.new(0.949999988, 0, 0.5, 0)
 				}):Play();
-
-                UIGradient.Rotation = 90
-                UIGradient.Transparency = NumberSequence.new{
-                NumberSequenceKeypoint.new(0.00, 0.00),  -- สีขาวที่จุดเริ่มต้น
-                NumberSequenceKeypoint.new(1.00, 0.80)   -- เกือบดำที่จุดสิ้นสุด
-                }
-                UIGradient.Parent = FunctionButton
 
 				UIAspectRatioConstraint.Parent = FunctionButton
 				UIAspectRatioConstraint.AspectRatio = 7.000
@@ -2003,7 +1984,7 @@ function Library.new(config)
 				TextInt.TextColor3 = Color3.fromRGB(255, 255, 255)
 				TextInt.TextScaled = true
 				TextInt.TextSize = 14.000
-				TextInt.TextTransparency = 0.250
+				TextInt.TextTransparency = 0
 				TextInt.TextWrapped = true
 				TextInt.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -2033,7 +2014,7 @@ function Library.new(config)
 				ValueText.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ValueText.TextScaled = true
 				ValueText.TextSize = 14.000
-				ValueText.TextTransparency = 0.500
+				ValueText.TextTransparency = 0
 				ValueText.TextWrapped = true
 				ValueText.TextXAlignment = Enum.TextXAlignment.Right
 
@@ -2058,7 +2039,7 @@ function Library.new(config)
 
 				TFrame.Name = "TFrame"
 				TFrame.Parent = MFrame
-				TFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				TFrame.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
 				TFrame.BackgroundTransparency = 0.500
 				TFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				TFrame.BorderSizePixel = 0
@@ -2089,7 +2070,7 @@ function Library.new(config)
 						Holding = true
 						update(Input)
 						Twen:Create(TextInt,TweenInfo.new(0.1),{
-							TextTransparency = 0
+							TextColor3 = Color3.new(56, 182, 255)
 						}):Play()
 					end
 				end)
@@ -2098,7 +2079,7 @@ function Library.new(config)
 					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 						Holding = false
 						Twen:Create(TextInt,TweenInfo.new(0.1),{
-							TextTransparency = 0.3
+							TextColor3 = Color3.new(255, 255, 255)
 						}):Play()
 					end
 				end)

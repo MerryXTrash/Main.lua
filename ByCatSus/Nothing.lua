@@ -1649,19 +1649,12 @@ function Library.new(config)
 
 				FunctionButton.Name = "FunctionButton"
 				FunctionButton.Parent = Section
-				FunctionButton.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
+				FunctionButton.BackgroundColor3 = Color3.fromRGB(0, 148, 255)
 				FunctionButton.BackgroundTransparency = 0
 				FunctionButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				FunctionButton.BorderSizePixel = 0
 				FunctionButton.Size = UDim2.new(0.949999988, 0, 0.5, 0)
 				FunctionButton.ZIndex = 17
-
-                UIGradient.Rotation = 90
-                UIGradient.Transparency = NumberSequence.new{
-                NumberSequenceKeypoint.new(0.00, 0.00),  -- สีขาวที่จุดเริ่มต้น
-                NumberSequenceKeypoint.new(1.00, 0.50)   -- เกือบดำที่จุดสิ้นสุด
-                }
-                UIGradient.Parent =
                 Twen:Create(FunctionButton,TweenInfo1,{
 					BackgroundTransparency = 0,
 					Size = UDim2.new(0.949999988, 0, 0.5, 0)
@@ -1708,11 +1701,6 @@ function Library.new(config)
 				TextInt.TextSize = 14.000
 				TextInt.TextWrapped = true
 				TextInt.TextTransparency = 0;
-
-                UIStroke2.Parent = TextInt
-                UIStroke2.Color = Color3.fromRGB(30, 30, 30)
-                UIStroke2.ApplyStrokeMode = Enum.Contextual
-                UIStroke2.Thickness = 0.5
 
 				Button.Name = "Button"
 				Button.Parent = FunctionButton

@@ -1645,6 +1645,7 @@ function Library.new(config)
 				local TextInt = Instance.new("TextLabel")
 				local Button = Instance.new("TextButton")
 				local UIStroke = Instance.new("UIStroke")
+                local UIStroke2 = Instance.new("UIStroke")
 
 				FunctionButton.Name = "FunctionButton"
 				FunctionButton.Parent = Section
@@ -1654,18 +1655,17 @@ function Library.new(config)
 				FunctionButton.BorderSizePixel = 0
 				FunctionButton.Size = UDim2.new(0.949999988, 0, 0.5, 0)
 				FunctionButton.ZIndex = 17
-                Twen:Create(FunctionButton,TweenInfo1,{
-					BackgroundTransparency = 0,
-					Size = UDim2.new(0.949999988, 0, 0.5, 0)
-				}):Play();
 
                 UIGradient.Rotation = 90
                 UIGradient.Transparency = NumberSequence.new{
                 NumberSequenceKeypoint.new(0.00, 0.00),  -- สีขาวที่จุดเริ่มต้น
                 NumberSequenceKeypoint.new(1.00, 0.50)   -- เกือบดำที่จุดสิ้นสุด
                 }
-                UIGradient.Parent = FunctionButton
-
+                UIGradient.Parent =
+                Twen:Create(FunctionButton,TweenInfo1,{
+					BackgroundTransparency = 0,
+					Size = UDim2.new(0.949999988, 0, 0.5, 0)
+				}):Play();
 
 				UIAspectRatioConstraint.Parent = FunctionButton
 				UIAspectRatioConstraint.AspectRatio = 7.000
@@ -1691,7 +1691,6 @@ function Library.new(config)
 				DropShadow.ImageTransparency = 0.600
 				DropShadow.ScaleType = Enum.ScaleType.Slice
 				DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
-
 				TextInt.Name = "TextInt"
 				TextInt.Parent = FunctionButton
 				TextInt.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -1709,6 +1708,11 @@ function Library.new(config)
 				TextInt.TextSize = 14.000
 				TextInt.TextWrapped = true
 				TextInt.TextTransparency = 0;
+
+                UIStroke2.Parent = TextInt
+                UIStroke2.Color = Color3.fromRGB(30, 30, 30)
+                UIStroke2.ApplyStrokeMode = Enum.Contextual
+                UIStroke2.Thickness = 0.5
 
 				Button.Name = "Button"
 				Button.Parent = FunctionButton

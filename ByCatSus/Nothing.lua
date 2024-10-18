@@ -1548,11 +1548,11 @@ function Library.new(config)
 					else
 						Twen:Create(Icon,TweenInfo.new(0.15,Enum.EasingStyle.Quint),{
 							Position = UDim2.new(0.25, 0, 0.5, 0),
-							BackgroundTransparency = 0.500
 						}):Play()
 
 						Twen:Create(TextInt,TweenInfo.new(0.15,Enum.EasingStyle.Quint),{
-							TextTransparency = 0.25
+							TextTransparency = 0.25,
+                            TextColor3 = Color3.fromRGB(255, 255, 255)
 						}):Play()
 					end;
 				end;
@@ -1696,7 +1696,7 @@ function Library.new(config)
 				TextInt.TextScaled = true
 				TextInt.TextSize = 14.000
 				TextInt.TextWrapped = true
-				TextInt.TextTransparency = 0.25;
+				TextInt.TextTransparency = 0;
 
 				Button.Name = "Button"
 				Button.Parent = FunctionButton

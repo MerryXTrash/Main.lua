@@ -300,34 +300,59 @@ function Library.new(config)
 	WindowTable.Keybind = config.Keybind;
 	WindowTable.ToggleButton = nil
 	
-	local ImageButton = Instance.new("ImageButton")
+	        local Toggle = Instance.new("ScreenGui")
+			local ImageButton = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local UIStroke = Instance.new("UIStroke")
+			local logo = Instance.new("ImageLabel")
+			local DropShadow = Instance.new("ImageLabel")
 
-	ImageButton.Parent = MainFrame
-	ImageButton.AnchorPoint = Vector2.new(1, 0)
-	ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ImageButton.BackgroundTransparency = 1.000
-	ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	ImageButton.BorderSizePixel = 0
-	ImageButton.Position = UDim2.new(0.992500007, 0, 0.00999999978, 0)
-	ImageButton.Size = UDim2.new(0.0850000009, 0, 0.0850000009, 0)
-	ImageButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-	ImageButton.ZIndex = 50
-	ImageButton.Image = "rbxassetid://10002398990"
-	ImageButton.ImageTransparency = 1
-	
-	local HomeIcon = Instance.new("ImageLabel")
-	HomeIcon.Parent = ImageButton
-	HomeIcon.AnchorPoint = Vector2.new(0.5, 0.5)
-	HomeIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	HomeIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	HomeIcon.BorderSizePixel = 0
-	HomeIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
-	HomeIcon.Size = UDim2.new(0.7,0,0.7,0)
-	HomeIcon.ZIndex = 49
-	HomeIcon.Image = "rbxassetid://7733993211"
-	HomeIcon.ScaleType = Enum.ScaleType.Fit
-	HomeIcon.ImageTransparency = 1;
-	HomeIcon.BackgroundTransparency = 1;
+			Toggle.Name = "Toggle"
+			Toggle.Parent = MainFrame
+			Toggle.ZIndexBehavior = Enum.ZIndexBehavior.Global
+
+			Frames.Name = 'c4'
+			Frames.Parent = Toggle
+			Frames.AnchorPoint = Vector2.new(0.5, 0.5)
+			Frames.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+			Frames.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			Frames.BorderSizePixel = 0
+			Frames.Position = UDim2.new(0.886243403, 0, 0.194968551, 0)
+			Frames.Size = UDim2.new(0.200000003, 0, 0.200000003, 0)
+			Frames.SizeConstraint = Enum.SizeConstraint.RelativeYY
+			Frames.ZIndex = 67
+
+			UICorner.Parent = Frames
+
+			UIStroke.Color = Color3.fromRGB(121, 121, 121)
+			UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			UIStroke.Parent = Frames
+
+			logo.Name = "logo"
+			logo.Parent = Frames
+			logo.AnchorPoint = Vector2.new(0.5, 0.5)
+			logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			logo.BackgroundTransparency = 1.010
+			logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			logo.BorderSizePixel = 0
+			logo.Position = UDim2.new(0.5, 0, 0.5, 0)
+			logo.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
+			logo.ZIndex = 68
+			logo.Image = rbxassetid://134204200422920
+
+			DropShadow.Name = "DropShadow"
+			DropShadow.Parent = Frames
+			DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+			DropShadow.BackgroundTransparency = 1.000
+			DropShadow.BorderSizePixel = 0
+			DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+			DropShadow.Size = UDim2.new(1, 47, 1, 47)
+			DropShadow.ZIndex = 66
+			DropShadow.Image = "rbxassetid://6015897843"
+			DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+			DropShadow.ImageTransparency = 0.500
+			DropShadow.ScaleType = Enum.ScaleType.Slice
+	        DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
 	
 	local function Update()
 		if WindowTable.WindowToggle then
@@ -360,7 +385,7 @@ function Library.new(config)
 				ImageTransparency = 1,
 			}):Play()
 
-			ImageButton.Image = "rbxassetid://10002398990"
+			ImageButton.Image = "rbxassetid://134204200422920"
 			
 			Twen:Create(UICorner,TweenInfo.new(1),{
 				CornerRadius = UDim.new(0, 7)

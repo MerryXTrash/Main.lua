@@ -516,7 +516,7 @@ function Library.new(config)
 	Title.Size = UDim2.new(0.671064615, 0, 0.0518743545, 0)
 	Title.Font = Enum.Font.GothamBold
 	Title.Text = config.Title
-	Title.TextColor3 = Color3.fromRGB(56, 182, 255)
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Title.TextScaled = true
 	Title.TextSize = 14.000
 	Title.TextWrapped = true
@@ -548,8 +548,12 @@ function Library.new(config)
 	Twen:Create(Description,TweenInfo2,{TextTransparency = 0.5}):Play();
 
 	UIGradient_2.Rotation = 90
-	UIGradient_2.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.75, 0.27), NumberSequenceKeypoint.new(1.00, 1.00)}
-	UIGradient_2.Parent = Description
+    UIGradient_2.Transparency = NumberSequence.new{
+    NumberSequenceKeypoint.new(0.00, 0.00),
+    NumberSequenceKeypoint.new(1.00, 0.50)
+    }
+    UIGradient_2.Parent = Description
+
 
 	BlockFrame1.Name = "BlockFrame1"
 	BlockFrame1.Parent = MainFrame
@@ -1149,7 +1153,7 @@ function Library.new(config)
 
 		Frame.Parent = TabButton
 		Frame.AnchorPoint = Vector2.new(1, 0.5)
-		Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Frame.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
 		Frame.BackgroundTransparency = 1
 		Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Frame.BorderSizePixel = 0
@@ -1530,7 +1534,7 @@ function Library.new(config)
 				Icon.Name = "Icon"
 				Icon.Parent = System
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
-				Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				Icon.BackgroundColor3 = Color3.fromRGB(56, 182, 255)
 				Icon.BackgroundTransparency = 0.500
 				Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Icon.BorderSizePixel = 0
@@ -3453,7 +3457,5 @@ function Library:Console()
 
 	return overview;
 end;
-
-print('[ OK ]: Fetch Nothing Library')
 
 return table.freeze(Library);

@@ -301,8 +301,6 @@ function Library.new(config)
 	WindowTable.ToggleButton = nil
 	
 	local ImageButton = Instance.new("ImageButton")
-    ImageButton.Active = true
-    ImageButton.Draggable = true
 
 	ImageButton.Parent = MainFrame
 	ImageButton.AnchorPoint = Vector2.new(1, 0)
@@ -369,8 +367,8 @@ function Library.new(config)
 			}):Play()
 
 		else
-			Twen:Create(MainFrame,TweenInfo.new(1,Enum.EasingStyle.Quint),{BackgroundTransparency = 1,Size = UDim2.new(0.085, 10,0.05, 0)}):Play();
-			Twen:Create(MainFrame,TweenInfo.new(0.5,Enum.EasingStyle.Quint),{Position = UDim2.new(0.5, 0,0.05, 0)}):Play();
+			Twen:Create(MainFrame,TweenInfo.new(1,Enum.EasingStyle.Quint),{BackgroundTransparency = 1,Size = UDim2.new(0.100000003, 0, 0.180000003, 0)}):Play();
+			Twen:Create(MainFrame,TweenInfo.new(0.5,Enum.EasingStyle.Quint),{Position = UDim2.new(0.886243403, 0, 0.194968551, 0)}):Play();
 			Twen:Create(MainDropShadow,TweenInfo1,{ImageTransparency = 1}):Play();
 			Twen:Create(Headers,TweenInfo1,{BackgroundTransparency = 1}):Play();
 			Twen:Create(Logo,TweenInfo1,{ImageTransparency = 1}):Play();
@@ -739,7 +737,6 @@ function Library.new(config)
 		ValueId.TextSize = 14.000
 		ValueId.TextTransparency = 0.800
 		ValueId.TextWrapped = true
-		ValueId.TextXAlignment = Enum.TextXAlignment.Right
 
 		UIAspectRatioConstraint.Parent = ValueId
 		UIAspectRatioConstraint.AspectRatio = 15.000
@@ -1026,7 +1023,7 @@ function Library.new(config)
 				DropdownFrame.Visible = true;
 
 				Twen:Create(DropdownFrame,TweenInfo.new(0.15),{
-					Position = UDim2.fromOffset(Locked.AbsolutePosition.X + 5,Locked.AbsolutePosition.Y + (DropdownFrame.AbsoluteSize.Y / 1.5)),
+					Position = UDim2.fromOffset(Locked.AbsolutePosition.X + 5, Locked.AbsolutePosition.Y - 20 + (DropdownFrame.AbsoluteSize.Y / 1.5)),
 					Size = UDim2.fromOffset(Locked.AbsoluteSize.X,150)
 				}):Play()
 
@@ -1728,8 +1725,8 @@ function Library.new(config)
 						ImageTransparency = 0.35
 					}):Play()
 
-					Twen:Create(TextInt,TweenInfo.new(0.2),{
-						TextTransparency = 0
+					Twen:Create(FunctionButton,TweenInfo.new(0.2),{
+						BackgroundTransparency = 0.35
 					}):Play()
 				end)
 
@@ -1737,9 +1734,8 @@ function Library.new(config)
 					Twen:Create(DropShadow,TweenInfo.new(0.2),{
 						ImageTransparency = 0.600
 					}):Play()
-
-					Twen:Create(TextInt,TweenInfo.new(0.2),{
-						TextTransparency = 0.25
+					Twen:Create(FunctionButton,TweenInfo.new(0.2),{
+						BackgroundTransparency = 0
 					}):Play()
 				end)
 
@@ -2150,13 +2146,10 @@ function Library.new(config)
 				TextInt.TextColor3 = Color3.fromRGB(255, 255, 255)
 				TextInt.TextScaled = true
 				TextInt.TextSize = 14.000
-				TextInt.TextTransparency = 0.250
+				TextInt.TextTransparency = 0
 				TextInt.TextWrapped = true
 				TextInt.TextXAlignment = Enum.TextXAlignment.Left
 
-				UIGradient.Rotation = 90
-				UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.84, 0.25), NumberSequenceKeypoint.new(1.00, 1.00)}
-				UIGradient.Parent = TextInt
 
 				UIStroke.Transparency = 0.950
 				UIStroke.Color = Color3.fromRGB(255, 255, 255)
@@ -2199,24 +2192,20 @@ function Library.new(config)
 				ValueText.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ValueText.TextScaled = true
 				ValueText.TextSize = 14.000
-				ValueText.TextTransparency = 0.500
+				ValueText.TextTransparency = 0
 				ValueText.TextWrapped = true
 
 				MFrame.MouseEnter:Connect(function()
 					Twen:Create(ValueText,TweenInfo.new(0.3),{
-						TextTransparency = 0.1
+						TextColor3 = Color3.fromRGB(0, 148, 255)
 					}):Play()
 				end)
 
 				MFrame.MouseLeave:Connect(function()
 					Twen:Create(ValueText,TweenInfo.new(0.3),{
-						TextTransparency = 0.500
+						TextColor3 = Color3.fromRGB(255, 255, 255)
 					}):Play()
 				end)
-
-				UIGradient_2.Rotation = 90
-				UIGradient_2.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.84, 0.25), NumberSequenceKeypoint.new(1.00, 1.00)}
-				UIGradient_2.Parent = ValueText
 
 				Button.Name = "Button"
 				Button.Parent = FunctionDropdown

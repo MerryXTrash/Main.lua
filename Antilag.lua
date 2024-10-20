@@ -897,7 +897,7 @@ end
 Windows = NothingLibrary.new({Title = "Overflow - The Mimic", Description = "Ultimate 5.0", Keybind = Enum.KeyCode.LeftControl, Logo = 'rbxassetid://115642679590790'})
 
 --Tab
-_General_TAB = Windows:NewTab({Title = "General", Description = "Info Script", Icon = icons.home })
+_General_TAB = Windows:NewTab({Title = "Help", Description = "Info", Icon = "rbxassetid://7733964719" })
 _Setting_TAB = Windows:NewTab({ Title = "Setting", Description = "Functions", Icon = icons.setting })
 _Teleport_TAB = Windows:NewTab({ Title = "Teleport", Description = "Quick Game", Icon = icons.teleport })
 _B1C1_TAB = Windows:NewTab({ Title = "Control's I", Description = "Functions", Icon = icons.control })
@@ -908,9 +908,9 @@ _B2C1_TAB = Windows:NewTab({ Title = "Jelousy's I", Description = "Functions", I
 _B2C2_TAB = Windows:NewTab({ Title = "Jelousy's II", Description = "Functions", Icon = icons.jelousy })
 _B2C3_TAB = Windows:NewTab({ Title = "Jelousy's III", Description = "Functions", Icon = icons.jelousy })
 _TWT_TAB = Windows:NewTab({ Title = "The Witch Trial", Description = "Functions", Icon = icons.twt })
-_NCC_TAB = Windows:NewTab({ Title = "Chirstmas Trial", Description = "Functions", Icon = icons.xmas })
+_XMAS_TAB = Windows:NewTab({ Title = "Chirstmas Trial", Description = "Functions", Icon = icons.xmas })
 _HW_TAB = Windows:NewTab({ Title = "Halloween Trial", Description = "Functions", Icon = icons.halloween })
-_XMAS_TAB = Windows:NewTab({ Title = "Nightmare Circus", Description = "Functions", Icon = icons.circus })
+_NCC_TAB = Windows:NewTab({ Title = "Nightmare Circus", Description = "Functions", Icon = icons.circus })
 _DC_TAB = Windows:NewTab({ Title = "Death's Challeng", Description = "Functions", Icon = icons.jigoku })
 _CS_TAB = Windows:NewTab({ Title = "Classic", Description = "Functions", Icon = icons.classic })
 
@@ -1017,6 +1017,7 @@ Setting_main = _Setting_TAB:NewSection({ Title = "Setting", Icon = icons.setting
 Setting_misc = _Setting_TAB:NewSection({ Title = "Miscellaneous", Icon = icons.misc, Position = "Left" })
 Setting_Esp = _Setting_TAB:NewSection({ Title = "Visual", Icon = icons.visual, Position = "Right" })
 Setting_display = _Setting_TAB:NewSection({ Title = "Display", Icon = icons.display, Position = "Right" })
+Setting_tele = _Setting_TAB:NewSection({ Title = "Teleport", Icon = icons.teleport, Position = "Right" })
 Setting_Esp:NewTitle("If ESP Don't Work, Just On and Off Again.")
 Setting_Esp:NewToggle({Title = "Monsters", Default = false, Callback = function(tr) 
     if tr then
@@ -1132,6 +1133,29 @@ end})
 Setting_misc:NewSlider({Title = "Fly Speed", Min = 1, Max = 10, Default = 2, Callback = function(a) 
     speeds = a
 end})
+EnteredUsername = ""
+Setting_tele:NewTextbox({
+    Title = "Teleport Player", 
+    Default = "", 
+    FileType = "Username", 
+    Callback = function(username)
+        EnteredUsername = username
+    end
+})
+
+Setting_tele:NewButton({
+    Title = "Teleport", 
+    Callback = function()
+        local targetPlayer = game.Players:FindFirstChild(EnteredUsername)
+        if targetPlayer and targetPlayer.Character then
+            local targetHRP = targetPlayer.Character:FindFirstChild("HumanoidRootPart")
+            if targetHRP then
+                to(targetHRP.CFrame)
+            end
+        end
+    end
+})
+
 --teleportTAB
 Teleport_main = _Teleport_TAB:NewSection({ Title = "Main", Icon = icons.home, Position = "Left" })
 Teleport_b1 = _Teleport_TAB:NewSection({ Title = "Control's Book", Icon = icons.control, Position = "Right" })
@@ -1305,23 +1329,31 @@ end})
 
 
 
-B2C1_0 = _B2C1_TAB:NewSection({ Title = "Office [Section 1]", Icon = icons.setting, Position = "Left" })
-B2C1_1 = _B2C1_TAB:NewSection({ Title = "Rats [Section 2]", Icon = icons.home, Position = "Right" })
-B2C1_2 = _B2C1_TAB:NewSection({ Title = "Snake [Section 3]", Icon = icons.butterfly, Position = "Left" })
-B2C1_3 = _B2C1_TAB:NewSection({ Title = "Town [Section 4]", Icon = icons.armor, Position = "Right" })
-B2C1_4 = _B2C1_TAB:NewSection({ Title = "Picture [Section 5]", Icon = icons.heart, Position = "Left" })
-B2C1_5 = _B2C1_TAB:NewSection({ Title = "Ship [Section 6]", Icon = icons.boss, Position = "Right" })
-B2C1_6 = _B2C1_TAB:NewSection({ Title = "Candle 🟢 [Section 7]", Icon = icons.boss, Position = "Left" })
-B2C1_6x = _B2C1_TAB:NewSection({ Title = "Candle 🔴 [Section 7]", Icon = icons.boss, Position = "Left" })
-B2C1_7 = _B2C1_TAB:NewSection({ Title = "Candle [Section 8]", Icon = icons.boss, Position = "Right" })
+B2C1_0 = _B2C1_TAB:NewSection({ Title = "Office [Section 1]", Icon = icons.city, Position = "Left" })
+B2C1_1 = _B2C1_TAB:NewSection({ Title = "Rats [Section 2]", Icon = icons.rat, Position = "Right" })
+B2C1_2 = _B2C1_TAB:NewSection({ Title = "Snake [Section 3]", Icon = icons.nagisa, Position = "Left" })
+B2C1_3 = _B2C1_TAB:NewSection({ Title = "Town [Section 4]", Icon = icons.town, Position = "Right" })
+B2C1_4 = _B2C1_TAB:NewSection({ Title = "Picture [Section 5]", Icon = icons.candle, Position = "Left" })
+B2C1_5 = _B2C1_TAB:NewSection({ Title = "Ship [Section 6]", Icon = icons.ship, Position = "Right" })
+B2C1_6 = _B2C1_TAB:NewSection({ Title = "Candle 🟢 [Section 7]", Icon = icons.candle12345, Position = "Left" })
+B2C1_6x = _B2C1_TAB:NewSection({ Title = "Candle 🔴 [Section 7]", Icon = icons.candle12345, Position = "Left" })
+B2C1_7 = _B2C1_TAB:NewSection({ Title = "Candle [Section 8]", Icon = icons.sea, Position = "Right" })
 
 B2C1_0:NewButton({Title = "Enter Office", Callback = function()
     
 end})
+B2C1_1:NewTitle("ESP")
+B2C1_1:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
 B2C1_1:NewButton({Title = "Read Book", Callback = function()
     
 end})
-B2C1_1:NewTitle("                   Quest")
+B2C1_1:NewTitle("Quest")
 B2C1_1:NewButton({Title = "Automatic Rats", Callback = function()
     
 end})
@@ -1330,14 +1362,6 @@ B2C1_1:NewButton({Title = "Escape", Callback = function()
 end})
 B2C1_1:NewButton({Title = "Run", Callback = function()
     
-end})
-B2C1_1:NewTitle("                     ESP")
-B2C1_1:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
-    if tr then
-
-    else
-
-    end
 end})
 B2C1_2:NewButton({Title = "Enter Cave", Callback = function()
     
@@ -1351,7 +1375,7 @@ end})
 B2C1_3:NewButton({Title = "Automatic Unlock Door", Callback = function()
     
 end})
-B2C1_3:NewTitle("                   House")
+B2C1_3:NewTitle("House")
 B2C1_3:NewButton({Title = "House 1", Callback = function()
     
 end})
@@ -1394,7 +1418,7 @@ end})
 B2C1_4:NewButton({Title = "Girl & Chicken", Callback = function()
     
 end})
-B2C1_4:NewTitle("                     Orb")
+B2C1_4:NewTitle("Orb")
 B2C1_4:NewButton({Title = "Automatic Orb", Callback = function()
     
 end})
@@ -1402,5 +1426,448 @@ B2C1_5:NewButton({Title = "Enter Ship", Callback = function()
     
 end})
 B2C1_6:NewButton({Title = "To Oxygen", Callback = function()
+    
+end})
+B2C1_6:NewTitle("Midle Floor")
+B2C1_6:NewButton({Title = "Candle 1", Callback = function()
+    
+end})
+B2C1_6:NewTitle("Upper Floor")
+B2C1_6:NewButton({Title = "Candle 1", Callback = function()
+    
+end})
+B2C1_6:NewButton({Title = "Candle 2", Callback = function()
+    
+end})
+B2C1_6:NewButton({Title = "Candle 3", Callback = function()
+    
+end})
+B2C1_6:NewTitle("Lower Floor")
+B2C1_6:NewButton({Title = "Candle 1", Callback = function()
+    
+end})
+B2C1_6:NewButton({Title = "Candle 2", Callback = function()
+    
+end})
+B2C1_6:NewButton({Title = "Candle 3", Callback = function()
+    
+end})
+B2C1_6:NewButton({Title = "Candle 4", Callback = function()
+    
+end})
+B2C1_6:NewButton({Title = "Candle 5", Callback = function()
+    
+end})
+B2C1_6:NewTitle("Run")
+B2C1_6:NewButton({Title = "Run", Callback = function()
+    
+end})
+B2C1_6x:NewButton({Title = "Automatic Floor 1", Callback = function()
+    
+end})
+B2C1_6x:NewButton({Title = "Automatic Floor 2", Callback = function()
+    
+end})
+B2C1_6x:NewButton({Title = "Automatic Floor 3", Callback = function()
+    
+end})
+B2C1_6x:NewTitle("Run")
+B2C1_6x:NewButton({Title = "Run", Callback = function()
+    
+end})
+
+B2C1_7:NewButton({Title = "Automatic Escape", Callback = function()
+    
+end})
+
+
+
+B2C2_s = _B2C2_TAB:NewSection({ Title = "Setting", Icon = icons.setting, Position = "Left" })
+B2C2_0 = _B2C2_TAB:NewSection({ Title = "Ocean [Section 1]", Icon = icons.sea, Position = "Left" })
+B2C2_1 = _B2C2_TAB:NewSection({ Title = "Cow [Section 1.5]", Icon = icons.cow, Position = "Right" })
+B2C2_2 = _B2C2_TAB:NewSection({ Title = "Meat [Section 2]", Icon = icons.meat, Position = "Left" })
+B2C2_3 = _B2C2_TAB:NewSection({ Title = "Skeleton [Section 3]", Icon = icons.skull, Position = "Right" })
+B2C2_4 = _B2C2_TAB:NewSection({ Title = "Levers [Section 4]", Icon = icons.lever, Position = "Left" })
+B2C2_5 = _B2C2_TAB:NewSection({ Title = "Cook [Section 5]", Icon = icons.cook, Position = "Right" })
+B2C2_6 = _B2C2_TAB:NewSection({ Title = "Curse [Section 6]", Icon = icons.curse, Position = "Left" })
+B2C2_7 = _B2C2_TAB:NewSection({ Title = "Tower [Section 6.5]", Icon = icons.tower, Position = "Right" })
+B2C2_8 = _B2C2_TAB:NewSection({ Title = "Kid [Section 7]", Icon = icons.kid, Position = "Left" })
+B2C2_9 = _B2C2_TAB:NewSection({ Title = "Note [Section 7.5]", Icon = icons.note, Position = "Right" })
+B2C2_10 = _B2C2_TAB:NewSection({ Title = "Boss [Section 8]", Icon = icons.nagisa, Position = "Left" })
+B2C2_11 = _B2C2_TAB:NewSection({ Title = "Boss 2 [Section 8.5]", Icon = icons.boss, Position = "Right" })
+B2C2_s:NewToggle({Title = "Automatic Click", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+B2C2_0:NewButton({Title = "Automatic Skip Ocean", Callback = function()
+    
+end})
+B2C2_1:NewButton({Title = "Automatic Skip Cow", Callback = function()
+    
+end})
+B2C2_2:NewButton({Title = "Talk", Callback = function()
+    
+end})
+B2C2_2:NewButton({Title = "Enter Meat Room", Callback = function()
+    
+end})
+B2C2_2:NewButton({Title = "Back [Bypass]", Callback = function()
+    
+end})
+B2C2_2:NewTitle("Door")
+B2C2_2:NewButton({Title = "Automatic Escape", Callback = function()
+    
+end})
+B2C2_3:NewButton({Title = "Run", Callback = function()
+    
+end})
+B2C2_4:NewButton({Title = "Enter Zone", Callback = function()
+    
+end})
+B2C2_4:NewButton({Title = "Automatic Levers", Callback = function()
+    
+end})
+B2C2_4:NewButton({Title = "Escape", Callback = function()
+    
+end})
+B2C2_5:NewButton({Title = "Enter Zone", Callback = function()
+    
+end})
+B2C2_5:NewButton({Title = "Automatic Eyeball", Callback = function()
+    
+end})
+B2C2_5:NewButton({Title = "Automatic Ham", Callback = function()
+    
+end})
+B2C2_5:NewButton({Title = "Automatic Chicken", Callback = function()
+    
+end})
+B2C2_5:NewTitle("Escape")
+B2C2_5:NewButton({Title = "Run", Callback = function()
+    
+end})
+B2C2_6:NewButton({Title = "Automatic Skip", Callback = function()
+    
+end})
+B2C2_7:NewButton({Title = "Teleport Puzzle [Safe]", Callback = function()
+    
+end})
+B2C2_7:NewButton({Title = "Escape", Callback = function()
+    
+end})
+B2C2_8:NewButton({Title = "Automatic Kid", Callback = function()
+    
+end})
+B2C2_8:NewButton({Title = "Teleport Door", Callback = function()
+    
+end})
+B2C2_9:NewButton({Title = "Automatic Note", Callback = function()
+    
+end})
+B2C2_10:NewToggle({Title = "Automatic Ammo", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+B2C2_11:NewToggle({Title = "Automatic Boss 2", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+
+B2C3_s = _B2C3_TAB:NewSection({ Title = "Setting", Icon = icons.setting, Position = "Left" })
+B2C3_0 = _B2C3_TAB:NewSection({ Title = "Hell [Section 1]", Icon = icons.mezu, Position = "Left" })
+B2C3_1 = _B2C3_TAB:NewSection({ Title = "Heart [Section 1.5]", Icon = icons.heart, Position = "Right" })
+B2C3_2 = _B2C3_TAB:NewSection({ Title = "Torch [Section 2]", Icon = icons.torch, Position = "Left" })
+B2C3_3 = _B2C3_TAB:NewSection({ Title = "Puzzle [Section 3]", Icon = icons.puzzle, Position = "Right" })
+B2C3_4 = _B2C3_TAB:NewSection({ Title = "Silk [Section 4]", Icon = icons.boat, Position = "Left" })
+B2C3_5 = _B2C3_TAB:NewSection({ Title = "Dad [Section 5]", Icon = icons.dad, Position = "Right" })
+B2C3_6 = _B2C3_TAB:NewSection({ Title = "Train [Section 6]", Icon = icons.train, Position = "Left" })
+B2C3_7 = _B2C3_TAB:NewSection({ Title = "Larve [Section 7]", Icon = icons.larve, Position = "Right" })
+B2C3_8 = _B2C3_TAB:NewSection({ Title = "Mud [Section 8]", Icon = icons.train, Position = "Left" })
+B2C3_9 = _B2C3_TAB:NewSection({ Title = "Tree [Section 9]", Icon = icons.tree, Position = "Right" })
+B2C3_10 = _B2C3_TAB:NewSection({ Title = "Boss [Section 9.5]", Icon = icons.boss, Position = "Left" })
+B2C3_11 = _B2C3_TAB:NewSection({ Title = "Shinigami [Section 10]", Icon = icons.jigoku, Position = "Right" })
+B2C3_s:NewToggle({Title = "Automatic Free Yourslef [E]", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+B2C3_s:NewToggle({Title = "Automatic Collect Coin", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+B2C3_s:NewToggle({Title = "Aimbot Yurie", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+B2C3_0:NewButton({Title = "Automatic Skip", Callback = function()
+    
+end})
+B2C3_1:NewButton({Title = "Talk", Callback = function()
+    
+end})
+B2C3_1:NewButton({Title = "Automatic Hearts", Callback = function()
+    
+end})
+B2C3_1:NewTitle("Escape")
+B2C3_1:NewButton({Title = "Run [Bypass]", Callback = function()
+    
+end})
+B2C3_2:NewButton({Title = "Automatic Craft", Callback = function()
+    
+end})
+B2C3_2:NewTitle("Escape")
+B2C3_2:NewButton({Title = "Automatic Escape", Callback = function()
+    
+end})
+B2C3_3:NewToggle({Title = "Automatic Yeird", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+B2C3_3:NewTitle("🟢 : Safe")
+B2C3_3:NewTitle("🟡 : Warning")
+B2C3_3:NewTitle("🔴 : Yeird [Don't Move]")
+B2C3_3:NewToggle({Title = "Dodomeki Paramiter", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+B2C3_3:NewButton({Title = "Puzzle 1", Callback = function()
+    
+end})
+B2C3_3:NewButton({Title = "Puzzle 2", Callback = function()
+    
+end})
+B2C3_3:NewButton({Title = "Puzzle 3", Callback = function()
+    
+end})
+B2C3_3:NewButton({Title = "Puzzle 4", Callback = function()
+    
+end})
+B2C3_3:NewButton({Title = "Puzzle 5", Callback = function()
+    
+end})
+B2C3_3:NewButton({Title = "Puzzle 6", Callback = function()
+    
+end})
+B2C3_3:NewTitle("Door")
+B2C3_3:NewButton({Title = "Puzzle Door", Callback = function()
+    
+end})
+B2C3_3:NewTitle("Escape")
+B2C3_3:NewButton({Title = "Run", Callback = function()
+    
+end})
+B2C3_4:NewButton({Title = "Enter Zone", Callback = function()
+    
+end})
+B2C3_4:NewTitle("Silk")
+B2C3_4:NewButton({Title = "Automatic Enzukai", Callback = function()
+    
+end})
+B2C3_5:NewButton({Title = "Enter Zone", Callback = function()
+    
+end})
+B2C3_5:NewButton({Title = "Teleport to Safe Zone", Callback = function()
+    
+end})
+B2C3_5:NewTitle("Playing")
+B2C3_5:NewToggle({Title = "Safe Mode", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+B2C3_6:NewButton({Title = "Enter Zone", Callback = function()
+    
+end})
+B2C3_7:NewButton({Title = "Automatic Larve", Callback = function()
+    
+end})
+B2C3_8:NewButton({Title = "Automatic Mud", Callback = function()
+    
+end})
+B2C3_9:NewToggle({Title = "Highlight Item", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+
+B2C3_9:NewButton({Title = "House 1", Callback = function()
+    
+end})
+B2C3_9:NewButton({Title = "House 2", Callback = function()
+    
+end})
+B2C3_9:NewButton({Title = "House 3", Callback = function()
+    
+end})
+B2C3_9:NewButton({Title = "House 4", Callback = function()
+    
+end})
+B2C3_10:NewButton({Title = "Automatic Katana", Callback = function()
+    
+end})
+B2C3_10:NewButton({Title = "Teleport to Safe Zone", Callback = function()
+    
+end})
+B2C3_11:NewButton({Title = "Talk Shinigami", Callback = function()
+    
+end})
+B2C3_11:NewButton({Title = "Run", Callback = function()
+    
+end})
+
+TWT_10 = _TWT_TAB:NewSection({ Title = "Automatic", Icon = icons.skip, Position = "Left" })
+TWT_2 = _TWT_TAB:NewSection({ Title = "Help [III]", Icon = icons.quest, Position = "Right" })
+TWT_10:NewButton({Title = "Skip", Callback = function()
+    
+end})
+TWT_10:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+TWT_2:NewButton({Title = "Puzzle 1", Callback = function()
+    
+end})
+TWT_2:NewButton({Title = "Puzzle 2", Callback = function()
+    
+end})
+TWT_2:NewTitle("Quest")
+TWT_2:NewButton({Title = "Automatic Spirit", Callback = function()
+    
+end})
+
+XMAS1 = _XMAS_TAB:NewSection({ Title = "Repair", Icon = icons.sleing, Position = "Left" })
+XMAS2 = _XMAS_TAB:NewSection({ Title = "Toys", Icon = icons.toy, Position = "Right" })
+XMAS3 = _XMAS_TAB:NewSection({ Title = "Key", Icon = icons.key, Position = "Left" })
+XMAS1:NewButton({Title = "Automatic Repair", Callback = function()
+    
+end})
+XMAS2:NewToggle({Title = "Automatic Toys", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+XMAS1:NewButton({Title = "Automatic Key", Callback = function()
+    
+end})
+
+HW1 = _HW_TAB:NewSection({ Title = "Pumpkins", Icon = icons.pumpkin, Position = "Left" })
+HW2 = _HW_TAB:NewSection({ Title = "Candle", Icon = icons.candle12345, Position = "Right" })
+HW3 = _HW_TAB:NewSection({ Title = "Pumpkins", Icon = icons.pumpkin, Position = "Left" })
+HW1:NewButton({Title = "Automatic Pumpkins", Callback = function()
+    
+end})
+HW2:NewButton({Title = "Automatic Candle", Callback = function()
+    
+end})
+HW3:NewButton({Title = "Automatic Pumpkins", Callback = function()
+    
+end})
+
+NC1 = _NCC_TAB:NewSection({ Title = "Boxs", Icon = icons.box, Position = "Left" })
+NC2 = _NCC_TAB:NewSection({ Title = "Cards", Icon = icons.card, Position = "Right" })
+NC3 = _NCC_TAB:NewSection({ Title = "Boss", Icon = icons.ringmasterhat, Position = "Left" })
+NC1:NewButton({Title = "Skip [Required Solo]", Callback = function()
+    
+end})
+NC1:NewTitle("Boxs")
+NC1:NewButton({Title = "Box 1", Callback = function()
+    
+end})
+NC1:NewButton({Title = "Box 2", Callback = function()
+    
+end})
+NC1:NewButton({Title = "Box 3", Callback = function()
+    
+end})
+NC1:NewButton({Title = "Box 4", Callback = function()
+    
+end})
+NC1:NewButton({Title = "Box 5", Callback = function()
+    
+end})
+NC1:NewButton({Title = "Box 6", Callback = function()
+    
+end})
+NC1:NewButton({Title = "Box 7", Callback = function()
+    
+end})
+NC2:NewButton({Title = "Teleport Cards Zone", Callback = function()
+    
+end})
+NC2:NewButton({Title = "Teleport Safe Zone", Callback = function()
+    
+end})
+NC2:NewToggle({Title = "Automatic Cards", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+NC2:NewToggle({Title = "Show Card", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+NC3:NewButton({Title = "Get Knife", Callback = function()
+    
+end})
+NC3:NewToggle({Title = "Automatic Boss", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+
+CS1 = _CS_TAB:NewSection({ Title = "Automatic", Icon = icons.skip, Position = "Left" })
+CS1:NewButton({Title = "Skip", Callback = function()
+    
+end})
+CS1:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
+    if tr then
+
+    else
+
+    end
+end})
+
+DC1 = _DC_TAB:NewSection({ Title = "Automatic", Icon = icons.orb, Position = "Left" })
+DC1:NewTitle("Quest")
+DC1:NewButton({Title = "Automatic Orbs", Callback = function()
     
 end})

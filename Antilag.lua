@@ -73,6 +73,8 @@ local TweenService = game:GetService("TweenService")
 local coreui = game:GetService("CoreGui")
 local speaker = game:GetService("Players").LocalPlayer
 local character = speaker.Character
+local UserInputService = game:GetService("UserInputService")
+local VirtualUser = game:GetService("VirtualUser")
 local worldtable = {}
 local originalHoldDurations = {}
 
@@ -774,8 +776,49 @@ setupHighlightForMob(AI2)
 end)
 end
 
+function Tween(targetPosition)
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    originalGravity = world.Gravity
+    speed = 350
+    isTweening = true
+    world.Gravity = 0
+	noclip()
+    Rservice.RenderStepped:Connect(function(deltaTime)
+        if isTweening then
+            direction = (targetPosition - humanoidRootPart.Position).unit
+            humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction * speed * deltaTime)
+            if (humanoidRootPart.Position - targetPosition).magnitude < 1 then
+                isTweening = false
+                world.Gravity = originalGravity
+				clip()
+            end
+        end
+    end)
+end
 
+function clickMiddleOfScreen()
+    local screenSize = workspace.CurrentCamera.ViewportSize
+    local centerX = screenSize.X / 2
+    local centerY = screenSize.Y / 2
+    VirtualUser:CaptureController()
+    VirtualUser:ClickButton1(Vector2.new(centerX, centerY))
+end
 
+AutoClickActive = false
+_G.Clickgable = false
+function OnClick()
+    while _G.Clickgable and AutoClickActive do
+        task.wait(0.1)
+        coroutine.wrap(clickMiddleOfScreen)()
+    end
+end
+
+function OffClick()
+    if _G.Clickgable and AutoClickActive then
+        _G.Clickgable = false
+        AutoClickActive = false
+    end
+end
 --fireprompt
 local Frames3 = Instance.new("Frame")
 local UICorner3 = Instance.new("UICorner")
@@ -882,6 +925,769 @@ function OnPrompt()
     end
 end
 
+function Equip(Select)
+backpack = speaker.Backpack
+character = speaker.Character
+	for i, item in pairs(backpack:GetChildren()) do
+		if item.Name == Select then
+			item.Parent = character
+			break
+		end
+	end
+end
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+function SKipClassic()
+    for _, h in pairs(world:GetDescendants()) do
+        if h.Name == "Game Teleporter" or (h.Name == "Platform" and h:FindFirstChild("BadgeID")) then
+            to(h.CFrame)
+        end
+    end
+end
+
+function SkipChapter()
+    if id == 6296321810 or id == 6479231833 then
+        to(CFrame.new(3507.028564453125, 43.13663864135742, -1541.9735107421875)) -- b1c1p1
+    elseif id == 6301638949 or id == 6480994221 then
+        to(CFrame.new(1272.7239990234375, 200.04153442382812, -2537.25)) -- b1c1p2
+    elseif id == 6373539583 or id == 6485055338 then
+        to(CFrame.new(64.74767303466797, 60.94379806518555, -1622.5250244140625)) -- b1c2p1
+    elseif id == 6406571212 or id == 6485055836 then
+        to(CFrame.new(232.6605987548828, 100.84130096435547, -595.3074951171875)) -- b1c2p2
+    elseif id == 6425178683 or id == 6485056556 then
+        to(CFrame.new(1055.5179443359375, 78.26939392089844, -351.45831298828125)) -- b1c2p3
+    elseif id == 6472459099 or id == 6688734180 then
+        to(CFrame.new(2416.63671875, -23.031118392944336, 2294.332275390625)) -- b1c3p1
+    elseif id == 6682163754 or id == 6688734313 then
+        to(CFrame.new(241.43087768554688, 33.24515914916992, 450.21502685546875)) -- b1c3p2
+    elseif id == 6682164423 or id == 6688734395 then
+        to(CFrame.new(-654.1986694335938, 648.9832153320312, -1012.5780029296875)) -- b1c3p3
+	elseif id == 7265396387 or id == 7251865082 then
+		to(CFrame.new(85.20524597167969, -51.00001525878906, -1415.0792236328125)) --b1c4
+    end
+end
+
+function SkipTWT()
+    if id == 7068738088 or id == 7068951438 then
+		to(CFrame.new(2528.98681640625, 8.164044380187988, -1184.1917724609375)) -- twt1
+	elseif id == 7068951914 or id == 7068739000 then
+		to(CFrame.new(-439.1501770019531, 21.252744674682617, -1455.9263916015625)) -- twt2
+	elseif id == 7068740106 or id == 7068952294 then
+		to(CFrame.new(2690.99169921875, 9.297460556030273, 649.3221435546875)) -- twt3
+    end
+end
+
+function Autobtfs()
+    for _, v in pairs(world.Butterflies:GetChildren()) do
+        if v.Name == "Butterfly" then
+            to(v.CFrame)
+        else
+            to(CFrame.new(1099.39794921875, 3.135153293609619, 75.5241928100586))
+        end
+    end
+end
+
+function AutoArmors()
+    to(CFrame.new(706.4743041992188, 14.950273513793945, 1929.3958740234375))
+    for _, v in pairs(world:GetChildren()) do
+     if v.Name == "Texture" or v.Name == "MeshPart" or v.Name == "TreeMeshTop" then
+         v:Destroy()
+    end
+end
+wait(1)
+Part = world.Well:WaitForChild("Burner")
+ 
+ Float = Instance.new("Part")
+ Float.Parent = world
+ Float.Anchored = true
+ Float.Size = Vector3.new(30, 2, 30)
+ Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Float
+    wait(0.5)
+    to(CFrame.new(860.1697998046875, 15.059876441955566, 2388.63427734375))
+    fire()
+    wait(0.5)
+    to(CFrame.new(839.8504028320312, 18.34674072265625, 2241.216552734375))
+    fire()
+    wait(0.5)
+    to(CFrame.new(668.060791015625, 18.767614364624023, 2099.3955078125))
+    fire()
+    wait(0.5)
+    to(CFrame.new(625.1378173828125, 17.63252830505371, 2345.30078125))
+    fire()
+    wait(0.5)
+    to(CFrame.new(759.3781127929688, 15.417532920837402, 2531.548583984375))
+    fire()
+    wait(0.5)
+    to(CFrame.new(864.6249389648438, 23.993000030517578, 2550.099853515625))
+    fire()
+    wait(0.5)
+    to(CFrame.new(860.1697998046875, 15.059876441955566, 2388.63427734375))
+    fire()
+    wait(1.5)
+    to(CFrame.new(687.65673828125, 13.798624038696289, 2253.633544921875))
+    wait(0.5)
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+    fire()
+end
+
+function Ratfind()
+    pcall(function()
+    for _, rat in ipairs(world:GetDescendants()) do
+        if rat:IsA("MeshPart") then
+            if rat.TextureID == "rbxassetid://8569135832" then
+                proximityPrompt = rat:FindFirstChildOfClass("ProximityPrompt")
+                if proximityPrompt then
+                    to(rat.CFrame)
+                    wait(0.2)
+                    fire()
+                    fire()
+                    fire()
+                    wait(0.2)
+                    to(CFrame.new(-1539.063, -30.171, -3543.718))
+                    wait(0.1)
+                    Equip("Poisoned Rat")
+                    wait(0.1)
+                    fire()
+                    fire()
+                    wait(5)
+                    to(CFrame.new(-1563.528, -28.910, -3408.718))
+                    wait(0.2)
+                    fire()
+                    fire()
+                    wait(0.2)
+                    to(CFrame.new(-1674.827, -21.010, -3402.391))
+                    countdown(25)
+                    break
+                end
+            end
+        end
+    end
+end)
+end
+
+B2c1pos = {
+    --picture
+    blue = CFrame.new(209.63929748535156, 3084.15478515625, 3832.36279296875),
+    red = CFrame.new(152.81671142578125, 3060.99365234375, 3861.497802734375),
+    man = CFrame.new(214.0342559814453, 3060.994140625, 3818.04736328125),
+    Chicken = CFrame.new(237.98187255859375, 3072.503662109375, 3878.86181640625),
+    Momson = CFrame.new(168.0010223388672, 3072.5048828125, 3830.942626953125),
+    UM = CFrame.new(190.3834991455078, 3084.15478515625, 3903.572998046875),
+    fox = CFrame.new(251.99221801757812, 3060.994140625, 3852.603271484375),
+    flute = CFrame.new(184.19967651367188, 3072.50390625, 3925.464111328125),
+    love = CFrame.new(182.9803009033203, 3060.994140625, 3923.0703125),
+    ORB = CFrame.new(191.37278747558594, 3061.04443359375, 3891.880126953125),
+    --House
+    home1 = CFrame.new(-395.08563232421875, 3069.57568359375, 3891.535400390625),
+    home2 = CFrame.new(-4.784941673278809, 3067.82421875, 4712.5751953125),
+    Dwhome = CFrame.new(-246.92311096191406, 3068.64306640625, 4219.79248046875),
+    home4 = CFrame.new(595.481689453125, 3069.576416015625, 4422.1923828125),
+    home5 = CFrame.new(-676.0106811523438, 3069.525146484375, 5002.66357421875),
+    --Oxygen
+    OX = CFrame.new(-6066.22412109375, 546.66552734375, 7169.19970703125),
+    --lower
+    Candle11 = CFrame.new(-5453.7373046875, 461.4326171875, 6514.80859375),
+    Candle12 = CFrame.new(-5435.24755859375, 462.03277587890625, 6351.935546875),
+    Candle13 = CFrame.new(-5444.45654296875, 462.0570373535156, 6254.01611328125),
+    Candle14 = CFrame.new(-5467.76318359375, 462.39044189453125, 6260.67236328125),
+    Candle15 = CFrame.new(-5453.34912109375, 461.8515930175781, 6101.9853515625),
+    --midle
+    Candle21 = CFrame.new(-6065.1728515625, 547.58154296875, 7319.21923828125),
+    --up
+    Candle31 = CFrame.new(-6808.1669921875, 758.5756225585938, 6414.2978515625),
+    Candle32 = CFrame.new(-6820.96728515625, 746.4933471679688, 6258.71044921875),
+    Candle33 = CFrame.new(-6822.0380859375, 746.42431640625, 6173.79296875),
+    --bypass
+    bypassf1 = CFrame.new(-5441.55859375, 460.84051513671875, 6336.8662109375),
+    bypassf2 = CFrame.new(-6034.21728515625, 546.7184448242188, 7196.44482421875),
+    bypassf3 = CFrame.new(-6822.1220703125, 745.171142578125, 6438.0400390625)
+}
+
+function floor1()
+	to(B2c1pos.bypassf1)
+	nofall()
+	task.wait(5)
+	fall()
+    to(B2c1pos.Candle11)
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+	to(B2c1pos.bypassf1)
+	countdown(25)
+    to(B2c1pos.Candle12)
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+	to(B2c1pos.bypassf1)
+	countdown(25)
+    to(B2c1pos.Candle13)
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+	to(B2c1pos.bypassf1)
+	countdown(25)
+    to(B2c1pos.Candle14)
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+	to(B2c1pos.bypassf1)
+	countdown(25)
+    to(B2c1pos.Candle15)
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+	to(B2c1pos.bypassf1)
+	countdown(25)
+    to(OX)
+end
+
+function floor2()
+	nofall()
+	to(B2c1pos.bypassf2)
+	task.wait(5)
+	fall()
+    to(B2c1pos.Candle21)
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+	to(B2c1pos.bypassf2)
+	countdown(25)
+    to(B2c1pos.OX)
+end
+
+function floor3()
+	nofall()
+	to(B2c1pos.bypassf3)
+	task.wait(5)
+	fall()
+    to(B2c1pos.Candle31)
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+	to(B2c1pos.bypassf3)
+	countdown(25)
+    to(B2c1pos.Candle32)
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+	to(B2c1pos.bypassf3)
+	countdown(25)
+    to(B2c1pos.Candle33)
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+	to(B2c1pos.bypassf3)
+	countdown(25)
+    to(B2c1pos.bypassf3)
+end
+
+if id == 8056702588 then
+InsertPart("House1", Vector3.new(-395.0856, 3069.5757, 3891.5354), Vector3.new(15, 2, 15))
+InsertPart("House2", Vector3.new(-4.7849, 3067.8242, 4712.5752), Vector3.new(15, 2, 15))
+InsertPart("House3", Vector3.new(-246.9231, 3068.6431, 4219.7925), Vector3.new(15, 2, 15))
+InsertPart("House4", Vector3.new(595.4817, 3069.5764, 4422.1924), Vector3.new(15, 2, 15))
+InsertPart("House5", Vector3.new(-676.0107, 3069.5251, 5002.6636), Vector3.new(15, 2, 15))
+InsertPart("Key", Vector3.new(-401.71002197265625, 3065.575927734375, 3867.829345703125), Vector3.new(15, 2, 15))
+InsertPart("Office", Vector3.new(-1778.0726318359375, 9.717201232910156, -4295.62109375), Vector3.new(15, 2, 15))
+end
+
+if id == 13489800654 then
+    InsertPart("safeEmbed", Vector3.new(2025.055419921875, 129.0679473876953, -4738.908203125), Vector3.new(50, 2, 50))
+end
+
+B2c2pos = {
+    Bypass = CFrame.new(-4371.806640625, 711.3719482421875, 1121.54248046875),
+
+    StartOcean = CFrame.new(-537.7177734375, 22.193456649780273, -85.44476318359375),
+    doorlast = CFrame.new(-3953.24072, 594.218933, 321.80304, 0.999459922, 0, -0.032861691, 0, 1, 0, 0.032861691, 0, 0.999459922),
+    talk = CFrame.new(-4442.72803, 711.371887, 1162.86707, -0.146179333, 0, 0.989258111, 0, 1, 0, -0.989258111, 0, -0.146179333),
+    
+    skele = CFrame.new(-4601.89404296875, 826.4385986328125, -35.5607795715332),
+    endskele = CFrame.new(-5364.40918, 682.05365, 30.630415, 0.317401469, 0, 0.948291242, 0, 1, 0, -0.948291242, 0, 0.317401469),
+    
+    startlever = CFrame.new(-11030.5029296875, -81.40126037597656, -12.647021293640137),
+    endlever = CFrame.new(-10060.2744140625, 484.0893859863281, -9.173670768737793),
+
+    StartCook = CFrame.new(-2582.31445, 968.246521, -4920.55469, -0.0169319678, 0, 0.999856651, 0, 1, 0, -0.999856651, 0, -0.0169319678),
+    Bowlq = CFrame.new(-2692.756103515625, 968.2465209960938, -4927.8359375),
+    Pot = CFrame.new(-2691.974853515625, 968.2465209960938, -4910.5859375),
+    StovePos = CFrame.new(-2729.610107421875, 968.2465209960938, -4906.57763671875),
+    PotandBowlPos = CFrame.new(-2729.904541015625, 968.24658203125, -4930.19580078125),
+    Feed = CFrame.new(-2762.750244140625, 968.2464599609375, -4919.3310546875),
+    EndCook = CFrame.new(-3361.457763671875, 1205.020751953125, -6819.82666015625)
+}
+
+function SkipOcean()
+    to(B2c2pos.Bypass)
+    Anchored()
+    countdown(30)
+    Unanchored()
+    task.wait(1)
+    to(B2c2pos.StartOcean)
+end
+function Skipcow()
+    to(B2c2pos.Bypass)
+    Anchored()
+    countdown(60)
+    Unanchored()
+    task.wait(1)
+    to(B2c2pos.doorlast)
+    task.wait(0.3)
+    fire()
+    fire()
+end
+
+function getmeat()
+pcall(function()
+for i, v in ipairs(world:GetDescendants()) do
+    if v.Name == "RestaurantRoom" then
+        Restaurant = v
+        Havemeat = Restaurant:FindFirstChild("Meat")
+        if Havemeat then
+            for _, n in pairs(Havemeat:GetChildren()) do
+                if n.Transparency == 0 then  -- Use '==' for comparison
+                    bowgiver = Restaurant:FindFirstChild("BowlGiver")
+                    if bowgiver then
+                        warp = bowgiver:FindFirstChildOfClass("MeshPart")
+                        if warp then
+                            to(warp.CFrame * CFrame.new(0, 7, 0))
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+end)
+end
+
+function EndMeat()
+    pcall(function()
+for _, v in ipairs(world:GetDescendants()) do
+    if v.Name == "DoorTele" then
+        for _, b in pairs(v:GetChildren()) do
+            if b.Name == "DoorFrame" then
+                b.Rotation = Vector3.new(0, 0, 0)
+                to(b.CFrame)
+            end
+        end
+    end
+end
+end)
+end
+
+function Levers()
+    pcall(function()
+for i, v in ipairs(workspace:GetDescendants()) do
+    if v.Name == "Levers" then
+        for _, b in ipairs(v:GetDescendants()) do
+            if b:IsA("MeshPart") and b.Transparency == 0 and b.Name == "Lever" then
+                    for _, n in ipairs(b:GetDescendants()) do
+                        if n.Name == "Main" and n.Transform.Position == Vector3.new(0, 0, 0) then
+                            to(b.CFrame)
+                            break
+                        end
+                    end
+            end
+        end
+    end
+end
+end)
+end
+
+function Foodfire(Name)
+    pcall(function()
+    for i, v in ipairs(Workspace:GetDescendants()) do
+        if v.Name == "Giver" then
+            for _, e in pairs(v:GetChildren()) do
+                if e.Name == Name then
+                    for _, t in ipairs(e:GetDescendants()) do
+                        if t:IsA("ProximityPrompt") then
+                            fireproximityprompt(t)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+end
+
+function Makefire(Name)
+    pcall(function()
+    for i, v in ipairs(Workspace:GetDescendants()) do
+        if v.Name == "SystemBin" then
+            for _, e in pairs(v:GetChildren()) do
+                if e.Name == Name then
+                    for _, t in ipairs(e:GetDescendants()) do
+                        if t:IsA("ProximityPrompt") then
+                            fireproximityprompt(t)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+end
+
+function Cookfire()
+    pcall(function()
+    for i, v in ipairs(Workspace:GetDescendants()) do
+        if v.Name == "Stoves" then
+            for _, e in pairs(v:GetChildren()) do
+                if e.Name == "stove" and e.Position == Vector3.new(-2730.124755859375, 967.5448608398438, -4902.7666015625) then
+                    for _, t in ipairs(e:GetDescendants()) do
+                        if t:IsA("ProximityPrompt") then
+                            fireproximityprompt(t)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+end
+
+function PlacePfire()
+    pcall(function()
+    for i, v in ipairs(Workspace:GetDescendants()) do
+        if v.Name == "WoodenCounters" then
+            for _, e in pairs(v:GetChildren()) do
+                if e:IsA("Model") and e.Position == Vector3.new(-2734.9755859375, 967.0695190429688, -4935.75732421875) then
+                    for _, t in ipairs(e:GetDescendants()) do
+                        if t:IsA("ProximityPrompt") then
+                            fireproximityprompt(t)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+end
+
+function PlaceBfire()
+    pcall(function()
+    for i, v in ipairs(Workspace:GetDescendants()) do
+        if v.Name == "WoodenCounters" then
+            for _, e in pairs(v:GetChildren()) do
+                if e:IsA("Model") and e.Position == Vector3.new(-2739.6455078125, 967.0695190429688, -4935.75732421875) then
+                    for _, t in ipairs(e:GetDescendants()) do
+                        if t:IsA("ProximityPrompt") then
+                            fireproximityprompt(t)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+end
+
+function EyeBall()
+    pcall(function()
+	to(B2c2pos.Bowlq)
+	task.wait(0.35)
+	Foodfire("Pot") --เก็บถ้วย
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos) --วาปไปที่วางถ้วย
+	task.wait(0.35)
+	PlaceBfire() --วางถ้วย
+	task.wait(0.35)
+	to(B2c2pos.Pot) --วาปไปหาตา
+	task.wait(0.35)
+	Foodfire("Eyeball") --เก็บตา
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos) --วาปมาถ้วย
+	task.wait(0.35)
+	Makefire("Bowl")
+	task.wait(0.35)
+	to(B2c2pos.Pot)
+	task.wait(0.35)
+	Foodfire("Spaghetti")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	Makefire("Bowl")
+	task.wait(0.35)
+	Makefire("Bowl")
+	task.wait(0.35)
+	to(B2c2pos.FeedF)
+	task.wait(0.35)
+	fire()
+    end)
+end
+
+function Chick()
+    pcall(function()
+	to(B2c2pos.Pot)
+	task.wait(0.35)
+	Foodfire("Pot")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	PlacePfire()
+	task.wait(0.35)
+	to(B2c2pos.Bowlq)
+	task.wait(0.35)
+	Foodfire("Chicken")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	Makefire("Pot")
+	task.wait(0.35)
+	to(B2c2pos.Pot)
+	task.wait(0.35)
+	Foodfire("Cheese")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	Makefire("Pot")
+	task.wait(0.35)
+	to(B2c2pos.Bowlq)
+	task.wait(0.35)
+	Foodfire("Wrapped Meat")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	Makefire("Pot")
+	task.wait(0.35)
+	to(B2c2pos.Bowlq)
+	task.wait(0.35)
+	Foodfire("Bowl")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	PlaceBfire()
+	task.wait(0.35)
+	Makefire("Pot")
+	task.wait(0.35)
+	to(B2c2pos.StovePos)
+	task.wait(0.35)
+	Cookfire()
+    task.wait(12)
+    to(B2c2pos.StovePos)
+    task.wait(0.35)
+	Cookfire()
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	PlaceBfire()
+	task.wait(0.35)
+	Makefire("Bowl")
+	task.wait(0.35)
+	to(B2c2pos.FeedF)
+	task.wait(0.35)
+	fire()
+    end)
+end
+
+function ham()
+    pcall(function()
+	to(B2c2pos.Pot)
+	task.wait(0.35)
+	Foodfire("Pot")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	PlacePfire()
+	task.wait(0.35)
+	to(B2c2pos.Bowlq)
+	task.wait(0.35)
+	Foodfire("Ham")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	Makefire("Pot")
+	task.wait(0.35)
+	to(B2c2pos.Pot)
+	task.wait(0.35)
+	Foodfire("Sausage")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	Makefire("Pot")
+	task.wait(0.35)
+	to(B2c2pos.Bowlq)
+	task.wait(0.35)
+	Foodfire("Bowl")
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	PlaceBfire()
+	task.wait(0.35)
+	Makefire("Pot")
+	task.wait(0.35)
+	to(B2c2pos.StovePos)
+	task.wait(0.35)
+	Cookfire()
+    task.wait(12)
+    to(B2c2pos.StovePos)
+    task.wait(0.35)
+	Cookfire()
+	task.wait(0.35)
+	to(B2c2pos.PotandBowlPos)
+	task.wait(0.35)
+	PlaceBfire()
+	task.wait(0.35)
+	Makefire("Bowl")
+	task.wait(0.35)
+	to(B2c2pos.FeedF)
+	task.wait(0.35)
+	fire()
+    end)
+end
+
+function toPuzzle()
+    pcall(function()
+for i, v in ipairs(world:GetDescendants()) do
+    if v:IsA("Model") and (v.Name == "1" or v.Name == "2" or v.Name == "3") then
+        for _, b in pairs(v:GetChildren()) do
+            if b.Name == "Base" and b.Transparency == 0 then
+                for _, x in pairs(b:GetChildren()) do
+                    if x.Name == "Part2" and x.Color == Color3.new(27/255, 42/255, 53/255) and x.Transparency == 0 then
+                        to(b.CFrame)
+                    end
+                end
+            end
+        end
+    end
+end
+end)
+end
+
+function SafeTower()
+    pcall(function()
+for _, v in ipairs(world:GetDescendants()) do
+    if v:IsA("Sound") or v.Name == "Warning1" or v.Name == "Warning2" or v.Name == "Warning3" then
+        if v.Playing == true then
+                to(CFrame.new(-4089.20483, 743.817444, -960.496887, -0.0886541307, 0, -0.996062458, 0, 1, 0, 0.996062458, 0, -0.0886541307))
+        end
+    end
+end
+end)
+end
+
+function FindKid()
+    pcall(function()
+for i, v in ipairs(world:GetDescendants()) do
+    if v.Name == "KimonoWrap" then
+                to(v.CFrame)
+        break
+    end
+end
+end)
+end
+
+function Togate()
+    pcall(function()
+for _, v in ipairs(world:GetDescendants()) do
+    if v.Name == "Glowing" and v:IsA("BasePart") then -- Ensure 'Glowing' is a part
+        tp(v.CFrame)
+        break
+    end
+end
+end)
+end
+
+function FNote()
+    pcall(function()
+for i, v in pairs(workspace:GetDescendants()) do
+    if v.Name == "Notes" then
+        for _, p in pairs(v:GetChildren()) do
+            if p.Name == "Note" then
+                for _, proximity in pairs(p:GetChildren()) do
+                    if proximity.Name == "Front" and proximity.Transparency == 0 then
+                        to(p.CFrame)
+                    end
+                end
+            end
+        end
+    end
+end
+end)
+end
+
+function Ballprompt()
+    pcall(function()
+for i, v in ipairs(worldtable:GetDescendants()) do
+    if v.Name == "BallGivers" then
+        for l, prompt in ipairs (v:GetDescendants()) do
+            if prompt:IsA("ProximityPrompt") then
+                fireproximityprompt(prompt)
+            end
+        end
+    end
+end
+end)
+end
+
+function Boss2()
+    pcall(function()
+    for _, v in ipairs(world:GetDescendants()) do
+    if v.Name == "TailHitbox1" or v.Name == "TailHitbox2" then
+        v.Size = Vector3.new(1000, 1000, 1000)
+    end
+end
+end)
+end
+
+function heartCollect()
+    to(CFrame.new(-171.5743865966797, 45.4909553527832, 59.38624572753906))
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+    to(CFrame.new(-127.67491149902344, 45.47054672241211, 125.23974609375))
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+    to(CFrame.new(-110.10736083984375, 45.470542907714844, 22.91050910949707))
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+    to(CFrame.new(-25.172779083251953, 45.470542907714844, 47.92983627319336))
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+    to(CFrame.new(-71.28004455566406, 49.34312057495117, 10.172744750976562))
+    task.wait(0.3)
+    Equip("Heart")
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+    Equip("Heart")
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+    Equip("Heart")
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+    Equip("Heart")
+    task.wait(0.3)
+    fire()
+end
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
 local NothingLibrary = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/Imgonna-Top/Overflow4.0/refs/heads/main/UI'))();
 local Notification = NothingLibrary.Notification();
 
@@ -894,7 +1700,7 @@ function _SendNotify(Title, Des, Time, ImageID)
     })
 end
 
-Windows = NothingLibrary.new({Title = "Overflow - The Mimic", Description = "Ultimate 5.0", Keybind = Enum.KeyCode.LeftControl, Logo = 'rbxassetid://115642679590790'})
+Windows = NothingLibrary.new({Title = "Overflow - The Mimic", Description = "Ultimate 5.0", Keybind = Enum.KeyCode.LeftControl, Logo = 'rbxassetid://139033222788263'})
 
 --Tab
 _General_TAB = Windows:NewTab({Title = "Help", Description = "Info", Icon = "rbxassetid://7733964719" })
@@ -1209,42 +2015,17 @@ end})
 
 B1C1_1 = _B1C1_TAB:NewSection({ Title = "Automatic", Icon = icons.control, Position = "Left" })
 B1C1_1:NewButton({Title = "Skip", Callback = function()
-    
+    SkipChapter()
 end})
-B1C1_1:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
-    if tr then
-
-    else
-
-    end
-end})
-
-
 B1C2_1 = _B1C2_TAB:NewSection({ Title = "Automatic", Icon = icons.control, Position = "Left" })
 B1C2_1:NewButton({Title = "Skip", Callback = function()
-    
+    SkipChapter()
 end})
-B1C2_1:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
-    if tr then
-
-    else
-
-    end
-end})
-
-
 B1C3_1 = _B1C3_TAB:NewSection({ Title = "Automatic", Icon = icons.control, Position = "Left" })
 B1C3_1:NewButton({Title = "Skip", Callback = function()
-    
+    SkipChapter()
 end})
 B1C3_1:NewToggle({Title = "Disable Damage Omukade", Default = false, Callback = function(tr) 
-    if tr then
-
-    else
-
-    end
-end})
-B1C3_1:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
     if tr then
 
     else
@@ -1261,69 +2042,181 @@ B1C4_4 = _B1C4_TAB:NewSection({ Title = "Heart [Section 4]", Icon = icons.heart,
 B1C4_5 = _B1C4_TAB:NewSection({ Title = "Boss [Section 5]", Icon = icons.boss, Position = "Right" })
 B1C4_0:NewToggle({Title = "Automatic Click", Default = false, Callback = function(tr) 
     if tr then
-
+        OnClick()
     else
-
+        OffClick()
     end
 end})
 B1C4_1:NewButton({Title = "Skip", Callback = function()
-    
-end})
-B1C4_1:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
-    if tr then
-
-    else
-
-    end
+    SkipChapter()
 end})
 B1C4_2:NewToggle({Title = "Automatic Butterflies", Default = false, Callback = function(tr) 
     if tr then
-
+        _G.AutoB1C4_2 = true
+        while _G.AutoB1C4_2 do
+            Autobtfs()
+            fire()
+            task.wait(0.1)
+        end
     else
-
-    end
-end})
-B1C4_2:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
-    if tr then
-
-    else
-
+        _G.AutoB1C4_2 = false
     end
 end})
 B1C4_3:NewToggle({Title = "Automatic Armors", Default = false, Callback = function(tr) 
     if tr then
-
+        AutoArmors()
     else
-
-    end
-end})
-B1C4_3:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
-    if tr then
-
-    else
-
+        print("KUY")
     end
 end})
 
 B1C4_4:NewToggle({Title = "Automatic Hearts", Default = false, Callback = function(tr) 
     if tr then
+        _G.AutoHeart = true
+            if id == 7265397848 or id == 7251867574 then
+            gameHearts = world:FindFirstChild("GameHearts")
+            function PARTZ()
+                if gameHearts and gameHearts:FindFirstChild("Heart") then
+                    for _, v in pairs(gameHearts.Heart:GetChildren()) do
+                        if v:IsA("Part") then
+                            v.Rotation = Vector3.new(0, 0, 0)
+                            v.CanCollide = true
+                        end
+                    end
+                end
+            end
+            function toHeart()
+                if gameHearts and gameHearts:FindFirstChild("Heart") then
+                    for _, v in pairs(gameHearts.Heart:GetChildren()) do
+                        if v:IsA("UnionOperation") then
+                            v.Rotation = Vector3.new(0, 0, 0)
+                            v.Size = Vector3.new(58, 58, 58)
+                            targetPosition = v.CFrame * CFrame.new(0, 20, -3)
+                            to(targetPosition)
+                        end
+                    end
+                end
+            end
 
+            function check()
+                if gameHearts then
+                    found = false
+                    for _, v in pairs(gameHearts:GetChildren()) do
+                        if v:IsA("Model") and v:FindFirstChildOfClass("BoolValue") then
+                            found = true
+                            v:Destroy()
+                            break
+                        end
+                    end
+                    if not found then
+                        PARTZ()
+                        toHeart()
+                    end
+                end
+            end
+
+            while _G.AutoHeart do
+                check()
+                task.wait(0.1)
+            end
+        end
     else
-
-    end
-end})
-B1C4_4:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
-    if tr then
-
-    else
-
+        _G.AutoHeart = false
     end
 end})
 B1C4_5:NewToggle({Title = "Automatic Boss", Default = false, Callback = function(tr) 
     if tr then
+        local RunService = Rservice
+		local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+		moving = false
+		targetPart = nil
+		speed = 1.6
+		radius = 30
+		angle = 0
+		local heartbeatConnection
+		function TeleportOff()
+			moving = false
+			if heartbeatConnection then
+				heartbeatConnection:Disconnect()
+				heartbeatConnection = nil
+			end
+		end
 
-    else
-
+        if id == 7265397848 or id == 7251867574 then
+            world.BossMap:Destroy()
+            function ModifyHandle(item)
+                local handle = item:FindFirstChild("Handle")
+                if handle then
+                    handle.Size = Vector3.new(50, 50, 10)
+                    handle.Massless = true
+                end
+            end
+            function CheckKatana()
+                for _, item in pairs(character:GetChildren()) do
+                    if item.Name == "Katana" then
+                        ModifyHandle(item)
+                        break
+                    end
+                end
+                for _, item in pairs(backpack:GetChildren()) do
+                    if item.Name == "Katana" then
+                        ModifyHandle(item)
+                        break
+                    end
+                end
+            end
+            function moveAroundTarget()
+                angle = angle + speed * RunService.Heartbeat:Wait()
+                xOffset = math.cos(angle) * radius
+                zOffset = math.sin(angle) * radius
+                newPosition = Vector3.new(targetPart.Position.X + xOffset, humanoidRootPart.Position.Y, targetPart.Position.Z + zOffset)
+                humanoidRootPart.CFrame = CFrame.new(newPosition, targetPart.Position)
+            end
+            function TeleportOn()
+                moving = true
+                targetPart = nil
+                gameHearts = world.GameHearts
+                foundHeart = false
+                for _, v in pairs(gameHearts:GetChildren()) do
+                    if v.Name == "Heart" then
+                        foundHeart = true
+                        return
+                    end
+                end
+                if not foundHeart then
+                    for _, v in ipairs(world.BossBattle:GetDescendants()) do
+                        if v.Name == "SpiderHitbox" and v:IsA("BasePart") then
+                            targetPart = v
+                            break
+                        end
+                for _, v in pairs(world.BossBattle:GetChildren()) do
+                    if v:IsA("Model") then
+                           spiderHitbox = v:FindFirstChild("SpiderHitbox")
+                           if spiderHitbox then
+                           spiderHitbox.Rotation = Vector3.new(0, 0, 0)
+                           spiderHitbox.Size = Vector3.new(30, 30, 30)
+                           spiderHitbox.Transparency = 0.9
+                           end
+                        end
+                    end
+                 end
+                    if targetPart then
+                        heartbeatConnection = RunService.Heartbeat:Connect(function()
+                            if moving then
+                                moveAroundTarget()
+                            end
+                        end)
+                    else
+                        print("SpiderHitbox not found, waiting...")
+                        task.wait(9e9)
+                    end
+                end
+            end
+            coroutine.wrap(CheckKatana)()
+            coroutine.wrap(TeleportOn)()
+        else
+            coroutine.wrap(TeleportOff)()
+        end
     end
 end})
 
@@ -1340,144 +2233,183 @@ B2C1_6x = _B2C1_TAB:NewSection({ Title = "Candle 🔴 [Section 7]", Icon = icons
 B2C1_7 = _B2C1_TAB:NewSection({ Title = "Candle [Section 8]", Icon = icons.sea, Position = "Right" })
 
 B2C1_0:NewButton({Title = "Enter Office", Callback = function()
-    
-end})
-B2C1_1:NewTitle("ESP")
-B2C1_1:NewToggle({Title = "ESP Item", Default = false, Callback = function(tr) 
-    if tr then
-
-    else
-
-    end
+    to(CFrame.new(-1778.0726318359375, 9.717201232910156, -4295.62109375))
 end})
 B2C1_1:NewButton({Title = "Read Book", Callback = function()
-    
+    to(CFrame.new(-1674.8272705078125, -21.01018524169922, -3402.390869140625))
+	task.wait(0.5)
+	fire()
 end})
 B2C1_1:NewTitle("Quest")
 B2C1_1:NewButton({Title = "Automatic Rats", Callback = function()
-    
+    coroutine.wrap(Ratfind)()
 end})
 B2C1_1:NewButton({Title = "Escape", Callback = function()
-    
+    to(CFrame.new(-1507.8475341796875, -29.25138282775879, -3418.783447265625))
+    task.wait(0.5)
+    fire()
 end})
 B2C1_1:NewButton({Title = "Run", Callback = function()
-    
+    Tween(Vector3.new(-961.4176635742188, -46.48267364501953, -3601.613525390625))
 end})
 B2C1_2:NewButton({Title = "Enter Cave", Callback = function()
-    
+    Tween(Vector3.new(583.685546875, 567.3634643554688, -365.7061462402344))
 end})
 B2C1_2:NewButton({Title = "Run", Callback = function()
-    
+    Tween(Vector3.new(3866.74462890625, 140.48388671875, 10.994720458984375))
 end})
 B2C1_3:NewButton({Title = "Talk", Callback = function()
-    
+    to(CFrame.new(-323.47344970703125, 20.420881271362305, 3653.791748046875))
+	task.wait(1)
+	fire()
 end})
 B2C1_3:NewButton({Title = "Automatic Unlock Door", Callback = function()
-    
+    to(CFrame.new(-401.7100, 3069.5759, 3867.8293))
+	task.wait(1)
+	fire()
+	fire()
+	task.wait(0.5)
+	to(Vector3.new(-387.2115783691406, 19.296314239501953, 3780.984130859375))
+	task.wait(1)
+	fire()
+	fire()
 end})
 B2C1_3:NewTitle("House")
 B2C1_3:NewButton({Title = "House 1", Callback = function()
-    
+    to(B2c1pos.home1)
 end})
 B2C1_3:NewButton({Title = "House 2", Callback = function()
-    
+    to(B2c1pos.home2)
 end})
 B2C1_3:NewButton({Title = "Drawing House", Callback = function()
-    
+    to(B2c1pos.Dwhome)
 end})
 B2C1_3:NewButton({Title = "House 4", Callback = function()
-    
+    to(B2c1pos.home4)
 end})
 B2C1_3:NewButton({Title = "House 5", Callback = function()
-    
+    to(B2c1pos.home5)
 end})
 B2C1_4:NewButton({Title = "Old Man", Callback = function()
-    
+    to(B2c1pos.man)
 end})
 B2C1_4:NewButton({Title = "Red Samurai", Callback = function()
-    
+    to(B2c1pos.red)
 end})
 B2C1_4:NewButton({Title = "Blue Samarai", Callback = function()
-    
+    to(B2c1pos.blue)
 end})
 B2C1_4:NewButton({Title = "Fox Girl", Callback = function()
-    
+    to(B2c1pos.fox)
 end})
 B2C1_4:NewButton({Title = "Mom & Son", Callback = function()
-    
+    to(B2c1pos.Momson)
 end})
 B2C1_4:NewButton({Title = "Girl & Flute", Callback = function()
-    
+    to(B2c1pos.flute)
 end})
 B2C1_4:NewButton({Title = "Hustband & Wife", Callback = function()
-    
+    to(B2c1pos.love)
 end})
 B2C1_4:NewButton({Title = "Umbrella Girl", Callback = function()
-    
+    to(B2c1pos.UM)
 end})
 B2C1_4:NewButton({Title = "Girl & Chicken", Callback = function()
-    
+    to(B2c1pos.Chicken)
 end})
 B2C1_4:NewTitle("Orb")
 B2C1_4:NewButton({Title = "Automatic Orb", Callback = function()
-    
+    to(B2c1pos.ORB)
+	task.wait(0.3)
+	fire()
+	task.wait(0.3)
+    to(CFrame.new(-323.47344970703125, 20.420881271362305, 3653.791748046875))
+    task.wait(1)
+    fire()
 end})
 B2C1_5:NewButton({Title = "Enter Ship", Callback = function()
-    
+    to(CFrame.new(-1250.797119140625, 4.000001430511475, 6282.77197265625))
 end})
 B2C1_6:NewButton({Title = "To Oxygen", Callback = function()
-    
+    nofall()
+    to(B2c1pos.OX)
+    task.wait(0.3)
+    fall()
 end})
 B2C1_6:NewTitle("Midle Floor")
 B2C1_6:NewButton({Title = "Candle 1", Callback = function()
-    
+    nofall()
+    to(B2c1pos.Candle21)
+    task.wait(0.3)
+    fall()
 end})
 B2C1_6:NewTitle("Upper Floor")
 B2C1_6:NewButton({Title = "Candle 1", Callback = function()
-    
+    nofall()
+    to(B2c1pos.Candle31)
+    task.wait(0.3)
+    fall()
 end})
 B2C1_6:NewButton({Title = "Candle 2", Callback = function()
-    
+    nofall()
+    to(B2c1pos.Candle32)
+    task.wait(0.3)
+    fall()
 end})
 B2C1_6:NewButton({Title = "Candle 3", Callback = function()
-    
+    to(B2c1pos.Candle33)
 end})
 B2C1_6:NewTitle("Lower Floor")
 B2C1_6:NewButton({Title = "Candle 1", Callback = function()
-    
+    nofall()
+    to(B2c1pos.Candle11)
+    task.wait(0.3)
+    fall()
 end})
 B2C1_6:NewButton({Title = "Candle 2", Callback = function()
-    
+    nofall()
+    to(B2c1pos.Candle12)
+    task.wait(0.3)
+    fall()
 end})
 B2C1_6:NewButton({Title = "Candle 3", Callback = function()
-    
+    nofall()
+    to(B2c1pos.Candle13)
+    task.wait(0.3)
+    fall()
 end})
 B2C1_6:NewButton({Title = "Candle 4", Callback = function()
-    
+    nofall()
+    to(B2c1pos.Candle14)
+    task.wait(0.3)
+    fall()
 end})
 B2C1_6:NewButton({Title = "Candle 5", Callback = function()
-    
+    nofall()
+    to(B2c1pos.Candle15)
+    task.wait(0.3)
+    fall()
 end})
 B2C1_6:NewTitle("Run")
 B2C1_6:NewButton({Title = "Run", Callback = function()
-    
+    Tween(Vector3.new(-6318.65966796875, 419.03302001953125, 6330.75830078125))
 end})
 B2C1_6x:NewButton({Title = "Automatic Floor 1", Callback = function()
-    
+    coroutine.wrap(floor1)()
 end})
 B2C1_6x:NewButton({Title = "Automatic Floor 2", Callback = function()
-    
+    coroutine.wrap(floor2)()
 end})
 B2C1_6x:NewButton({Title = "Automatic Floor 3", Callback = function()
-    
+    coroutine.wrap(floor3)()
 end})
 B2C1_6x:NewTitle("Run")
 B2C1_6x:NewButton({Title = "Run", Callback = function()
-    
+    Tween(Vector3.new(-6318.65966796875, 419.03302001953125, 6330.75830078125))
 end})
 
 B2C1_7:NewButton({Title = "Automatic Escape", Callback = function()
-    
+    Tween(Vector3.new(-10035.9756, 421.733154, 7278.47949, 0.00383073092, 0.0287271589, 0.999580026, 0.0457166582, 0.998537123, -0.0288723968, -0.998947144, 0.0458080582, 0.00251185894))
 end})
 
 
@@ -1497,88 +2429,147 @@ B2C2_10 = _B2C2_TAB:NewSection({ Title = "Boss [Section 8]", Icon = icons.nagisa
 B2C2_11 = _B2C2_TAB:NewSection({ Title = "Boss 2 [Section 8.5]", Icon = icons.boss, Position = "Right" })
 B2C2_s:NewToggle({Title = "Automatic Click", Default = false, Callback = function(tr) 
     if tr then
-
+        OnClick()
     else
-
+        OffClick()
     end
 end})
 B2C2_0:NewButton({Title = "Automatic Skip Ocean", Callback = function()
-    
+    SkipOcean()
 end})
 B2C2_1:NewButton({Title = "Automatic Skip Cow", Callback = function()
-    
+    Skipcow()
 end})
 B2C2_2:NewButton({Title = "Talk", Callback = function()
-    
+    to(B2c2pos.talk)
+    task.wait(1)
 end})
+B2C2_2:NewTitle("After Talk [Dont Click Again]")
 B2C2_2:NewButton({Title = "Enter Meat Room", Callback = function()
-    
+    getmeat()
 end})
 B2C2_2:NewButton({Title = "Back [Bypass]", Callback = function()
-    
+    to(B2c2pos.Bypass)
+    countdown(10)
+    to(B2c2pos.talk)
+    task.wait(0.3)
+    fire()
 end})
 B2C2_2:NewTitle("Door")
 B2C2_2:NewButton({Title = "Automatic Escape", Callback = function()
-    
+    EndMeat()
+end})
+B2C2_3:NewButton({Title = "Enter Cutscene", Callback = function()
+    to(B2c2pos.skele)
 end})
 B2C2_3:NewButton({Title = "Run", Callback = function()
-    
+    to(B2c2pos.endskele)
 end})
 B2C2_4:NewButton({Title = "Enter Zone", Callback = function()
-    
+    to(B2c2pos.startlever)
 end})
-B2C2_4:NewButton({Title = "Automatic Levers", Callback = function()
-    
+B2C2_4:NewToggle({Title = "Automatic Levers", Default = false, Callback = function(tr) 
+    if tr then
+        _G.AutoLevers = true
+        while _G.AutoLevers do
+            Levers()
+                fire()
+            task.wait(0.1)
+        end
+    else
+        if _G.AutoLevers then
+            _G.AutoLevers = false
+        end
+    end
 end})
 B2C2_4:NewButton({Title = "Escape", Callback = function()
-    
+    to(B2c2pos.endlever)
 end})
 B2C2_5:NewButton({Title = "Enter Zone", Callback = function()
-    
+    to(B2c2pos.StartCook)
 end})
 B2C2_5:NewButton({Title = "Automatic Eyeball", Callback = function()
-    
+    coroutine.wrap(EyeBall)()
 end})
 B2C2_5:NewButton({Title = "Automatic Ham", Callback = function()
-    
+    coroutine.wrap(ham)()
 end})
 B2C2_5:NewButton({Title = "Automatic Chicken", Callback = function()
-    
+    coroutine.wrap(Chick)()
 end})
 B2C2_5:NewTitle("Escape")
 B2C2_5:NewButton({Title = "Run", Callback = function()
-    
+    to(B2c2pos.EndCook)
 end})
 B2C2_6:NewButton({Title = "Automatic Skip", Callback = function()
-    
+    to(CFrame.new(-4079.585205078125, 743.8174438476562, -948.4310302734375))
 end})
-B2C2_7:NewButton({Title = "Teleport Puzzle [Safe]", Callback = function()
-    
+B2C2_7:NewButton({Title = "Teleport Puzzle", Callback = function()
+    toPuzzle()
+end})
+B2C2_7:NewTitle("Off Safe Mode if Finish Part.")
+B2C2_7:NewToggle({Title = "Safe Mode", Default = false, Callback = function(tr) 
+        if tr then
+        _G.Safetower = true
+        while _G.Safetower do
+                SafeTower()
+        task.wait(0.1)
+        end
+    else
+        _G.Safetower = false
+    end
 end})
 B2C2_7:NewButton({Title = "Escape", Callback = function()
-    
+    to(CFrame.new(-4079.585205078125, 743.8174438476562, -948.4310302734375))
 end})
 B2C2_8:NewButton({Title = "Automatic Kid", Callback = function()
-    
+    coroutine.wrap(FindKid)()
 end})
 B2C2_8:NewButton({Title = "Teleport Door", Callback = function()
-    
+    coroutine.wrap(Togate)()
 end})
-B2C2_9:NewButton({Title = "Automatic Note", Callback = function()
-    
+B2C2_9:NewToggle({Title = "Automatic Notes", Default = false, Callback = function(tr) 
+    if tr then
+        _G.AutoNotes = true
+        while _G.AutoNotes do
+            FNote()
+                fire()
+            task.wait(0.1)
+        end
+    else
+    _G.AutoNotes = false
+    end
 end})
 B2C2_10:NewToggle({Title = "Automatic Ammo", Default = false, Callback = function(tr) 
     if tr then
-
+            _G.Ammo = true
+        while _G.Ammo do
+                Ballprompt()
+            task.wait(0.1)
+        end
     else
-
+        _G.Ammo = false
     end
+end})
+B2C2_11:NewButton({Title = "Get Cutlass", Callback = function()
+    to(CFrame.new(1971.5081787109375, 57.84920120239258, -4733.85498046875))
+    task.wait(0.3)
+    fire()
+    task.wait(0.3)
+    to(CFrame.new(2025.055419921875, 129.0679473876953, -4738.908203125))
 end})
 B2C2_11:NewToggle({Title = "Automatic Boss 2", Default = false, Callback = function(tr) 
     if tr then
-
+            _G.AutoNure2 = true
+        while _G.AutoNure2 do
+            Boss2()
+            to(CFrame.new(2025.055419921875, 129.0679473876953, -4738.908203125))
+                coroutine.wrap(OnClick)()
+            task.wait(0.1)
+        end
     else
-
+        _G.AutoNure2 = false
+        coroutine.wrap(OffClick)()
     end
 end})
 
@@ -1617,13 +2608,15 @@ B2C3_s:NewToggle({Title = "Aimbot Yurie", Default = false, Callback = function(t
     end
 end})
 B2C3_0:NewButton({Title = "Automatic Skip", Callback = function()
-    
+    to(CFrame.new(-556.6293334960938, 13.464599609375, 418.3713684082031))
 end})
 B2C3_1:NewButton({Title = "Talk", Callback = function()
-    
+    to(CFrame.new(-133.26031494140625, 45.464569091796875, 68.60448455810547))
+    task.wait(1)
+    fire()
 end})
 B2C3_1:NewButton({Title = "Automatic Hearts", Callback = function()
-    
+    heartCollect()
 end})
 B2C3_1:NewTitle("Escape")
 B2C3_1:NewButton({Title = "Run [Bypass]", Callback = function()

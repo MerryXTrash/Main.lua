@@ -1846,7 +1846,7 @@ Setting_main:NewToggle({Title = "Fullbright", Default = true, Callback = functio
         _G.FullBrightEnabled = not _G.FullBrightEnabled
     else
         _G.FullBrightExecuted = false
-		_G.FullBrightEnabled = not _G.FullBrightEnabled
+	_G.FullBrightEnabled = not _G.FullBrightEnabled
     end
 end})
 Setting_main:NewToggle({Title = "Noclip", Default = false, Callback = function(tr) 
@@ -1862,6 +1862,16 @@ Setting_main:NewToggle({Title = "No Cooldown Prompt", Default = false, Callback 
     else
         DisableInstantPrompt()
     end
+end})
+Setting_main:NewButton({Title = "Set Gravity [If Gravity Bug]", Callback = function()
+    pcall(function()
+        world.Gravity = 150
+    end)
+end})
+Setting_main:NewButton({Title = "Set Anchored [If You Can't Move]", Callback = function()
+    pcall(function()
+        Unanchored()
+    end)
 end})
 Setting_display:NewToggle({Title = "View FPS", Default = false, Callback = function(tr) 
     if tr then
@@ -1936,6 +1946,7 @@ while getgenv().Enabled and wait() do
     players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = getgenv().Speed
 end
 end})
+Setting_misc:NewTitle("Fly Don't Work Some Chapter")
 Setting_misc:NewSlider({Title = "Fly Speed", Min = 1, Max = 10, Default = 2, Callback = function(a) 
     speeds = a
 end})
@@ -2116,17 +2127,18 @@ B1C4_4:NewToggle({Title = "Automatic Hearts", Default = false, Callback = functi
             end
 
             while _G.AutoHeart do
+		world.Gravity = 0
                 check()
                 task.wait(0.1)
             end
         end
     else
         _G.AutoHeart = false
+	world.Gravity = 150
     end
 end})
 B1C4_5:NewToggle({Title = "Automatic Boss", Default = false, Callback = function(tr) 
     if tr then
-        local RunService = Rservice
 		local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 		moving = false
 		targetPart = nil
@@ -2166,7 +2178,7 @@ B1C4_5:NewToggle({Title = "Automatic Boss", Default = false, Callback = function
                 end
             end
             function moveAroundTarget()
-                angle = angle + speed * RunService.Heartbeat:Wait()
+                angle = angle + speed * Rservice.Heartbeat:Wait()
                 xOffset = math.cos(angle) * radius
                 zOffset = math.sin(angle) * radius
                 newPosition = Vector3.new(targetPart.Position.X + xOffset, humanoidRootPart.Position.Y, targetPart.Position.Z + zOffset)
@@ -2201,14 +2213,14 @@ B1C4_5:NewToggle({Title = "Automatic Boss", Default = false, Callback = function
                     end
                  end
                     if targetPart then
-                        heartbeatConnection = RunService.Heartbeat:Connect(function()
+                        heartbeatConnection = Rservice.Heartbeat:Connect(function()
                             if moving then
                                 moveAroundTarget()
                             end
                         end)
                     else
                         print("SpiderHitbox not found, waiting...")
-                        task.wait(9e9)
+                        task.wait(5)
                     end
                 end
             end
@@ -2250,13 +2262,13 @@ B2C1_1:NewButton({Title = "Escape", Callback = function()
     fire()
 end})
 B2C1_1:NewButton({Title = "Run", Callback = function()
-    Tween(Vector3.new(-961.4176635742188, -46.48267364501953, -3601.613525390625))
+    to(CFrame.new(-961.4176635742188, -46.48267364501953, -3601.613525390625))
 end})
 B2C1_2:NewButton({Title = "Enter Cave", Callback = function()
-    Tween(Vector3.new(583.685546875, 567.3634643554688, -365.7061462402344))
+    to(CFrame.new(583.685546875, 567.3634643554688, -365.7061462402344))
 end})
 B2C1_2:NewButton({Title = "Run", Callback = function()
-    Tween(Vector3.new(3866.74462890625, 140.48388671875, 10.994720458984375))
+    to(CFrame.new(3866.74462890625, 140.48388671875, 10.994720458984375))
 end})
 B2C1_3:NewButton({Title = "Talk", Callback = function()
     to(CFrame.new(-323.47344970703125, 20.420881271362305, 3653.791748046875))
@@ -2405,11 +2417,11 @@ B2C1_6x:NewButton({Title = "Automatic Floor 3", Callback = function()
 end})
 B2C1_6x:NewTitle("Run")
 B2C1_6x:NewButton({Title = "Run", Callback = function()
-    Tween(Vector3.new(-6318.65966796875, 419.03302001953125, 6330.75830078125))
+    to(CFrame.new(-6318.65966796875, 419.03302001953125, 6330.75830078125))
 end})
 
 B2C1_7:NewButton({Title = "Automatic Escape", Callback = function()
-    Tween(Vector3.new(-10035.9756, 421.733154, 7278.47949, 0.00383073092, 0.0287271589, 0.999580026, 0.0457166582, 0.998537123, -0.0288723968, -0.998947144, 0.0458080582, 0.00251185894))
+    to(CFrame.new(-10035.9756, 421.733154, 7278.47949, 0.00383073092, 0.0287271589, 0.999580026, 0.0457166582, 0.998537123, -0.0288723968, -0.998947144, 0.0458080582, 0.00251185894))
 end})
 
 
@@ -2473,7 +2485,7 @@ B2C2_4:NewToggle({Title = "Automatic Levers", Default = false, Callback = functi
         _G.AutoLevers = true
         while _G.AutoLevers do
             Levers()
-                fire()
+            fire()
             task.wait(0.1)
         end
     else

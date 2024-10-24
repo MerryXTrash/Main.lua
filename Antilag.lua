@@ -1708,11 +1708,19 @@ end
 function hw3(namecall)
     for i, v in ipairs(world:GetDescendants()) do
         if v.Name == namecall then
-            if v:IsA("MeshPart") or v:IsA("Part") then
+            if (v:IsA("MeshPart") or v:IsA("Part")) and v.Transparency == 0 then
                 to(v.CFrame)
-            elseif v:IsA("Model") then
+            end
+        end
+    end
+end
+
+function hw3z()
+    for i, v in ipairs(world:GetDescendants()) do
+        if v.Name == "Bats" then
+            if v:IsA("Model") then
                 for u, k in ipairs(v:GetDescendants()) do
-                    if k:IsA("Part") then
+                    if k.Name == "Torso" and k.Transparency == 0 then
                         to(k.CFrame)
                     end
                 end
@@ -2867,45 +2875,42 @@ HW2:NewButton({Title = "Automatic 1 Candle", Callback = function()
     hw2()
 end})
 HW3:NewButton({Title = "Automatic Pumpkins", Callback = function()
-    hw3("Bats")
-    task.wait(0.3)
+    hw3z()
+    task.wait(0.2)
     fireSeclect("Bats")
-    task.wait(0.3)
-    hw3("Bats")
-    task.wait(0.3)
+    task.wait(0.2)
+    hw3z()
+    task.wait(0.2)
     fireSeclect("Bats")
-    task.wait(0.3)
+    task.wait(0.2)
     hw3("Eyes")
-    task.wait(0.3)
+    task.wait(0.2)
     fireSeclect("Eyes")
-    task.wait(0.3)
+    task.wait(0.2)
     hw3("Eyes")
-    task.wait(0.3)
+    task.wait(0.2)
     fireSeclect("Eyes")
-    task.wait(0.3)
+    task.wait(0.2)
     hw3("Eyes")
-    task.wait(0.3)
+    task.wait(0.2)
     fireSeclect("Roses")
-    task.wait(0.3)
+    task.wait(0.2)
     hw3("Roses")
-    task.wait(0.3)
+    task.wait(0.2)
     fireSeclect("Roses")
-    task.wait(0.3)
+    task.wait(0.2)
     hw3("Roses")
-    task.wait(0.3)
+    task.wait(0.2)
     fireSeclect("Roses")
-    task.wait(0.3)
+    task.wait(0.2)
     hw3("Roses")
-    task.wait(0.3)
+    task.wait(0.2)
     fireSeclect("Roses")
-    task.wait(0.3)
+    task.wait(0.2)
     hw3("Snakes")
-    task.wait(0.3)
+    task.wait(0.2)
     fireSeclect("Snakes")
-    task.wait(0.3)
-    hw3("Snakes")
-    task.wait(0.3)
-    fireSeclect("Snakes")
+    task.wait(0.2)
     to(CFrame.new(95.22450256347656, 36.999996185302734, 240.80474853515625))
     task.wait(0.2)
     fire()

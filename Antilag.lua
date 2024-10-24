@@ -1710,8 +1710,12 @@ function hw3(namecall)
         if v.Name == namecall then
             if v:IsA("MeshPart") or v:IsA("Part") then
                 to(v.CFrame)
-            elseif v:IsA("Model") and v.PrimaryPart then
-                to(v.PrimaryPart.CFrame)
+            elseif v:IsA("Model") then
+                for u, k in ipairs(v:GetDescendants()) do
+                    if k:IsA("Part") then
+                        to(k.CFrame)
+                    end
+                end
             end
         end
     end

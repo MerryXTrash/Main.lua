@@ -82,7 +82,12 @@ for _, descendant in ipairs(world:GetDescendants()) do
     table.insert(worldtable, descendant)
 end
 
-
+function fall()
+    world.Gravity = 150
+end
+function nofall()
+    world.Gravity = 1
+end
 function fire()
     for _, descendant in ipairs(world:GetDescendants()) do
         if descendant:IsA("ProximityPrompt") then
@@ -90,6 +95,19 @@ function fire()
         end
     end
 end
+
+function fireSeclect(namecall)
+    for _, descendant in ipairs(world:GetDescendants()) do
+        if descendant.Name == namecall then
+            for _, prompt in ipairs(descendant:GetDescendants()) do
+                if prompt:IsA("ProximityPrompt") then
+                    fireproximityprompt(prompt)
+                end
+            end
+        end
+    end
+end
+
 function EnableInstantPrompt()
     for _, descendant in ipairs(world:GetDescendants()) do
         if descendant:IsA("ProximityPrompt") then
@@ -314,7 +332,7 @@ local function createFPSDisplay()
     fpsLabel.BackgroundTransparency = 1
     fpsLabel.TextSize = 18
     fpsLabel.Font = Enum.Font.SourceSansBold
-    fpsLabel.Text = "FPS: 0"
+    fpsLabel.Text = "FPS : 0"
     fpsLabel.TextStrokeTransparency = 0
     fpsLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 
@@ -718,107 +736,45 @@ end
 end
 
 function ESP()
-	pcall(function()
-	gameAI1 = worldtable:FindFirstChild("GameAI")
-	gameAI2 = worldtable:FindFirstChild("GameAI2")
-
-if gameAI1 then
-	for i, v in pairs(gameAI1:GetChildren()) do
-        if v:IsA("BasePart") or v:IsA("Model") or v:IsA("Part") then
-            setupHighlightForMob(v)
-        end
-    end
-end
-
-if gameAI2 then
-    for i, v in pairs(gameAI2:GetChildren()) do
-        if v:IsA("BasePart") or v:IsA("Model") or v:IsA("Part") then
-            setupHighlightForMob(v)
-        end
-    end
-end
-
-for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
-		if v.Name == "AI" then
-			setupHighlightForMob(v)
-		end
-	end
-Sama1 = worldtable.omukadeMAIN
-setupHighlightForMob(Sama1)
-Sama2 = worldtable.Saigomo
-setupHighlightForMob(Sama2)
-
-for _, model in ipairs(worldtable:GetDescendants()) do
-    if model:IsA("Model") then
-        for _, model1 in ipairs(model:GetDescendants()) do
-            if model1:IsA("MeshPart") then
-                local textureID = model1.TextureID
-                if textureID == "rbxassetid://8210027978" or 
-                   textureID == "rbxassetid://8028359449" or 
-                   textureID == "rbxassetid://8985801399" or 
-                   textureID == "rbxassetid://9036476435" or 
-                   textureID == "rbxassetid://8208335769" or 
-                   textureID == "rbxassetid://9104396416" then
-                    setupHighlightForMob(model)
+    pcall(function()
+        for _, iv in ipairs(workspace:GetDescendants()) do
+            if iv:IsA("Folder") then
+                for _, v in ipairs(iv:GetDescendants()) do
+                    local humanoidRootPart = v:FindFirstChild("HumanoidRootPart")
+                    if humanoidRootPart then
+                        local meshPart = v:FindFirstChildOfClass("MeshPart")
+                        if meshPart then
+                            local accessory = v:FindFirstChildOfClass("Accessory")
+                            if not accessory then
+                                setupHighlightForMob(v)
+                            end
+                        end
+                    end
                 end
-            end
-        end
-    end
-end
-Clown = worldtable.Clown
-setupHighlightForMob(Clown)
-Ring = worldtable.Yurei
-setupHighlightForMob(Ring)
-AI1 = worldtable.SamaAI
-AI2 = worldtable.CrawlAI
-setupHighlightForMob(AI1)
-setupHighlightForMob(AI2)
-end)
-end
-
-function Tween(targetPosition)
-    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    originalGravity = world.Gravity
-    speed = 350
-    isTweening = true
-    world.Gravity = 0
-	noclip()
-    Rservice.RenderStepped:Connect(function(deltaTime)
-        if isTweening then
-            direction = (targetPosition - humanoidRootPart.Position).unit
-            humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction * speed * deltaTime)
-            if (humanoidRootPart.Position - targetPosition).magnitude < 1 then
-                isTweening = false
-                world.Gravity = originalGravity
-				clip()
+            elseif iv:IsA("Model") then
+                local humanoidRootPart = iv:FindFirstChild("HumanoidRootPart")
+                if humanoidRootPart then
+                    local meshPart = iv:FindFirstChildOfClass("MeshPart")
+                    if meshPart then
+                        local accessory = iv:FindFirstChildOfClass("Accessory")
+                        if not accessory then
+                            setupHighlightForMob(iv)
+                        end
+                    end
+                end
             end
         end
     end)
 end
 
 function clickMiddleOfScreen()
-    local screenSize = workspace.CurrentCamera.ViewportSize
+    local screenSize = world.CurrentCamera.ViewportSize
     local centerX = screenSize.X / 2
     local centerY = screenSize.Y / 2
     VirtualUser:CaptureController()
     VirtualUser:ClickButton1(Vector2.new(centerX, centerY))
 end
 
-AutoClickActive = false
-_G.Clickgable = false
-function OnClick()
-    while _G.Clickgable and AutoClickActive do
-        task.wait(0.1)
-        coroutine.wrap(clickMiddleOfScreen)()
-    end
-end
-
-function OffClick()
-    if _G.Clickgable and AutoClickActive then
-        _G.Clickgable = false
-        AutoClickActive = false
-    end
-end
 --fireprompt
 local Frames3 = Instance.new("Frame")
 local UICorner3 = Instance.new("UICorner")
@@ -990,18 +946,16 @@ end
 function AutoArmors()
     to(CFrame.new(706.4743041992188, 14.950273513793945, 1929.3958740234375))
     for _, v in pairs(world:GetChildren()) do
-     if v.Name == "Texture" or v.Name == "MeshPart" or v.Name == "TreeMeshTop" then
-         v:Destroy()
+        if v.Name == "Texture" or v.Name == "MeshPart" or v.Name == "TreeMeshTop" then
+            v:Destroy()
+        end
     end
-end
-wait(1)
-Part = world.Well:WaitForChild("Burner")
- 
- Float = Instance.new("Part")
- Float.Parent = world
- Float.Anchored = true
- Float.Size = Vector3.new(30, 2, 30)
- Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0)  -- Offset the position of Float
+    Part = world.Well:WaitForChild("Burner")
+    Float = Instance.new("Part")
+    Float.Parent = world
+    Float.Anchored = true
+    Float.Size = Vector3.new(30, 2, 30)
+    Float.CFrame = Part.CFrame * CFrame.new(0, 14, 0) -- Offset the position of Float
     wait(0.5)
     to(CFrame.new(860.1697998046875, 15.059876441955566, 2388.63427734375))
     fire()
@@ -1037,39 +991,40 @@ Part = world.Well:WaitForChild("Burner")
     fire()
 end
 
+
 function Ratfind()
     pcall(function()
-    for _, rat in ipairs(world:GetDescendants()) do
-        if rat:IsA("MeshPart") then
-            if rat.TextureID == "rbxassetid://8569135832" then
-                proximityPrompt = rat:FindFirstChildOfClass("ProximityPrompt")
-                if proximityPrompt then
-                    to(rat.CFrame)
-                    wait(0.2)
-                    fire()
-                    fire()
-                    fire()
-                    wait(0.2)
-                    to(CFrame.new(-1539.063, -30.171, -3543.718))
-                    wait(0.1)
-                    Equip("Poisoned Rat")
-                    wait(0.1)
-                    fire()
-                    fire()
-                    wait(5)
-                    to(CFrame.new(-1563.528, -28.910, -3408.718))
-                    wait(0.2)
-                    fire()
-                    fire()
-                    wait(0.2)
-                    to(CFrame.new(-1674.827, -21.010, -3402.391))
-                    countdown(25)
-                    break
+        for _, rat in ipairs(world:GetDescendants()) do
+            if rat:IsA("MeshPart") then
+                if rat.TextureID == "rbxassetid://8569135832" then
+                    proximityPrompt = rat:FindFirstChildOfClass("ProximityPrompt")
+                    if proximityPrompt then
+                        to(rat.CFrame)
+                        wait(0.2)
+                        fire()
+                        fire()
+                        fire()
+                        wait(0.2)
+                        to(CFrame.new(-1539.063, -30.171, -3543.718))
+                        wait(0.1)
+                        Equip("Poisoned Rat")
+                        wait(0.1)
+                        fire()
+                        fire()
+                        wait(5)
+                        to(CFrame.new(-1563.528, -28.910, -3408.718))
+                        wait(0.2)
+                        fire()
+                        fire()
+                        wait(0.2)
+                        to(CFrame.new(-1674.827, -21.010, -3402.391))
+                        countdown(25)
+                        break
+                    end
                 end
             end
         end
-    end
-end)
+    end)
 end
 
 B2c1pos = {
@@ -1110,6 +1065,31 @@ B2c1pos = {
     bypassf3 = CFrame.new(-6822.1220703125, 745.171142578125, 6438.0400390625)
 }
 
+function ip(Pos)
+    pcall(function()
+        local e = Instance.new("Frame")
+        local c = Instance.new("UICorner")
+        e.Size = UDim2.new(0, 14, 0, 14)
+        e.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        e.BackgroundTransparency = 0
+        e.AnchorPoint = Vector2.new(0.5, 0.5)
+        e.Position = Pos
+        c.CornerRadius = UDim.new(0.1, 0)
+        c.Parent = e
+        for _, v in ipairs(workspace:GetDescendants()) do
+            if v.Name == "Pad" then
+                local Interface = v:FindFirstChild("Display")
+                if Interface then
+                    e.Parent = Interface
+                end
+            end
+        end
+    end)
+end
+
+function pic1()
+    ip()
+end
 function floor1()
 	to(B2c1pos.bypassf1)
 	nofall()
@@ -1189,6 +1169,7 @@ function floor3()
 end
 
 if id == 8056702588 then
+InsertPart("Picpcall", Vector3.new(208.97933959960938, 3061.8310546875, 3823.934326171875), Vector3.new(100, 20, 100))
 InsertPart("House1", Vector3.new(-395.0856, 3069.5757, 3891.5354), Vector3.new(15, 2, 15))
 InsertPart("House2", Vector3.new(-4.7849, 3067.8242, 4712.5752), Vector3.new(15, 2, 15))
 InsertPart("House3", Vector3.new(-246.9231, 3068.6431, 4219.7925), Vector3.new(15, 2, 15))
@@ -1548,97 +1529,105 @@ end
 
 function toPuzzle()
     pcall(function()
-for i, v in ipairs(world:GetDescendants()) do
-    if v:IsA("Model") and (v.Name == "1" or v.Name == "2" or v.Name == "3") then
-        for _, b in pairs(v:GetChildren()) do
-            if b.Name == "Base" and b.Transparency == 0 then
-                for _, x in pairs(b:GetChildren()) do
-                    if x.Name == "Part2" and x.Color == Color3.new(27/255, 42/255, 53/255) and x.Transparency == 0 then
-                        to(b.CFrame)
+        for i, v in ipairs(world:GetDescendants()) do
+            if v:IsA("Model") and (v.Name == "1" or v.Name == "2" or v.Name == "3") then
+                for _, b in pairs(v:GetChildren()) do
+                    if b.Name == "Base" and b.Transparency == 0 then
+                        for _, x in pairs(b:GetChildren()) do
+                            if x.Name == "Part2" and x.Color == Color3.new(27 / 255, 42 / 255, 53 / 255) and x.Transparency == 0 then
+                                to(b.CFrame)
+                            end
+                        end
                     end
                 end
             end
         end
-    end
+    end)
 end
-end)
-end
+
 
 function SafeTower()
     pcall(function()
-for _, v in ipairs(world:GetDescendants()) do
-    if v:IsA("Sound") or v.Name == "Warning1" or v.Name == "Warning2" or v.Name == "Warning3" then
-        if v.Playing == true then
-                to(CFrame.new(-4089.20483, 743.817444, -960.496887, -0.0886541307, 0, -0.996062458, 0, 1, 0, 0.996062458, 0, -0.0886541307))
+        for _, v in ipairs(world:GetDescendants()) do
+            if v:IsA("Sound") or v.Name == "Warning1" or v.Name == "Warning2" or v.Name == "Warning3" then
+                if v.Playing == true then
+                    to(CFrame.new(-4089.20483, 743.817444, -960.496887, -0.0886541307, 0, -0.996062458, 0, 1, 0,
+                        0.996062458, 0, -0.0886541307))
+                end
+            end
         end
-    end
+    end)
 end
-end)
-end
+
 
 function FindKid()
     pcall(function()
-for i, v in ipairs(world:GetDescendants()) do
-    if v.Name == "KimonoWrap" then
+        for i, v in ipairs(world:GetDescendants()) do
+            if v.Name == "KimonoWrap" then
                 to(v.CFrame)
-        break
-    end
+                break
+            end
+        end
+    end)
 end
-end)
-end
+
 
 function Togate()
     pcall(function()
-for _, v in ipairs(world:GetDescendants()) do
-    if v.Name == "Glowing" and v:IsA("BasePart") then -- Ensure 'Glowing' is a part
-        tp(v.CFrame)
-        break
-    end
+        for _, v in ipairs(world:GetDescendants()) do
+            if v.Name == "Glowing" and v:IsA("BasePart") then -- Ensure 'Glowing' is a part
+                tp(v.CFrame)
+                break
+            end
+        end
+    end)
 end
-end)
-end
+
 
 function FNote()
     pcall(function()
-for i, v in pairs(workspace:GetDescendants()) do
-    if v.Name == "Notes" then
-        for _, p in pairs(v:GetChildren()) do
-            if p.Name == "Note" then
-                for _, proximity in pairs(p:GetChildren()) do
-                    if proximity.Name == "Front" and proximity.Transparency == 0 then
-                        to(p.CFrame)
+        for i, v in pairs(workspace:GetDescendants()) do
+            if v.Name == "Notes" then
+                for _, p in pairs(v:GetChildren()) do
+                    if p.Name == "Note" then
+                        for _, proximity in pairs(p:GetChildren()) do
+                            if proximity.Name == "Front" and proximity.Transparency == 0 then
+                                to(p.CFrame)
+                            end
+                        end
                     end
                 end
             end
         end
-    end
+    end)
 end
-end)
-end
+
 
 function Ballprompt()
     pcall(function()
-for i, v in ipairs(worldtable:GetDescendants()) do
-    if v.Name == "BallGivers" then
-        for l, prompt in ipairs (v:GetDescendants()) do
-            if prompt:IsA("ProximityPrompt") then
-                fireproximityprompt(prompt)
+        for i, v in ipairs(worldtable:GetDescendants()) do
+            if v.Name == "BallGivers" then
+                for l, prompt in ipairs(v:GetDescendants()) do
+                    if prompt:IsA("ProximityPrompt") then
+                        fireproximityprompt(prompt)
+                    end
+                end
             end
         end
-    end
+    end)
 end
-end)
-end
+
 
 function Boss2()
     pcall(function()
-    for _, v in ipairs(world:GetDescendants()) do
-    if v.Name == "TailHitbox1" or v.Name == "TailHitbox2" then
-        v.Size = Vector3.new(1000, 1000, 1000)
-    end
+        for _, v in ipairs(world:GetDescendants()) do
+            if v.Name == "TailHitbox1" or v.Name == "TailHitbox2" then
+                v.Size = Vector3.new(1000, 1000, 1000)
+            end
+        end
+    end)
 end
-end)
-end
+
 
 function heartCollect()
     to(CFrame.new(-171.5743865966797, 45.4909553527832, 59.38624572753906))
@@ -1677,13 +1666,44 @@ function heartCollect()
 end
 
 
+_G.HW = false
+function Eventhw()
+    for i, v in pairs(world:GetChildren()) do
+        if v.Name == "Candy" then
+            for p, n in pairs(v:GetChildren()) do
+                if n.Name == "Candy" then
+                    to(n.CFrame)
+                else
+                    _G.HW = false
+                end
+            end
+        end
+    end
+end
 
-
-
-
-
-
-
+function hw2()
+    for i, v in pairs(world:GetChildren()) do
+        if v.Name == "Candles" then
+            for k, s in pairs(v:GetChildren()) do
+                if s.Name == "Candle" and s:IsA("Model") then
+                    for j, descendant in ipairs(s:GetDescendants()) do
+                        if descendant:IsA("ProximityPrompt") and descendant.HoldDuration == 0 then
+                            for j, meshDescendant in ipairs(s:GetDescendants()) do
+                                if meshDescendant:IsA("MeshPart") then
+                                    to(CFrame.new(meshDescendant.CFrame))
+                                    task.wait(0.3)
+                                    fireSelect("Candles")
+                                    task.wait(0.2)
+                                    to(CFrame.new(396.8655090332031, 205.25375366210938, -94.7509536743164))
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
 
 
 
@@ -1846,7 +1866,7 @@ Setting_main:NewToggle({Title = "Fullbright", Default = true, Callback = functio
         _G.FullBrightEnabled = not _G.FullBrightEnabled
     else
         _G.FullBrightExecuted = false
-	_G.FullBrightEnabled = not _G.FullBrightEnabled
+		_G.FullBrightEnabled = not _G.FullBrightEnabled
     end
 end})
 Setting_main:NewToggle({Title = "Noclip", Default = false, Callback = function(tr) 
@@ -1946,7 +1966,6 @@ while getgenv().Enabled and wait() do
     players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = getgenv().Speed
 end
 end})
-Setting_misc:NewTitle("Fly Don't Work Some Chapter")
 Setting_misc:NewSlider({Title = "Fly Speed", Min = 1, Max = 10, Default = 2, Callback = function(a) 
     speeds = a
 end})
@@ -2051,11 +2070,19 @@ B1C4_2 = _B1C4_TAB:NewSection({ Title = "Butterfly [Section 2]", Icon = icons.bu
 B1C4_3 = _B1C4_TAB:NewSection({ Title = "Armor [Section 3]", Icon = icons.armor, Position = "Right" })
 B1C4_4 = _B1C4_TAB:NewSection({ Title = "Heart [Section 4]", Icon = icons.heart, Position = "Left" })
 B1C4_5 = _B1C4_TAB:NewSection({ Title = "Boss [Section 5]", Icon = icons.boss, Position = "Right" })
-B1C4_0:NewToggle({Title = "Automatic Click", Default = false, Callback = function(tr) 
-    if tr then
-        OnClick()
+B1C4_0:NewToggle({Title = "Automatic Click", Default = false, Callback = function(v) 
+    if v then
+        _G.EzClick = true
+        autoClickActive = true
+        coroutine.wrap(function()
+            while autoClickActive and _G.EzClick do
+                clickMiddleOfScreen()
+                task.wait(0.1)
+            end
+        end)()
     else
-        OffClick()
+        autoClickActive = false
+        _G.EzClick = false
     end
 end})
 B1C4_1:NewButton({Title = "Skip", Callback = function()
@@ -2127,112 +2154,146 @@ B1C4_4:NewToggle({Title = "Automatic Hearts", Default = false, Callback = functi
             end
 
             while _G.AutoHeart do
-		world.Gravity = 0
                 check()
                 task.wait(0.1)
             end
         end
     else
         _G.AutoHeart = false
-	world.Gravity = 150
     end
 end})
-B1C4_5:NewToggle({Title = "Automatic Boss", Default = false, Callback = function(tr) 
-    if tr then
-		local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-		moving = false
-		targetPart = nil
-		speed = 1.6
-		radius = 30
-		angle = 0
-		local heartbeatConnection
-		function TeleportOff()
-			moving = false
-			if heartbeatConnection then
-				heartbeatConnection:Disconnect()
-				heartbeatConnection = nil
-			end
-		end
+B1C4_5:NewToggle({
+    Title = "Automatic Boss",
+    Default = false,
+    Callback = function(tr) 
+        if tr then
+            pcall(function()
+                local part = Instance.new("Part")
+                part.CFrame = CFrame.new(2760.362548828125, 263.2343444824219, 2701.247314453125)
+                part.Size = Vector3.new(500, 3, 500)
+                part.Material = Enum.Material.Neon
+                part.Color = Color3.new(80/255, 109/255, 84/255)
+                part.Anchored = true
+                part.Parent = game.Workspace
 
-        if id == 7265397848 or id == 7251867574 then
-            world.BossMap:Destroy()
-            function ModifyHandle(item)
-                local handle = item:FindFirstChild("Handle")
-                if handle then
-                    handle.Size = Vector3.new(50, 50, 10)
-                    handle.Massless = true
+                local bossMap = game.Workspace:FindFirstChild("BossMap")
+                if bossMap then
+                    bossMap:Destroy()
                 end
-            end
-            function CheckKatana()
-                for _, item in pairs(character:GetChildren()) do
-                    if item.Name == "Katana" then
-                        ModifyHandle(item)
-                        break
+
+                local player = game.Players.LocalPlayer
+                local character = player.Character or player.CharacterAdded:Wait()
+                local backpack = player:WaitForChild("Backpack")
+
+                local function ModifyHandle(item)
+                    local handle = item:FindFirstChild("Handle")
+                    if handle then
+                        handle.Size = Vector3.new(50, 50, 10)
+                        handle.Massless = true
                     end
                 end
-                for _, item in pairs(backpack:GetChildren()) do
-                    if item.Name == "Katana" then
-                        ModifyHandle(item)
-                        break
-                    end
-                end
-            end
-            function moveAroundTarget()
-                angle = angle + speed * Rservice.Heartbeat:Wait()
-                xOffset = math.cos(angle) * radius
-                zOffset = math.sin(angle) * radius
-                newPosition = Vector3.new(targetPart.Position.X + xOffset, humanoidRootPart.Position.Y, targetPart.Position.Z + zOffset)
-                humanoidRootPart.CFrame = CFrame.new(newPosition, targetPart.Position)
-            end
-            function TeleportOn()
-                moving = true
-                targetPart = nil
-                gameHearts = world.GameHearts
-                foundHeart = false
-                for _, v in pairs(gameHearts:GetChildren()) do
-                    if v.Name == "Heart" then
-                        foundHeart = true
-                        return
-                    end
-                end
-                if not foundHeart then
-                    for _, v in ipairs(world.BossBattle:GetDescendants()) do
-                        if v.Name == "SpiderHitbox" and v:IsA("BasePart") then
-                            targetPart = v
+
+                local function CheckKatana()
+                    for _, item in pairs(character:GetChildren()) do
+                        if item.Name == "Katana" then
+                            ModifyHandle(item)
                             break
                         end
-                for _, v in pairs(world.BossBattle:GetChildren()) do
-                    if v:IsA("Model") then
-                           spiderHitbox = v:FindFirstChild("SpiderHitbox")
-                           if spiderHitbox then
-                           spiderHitbox.Rotation = Vector3.new(0, 0, 0)
-                           spiderHitbox.Size = Vector3.new(30, 30, 30)
-                           spiderHitbox.Transparency = 0.9
-                           end
+                    end
+
+                    for _, item in pairs(backpack:GetChildren()) do
+                        if item.Name == "Katana" then
+                            ModifyHandle(item)
+                            break
                         end
                     end
-                 end
-                    if targetPart then
-                        heartbeatConnection = Rservice.Heartbeat:Connect(function()
-                            if moving then
-                                moveAroundTarget()
+                end
+
+                local RunService = game:GetService("RunService")
+                local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
+                local moving = false
+                local targetPart = nil
+                local speed = 1.6
+                local radius = 30
+                local angle = 0
+                local heartbeatConnection
+
+                local function moveAroundTarget()
+                    angle = angle + speed * RunService.Heartbeat:Wait()
+                    local xOffset = math.cos(angle) * radius
+                    local zOffset = math.sin(angle) * radius
+                    local newPosition = Vector3.new(targetPart.Position.X + xOffset, humanoidRootPart.Position.Y, targetPart.Position.Z + zOffset)
+                    humanoidRootPart.CFrame = CFrame.new(newPosition, targetPart.Position)
+                end
+
+                local function TeleportOn()
+                    moving = true
+                    targetPart = nil
+
+                    local gameHearts = game:GetService("Workspace"):FindFirstChild("GameHearts")
+                    local foundHeart = false
+
+                    if gameHearts then
+                        for _, v in pairs(gameHearts:GetChildren()) do
+                            if v.Name == "Heart" then
+                                foundHeart = true
+                                return
                             end
-                        end)
-                    else
-                        print("SpiderHitbox not found, waiting...")
-                        task.wait(5)
+                        end
+                    end
+
+                    if not foundHeart then
+                        for _, v in ipairs(game:GetService("Workspace").BossBattle:GetDescendants()) do
+                            if v.Name == "SpiderHitbox" and v:IsA("BasePart") then
+                                targetPart = v
+                                break
+                            end
+                        end
+
+                        if targetPart then
+                            heartbeatConnection = RunService.Heartbeat:Connect(function()
+                                if moving then
+                                    moveAroundTarget()
+                                end
+                            end)
+                        else
+                            wait(5)
+                        end
                     end
                 end
-            end
-            coroutine.wrap(CheckKatana)()
-            coroutine.wrap(TeleportOn)()
+
+                function TeleportOff()
+                    moving = false
+                    if heartbeatConnection then
+                        heartbeatConnection:Disconnect()
+                        heartbeatConnection = nil
+                    end
+                end
+
+                function Hitboxz()
+                    for _, v in pairs(game:GetService("Workspace").BossBattle:GetChildren()) do
+                        if v:IsA("Model") then
+                            local spiderHitbox = v:FindFirstChild("SpiderHitbox")
+                            if spiderHitbox then
+                                spiderHitbox.Rotation = Vector3.new(0, 0, 0)
+                                spiderHitbox.Size = Vector3.new(30, 30, 30)
+                                spiderHitbox.Transparency = 0.9
+                            end
+                        end
+                    end
+                end
+
+                task.wait(0.2)
+                world.Gravity = 150
+                Hitboxz()
+                TeleportOn()
+                CheckKatana()
+            end)
         else
-            coroutine.wrap(TeleportOff)()
+            TeleportOff()
         end
     end
-end})
-
-
+})
 
 B2C1_0 = _B2C1_TAB:NewSection({ Title = "Office [Section 1]", Icon = icons.city, Position = "Left" })
 B2C1_1 = _B2C1_TAB:NewSection({ Title = "Rats [Section 2]", Icon = icons.rat, Position = "Right" })
@@ -2281,7 +2342,7 @@ B2C1_3:NewButton({Title = "Automatic Unlock Door", Callback = function()
 	fire()
 	fire()
 	task.wait(0.5)
-	to(Vector3.new(-387.2115783691406, 19.296314239501953, 3780.984130859375))
+	to(CFrame.new(-387.2115783691406, 19.296314239501953, 3780.984130859375))
 	task.wait(1)
 	fire()
 	fire()
@@ -2404,7 +2465,7 @@ B2C1_6:NewButton({Title = "Candle 5", Callback = function()
 end})
 B2C1_6:NewTitle("Run")
 B2C1_6:NewButton({Title = "Run", Callback = function()
-    Tween(Vector3.new(-6318.65966796875, 419.03302001953125, 6330.75830078125))
+    to(CFrame.new(-6318.65966796875, 419.03302001953125, 6330.75830078125))
 end})
 B2C1_6x:NewButton({Title = "Automatic Floor 1", Callback = function()
     coroutine.wrap(floor1)()
@@ -2485,7 +2546,7 @@ B2C2_4:NewToggle({Title = "Automatic Levers", Default = false, Callback = functi
         _G.AutoLevers = true
         while _G.AutoLevers do
             Levers()
-            fire()
+                fire()
             task.wait(0.1)
         end
     else
@@ -2786,20 +2847,49 @@ end})
 XMAS1:NewButton({Title = "Automatic Key", Callback = function()
     
 end})
-
+HWs = _HW_TAB:NewSection({ Title = "Events", Icon = icons.bookmark, Position = "Left" })
 HW1 = _HW_TAB:NewSection({ Title = "Pumpkins", Icon = icons.pumpkin, Position = "Left" })
 HW2 = _HW_TAB:NewSection({ Title = "Candle", Icon = icons.candle12345, Position = "Right" })
 HW3 = _HW_TAB:NewSection({ Title = "Pumpkins", Icon = icons.pumpkin, Position = "Left" })
 HW1:NewButton({Title = "Automatic Pumpkins", Callback = function()
-    
+    to(CFrame.new(-350.75262451171875, 0.7718197107315063, -158.2923126220703))
+    task.wait(0.3)
+    fireSeclect("GameInfo")
+    task.wait(0.3)
+    to(CFrame.new(-355.9704895019531, -20.206695556640625, -62.0767936706543))
+    task.wait(0.3)
+    fireSeclect("GameInfo")
+    task.wait(0.3)
+    to(CFrame.new(-204.78793334960938, -19.988222122192383, -157.39425659179688))
+    task.wait(0.3)
+    fireSeclect("GameInfo")
+    task.wait(0.3)
+    to(CFrame.new(-354.656982421875, -19.969240188598633, -167.6837921142578))
+    task.wait(0.3)
+    Equip("pumpkin")
+    fireSeclect("Well")
+    Equip("pumpkin")
+    fireSeclect("Well")
+    Equip("pumpkin")
+    fireSeclect("Well")
 end})
-HW2:NewButton({Title = "Automatic Candle", Callback = function()
-    
+HW2:NewButton({Title = "Automatic 1 Candle", Callback = function()
+    hw2()
 end})
 HW3:NewButton({Title = "Automatic Pumpkins", Callback = function()
     
 end})
-
+HWs:NewToggle({Title = "Automatic Candy", Default = false, Callback = function(tr) 
+    if tr then
+        _G.HW = true
+            while _G.HW do
+                task.wait(0)
+                Eventhw()
+            end
+    else
+        _G.HW = false
+    end
+end})
 NC1 = _NCC_TAB:NewSection({ Title = "Boxs", Icon = icons.box, Position = "Left" })
 NC2 = _NCC_TAB:NewSection({ Title = "Cards", Icon = icons.card, Position = "Right" })
 NC3 = _NCC_TAB:NewSection({ Title = "Boss", Icon = icons.ringmasterhat, Position = "Left" })

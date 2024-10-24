@@ -1705,68 +1705,55 @@ function hw2()
     end
 end
 
-function bat()
-    for i, v in ipairs(world:GetDescendants()) do
-        if v.Name == "Bat" then
-            for k, kuy in pairs(v:GetChildren()) do
-                if kuy:IsA("Part") and Part.Transparency == 0 then
-                    for o, k in ipairs(v:GetDescendants()) do
-                        if k:IsA("ProximityPrompt") and k.Enabled == true then
-                            to(kuy.CFrame)
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
-
-function snake()
-    for i, v in ipairs(world:GetDescendants()) do
-        if v.Name == "Snakes" then
-            for k, kuy in pairs(v:GetChildren()) do
-                if kuy:IsA("MestPart") and Part.Transparency == 0 then
-                    for o, k in ipairs(v:GetDescendants()) do
-                        if k:IsA("ProximityPrompt") and k.Enabled == true then
-                            to(kuy.CFrame)
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
-
-function rose()
-    for i, v in ipairs(world:GetDescendants()) do
-        if v.Name == "Roses" then
-            for k, kuy in pairs(v:GetChildren()) do
-                if kuy:IsA("Part") and Part.Transparency == 0 then
-                    for o, k in ipairs(v:GetDescendants()) do
-                        if k:IsA("ProximityPrompt") and k.Enabled == true then
-                            to(kuy.CFrame)
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
-
-function eye()
-    for i, v in ipairs(world:GetDescendants()) do
-        if v.Name == "Eyes" then
-            for k, kuy in pairs(v:GetChildren()) do
-                if kuy:IsA("MestPart") and Part.Transparency == 0 then
-                    for o, k in ipairs(v:GetDescendants()) do
-                        if k:IsA("ProximityPrompt") and k.Enabled == true then
-                            to(kuy.CFrame)
-                        end
-                    end
-                end
-            end
-        end
-    end
+function hw3()
+    to(CFrame.new(-101.65007781982422, 39.27793884277344, 389.521484375))
+    task.wait(0.2)
+    fire()
+    fire()
+    fire()
+    task.wait(0.2)
+    to(CFrame.new(-138.7325897216797, 40.999996185302734, 3.382981300354004))
+    task.wait(0.2)
+    fire()
+    fire()
+    fire()
+    task.wait(0.2)
+    to(CFrame.new(105.9415054321289, 37.96184539794922, 383.8980712890625))
+    task.wait(0.2)
+    fire()
+    fire()
+    fire()
+    task.wait(0.2)
+    to(CFrame.new(157.26324462890625, 37.066646575927734, 369.3422546386719))
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+    to(CFrame.new(105.9415054321289, 37.96184539794922, 383.8980712890625))
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+    to(Cframe.new(110.78865051269531, 37.814125061035156, 350.5282287597656))
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+        to(CFrame.new(95.22450256347656, 36.999996185302734, 240.80474853515625))
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
+    fire()
+    task.wait(0.2)
 end
 --------------------------------------------------------------------------------------------------------------------------------------------
 local NothingLibrary = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/Imgonna-Top/Overflow4.0/refs/heads/main/UI'))();
@@ -2912,61 +2899,8 @@ end})
 HW2:NewButton({Title = "Automatic 1 Candle", Callback = function()
     hw2()
 end})
-HW3:NewButton({Title = "Automatic Pumpkins", Callback = function()
-    bat()
-    task.wait(0.2)
-    fireSeclect("Bats")
-    task.wait(0.2)
-    bat()
-    task.wait(0.2)
-    fireSeclect("Bats")
-    task.wait(0.2)
-    eye()
-    task.wait(0.2)
-    fireSeclect("Eyes")
-    task.wait(0.2)
-    eye()
-    task.wait(0.2)
-    fireSeclect("Eyes")
-    task.wait(0.2)
-    eye()
-    task.wait(0.2)
-    fireSeclect("Roses")
-    task.wait(0.2)
-    rose()
-    task.wait(0.2)
-    fireSeclect("Roses")
-    task.wait(0.2)
-    rose()
-    task.wait(0.2)
-    fireSeclect("Roses")
-    task.wait(0.2)
-    rose()
-    task.wait(0.2)
-    fireSeclect("Roses")
-    task.wait(0.2)
-    snake()
-    task.wait(0.2)
-    fireSeclect("Snakes")
-    task.wait(0.2)
-    to(CFrame.new(95.22450256347656, 36.999996185302734, 240.80474853515625))
-    task.wait(0.2)
-    fire()
-    task.wait(0.2)
-    fire()
-    task.wait(0.2)
-    fire()
-    task.wait(0.2)
-    fire()
-    task.wait(0.2)
-    fire()
-    task.wait(0.2)
-    fire()
-    task.wait(0.2)
-    fire()
-    task.wait(0.2)
-    fire()
-    task.wait(0.2)
+HW3:NewButton({Title = "Automatic Potion", Callback = function()
+    hw3()
 end})
 
 HWs:NewToggle({Title = "Automatic Candy", Default = false, Callback = function(tr) 

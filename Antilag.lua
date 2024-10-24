@@ -2975,6 +2975,7 @@ HWs:NewToggle({Title = "Automatic Candy", Default = false, Callback = function(t
             while _G.HW do
                 task.wait(0)
                 Eventhw()
+                fireSeclect("Candy")
             end
     else
         _G.HW = false

@@ -1687,7 +1687,7 @@ function hw2()
             for k, s in pairs(v:GetChildren()) do
                 if s.Name == "Candle" and s:IsA("Model") then
                     for j, descendant in ipairs(s:GetDescendants()) do
-                        if descendant:IsA("ProximityPrompt") and descendant.HoldDuration == 0 then
+                        if descendant:IsA("ProximityPrompt") and descendant.Enabled == true then
                             for j, meshDescendant in ipairs(s:GetDescendants()) do
                                 if meshDescendant:IsA("MeshPart") then
                                     to(CFrame.new(meshDescendant.CFrame))
@@ -1705,23 +1705,15 @@ function hw2()
     end
 end
 
-function hw3(namecall)
+function bat()
     for i, v in ipairs(world:GetDescendants()) do
-        if v.Name == namecall then
-            if (v:IsA("MeshPart") or v:IsA("Part")) and v.Transparency == 0 then
-                to(v.CFrame)
-            end
-        end
-    end
-end
-
-function hw3z()
-    for i, v in ipairs(world:GetDescendants()) do
-        if v.Name == "Bats" then
-            if v:IsA("Model") then
-                for u, k in ipairs(v:GetDescendants()) do
-                    if k.Name == "Torso" and k.Transparency == 0 then
-                        to(k.CFrame)
+        if v.Name == "Bat" then
+            for k, kuy in pairs(v:GetChildren()) do
+                if kuy:IsA("Part") and Part.Transparency == 0 then
+                    for o, k in ipairs(v:GetDescendants()) do
+                        if k:IsA("ProximityPrompt") and k.Enabled == true then
+                            to(kuy.CFrame)
+                        end
                     end
                 end
             end
@@ -1729,7 +1721,53 @@ function hw3z()
     end
 end
 
+function snake()
+    for i, v in ipairs(world:GetDescendants()) do
+        if v.Name == "Snakes" then
+            for k, kuy in pairs(v:GetChildren()) do
+                if kuy:IsA("MestPart") and Part.Transparency == 0 then
+                    for o, k in ipairs(v:GetDescendants()) do
+                        if k:IsA("ProximityPrompt") and k.Enabled == true then
+                            to(kuy.CFrame)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
 
+function rose()
+    for i, v in ipairs(world:GetDescendants()) do
+        if v.Name == "Roses" then
+            for k, kuy in pairs(v:GetChildren()) do
+                if kuy:IsA("Part") and Part.Transparency == 0 then
+                    for o, k in ipairs(v:GetDescendants()) do
+                        if k:IsA("ProximityPrompt") and k.Enabled == true then
+                            to(kuy.CFrame)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+function eye()
+    for i, v in ipairs(world:GetDescendants()) do
+        if v.Name == "Eyes" then
+            for k, kuy in pairs(v:GetChildren()) do
+                if kuy:IsA("MestPart") and Part.Transparency == 0 then
+                    for o, k in ipairs(v:GetDescendants()) do
+                        if k:IsA("ProximityPrompt") and k.Enabled == true then
+                            to(kuy.CFrame)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
 --------------------------------------------------------------------------------------------------------------------------------------------
 local NothingLibrary = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/Imgonna-Top/Overflow4.0/refs/heads/main/UI'))();
 local Notification = NothingLibrary.Notification();
@@ -2875,39 +2913,39 @@ HW2:NewButton({Title = "Automatic 1 Candle", Callback = function()
     hw2()
 end})
 HW3:NewButton({Title = "Automatic Pumpkins", Callback = function()
-    hw3z()
+    bat()
     task.wait(0.2)
     fireSeclect("Bats")
     task.wait(0.2)
-    hw3z()
+    bat()
     task.wait(0.2)
     fireSeclect("Bats")
     task.wait(0.2)
-    hw3("Eyes")
+    eye()
     task.wait(0.2)
     fireSeclect("Eyes")
     task.wait(0.2)
-    hw3("Eyes")
+    eye()
     task.wait(0.2)
     fireSeclect("Eyes")
     task.wait(0.2)
-    hw3("Eyes")
+    eye()
     task.wait(0.2)
     fireSeclect("Roses")
     task.wait(0.2)
-    hw3("Roses")
+    rose()
     task.wait(0.2)
     fireSeclect("Roses")
     task.wait(0.2)
-    hw3("Roses")
+    rose()
     task.wait(0.2)
     fireSeclect("Roses")
     task.wait(0.2)
-    hw3("Roses")
+    rose()
     task.wait(0.2)
     fireSeclect("Roses")
     task.wait(0.2)
-    hw3("Snakes")
+    snake()
     task.wait(0.2)
     fireSeclect("Snakes")
     task.wait(0.2)

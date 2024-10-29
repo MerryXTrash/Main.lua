@@ -75,7 +75,7 @@ function bm:Window(d, br, text, hubnamecolor, bs)
 	bC.Parent = bz
 	bC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	bC.Size = UDim2.new(0, 556, 0, 30)
-	bC.BackgroundTransparency = 1
+	bC.BackgroundTransparency = 0.5
 	local bD = Instance.new"UICorner"
 	bD.Name = "TCNR"
 	bD.Parent = bC
@@ -181,8 +181,8 @@ bM.BackgroundTransparency = 1
 bM.BorderColor3 = Color3.fromRGB(0, 0, 0)
 bM.BorderSizePixel = 0
 bM.Position = UDim2.new(0.5, 0, 0, 0)
-bM.AnchorPoint = Vector2.new(0.5, 0.15)
-bM.Size = UDim2.new(0, 200, 0, 50)
+bM.AnchorPoint = Vector2.new(0.5, 0.18)
+bM.Size = UDim2.new(0, 520, 0, 50)
 bM.Font = font
 bM.Text = text
 bM.TextColor3 = hubnamecolor
@@ -194,7 +194,7 @@ uu.Parent = bM
 uu.Rotation = 90
 uu.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),   -- 0% - White
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(151, 151, 151))          -- 100% - Black
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))          -- 100% - Black
 })
 
 	local bS = {}

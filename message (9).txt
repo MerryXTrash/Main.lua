@@ -75,7 +75,7 @@ function bm:Window(d, br, text, hubnamecolor, bs)
 	bC.Parent = bz
 	bC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	bC.Size = UDim2.new(0, 556, 0, 30)
-	bC.BackgroundTransparency = 0.5
+	bC.BackgroundTransparency = 0.85
 	local bD = Instance.new"UICorner"
 	bD.Name = "TCNR"
 	bD.Parent = bC

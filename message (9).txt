@@ -65,7 +65,7 @@ function bm:Window(d, br, text, hubnamecolor, bs)
     local SK = Instance.new("UIStroke")
     SK.Parent = bz
     SK.Thickness = 3
-	SK.Color = Color3fromRGB(20, 20, 20)
+	SK.Color = Color3.fromRGB(20, 20, 20)
 	local bB = Instance.new"UICorner"
 	bB.Name = "MCNR"
 	bB.Parent = bz

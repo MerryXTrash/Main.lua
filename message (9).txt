@@ -464,10 +464,11 @@ uu.Color = ColorSequence.new({
             bY.TextXAlignment = Enum.TextXAlignment.Left
 
             cp.Name = "ImageLogo"
-			cp.Parent = cf
+	    cp.Parent = cf
             cp.Position = UDim2.new(0, 305, 0, 15)
             cp.Size = UDim2.new(0, 70, 0, 70)
 			cp.Image = im
+cp.BackgroundTransparency = 1
 
 			bY2.Parent = cf
 			bY2.BackgroundColor3 = Color3.fromRGB(150, 150, 150)

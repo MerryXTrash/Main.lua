@@ -1,8 +1,8 @@
 _G.Color = Color3.new(0.20549019607843137, 0.20549019607843137, 0.20549019607843137)
 _G.Color2 = Color3.new(2, 182, 255)
 if _G.Mode == nil then _G.Mode = "Th" end
-if game:GetService"CoreGui".RobloxGui.Modules:FindFirstChild"VVV" then
-	game:GetService"CoreGui".RobloxGui.Modules:FindFirstChild"VVV":Destroy()
+if game:GetService"CoreGui":FindFirstChild"VVV" then
+	game:GetService"CoreGui":FindFirstChild"VVV":Destroy()
 end
 font = Enum.Font.GothamBold
 colorlib = Color3.new(0.20549019607843137, 0.20549019607843137, 0.20549019607843137)

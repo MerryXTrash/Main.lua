@@ -1,4 +1,4 @@
-_G.Color = Color3.new(0.20549019607843137, 0.20549019607843137, 0.20549019607843137)
+_G.Color = Color3.new(15, 15, 15)
 _G.Color2 = Color3.new(2, 182, 255)
 if _G.Mode == nil then _G.Mode = "Th" end
 if game:GetService"CoreGui":FindFirstChild"VVV" then
@@ -40,7 +40,7 @@ end
 
 local bm = {}
 
-function bm:Window(d, br, text, hubnamecolor, bs)
+function bm:Window(d, logo, br, text, hubnamecolor, bs)
 	local s = Instance.new"UICorner"
 	local bt = {}
 	local bu = false
@@ -57,11 +57,11 @@ function bm:Window(d, br, text, hubnamecolor, bs)
 	bz.Parent = by
 	bz.ClipsDescendants = true
 	bz.AnchorPoint = Vector2.new(0.5, 0.5)
-	bz.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+	bz.BackgroundColor3 = colorlib
 	bz.BackgroundTransparency = 0
 	bz.Position = UDim2.new(0.5, 0, 0.5, 0)
 	bz.Size = UDim2.new(0, 0, 0, 0)
-    bz:TweenSize(UDim2.new(0, 550, 0, 350), "Out", "Quad", 0.4, true)
+    bz:TweenSize(UDim2.new(0, 550, 0, 330), "Out", "Quad", 0.4, true)
     local SK = Instance.new("UIStroke")
     SK.Parent = bz
     SK.Thickness = 3
@@ -85,9 +85,12 @@ function bm:Window(d, br, text, hubnamecolor, bs)
 	bE.Parent = bz
 	bE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	bE.BackgroundTransparency = 1
-	bE.Position = UDim2.new(0, 5, 0, -115)
-	bE.Size = UDim2.new(0, 80, 0, 80)
-	bE.Image = "rbxassetid://14645512457"
+	bE.Position = UDim2.new(0, 12, 0, 1)
+	bE.Size = UDim2.new(0, 30, 0, 30)
+	bE.Image = logo
+        local bu = Instance.new"UICorner"
+        bu.Parent = bE
+        bu.CornerRadius = UDim.new(0, 10)
 	local bF = Instance.new"Frame"
 	bF.Name = "Tab"
 	bF.Parent = bz
@@ -193,8 +196,8 @@ local uu = Instance.new("UIGradient")
 uu.Parent = bM
 uu.Rotation = 90
 uu.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),   -- 0% - White
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))          -- 100% - Black
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(2, 182, 255)),   -- 0% - White
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 47, 128))          -- 100% - Black
 })
 
 	local bS = {}
@@ -1365,7 +1368,7 @@ end
 	return bS
 end
 -- Create main window and tabs
-local dj = bm:Window("x2N Hub", "EJLALAL",  "Overture - Ultimate", Color3.fromRGB(2, 182, 255),  Enum.KeyCode.F1)
+local dj = bm:Window("", "rbxassetid://78854626478349",  "Overture - Ultimate", Color3.fromRGB(2, 182, 255),  Enum.KeyCode.F1)
 local dk = dj:Tab("Status", "rbxassetid://11446900930")
 local dl = dj:Tab("Main", "rbxassetid://6034798461")
 local dm = dj:Tab("Setting", "rbxassetid://11446835336")

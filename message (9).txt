@@ -57,15 +57,15 @@ function bm:Window(d, br, text, hubnamecolor, bs)
 	bz.Parent = by
 	bz.ClipsDescendants = true
 	bz.AnchorPoint = Vector2.new(0.5, 0.5)
-	bz.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+	bz.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 	bz.BackgroundTransparency = 0
 	bz.Position = UDim2.new(0.5, 0, 0.5, 0)
 	bz.Size = UDim2.new(0, 0, 0, 0)
     bz:TweenSize(UDim2.new(0, 550, 0, 350), "Out", "Quad", 0.4, true)
     local SK = Instance.new("UIStroke")
     SK.Parent = bz
-    SK.Thickness = 4
-	SK.Color = colorlib
+    SK.Thickness = 3
+	SK.Color = Color3fromRGB(20, 20, 20)
 	local bB = Instance.new"UICorner"
 	bB.Name = "MCNR"
 	bB.Parent = bz
@@ -188,6 +188,7 @@ bM.Text = text
 bM.TextColor3 = hubnamecolor
 bM.TextSize = 18
 bM.TextWrapped = true
+bM.TextXAlignment = Enum.TextXAlignment.Left
 local uu = Instance.new("UIGradient")
 uu.Parent = bM
 uu.Rotation = 90

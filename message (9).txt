@@ -586,7 +586,7 @@ cp.BackgroundTransparency = 1
 			bY.Font = Enum.Font.GothamBold
 			bY.Text = "" .. d
 			bY.TextColor3 = Color3.fromRGB(255, 255, 255)
-			bY.TextSize = 25
+			bY.TextSize = 20
             bY.TextXAlignment = Enum.TextXAlignment.Left
 
             cp.Name = "ImageLogo"
@@ -1385,10 +1385,10 @@ end)
 dm:Slider("Select Distance Farm", 1, 80, 30, function(value) 
     _G.DistanceAutoFarm = value 
 end)
-dm:Toggle("Automatic GodHuman", "Tetstsajudskdssfs", "rbxassetid://110698502441921", false, function(value) 
+dm:Toggle("Auto Godhuman", "Tetstsajudskdssfs", "rbxassetid://110698502441921", false, function(value) 
     _G.FastAttack = value 
 end)
-dm:Toggle("Automatic Cursed Dual Katana", "Tetstsajudskdssfsfpsfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj/", "rbxassetid://85363902539836", false, function(value) 
+dm:Toggle("Auto Cursed Dual Katana", "Tetstsajudskdssfsfpsfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj/", "rbxassetid://85363902539836", false, function(value) 
     _G.FastAttack = value 
 end)
 dm:Button("CopyLinkDiscord", "Deskds", function()

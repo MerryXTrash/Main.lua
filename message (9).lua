@@ -40,7 +40,7 @@ end
 
 local bm = {}
 
-function bm:Window(d, logo, br, text, hubnamecolor, bs)
+function bm:Window(logo, text, hubnamecolor, bs)
 	local s = Instance.new"UICorner"
 	local bt = {}
 	local bu = false
@@ -188,8 +188,8 @@ bM.AnchorPoint = Vector2.new(0.5, 0.18)
 bM.Size = UDim2.new(0, 520, 0, 50)
 bM.Font = font
 bM.Text = text
-bM.TextColor3 = hubnamecolor
-bM.TextSize = 18
+bM.TextColor3 = Color3.fromRGB(255, 255, 255)
+bM.TextSize = 20
 bM.TextWrapped = true
 bM.TextXAlignment = Enum.TextXAlignment.Left
 local uu = Instance.new("UIGradient")
@@ -1368,7 +1368,7 @@ end
 	return bS
 end
 -- Create main window and tabs
-local dj = bm:Window("", "rbxassetid://78854626478349",  "Overture - Ultimate", Color3.fromRGB(2, 182, 255),  Enum.KeyCode.F1)
+local dj = bm:Window("rbxassetid://78854626478349", "Overture - Ultimate", Color3.fromRGB(2, 182, 255),  Enum.KeyCode.F1)
 local dk = dj:Tab("Status", "rbxassetid://11446900930")
 local dl = dj:Tab("Main", "rbxassetid://6034798461")
 local dm = dj:Tab("Setting", "rbxassetid://11446835336")

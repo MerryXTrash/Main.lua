@@ -1370,8 +1370,8 @@ local dl = dj:Tab("Main", "rbxassetid://6034798461")
 local dm = dj:Tab("Setting", "rbxassetid://11446835336")
 
 -- Status Tab Configuration
-dk:Seperator("x2N Hub")
-dk:Line()
+dk:Seperator("kuy i sus")
+dk:Line() --make line
 local Time = dk:Label("Time: ..") -- Placeholder for actual time updating functionality
 dk:Label("[Username]: " .. game.Players.LocalPlayer.DisplayName)
 
@@ -1384,10 +1384,10 @@ end)
 dm:Slider("Select Distance Farm", 1, 80, 30, function(value) 
     _G.DistanceAutoFarm = value 
 end)
-dm:Toggle("FastAttack", "Tetstsajudskdssfs", "rbxassetid://11446835336", false, function(value) 
+dm:Toggle("Automatic GodHuman", "Tetstsajudskdssfs", "rbxassetid://110698502441921", false, function(value) 
     _G.FastAttack = value 
 end)
-dm:Toggle("1", "Tetstsajudskdssfsfpsfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj/", "rbxassetid://11446835336", false, function(value) 
+dm:Toggle("Automatic Cursed Dual Katana", "Tetstsajudskdssfsfpsfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj/", "rbxassetid://85363902539836", false, function(value) 
     _G.FastAttack = value 
 end)
 dm:Button("CopyLinkDiscord", "Deskds", function()

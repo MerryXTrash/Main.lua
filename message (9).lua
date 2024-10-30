@@ -5,7 +5,7 @@ if game:GetService"CoreGui":FindFirstChild"VVV" then
 	game:GetService"CoreGui":FindFirstChild"VVV":Destroy()
 end
 font = Enum.Font.GothamBold
-colorlib = Color3.new(15, 15, 15)
+colorlib = Color3.fromRGB(15, 15, 15)
 local h = game:GetService"UserInputService"
 local j = game:GetService"TweenService"
 

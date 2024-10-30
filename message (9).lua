@@ -1,11 +1,11 @@
-_G.Color = Color3.new(15, 15, 15)
+_G.Color = Color3.new(10, 10, 10)
 _G.Color2 = Color3.new(2, 182, 255)
 if _G.Mode == nil then _G.Mode = "Th" end
 if game:GetService"CoreGui":FindFirstChild"VVV" then
 	game:GetService"CoreGui":FindFirstChild"VVV":Destroy()
 end
 font = Enum.Font.GothamBold
-colorlib = Color3.new(0.20549019607843137, 0.20549019607843137, 0.20549019607843137)
+colorlib = Color3.new(15, 15, 15)
 local h = game:GetService"UserInputService"
 local j = game:GetService"TweenService"
 
@@ -57,7 +57,7 @@ function bm:Window(logo, text, hubnamecolor, bs)
 	bz.Parent = by
 	bz.ClipsDescendants = true
 	bz.AnchorPoint = Vector2.new(0.5, 0.5)
-	bz.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+	bz.BackgroundColor3 = colorlib
 	bz.BackgroundTransparency = 0
 	bz.Position = UDim2.new(0.5, 0, 0.5, 0)
 	bz.Size = UDim2.new(0, 0, 0, 0)
@@ -65,7 +65,7 @@ function bm:Window(logo, text, hubnamecolor, bs)
     local SK = Instance.new("UIStroke")
     SK.Parent = bz
     SK.Thickness = 3
-	SK.Color = Color3.fromRGB(20, 20, 20)
+	SK.Color = Color3.fromRGB(25, 25, 25)
 	local bB = Instance.new"UICorner"
 	bB.Name = "MCNR"
 	bB.Parent = bz
@@ -239,6 +239,15 @@ uu.Color = ColorSequence.new({
 		bZ.Image = bT
 		bX.CornerRadius = UDim.new(0, 3)
 		bX.Parent = bV
+		bA.Name = "BtnStroke"
+		bA.Parent = bV
+		bA.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		bA.Color = colorlib
+		bA.LineJoinMode = Enum.LineJoinMode.Round
+		bA.Thickness = 2
+		bA.Transparency = 0.5
+		bA.Enabled = true
+		bA.Archivable = true
 		local b_ = Instance.new"ScrollingFrame"
 		b_.Name = d .. "_Page"
 		b_.Parent = bQ
@@ -1258,7 +1267,6 @@ end
 			d9.TextSize = 15
 			d9.Text = d
 			d9.RichText = true
-			d9.TextXAlignment = Enum.TextXAlignment.Left
 			da.PaddingLeft = UDim.new(0, 15)
 			da.Parent = d9
 			da.Name = "PaddingLabel1"
@@ -1301,7 +1309,7 @@ end
 			return db
 		end
 
-		function cd:Seperator(d)
+		function cd:SectionLabel(d)
 			task.wait(0.1)
 			local de = Instance.new"Frame"
 			local df = Instance.new"Frame"
@@ -1365,11 +1373,9 @@ local dl = dj:Tab("Main", "rbxassetid://6034798461")
 local dm = dj:Tab("Setting", "rbxassetid://11446835336")
 
 -- Status Tab Configuration
-dk:Seperator("kuy i sus")
+dk:SectionLabel("kuy i sus")
 dk:Line() --make line
-local Time = dk:Label("Time: ..") -- Placeholder for actual time updating functionality
-dk:Label("[Username]: " .. game.Players.LocalPlayer.DisplayName)
-
+dk:Label("Time: ..") -- Placeholder for actual time updating functionality
 -- Setting Tab Configuration
 local em = {"Method 1", "Method 2", "Method 3"} -- Example options for dropdown; replace with actual methods
 dm:Dropdown("Select Method Farm", em, function(value) 
@@ -1388,3 +1394,4 @@ end)
 dm:Button("CopyLinkDiscord", "Deskds", function()
 	print("dksads")
 end)
+dm:Notification("wasd")

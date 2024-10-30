@@ -1,5 +1,5 @@
-_G.Color = Color3.new(10, 10, 10)
-_G.Color2 = Color3.new(2, 182, 255)
+_G.Color = Color3.fromRGB(23, 23, 23)
+_G.Color2 = Color3.fromRGB(2, 182, 255)
 if _G.Mode == nil then _G.Mode = "Th" end
 if game:GetService"CoreGui":FindFirstChild"VVV" then
 	game:GetService"CoreGui":FindFirstChild"VVV":Destroy()
@@ -194,7 +194,6 @@ bM.TextWrapped = true
 bM.TextXAlignment = Enum.TextXAlignment.Left
 local uu = Instance.new("UIGradient")
 uu.Parent = bM
-uu.Rotation = 90
 uu.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0, Color3.fromRGB(2, 182, 255)),   -- 0% - White
     ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 47, 128))          -- 100% - Black
@@ -1368,14 +1367,12 @@ end
 end
 -- Create main window and tabs
 local dj = bm:Window("rbxassetid://78854626478349", "Overture - Ultimate", Color3.fromRGB(2, 182, 255),  Enum.KeyCode.F1)
-local dk = dj:Tab("Status", "rbxassetid://11446900930")
-local dl = dj:Tab("Main", "rbxassetid://6034798461")
 local dm = dj:Tab("Setting", "rbxassetid://11446835336")
 
 -- Status Tab Configuration
-dk:SectionLabel("kuy i sus")
-dk:Line() --make line
-dk:Label("Time: ..") -- Placeholder for actual time updating functionality
+dm:SectionLabel("kuy i sus")
+dm:Line() --make line
+dm:Label("Time: ..") -- Placeholder for actual time updating functionality
 -- Setting Tab Configuration
 local em = {"Method 1", "Method 2", "Method 3"} -- Example options for dropdown; replace with actual methods
 dm:Dropdown("Select Method Farm", em, function(value) 
